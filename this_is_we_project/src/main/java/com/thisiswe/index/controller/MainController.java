@@ -9,7 +9,7 @@ import lombok.extern.log4j.Log4j2;
 
 //연결 이노테이션
 @Controller
-@RequestMapping("/main")
+@RequestMapping("/")
 @Log4j2
 @RequiredArgsConstructor
 public class MainController {
