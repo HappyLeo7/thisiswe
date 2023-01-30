@@ -9,7 +9,7 @@ import lombok.extern.log4j.Log4j2;
 
 //연결 이노테이션
 @Controller
-@RequestMapping("/")
+@RequestMapping("/basic")
 @Log4j2
 @RequiredArgsConstructor
 public class MainController {
@@ -17,7 +17,9 @@ public class MainController {
 	//index1 연결
 	@GetMapping({"/basicindex"})
 	public void index() {
+		log.info("======MainController=======");
 		log.info("****basicindex.html 연결****");
+		log.info("===========================");
 	}
 	
 }

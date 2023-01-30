@@ -15,9 +15,23 @@ import lombok.extern.log4j.Log4j2;
 public class LoginController {
 
 	//index1 연결
-	@GetMapping({"/index2","/index3"})
-	public void index() {
-		log.info("index2,3.html 연결");
+	@GetMapping({"/test1"})
+	public void index1() {
+		log.info("=======LoginController=======");
+		log.info("test1.html 연결");
+		log.info("===========================");
+	}
+	@GetMapping({"/test2"})
+	public void index2() {
+		log.info("=======LoginController=======");
+		log.info("test2.html 연결");
+		log.info("===========================");
+	}
+	@GetMapping({"/test3"})
+	public void index3() {
+		log.info("=======LoginController=======");
+		log.info("test3.html 연결");
+		log.info("===========================");
 	}
 	
 }

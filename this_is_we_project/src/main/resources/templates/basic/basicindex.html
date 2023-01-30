@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- [추가] html에 thymeleaf 선언 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- [추가] fragment를 이용하여 basicindex.html과 test1.html 연결 코드 작성 -->
+<th:block th:fragment="setContent(list)">
 
 <head>
   <meta charset="UTF-8">
@@ -9,11 +13,10 @@
   <link href='//fonts.googleapis.com/css?family=Abel|Lato:100,300,400,700,900|Cabin:400,500,600,700' rel='stylesheet'
     type='text/css'>
   <link href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
-  
   <!-- css 파일 경로 -->
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- [수정] th:href문 절대경로로 수정 -->
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
   <!-- /css 파일 경로 -->
-  
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 
@@ -30,7 +33,6 @@
       <span id="menu"><span class="ion-navicon-round"></span></span>
     </div>
   </div>
-  <!-- /상단 메뉴바 -->
 
   <menu>
     <div class="logo"><a href=""><span class="ion-camera"></span></a></div>
@@ -42,7 +44,7 @@
           <li><a href="#">로그인</a> | <a href="#">회원가입</a></li>
         </ul>
         <ul>
-          <li><a href="#">오늘의 추천모임</a></li>
+          <li><a th:href="@{/login/test1}">오늘의 추천모임</a></li>
           <li><a href="#">모임 등록</a></li>
           <li><a href="#">장소 대여</a></li>
           <li><a href="#">실시간 예약</a></li>
@@ -66,7 +68,9 @@
 
 
 
-  <script src="js/index.js"></script>
+<!-- [추가] js 연결코드 -->
+  <script th:src="@{/js/index.js}"></script>
+  <!-- / -->
   <!-- 상단 메뉴바 끝-->
 
   <div class="wrapper">
@@ -89,7 +93,8 @@
             excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
             </p>
           </div>
-          <div class="swiper-slide">Slide 2</div>
+          <!-- [수정] 스크린 클릭시 링크연결 -->
+          <div class="swiper-slide"><a th:href="@{/login/test2}">Slide 2</a></div>
           <div class="swiper-slide">Slide 3</div>
           <div class="swiper-slide">Slide 4</div>
           <div class="swiper-slide">Slide 5</div>
@@ -126,85 +131,13 @@
     <!-- 헤더부분 끝-->
     <!-- 본문 내용-->
     <div id="body-container">
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-
-
-
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-        excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-      </p>
-    </div>
+    
+    	<!-- [추가]test1.html 넣을 연결 코드 -->
+     <th:block th:replace="${list}"></th:block>
+     
+    	<!-- / -->
+    	
+    	    </div>
     <!-- 본문 내용 끝 -->
     <footer>
       <div class="inner-all">
@@ -221,7 +154,10 @@
       </div>
       <div id="ft-bottom">
         <div id="ft-bottom-left">
-          <img src="image/logo_com.png" />
+        
+        <!-- [수정] image로고 경로 부트에 맞게 변경 -->
+          <img src="/image/logo_com.png" />
+          <!-- / -->
         </div>
         <div id="ft-bottom-right">
           <ul class="footer-com-info">
