@@ -16,22 +16,29 @@ public class LoginController {
 
 	//index1 연결
 	@GetMapping({"/test1"})
-	public void index1() {
+	public void test1() {
 		log.info("=======LoginController=======");
 		log.info("test1.html 연결");
 		log.info("===========================");
 	}
 	@GetMapping({"/test2"})
-	public void index2() {
+	public void test2() {
 		log.info("=======LoginController=======");
 		log.info("test2.html 연결");
 		log.info("===========================");
 	}
 	@GetMapping({"/test3"})
-	public void index3() {
+	public void test3() {
 		log.info("=======LoginController=======");
 		log.info("test3.html 연결");
 		log.info("===========================");
 	}
+	@GetMapping({"/dw_class"})
+	public void dw_class() {
+		log.info("=======LoginController=======");
+		log.info("dw_class.html 연결");
+		log.info("===========================");
+	}
+	
 	
 }

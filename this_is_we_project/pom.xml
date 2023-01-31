@@ -5,14 +5,15 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.2</version>
+		<!-- [변경] 3.0.2 버전에서 2.7.8 로 변경 -->
+		<version>2.7.8</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.thisiswe</groupId>
-	<artifactId>bpro051-1</artifactId>
+	<artifactId>this_is_we_project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>bpro051-1</name>
+	<name>this_is_we_project</name>
 	<description>thymeleaf project for Spring Boot</description>
 	<properties>
 	<!-- [변경] 17버전에서 11버전으로 변경 -->
