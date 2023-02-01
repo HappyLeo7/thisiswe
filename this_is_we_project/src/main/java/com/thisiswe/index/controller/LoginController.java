@@ -15,10 +15,10 @@ import lombok.extern.log4j.Log4j2;
 public class LoginController {
 
 	//index1 연결
-	@GetMapping({"/test1"})
-	public void test1() {
+	@GetMapping({"/index"})
+	public void index() {
 		log.info("=======LoginController=======");
-		log.info("test1.html 연결");
+		log.info("index.html 연결");
 		log.info("===========================");
 	}
 	@GetMapping({"/test2"})
@@ -31,6 +31,12 @@ public class LoginController {
 	public void test3() {
 		log.info("=======LoginController=======");
 		log.info("test3.html 연결");
+		log.info("===========================");
+	}
+	@GetMapping({"/test55"})
+	public void test55() {
+		log.info("=======LoginController=======");
+		log.info("test55.html 연결");
 		log.info("===========================");
 	}
 	@GetMapping({"/dw_class"})
