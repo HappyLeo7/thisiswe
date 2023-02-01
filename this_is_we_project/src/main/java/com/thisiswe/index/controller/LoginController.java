@@ -39,6 +39,12 @@ public class LoginController {
 		log.info("dw_class.html 연결");
 		log.info("===========================");
 	}
+	@GetMapping({"/narong_test2"})
+	public void narong_test2() {
+		log.info("=======LoginController=======");
+		log.info("narong_test2.html 연결");
+		log.info("===========================");
+	}
 	
 	
 }

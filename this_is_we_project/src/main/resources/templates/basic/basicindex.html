@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- [추가] fragment를 이용하여 basicindex.html과 test1.html 연결 코드 작성 -->
-<th:block th:fragment="setContent(list)">
+<th:block th:fragment="setContent(connection)">
 
 <head>
   <meta charset="UTF-8">
@@ -132,8 +132,8 @@
     <!-- 본문 내용-->
     <div id="body-container">
     
-    	<!-- [추가]test1.html 넣을 연결 코드 -->
-     <th:block th:replace="${list}"></th:block>
+    	<!-- [추가]각페이지 html 넣을 연결 코드 -->
+     <th:block th:replace="${connection}"></th:block>
      
     	<!-- / -->
     	
