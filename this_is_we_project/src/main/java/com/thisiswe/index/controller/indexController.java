@@ -9,17 +9,19 @@ import lombok.extern.log4j.Log4j2;
 
 //연결 이노테이션
 @Controller
-@RequestMapping("/basic")
+@RequestMapping("/")
 @Log4j2
 @RequiredArgsConstructor
-public class MainController {
+public class indexController {
 
 	//index1 연결
-	@GetMapping({"/basicindex"})
-	public void index() {
+	@GetMapping({""})
+	public String main() {
 		log.info("======MainController=======");
-		log.info("****basicindex.html 연결****");
+		log.info("****index.html 연결****");
 		log.info("===========================");
+		return "redirect:/login/index";
+		
 	}
 	
 }

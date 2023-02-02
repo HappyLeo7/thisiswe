@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="~{basic/basicindex::setContent(~{this::list})}">
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 
 
-<th:block th:fragment="list">
+<th:block th:fragment="connection">
 
     <title>ㅇㅇㅇㅇ</title>
 
@@ -13,6 +13,6 @@
 
 
 
-<a th:href="@{/login/test1}">index</a>
+<a th:href="@{/login/index}">index</a>
 </th:block>
 </th:block>
