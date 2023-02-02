@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<!-- th를 쓰기위한 thymeleaf.org 선언 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+	
+	<!-- 지정한 변수로 연결할 위치 -->
+	<th:block th:fragment="connection">
+	
+	
+	
+	<!-- 내용 -->
+	<title>일정 상세페이지</title>
+	<h1>일정 상세페이지</h1>
+	
+	<hr>
+		<a th:href="@{/club/club_list}">일정목록</a>
+		<hr>
+		<a th:href="@{/club/club_modify}">일정수정</a>
+		<hr>
+		<a th:href="@{/club/club_read}">일정상세</a>
+		<hr>
+		<a th:href="@{/club/club_register}">일정등록</a>
+		<hr>
+	<!-- /내용 -->
+	
+	
+	
+	</th:block>
+
+</th:block>
