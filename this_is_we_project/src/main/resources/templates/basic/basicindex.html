@@ -5,174 +5,222 @@
 <!-- [추가] fragment를 이용하여 basicindex.html과 test1.html 연결 코드 작성 -->
 <th:block th:fragment="setContent(connection)">
 
-<head>
-  <meta charset="UTF-8">
-  <title>menu - header</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+	<head>
+<meta charset="UTF-8">
+<title>menu - header</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+	type="text/javascript"></script>
 
-  <link href='//fonts.googleapis.com/css?family=Abel|Lato:100,300,400,700,900|Cabin:400,500,600,700' rel='stylesheet'
-    type='text/css'>
-  <link href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
-  <!-- css 파일 경로 -->
-  <!-- [수정] th:href문 절대경로로 수정 -->
-  <link rel="stylesheet" th:href="@{/css/style.css}" />
-  <!-- /css 파일 경로 -->
-  <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<link
+	href='//fonts.googleapis.com/css?family=Abel|Lato:100,300,400,700,900|Cabin:400,500,600,700'
+	rel='stylesheet' type='text/css'>
+<link
+	href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'
+	rel='stylesheet' type='text/css'>
+<!-- css 파일 경로 -->
+<!-- [수정] th:href문 절대경로로 수정 -->
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<!-- /css 파일 경로 -->
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 
-  <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+<link rel='stylesheet'
+	href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-</head>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+	</head>
 
-<body>
-  <!-- 상단 메뉴바 -->
-  <div id="top-menu">
-    <div class="container">
-      <span id="home"><span class="ion-camera"></span></span>
-      <span id="menu"><span class="ion-navicon-round"></span></span>
-    </div>
-  </div>
+	<body>
+		<!-- 상단 메뉴바 -->
+		<div id="top-menu">
+			<div class="container">
+				<span id="home"><span class="ion-camera"></span></span> <span
+					id="menu"><span class="ion-navicon-round"></span></span>
+			</div>
+		</div>
 
-  <menu>
-    <div class="logo"><a href=""><span class="ion-camera"></span></a></div>
-    <span id="close-menu"><span class="ion-close-round"></span></span>
-    <div class="container">
-      <div class="box">
-        <ul>
-          <li><a href="#">Promotions</a></li>
-          <li><a href="#">로그인</a> | <a href="#">회원가입</a></li>
-        </ul>
-        <ul>
-          <li><a th:href="@{/login/index}">오늘의 추천모임</a></li>
-          <li><a href="#">모임 등록</a></li>
-          <li><a href="#">장소 대여</a></li>
-          <li><a href="#">실시간 예약</a></li>
-          <li><a href="#">참고 사항</a></li>
-        </ul>
-        <ul>
-          <li><a class="ion-social-facebook" href="#" target="_blank"></a></li>
-          <li><a class="ion-social-twitter" href="#" target="_blank"></a></li>
-          <li><a class="ion-social-googleplus" href="#" target="_blank"></a></li>
-          <li><a class="ion-social-pinterest" href="#" target="_blank"></a></li>
-          <li><a class="ion-social-instagram" href="#" target="_blank"></a></li>
-        </ul>
-        <div class="sign-up">
-          <a href="#"> Sign up for Newsletter <span class="ion-arrow-right-c"></span> </a>
-        </div>
-      </div>
-    </div>
-  </menu>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+		<menu>
+			<div class="logo">
+				<a href=""><span class="ion-camera"></span></a>
+			</div>
+			<span id="close-menu"><span class="ion-close-round"></span></span>
+			<div class="container">
+				<div class="box">
+					<ul>
+						<li><a href="#">Promotions</a></li>
+						<li><a href="#">로그인</a> | <a href="#">회원가입</a></li>
+					</ul>
+					<ul>
+						<li><a th:href="@{/login/index}">오늘의 추천모임</a></li>
+						<li><a href="#">모임 등록</a></li>
+						<li><a href="#">장소 대여</a></li>
+						<li><a href="#">실시간 예약</a></li>
+						<li><a href="#">참고 사항</a></li>
+					</ul>
+					<ul>
+						<li><a class="ion-social-facebook" href="#" target="_blank"></a></li>
+						<li><a class="ion-social-twitter" href="#" target="_blank"></a></li>
+						<li><a class="ion-social-googleplus" href="#" target="_blank"></a></li>
+						<li><a class="ion-social-pinterest" href="#" target="_blank"></a></li>
+						<li><a class="ion-social-instagram" href="#" target="_blank"></a></li>
+					</ul>
+					<div class="sign-up">
+						<a href="#"> Sign up for Newsletter <span
+							class="ion-arrow-right-c"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</menu>
+		<script
+			src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		<script
+			src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 
 
 
-<!-- [추가] js 연결코드 -->
-  <script th:src="@{/js/index.js}"></script>
-  <!-- / -->
-  <!-- 상단 메뉴바 끝-->
+		<!-- [추가] js 연결코드 -->
+		<script th:src="@{/js/index.js}"></script>
+		<!-- / -->
+		<!-- 상단 메뉴바 끝-->
 
-  <div class="wrapper">
-    <!-- 헤더부분-->
-    <header>
-      <!-- Swiper -->
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">      
-            <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-            excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-            excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-            excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-            excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus asperiores aliquid consequatur eum illo ut
-            excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque placeat numquam et velit similique aut omnis!
-            </p>
-          </div>
-          <!-- [수정] 스크린 클릭시 링크연결 -->
-          <div class="swiper-slide"><a th:href="@{/login/test2}">Slide 2</a></div>
-          <div class="swiper-slide">Slide 3</div>
-          <div class="swiper-slide">Slide 4</div>
-          <div class="swiper-slide">Slide 5</div>
-          <div class="swiper-slide">Slide 6</div>
-          <div class="swiper-slide">Slide 7</div>
-          <div class="swiper-slide">Slide 8</div>
-          <div class="swiper-slide">Slide 9</div>
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-      </div>
+		<div class="wrapper">
+			<!-- 헤더부분-->
+			<header>
+				<!-- Swiper -->
+				<div class="swiper mySwiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+								Temporibus asperiores aliquid consequatur eum illo ut excepturi
+								ullam! Quibusdam distinctio magni hic veritatis, eaque placeat
+								numquam et velit similique aut omnis! Lorem ipsum, dolor sit
+								amet consectetur adipisicing elit. Temporibus asperiores aliquid
+								consequatur eum illo ut excepturi ullam! Quibusdam distinctio
+								magni hic veritatis, eaque placeat numquam et velit similique
+								aut omnis! Lorem ipsum, dolor sit amet consectetur adipisicing
+								elit. Temporibus asperiores aliquid consequatur eum illo ut
+								excepturi ullam! Quibusdam distinctio magni hic veritatis, eaque
+								placeat numquam et velit similique aut omnis! Lorem ipsum, dolor
+								sit amet consectetur adipisicing elit. Temporibus asperiores
+								aliquid consequatur eum illo ut excepturi ullam! Quibusdam
+								distinctio magni hic veritatis, eaque placeat numquam et velit
+								similique aut omnis! Lorem ipsum, dolor sit amet consectetur
+								adipisicing elit. Temporibus asperiores aliquid consequatur eum
+								illo ut excepturi ullam! Quibusdam distinctio magni hic
+								veritatis, eaque placeat numquam et velit similique aut omnis!</p>
+						</div>
+						<!-- [수정] 스크린 클릭시 링크연결 -->
+						<div class="swiper-slide">
+							<a th:href="@{/login/test2}">Slide 2</a>
+						</div>
+						<div class="swiper-slide">Slide 3</div>
+						<div class="swiper-slide">Slide 4</div>
+						<div class="swiper-slide">Slide 5</div>
+						<div class="swiper-slide">Slide 6</div>
+						<div class="swiper-slide">Slide 7</div>
+						<div class="swiper-slide">Slide 8</div>
+						<div class="swiper-slide">Slide 9</div>
+					</div>
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-pagination"></div>
+				</div>
 
-      <!-- Swiper JS -->
-      <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+				<!-- Swiper JS -->
+				<script
+					src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
-      <!-- Initialize Swiper -->
-      <script>
-        var swiper = new Swiper(".mySwiper", {
-          slidesPerView: 1,
-          spaceBetween: 30,
-          loop: true,
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-          },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-        });
-      </script>
-    </header>
-    <!-- 헤더부분 끝-->
-    <!-- 본문 내용-->
-    <div id="body-container">
-    
-    	<!-- [추가]각페이지 html 넣을 연결 코드 -->
-     <th:block th:replace="${connection}"></th:block>
-     
-    	<!-- / -->
-    	
-    	    </div>
-    <!-- 본문 내용 끝 -->
-    <footer>
-      <div class="inner-all">
-      <div id="ft-top">
-        <ul class="footer-bar-list">
-          <li><a href="#" target="_blank" title="블로그">개인정보처리방침</a></li> 
-          <li><a href="#" class="">이용약관</a></li>
-           <li><a href="#" class="">이메일무단수집거부</a></li> 
-          <li><a href="#" class="">접근성</a></li>
-           <li><a href="#" class="">오시는길</a></li>
-           <li><a href="#" class="">공지사항</a></li>
-           <li><a href="javascript:" title="고객문의">고객 문의</a></li>
-          </ul> 
-      </div>
-      <div id="ft-bottom">
-        <div id="ft-bottom-left">
-        
-        <!-- [수정] image로고 경로 부트에 맞게 변경 -->
-          <img src="/image/logo_com.png" />
-          <!-- / -->
-        </div>
-        <div id="ft-bottom-right">
-          <ul class="footer-com-info">
-          <li class="divi">상호명(주)THISISWE</li>
-          <li class="divi">사업자등록번호 123-456-7890</li>
-          <li class="info-space">서울특별시 관악구 봉천로 227, SF 505호</li>
-           <li class="info-space">TEL 02-1234-5678</li> 
-          <li>FAX 02-1234-5678</li>
-           <li>E-mail thisIsWe@gmail.com</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    </footer>
-  </div>
-</body>
+				<!-- Initialize Swiper -->
+				<script>
+					var swiper = new Swiper(".mySwiper", {
+						slidesPerView : 1,
+						spaceBetween : 30,
+						loop : true,
+						pagination : {
+							el : ".swiper-pagination",
+							clickable : true,
+						},
+						navigation : {
+							nextEl : ".swiper-button-next",
+							prevEl : ".swiper-button-prev",
+						},
+					});
+				</script>
+			</header>
+			<!-- 헤더부분 끝-->
+			<!-- 본문 내용-->
 
+			<div id="body-container">
+
+				<!-- [추가]각페이지 html 넣을 연결 코드 -->
+				<th:block th:replace="${connection}"></th:block>
+
+				<!-- / -->
+				<!-- 본문 한글 더미 -->
+				<section class="font-test">
+					<div>
+						<p>이름과 오는 이름과, 계절이 자랑처럼 하나에 계십니다. 하나에 이름과, 아름다운 하나에 우는 가슴속에 오는
+							까닭입니다. 멀듯이, 경, 이름과, 있습니다. 써 이름자 남은 사람들의 북간도에 당신은 비둘기, 사랑과 계십니다. 별
+							잠, 지나가는 봅니다. 옥 묻힌 아직 별이 새겨지는 하나의 파란 무엇인지 까닭입니다. 비둘기, 나는 이름과 못 사랑과
+							한 어머님, 피어나듯이 까닭입니다. 피어나듯이 너무나 밤을 같이 밤이 써 별 새겨지는 아름다운 있습니다. 별 위에도
+							벌써 봅니다. 까닭이요, 잠, 별에도 거외다. 남은 아름다운 겨울이 하나에 멀리 있습니다. 무엇인지 경, 멀리
+							있습니다. 내일 이름과, 잠, 아무 프랑시스 묻힌 멀리 속의 않은 있습니다. 별을 차 이웃 계절이 이름을 하나에 나는
+							풀이 봅니다. 봄이 별 내 흙으로 아름다운 추억과 봅니다. 이런 오는 내 멀듯이, 북간도에 봅니다. 별 나의 이런
+							어머님, 하늘에는 이름과, 내린 별 풀이 듯합니다. 흙으로 묻힌 까닭이요, 이름을 이제 이름과, 하나에 가을로
+							봅니다. 내 흙으로 하나에 남은 까닭입니다. 멀듯이, 벌레는 잔디가 한 별 이국 당신은 까닭입니다. 위에도 릴케
+							청춘이 가을 잠, 다하지 별이 봅니다. 파란 별들을 내 그리고 있습니다. 다하지 어머님, 그리고 헤는 너무나 내 가을
+							쉬이 버리었습니다. 가난한 언덕 된 겨울이 어머니, 하나에 있습니다. 가득 소녀들의 걱정도 버리었습니다. 피어나듯이
+							이 지나고 까닭이요, 봅니다. 한 위에 별 청춘이 이름과, 이런 나는 봅니다. 별 오면 많은 청춘이 비둘기, 하나
+							계집애들의 별 별 까닭입니다. 그 리워 계절이 별 벌레는 하나의 라이너 소녀들의 밤이 거외다. 쉬이 언덕 파란 밤을
+							당신은 하나에 있습니다. 그리워 쓸쓸함과 오면 불러 노새, 별에도 이름과, 하나에 버리었습니다.</p>
+					</div>
+				</section>
+
+
+				<!-- /본문 한글 더미 -->
+
+
+			</div>
+			<!-- 본문 내용 끝 -->
+
+
+			<footer>
+				<div class="inner-all">
+					<div id="ft-top">
+						<ul class="footer-bar-list">
+							<li><a href="#" target="_blank" title="블로그">개인정보처리방침</a></li>
+							<li><a href="#" class="">이용약관</a></li>
+							<li><a href="#" class="">이메일무단수집거부</a></li>
+							<li><a href="#" class="">접근성</a></li>
+							<li><a href="#" class="">오시는길</a></li>
+							<li><a href="#" class="">공지사항</a></li>
+							<li><a href="javascript:" title="고객문의">고객 문의</a></li>
+						</ul>
+					</div>
+					<div id="ft-bottom">
+						<div id="ft-bottom-left">
+
+							<!-- [수정] image로고 경로 부트에 맞게 변경 -->
+							<img src="/image/logo_com.png" />
+							<!-- / -->
+						</div>
+						<div id="ft-bottom-right">
+							<ul class="footer-com-info">
+								<li class="divi">상호명(주)THISISWE</li>
+								<li class="divi">사업자등록번호 123-456-7890</li>
+								<li class="info-space">서울특별시 관악구 봉천로 227, SF 505호</li>
+								<li class="info-space">TEL 02-1234-5678</li>
+								<li>FAX 02-1234-5678</li>
+								<li>E-mail thisIsWe@gmail.com</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</body>
 </html>
