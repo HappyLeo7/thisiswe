@@ -40,16 +40,16 @@ a:hover {
 	color: #e4481b;
 }
 
+/* [수정] header부분 크기 및 간격 조정*/
 header {
 /* 	padding-top: 70px; */
-	height: 70%;
-	
-	padding-top: 70px;
+	height: 100%;
+	padding-top: 100px;
 	padding-left: 15px;
 	padding-right: 15px;
-	padding-bottom: 70px;
-	height: 100%;
+	padding-bottom: 50px;
 }
+/* /[수정] header부분 크기 및 간격 조정*/
 
 ul, li {
 	list-style-type: none;
@@ -61,18 +61,25 @@ ul li {
 	display: inline-block;
 }
 
+/* [수정] 상단바 햄버거 버튼 */
+#top-menu{
+	border: 2px solid black;
+}
+
 #top-menu, /* section, */ .container, .box {
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
 	position: relative;
-	
+	background-color: yellow;	
 }
+/* /[수정] 상단바 햄버거 버튼 */
 
+/* [수정] 홈페이지 상단바_로고 및 메뉴 부분*/
 #top-menu {
 	background: #FFF;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-	height: 60px;
+	height: 90px;
 	left: 0;
 	position: fixed;
 	right: 0;
@@ -86,6 +93,7 @@ ul li {
 	-moz-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 }
+/* [수정] 홈페이지 상단바_로고 및 메뉴 부분*/
 
 html.active #top-menu {
 	-webkit-transform: matrix(1, 0, 0, 1, -320, 0);
@@ -140,22 +148,23 @@ html.active #overlay {
 	transition: all .5s ease-in-out;
 }
 
-#home, .logo>a {
-	border-radius: 8px;
+/* [수정예정] 홈페이지 상단바_로고 부분 */
+ #home {
+	border-radius: 10px;
 	box-shadow: inset 0 0 0 2px #FFF, inset 0 0 0 3px #FF5959;
-	color: #FF5959;
+	color: #008040;
 	display: block;
-	font-size: 32px;
-	height: 36px;
+	font-size: 48px;
+	height: 50px;
 	left: 0;
-	line-height: 36px;
+	line-height: 50px;
 	margin: 10px 20px 10px 30px;
 	overflow: hidden;
 	padding: 2px;
 	position: fixed;
 	text-align: center;
 	top: 0;
-	width: 36px;
+	width: 50px;
 }
 
 .logo {
@@ -168,6 +177,7 @@ html.active #overlay {
 	position: relative;
 	width: initial;
 }
+/* [수정예정] 홈페이지 상단바_로고 부분 */
 
 .logo>a {
 	display: inline-block;
@@ -409,7 +419,7 @@ html.active menu .container {
 
 @media only screen and (min-width: 520px) {
 	#top-menu .container {
-		max-width: 640px
+		max-width: 640px;
 	}
 	#top-menu .box {
 		display: block;
@@ -468,20 +478,22 @@ html.active menu .container {
 
 }
 
-/* font-size-test */
+/* [나영] font-size-test */
 .font-test {
 	font-size: 20px;
 }
-/* /font-size-test */
+/* /[나영] font-size-test */
 
 
+/* [CSS] footer_css */
 footer {
-	background: gray;
+	background: #f4f4f4;
 	padding-top: 30px;
 	padding-bottom: 30px;
 }
 
 #ft-top {
+	padding-top: 10px;
 	text-align: center;
 	font-size: 15px;
 }
@@ -490,9 +502,9 @@ footer {
 	display: inline;
 	border-left: 1px solid #c0c0c0;
 	/* 테두리와 메뉴 간격 벌리기. padding: 위 오른쪽 아래 왼쪽; */
-	padding: 0px 10px 0px 10px;
+	padding: 0px 15px 0px 15px;
 	/* 메뉴와 테두리 사이 간격 벌리기. margin: 위 오른쪽 아래 왼쪽; */
-	margin: 5px 0px 5px 0px;
+	margin: 10px 0px 10px 0px;
 }
 
 .footer-bar-list li:first-child {
@@ -500,18 +512,22 @@ footer {
 	border-left: none;
 }
 
+/* [수정] footer 이미지 및 간격 */
 #ft-bottom {
-	padding-top: 30px;
 	/* width:700px; */
-	display: flex;
 	/* align-items: center; */
+	margin-top: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	display: flex;
 	justify-content: center;
-	/* margin: auto; */
+	/* background-color: yellow; */
 }
+/* /[수정] footer 이미지 및 간격 */
 
 #ft-bottom-left {
 	width: 150px;
-	margin-right: 50px;
+	margin-right: 30px;
 	overflow: hidden;
 }
 
@@ -521,17 +537,24 @@ footer {
 	height: 100%;
 }
 
-#ft-bottom-right {
-	width: 400px;
+/* [수정] footer 이미지 및 간격 */
+#ft-bottom-middle {
+	width: 500px;
+	padding: 5px;
+	text-align: left;
+	font-size: 15px;
 }
+/* /[수정] footer 이미지 및 간격 */
 
+/* [수정] footer 이미지 및 간격 */
 .footer-com-info .divi {
 	display: inline;
 	border-left: 1px solid #444;
 	/* 테두리와 메뉴 간격 벌리기. padding: 위 오른쪽 아래 왼쪽; */
-	padding: 0px 10px 0px 10px;
+	padding: 0px 15px 0px 15px;
 	font-weight: bold;
 }
+/* /[수정] footer 이미지 및 간격 */
 
 .footer-com-info .divi:first-child {
 	/* li의 첫번째 요소의 좌측에는 테두리 없애기 */
@@ -544,5 +567,30 @@ footer {
 }
 
 .footer-com-info .info-space {
-	margin-top: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
+
+/* [추가] footer 폰트 간격 및 색상*/
+.footer-com-info .info-space-plus {
+	font-size: 15px;
+	line-height: 15px;
+}
+
+.footer-com-info .info-copyright {
+	margin-top: 20px;
+	font-size: 12px;
+	color: gray;
+}
+
+#ft-bottom-right{
+	width: 150px;
+	margin-left: 30px;
+}
+
+#ft-bottom-right img{
+	width: 13%;
+	padding: 0px 7px 0px 7px;
+}
+/* /[추가] footer 폰트 간격 및 색상 */
+/* /[CSS] footer_css */

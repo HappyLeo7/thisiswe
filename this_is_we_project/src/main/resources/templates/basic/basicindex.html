@@ -5,7 +5,7 @@
 <!-- [추가] fragment를 이용하여 basicindex.html과 test1.html 연결 코드 작성 -->
 <th:block th:fragment="setContent(connection)">
 
-	<head>
+<head>
 <meta charset="UTF-8">
 <title>menu - header</title>
 <script
@@ -13,11 +13,9 @@
 	type="text/javascript"></script>
 
 <link
-	href='//fonts.googleapis.com/css?family=Abel|Lato:100,300,400,700,900|Cabin:400,500,600,700'
-	rel='stylesheet' type='text/css'>
-<link
 	href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'
 	rel='stylesheet' type='text/css'>
+	
 <!-- css 파일 경로 -->
 <!-- [수정] th:href문 절대경로로 수정 -->
 <link rel="stylesheet" th:href="@{/css/style.css}" />
@@ -37,14 +35,15 @@
 		<!-- 상단 메뉴바 -->
 		<div id="top-menu">
 			<div class="container">
-				<span id="home"><span class="ion-camera"></span></span> <span
-					id="menu"><span class="ion-navicon-round"></span></span>
+				<span id="home"><span class="ion-camera"></span></span>
+				<span id="menu"><span class="ion-navicon-round"></span></span>
 			</div>
 		</div>
 
 		<menu>
 			<div class="logo">
-				<a href=""><span class="ion-camera"></span></a>
+				<a href=""> <span class="ion-camera"></span>
+				</a>
 			</div>
 			<span id="close-menu"><span class="ion-close-round"></span></span>
 			<div class="container">
@@ -179,48 +178,61 @@
 							당신은 하나에 있습니다. 그리워 쓸쓸함과 오면 불러 노새, 별에도 이름과, 하나에 버리었습니다.</p>
 					</div>
 				</section>
-
-
 				<!-- /본문 한글 더미 -->
-
-
 			</div>
 			<!-- 본문 내용 끝 -->
 
-
+			<!-- [추가 및 수정]footer 내용, 시작 -->
 			<footer>
 				<div class="inner-all">
 					<div id="ft-top">
 						<ul class="footer-bar-list">
 							<li><a href="#" target="_blank" title="블로그">개인정보처리방침</a></li>
 							<li><a href="#" class="">이용약관</a></li>
-							<li><a href="#" class="">이메일무단수집거부</a></li>
+							<li><a href="#" class="_blank">이메일무단수집거부</a></li>
 							<li><a href="#" class="">접근성</a></li>
 							<li><a href="#" class="">오시는길</a></li>
 							<li><a href="#" class="">공지사항</a></li>
 							<li><a href="javascript:" title="고객문의">고객 문의</a></li>
 						</ul>
 					</div>
+					
 					<div id="ft-bottom">
 						<div id="ft-bottom-left">
-
 							<!-- [수정] image로고 경로 부트에 맞게 변경 -->
 							<img src="/image/logo_com.png" />
-							<!-- / -->
+							<!-- /[수정] image로고 경로 부트에 맞게 변경 -->
 						</div>
-						<div id="ft-bottom-right">
+						
+						<div id="ft-bottom-middle">
 							<ul class="footer-com-info">
-								<li class="divi">상호명(주)THISISWE</li>
-								<li class="divi">사업자등록번호 123-456-7890</li>
-								<li class="info-space">서울특별시 관악구 봉천로 227, SF 505호</li>
-								<li class="info-space">TEL 02-1234-5678</li>
-								<li>FAX 02-1234-5678</li>
-								<li>E-mail thisIsWe@gmail.com</li>
+								<li class="divi">상호명 &nbsp;&nbsp;(주)THISISWE</li>
+								<li class="divi">사업자등록번호 &nbsp;&nbsp;123-456-7890</li>
+								<li class="info-space">서울특별시 관악구 봉천로 227, 5F 505호</li>
+							</ul>
+							<ul class="footer-com-info">
+								<li class="info-space-plus">TEL. 02-1234-5678</li>
+								<li class="info-space-plus">FAX. 02-1234-5678</li>
+								<li class="info-space-plus">E-mail. thisIsWe@gmail.com</li>
+							</ul>
+							<ul class="footer-com-info">
+								<li class="info-copyright">© Copyright 2023  THISISWE_DESIGN_TEAM . All rights reserved.</li>								
 							</ul>
 						</div>
+						
+						<!-- [추가] sns 관련 icon -->
+						<div id="ft-bottom-right">
+							<a href="#" ><img src="/image/icon_insta_com.png" /></a>
+							<a href="#" ><img src="/image/icon_face_com.png" /></a>
+							<a href="#" ><img src="/image/icon_youtu_com.png" /></a>
+							<a href="#" ><img src="/image/icon_twi_com.png" /></a>
+						</div>
+						<!-- /[추가] sns 관련 icon -->
 					</div>
 				</div>
 			</footer>
+			<!-- /[추가 및 수정]footer 내용, 끝 -->
+						
 		</div>
 	</body>
 </html>
