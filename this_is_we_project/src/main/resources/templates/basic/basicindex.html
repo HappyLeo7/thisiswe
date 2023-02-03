@@ -5,7 +5,7 @@
 <!-- [추가] fragment를 이용하여 basicindex.html과 test1.html 연결 코드 작성 -->
 <th:block th:fragment="setContent(connection)">
 
-<head>
+	<head>
 <meta charset="UTF-8">
 <title>menu - header</title>
 <script
@@ -15,7 +15,7 @@
 <link
 	href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'
 	rel='stylesheet' type='text/css'>
-	
+
 <!-- css 파일 경로 -->
 <!-- [수정] th:href문 절대경로로 수정 -->
 <link rel="stylesheet" th:href="@{/css/style.css}" />
@@ -35,8 +35,8 @@
 		<!-- 상단 메뉴바 -->
 		<div id="top-menu">
 			<div class="container">
-				<span id="home"><span class="ion-camera"></span></span>
-				<span id="menu"><span class="ion-navicon-round"></span></span>
+				<span id="home"><span class="ion-camera"></span></span> <span
+					id="menu"><span class="ion-navicon-round"></span></span>
 			</div>
 		</div>
 
@@ -196,14 +196,14 @@
 							<li><a href="javascript:" title="고객문의">고객 문의</a></li>
 						</ul>
 					</div>
-					
+
 					<div id="ft-bottom">
 						<div id="ft-bottom-left">
 							<!-- [수정] image로고 경로 부트에 맞게 변경 -->
 							<img src="/image/logo_com.png" />
 							<!-- /[수정] image로고 경로 부트에 맞게 변경 -->
 						</div>
-						
+
 						<div id="ft-bottom-middle">
 							<ul class="footer-com-info">
 								<li class="divi">상호명 &nbsp;&nbsp;(주)THISISWE</li>
@@ -216,23 +216,35 @@
 								<li class="info-space-plus">E-mail. thisIsWe@gmail.com</li>
 							</ul>
 							<ul class="footer-com-info">
-								<li class="info-copyright">© Copyright 2023  THISISWE_DESIGN_TEAM . All rights reserved.</li>								
+								<li class="info-copyright">© Copyright 2023
+									THISISWE_DESIGN_TEAM . All rights reserved.</li>
 							</ul>
 						</div>
-						
+
 						<!-- [추가] sns 관련 icon -->
 						<div id="ft-bottom-right">
-							<a href="#" ><img src="/image/icon_insta_com.png" /></a>
-							<a href="#" ><img src="/image/icon_face_com.png" /></a>
-							<a href="#" ><img src="/image/icon_youtu_com.png" /></a>
-							<a href="#" ><img src="/image/icon_twi_com.png" /></a>
+							<table>
+								<tr>
+									<td>
+										<a href="#"><img src="/image/icon_insta_com.png" /></a>
+									</td>
+									<td>
+										<a href="#"><img src="/image/icon_face_com.png" /></a>
+									<td>
+										<a href="#"><img src="/image/icon_youtu_com.png" /></a>
+									</td>
+									<td>
+										 <a href="#"><img src="/image/icon_twi_com.png" /></a>
+									</td>
+								</tr>
+							</table>
 						</div>
 						<!-- /[추가] sns 관련 icon -->
 					</div>
 				</div>
 			</footer>
 			<!-- /[추가 및 수정]footer 내용, 끝 -->
-						
+
 		</div>
 	</body>
 </html>
