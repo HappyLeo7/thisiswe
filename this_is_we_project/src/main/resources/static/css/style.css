@@ -63,7 +63,7 @@ ul li {
 
 /* [수정] 상단바 햄버거 버튼 */
 #top-menu{
-	border: 2px solid black;
+
 }
 
 #top-menu, /* section, */ .container, .box {
@@ -78,7 +78,7 @@ ul li {
 /* [수정] 홈페이지 상단바_로고 및 메뉴 부분*/
 #top-menu {
 	background: #FFF;
-	box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+	box-shadow: 0 0 30px #787878;
 	height: 100px;
 	position: fixed;
 	left: 0;
