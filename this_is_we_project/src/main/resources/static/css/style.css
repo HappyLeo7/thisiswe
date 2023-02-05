@@ -44,10 +44,10 @@ a:hover {
 header {
 /* 	padding-top: 70px; */
 	height: 100%;
-	padding-top: 100px;
+	padding-top: 120px;
 	padding-left: 15px;
 	padding-right: 15px;
-	padding-bottom: 50px;
+	padding-bottom: 30px;
 }
 /* /[수정] header부분 크기 및 간격 조정*/
 
@@ -71,17 +71,17 @@ ul li {
 	overflow: hidden;
 	padding: 0;
 	position: relative;
-	background-color: yellow;	
+	background-color: #FFF;
 }
 /* /[수정] 상단바 햄버거 버튼 */
 
 /* [수정] 홈페이지 상단바_로고 및 메뉴 부분*/
 #top-menu {
 	background: #FFF;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-	height: 90px;
-	left: 0;
+	box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+	height: 100px;
 	position: fixed;
+	left: 0;
 	right: 0;
 	top: 0;
 	width: initial;
@@ -103,6 +103,11 @@ html.active #top-menu {
 	-moz-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 }
+
+/* [상단바_로고] */
+/* .logo-we{
+	border: 2px solid black;
+} */
 
 #top-menu .box {
 	display: none;
@@ -150,9 +155,9 @@ html.active #overlay {
 
 /* [수정예정] 홈페이지 상단바_로고 부분 */
  #home {
-	border-radius: 10px;
+	/* border-radius: 10px; */
 	box-shadow: inset 0 0 0 2px #FFF, inset 0 0 0 3px #FF5959;
-	color: #008040;
+	/* color: #008040; */
 	display: block;
 	font-size: 48px;
 	height: 50px;
@@ -186,15 +191,15 @@ html.active #overlay {
 }
 
 .sign-up {
-	background: #FF5959;
-	border: 1px solid #FF5959;
+	background-color: #e4481b;
+	border: 1px solid #e4481b;
 	color: #FFF;
 	font-family: 'Nanum Gothic', sans-serif;
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: bold;
-	height: 40px;
+	height: 60px;
 	letter-spacing: 1px;
-	line-height: 40px;
+	line-height: 60px;
 	margin: 10px;
 	overflow: hidden;
 	padding: 0;
@@ -293,16 +298,19 @@ section > h1 > span {
   font-weight: 400;
   text-transform: none;
 } */
-menu {
-	
-	/* background: #FFF; */
+
+/* [햄버거버튼 메뉴 부분] */
+menu {	
+	background-color: #FFF;
 	bottom: 0;
 	margin: 0;
 	padding: 0;
 	position: fixed;
-	right: -320px;
+/* 	right: -320px;
+	width: 320px; */
+	right: -500px;
+	width: 500px;
 	top: 0;
-	width: 320px;
 	z-index: 1;
 	-webkit-transition: all .5s ease-in-out;
 	-moz-transition: all .5s ease-in-out;
@@ -314,7 +322,8 @@ menu .container {
 	margin: 0 auto;
 	overflow: hidden;
 	position: relative;
-	width: 258px;
+	/* width: 258px; */
+	width: 500px;
 	-webkit-transform-origin: 0% 50% 0px;
 	-moz-transform-origin: 0% 50% 0px;
 	transform-origin: 0% 50% 0px;
@@ -327,13 +336,13 @@ menu .container {
 }
 
 menu .container .box {
-	border-top: 3px solid;
 	height: calc(100% - 33px);
 	overflow: visible;
 	overflow-Y: scroll;
-	padding: 0 17px 30px 0;
+/* 	padding: 0 17px 30px 0; */
+	padding: 20px 20px 20px 20px;
 	position: relative;
-	width: 275px;
+	width: 500px;
 }
 
 menu .box ul:nth-child(1) {
@@ -341,22 +350,23 @@ menu .box ul:nth-child(1) {
 }
 
 menu .box ul {
-	padding: 10px 0;
+	padding: 20px;
 }
 
+/* [추가] 햄버거 버튼 메뉴 li 부분*/
 menu ul li {
 	border-bottom: 1px solid #EDEDED;
 	display: block;
-	font-size: 13px;
+	font-size: 20px;
 	font-weight: bold;
-	height: 39px;
+	height: 50px;
 	letter-spacing: 0.12em;
-	line-height: 39px;
+	line-height: 50px;
 	text-transform: uppercase;
 }
 
 menu ul:nth-child(2) li {
-	font-size: 10px;
+	font-size: 18px;
 }
 
 menu ul:nth-child(2) li:last-child {
@@ -385,6 +395,7 @@ menu ul:nth-child(3) li>a {
 menu ul li:last-child {
 	border: 0;
 }
+/* /[추가, 수정] 햄버거 버튼 메뉴 li 부분*/
 
 html.active menu {
 	right: 0;
@@ -594,6 +605,6 @@ footer {
 	width: 50%;
 	padding: 0px 9px 0px 9px;
 }
-
 /* /[추가] footer 폰트 간격 및 색상 */
+
 /* /[CSS] footer_css */
