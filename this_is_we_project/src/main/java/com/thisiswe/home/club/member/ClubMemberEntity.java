@@ -1,5 +1,6 @@
-package com.thisiswe.home.club.calendar.member.entity;
+package com.thisiswe.home.club.member;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,24 +14,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Data
-
-//TODO[Entity] calendar memeber 컬럼
-public class CalendarMember {
+public class ClubMemberEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long club_calendar_member_num; //구성원 번호
+	private Long club_member_num; //구성원 번호
+	
+	@Column
+	private Long club_member_role; //권한 1 2 3 
+	
+	@Column
+	private Long club_num; //모임 번호
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private String user_id; //유저ID
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Long club_num; //모임 번호
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Long club_calendar_num; //일정 번호
 }
