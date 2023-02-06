@@ -16,10 +16,12 @@ public class ClubController {
 	
 	//목록 연결링크
 	@GetMapping({"/club_list"})
-	public void club_list() {
+	public String club_list() {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_list.html 연결 =======");
 		log.info("=========================================================");
+		return "list";
+		
 	}
 	
 	//수정 연결링크

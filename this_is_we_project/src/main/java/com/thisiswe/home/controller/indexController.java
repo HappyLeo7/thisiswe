@@ -16,8 +16,8 @@ public class indexController {
 
 	//index1 연결
 	@GetMapping({""})
-	public String main() {
-		log.info("======MainController=======");
+	public String home() {
+		log.info("======indexController=======");
 		log.info("****index.html 연결****");
 		log.info("===========================");
 		return "redirect:/login/index";
