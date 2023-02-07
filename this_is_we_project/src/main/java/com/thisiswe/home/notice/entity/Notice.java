@@ -37,7 +37,6 @@ public class Notice extends BaseEntity{
 	@Column(length=100)
 	private String notice_content;				// 공지사항 내용
 	
-	@Column(length=100, unique=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private UserEntity user_id;					// 공지사항 유저ID
 	

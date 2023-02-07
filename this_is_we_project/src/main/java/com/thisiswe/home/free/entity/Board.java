@@ -37,7 +37,6 @@ public class Board extends BaseEntity{
 	@Column(length=100)
 	private String board_content;			// 게시판 내용
 	
-	@Column(length=100, unique=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private UserEntity user_id;				// 게시판 유저ID
 	
