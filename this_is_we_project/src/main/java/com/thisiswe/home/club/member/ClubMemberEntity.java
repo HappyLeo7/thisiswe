@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.thisiswe.home.club.entity.ClubEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +25,10 @@ public class ClubMemberEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long club_member_num; //구성원 번호
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private ClubEntity user_id; //유저ID
 	
 	@Column
 	private Long club_member_role; //권한 1 2 3 
