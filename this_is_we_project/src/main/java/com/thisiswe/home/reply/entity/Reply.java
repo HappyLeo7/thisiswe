@@ -36,9 +36,4 @@ public class Reply extends BaseEntity{
 	@Column(length=100, unique=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private UserEntity user_id;					// 게시판_댓글 유저ID
-	
-	@ManyToOne(fetch = FetchType.LAZY) 
-	@JoinColumn
-	private Board board_num; //게시판 작성자와 회원 닉네임의 관계
-	 
 }
