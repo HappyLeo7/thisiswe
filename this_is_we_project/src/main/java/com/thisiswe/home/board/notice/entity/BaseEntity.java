@@ -21,10 +21,10 @@ abstract class BaseEntity {
 	
 	@CreatedDate
 	@Column(name="notice_reg_date", updatable=false)
-	private LocalDateTime notice_reg_date; 			// 공지사항 등록일자
+	private LocalDateTime noticeRegDate; 			// 공지사항 등록일자
 	
 	@LastModifiedDate
 	@Column(name="notice_update_date")
-	private LocalDateTime notice_update_date; 		// 공지사항 수정일자
+	private LocalDateTime noticeUpdateDate; 		// 공지사항 수정일자
 	
 }

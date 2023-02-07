@@ -21,10 +21,10 @@ abstract class BaseEntity {
 	
 	@CreatedDate
 	@Column(name="board_reg_date", updatable=false)
-	private LocalDateTime board_reg_date; 			// 게시판 등록일자
+	private LocalDateTime boardRegDate; 			// 게시판 등록일자
 	
 	@LastModifiedDate
 	@Column(name="board_update_date")
-	private LocalDateTime board_update_date; 		// 게시판 수정일자
+	private LocalDateTime boardUpdateDate; 		// 게시판 수정일자
 
 }

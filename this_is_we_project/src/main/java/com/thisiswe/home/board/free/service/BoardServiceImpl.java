@@ -1,9 +1,7 @@
 package com.thisiswe.home.board.free.service;
 
 import org.springframework.stereotype.Service;
-
 import com.thisiswe.home.board.free.dto.BoardDTO;
-import com.thisiswe.home.board.reply.service.ReplyService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -14,9 +12,11 @@ import lombok.extern.log4j.Log4j2;
 
 //TODO [ServiceImpl] 게시판
 public class BoardServiceImpl implements BoardService {
-
-	//private final BoardService boardService;
-	//private final ReplyService replyService;
+		
+	/*
+	 * @Autowired private final BoardService boardService; private final
+	 * ReplyService replyService;
+	 */
 	
 	@Override
 	public Long register(BoardDTO dto) {

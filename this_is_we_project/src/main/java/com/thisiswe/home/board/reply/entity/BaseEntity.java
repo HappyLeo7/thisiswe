@@ -21,9 +21,9 @@ abstract class BaseEntity {
 	
 	@CreatedDate
 	@Column(name="board_reply_regDate", updatable=false)
-	private LocalDateTime board_reply_regDate; 		// 게시판_댓글 등록일자
+	private LocalDateTime boardReplyRegDate; 		// 게시판_댓글 등록일자
 	
 	@LastModifiedDate
 	@Column(name="board_reply_updateDate")
-	private LocalDateTime board_reply_updateDate; 	// 게시판_댓글 수정일자
+	private LocalDateTime boardReplyUpdateDate; 	// 게시판_댓글 수정일자
 }

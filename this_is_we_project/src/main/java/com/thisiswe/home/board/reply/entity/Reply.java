@@ -16,27 +16,32 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@ToString
 
 //TODO [Entity]Reply table 컬럼(유저ID, 내용)
 public class Reply extends BaseEntity{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long board_reply_num;				// 게시판_댓글 번호
+	@Column(name="board_reply_num")
+	private Long boardReplyNum;				 	// 게시판_댓글 번호
 	
-	@Column(length=100)
-	private String board_reply_content;			// 게시판_댓글 내용
+	@Column(length=100, name="board_reply_content")
+	private String boardReplyContent;			// 게시판_댓글 내용
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private UserEntity user_id;					// 게시판_댓글 유저ID
+	@JoinColumn(name="user_id")
+	private UserEntity userId;					// 게시판_댓글 유저ID
 	
-	@ManyToOne(fetch = FetchType.LAZY) 
-	private Board board_num; //게시판 작성자와 회원 닉네임의 관계
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="board_num")
+	private Board boardNum;						//게시판 작성자와 회원 닉네임의 관계
 	 
 }
