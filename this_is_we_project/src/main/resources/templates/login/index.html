@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+
+
+	<th:block th:fragment="connection">
+<h1>Hi This is we</h1>
+<h2>member 여러분</h2>
+<div>저는 this is we (2조) 조장 레오 입니다.</div>
+<a th:href="@{/login/test2}">login/test2 문수찬</a>
+<hr>
+<a th:href="@{/login/test3}">login/test3 오세원</a>
+<a th:href="@{/login/test55}">login/test55 오세원</a>
+<hr>
+<a th:href="@{/login/dw_class}">login/dw_class 김동완</a>
+<hr>
+<a th:href="@{/login/narong_test2}">login/narong_test2 김나영</a>
+
+<pre>[][][][][][][][][]
+모임	→	-등록
+		-삭제
+		-수정
+		
+게시판	→	-등록				
+		-삭제				
+		-수정				
+		-검색				
+		-12345페이지번호				
+		-리스트보기				
+		-상세보기	→	-댓글	→	-목록
+						-등록
+						-삭제
+						-수정
+						
+사진첩	→	-등록				
+		-수정				
+		-삭제				
+		-상세보기	→	-댓글	→	-목록
+							-등록
+							-삭제
+							-수정
+						
+예약	→	-등록				
+		-수정				
+		-삭제				
+		-상세보기				
+</pre>
+</th:block>
+</th:block>

@@ -1,4 +1,4 @@
-package com.keduit.bpro02;
+package com.thisiswe.home;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
