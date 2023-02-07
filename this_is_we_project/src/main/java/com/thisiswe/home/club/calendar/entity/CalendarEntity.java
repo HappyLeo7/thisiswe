@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.entity.DateEntity;
 
 import lombok.AllArgsConstructor;
@@ -29,12 +30,15 @@ public class CalendarEntity extends DateEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long club_calendar_num; //일정번호
 	
-	//TODO [Entity]FK거는 에노테이션 @ManyToOne(fetch = FetchType.LAZY)
-	@ManyToOne(fetch = FetchType.LAZY) 
-	private Long club_num; //모임번호
 	
+	//TODO [Entity]FK거는 에노테이션 @ManyToOne(fetch = FetchType.LAZY)
 	@ManyToOne(fetch = FetchType.LAZY)
-	private String user_id; //유저ID
+	private ClubEntity club_num; //모임번호
+
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private ClubEntity user_id; //유저ID
+	
 	
 	@Column(length=100)
 	private String club_calendar_title; //제목
