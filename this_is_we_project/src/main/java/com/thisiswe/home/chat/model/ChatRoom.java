@@ -2,14 +2,16 @@ package com.thisiswe.home.chat.model;
 
 
 import com.thisiswe.home.club.entity.ClubEntity;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
-@Data
+@Getter
+@Builder
+@ToString
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "we_chatroom")
 //TODO [Entity]채팅방
 public class ChatRoom {
