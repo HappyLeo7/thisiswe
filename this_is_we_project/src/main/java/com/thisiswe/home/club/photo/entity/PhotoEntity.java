@@ -27,11 +27,6 @@ public class PhotoEntity extends DateEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long photo_num; //사진번호
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Long club_num; //모임번호
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private String user_id; //유저ID
 	
 	@Column(length = 1000)
 	private String photo_image; //사진이미지

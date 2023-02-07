@@ -25,12 +25,5 @@ public class CalendarMemberEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long club_calendar_member_num; //구성원 번호
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private String user_id; //유저ID
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Long club_num; //모임 번호
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Long club_calendar_num; //일정 번호
+
 }

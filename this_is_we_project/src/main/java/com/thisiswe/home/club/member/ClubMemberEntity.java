@@ -30,6 +30,5 @@ public class ClubMemberEntity {
 	@Column
 	private Long club_num; //모임 번호
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private String user_id; //유저ID
+	
 }
