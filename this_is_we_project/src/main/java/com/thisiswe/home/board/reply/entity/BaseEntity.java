@@ -1,4 +1,4 @@
-package com.thisiswe.home.reply.entity;
+package com.thisiswe.home.board.reply.entity;
 
 import java.time.LocalDateTime;
 

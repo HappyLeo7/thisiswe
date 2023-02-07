@@ -1,4 +1,4 @@
-package com.thisiswe.home.notice.entity;
+package com.thisiswe.home.board.free.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,25 +21,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 
-//TODO [Entity]Notice table 컬럼(공지사항 번호, 카테고리, 제목, 내용, 유저ID, 조회수)
-public class Notice extends BaseEntity{
+//TODO [Entity]Board table 컬럼(게시글 번호, 카테고리, 제목, 내용, 유저ID, 조회수)
+public class Board extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long notice_num;					// 공지사항 번호
+	private Long board_num;					// 게시글 번호
 	
 	@Column(length=100)
-	private String notice_category;				// 공지사항 카테고리
+	private String board_category;			// 게시판 카테고리
 	
 	@Column(length=100)
-	private String notice_title;				// 공지사항 제목
+	private String board_title;				// 게시판 제목
 	
 	@Column(length=100)
-	private String notice_content;				// 공지사항 내용
+	private String board_content;			// 게시판 내용
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private UserEntity user_id;					// 공지사항 유저ID
+	private UserEntity user_id;				// 게시판 유저ID
 	
 	@Column(length=100)
-	private int notice_view;					// 공지사항 조회수	
-}	
+	private int board_view;					// 게시판 조회수	
+	
+}

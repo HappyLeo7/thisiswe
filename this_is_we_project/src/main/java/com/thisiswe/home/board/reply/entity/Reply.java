@@ -1,4 +1,4 @@
-package com.thisiswe.home.reply.entity;
+package com.thisiswe.home.board.reply.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.thisiswe.home.free.entity.Board;
+import com.thisiswe.home.board.free.entity.Board;
 import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.AllArgsConstructor;

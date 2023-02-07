@@ -1,4 +1,4 @@
-package com.thisiswe.home.free.entity;
+package com.thisiswe.home.board.notice.entity;
 
 import java.time.LocalDateTime;
 
@@ -16,15 +16,15 @@ import lombok.Getter;
 @EntityListeners(value= {AuditingEntityListener.class})
 @Getter
 
-//TODO [Entity] 게시판 부분에서 사용 할 수 있도록 추상 클래스 생성. 등록일, 수정일
+//TODO [Entity] 공지사항 부분에서 사용 할 수 있도록 추상 클래스 생성. 등록일, 수정일
 abstract class BaseEntity { 
 	
 	@CreatedDate
-	@Column(name="board_reg_date", updatable=false)
-	private LocalDateTime board_reg_date; 			// 게시판 등록일자
+	@Column(name="notice_reg_date", updatable=false)
+	private LocalDateTime notice_reg_date; 			// 공지사항 등록일자
 	
 	@LastModifiedDate
-	@Column(name="board_update_date")
-	private LocalDateTime board_update_date; 		// 게시판 수정일자
-
+	@Column(name="notice_update_date")
+	private LocalDateTime notice_update_date; 		// 공지사항 수정일자
+	
 }
