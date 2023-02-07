@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.thisiswe.home.club.entity.ClubEntity;
@@ -13,14 +14,16 @@ import com.thisiswe.home.club.entity.DateEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@ToString
 
 //TODO [Entity]club_calendarEntity 테이블 컬럼(일정번호, 모임번호, 유저ID, 제목, 내용, 일정 날짜, 일정 시간, 장소, 인원, 비용, 등록일, 수정일)
 public class CalendarEntity extends DateEntity{
@@ -33,33 +36,35 @@ public class CalendarEntity extends DateEntity{
 	
 	//TODO [Entity]FK거는 에노테이션 @ManyToOne(fetch = FetchType.LAZY)
 	@ManyToOne(fetch = FetchType.LAZY)
-	private ClubEntity club_num; //모임번호
+	@JoinColumn(name = "club_num")
+	private ClubEntity clubNum; //모임번호
 
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private ClubEntity user_id; //유저ID
+	@JoinColumn(name = "user_id")
+	private ClubEntity userId; //유저ID
 	
 	
-	@Column(length=100)
-	private String club_calendar_title; //제목
+	@Column(length=100, name = "club_calendar_title")
+	private String clubCalendarTitle; //제목
 	
-	@Column(length=1000)
-	private String club_calendar_content; //내용
+	@Column(length=1000, name = "club_calendar_content")
+	private String clubCalendarContent; //내용
 	
-	@Column(length=30)
-	private String club_calendar_date; //일정 날짜
+	@Column(length=30, name = "club_calendar_date")
+	private String clubCalendarDate; //일정 날짜
 	
-	@Column(length=30)
-	private String club_calendar_time; //일정 시간
+	@Column(length=30, name = "club_calendar_time" )
+	private String clubCalendarTime; //일정 시간
 	
-	@Column(length=100)
-	private String club_calendar_place; //장소
+	@Column(length=100, name = "club_calendar_place")
+	private String clubCalendarPlace; //장소
 	
-	@Column
-	private Long club_calendar_head_count; //인원
+	@Column(name = "club_calendar_head_count")
+	private Long club_calendarHeadCount; //인원
 	
-	@Column
-	private Long club_calendar_price; //비용
+	@Column(name = "club_calendar_price")
+	private Long clubCalendarPrice; //비용
 	
 	
 	

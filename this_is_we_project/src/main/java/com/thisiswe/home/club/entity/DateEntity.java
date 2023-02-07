@@ -12,19 +12,21 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @MappedSuperclass
 @EntityListeners(value= {AuditingEntityListener.class})
 @Getter
+
 //TODO [Entity]Date 컬럼(등록일, 수정일)
 public class DateEntity {
 	
 	@CreatedDate
-	@Column(name="regdate", updatable=false)
-	private LocalDateTime reg_date; //등록일자
+	@Column(name="reg_date", updatable=false)
+	private LocalDateTime regDate; //등록일자
 	
 	@LastModifiedDate
-	@Column(name="updatedate")
+	@Column(name="update_date")
 	private LocalDateTime updateDate; //수정일자
 	
 }

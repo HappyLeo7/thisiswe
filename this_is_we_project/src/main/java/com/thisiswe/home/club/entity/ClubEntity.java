@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.thisiswe.home.user.entity.UserEntity;
@@ -13,13 +14,16 @@ import com.thisiswe.home.user.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@ToString
 
 
 
@@ -28,29 +32,31 @@ public class ClubEntity extends DateEntity{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long club_num; //모임번호
+	@Column(name = "club_num")
+	private Long clubNum; //모임번호
 	
 	//유니크 유저 ID
 	@ManyToOne(fetch = FetchType.LAZY)
-	private UserEntity user_id; //유저ID
+	@JoinColumn(name = "user_id")
+	private UserEntity userId; //유저ID
 	
 	@Column(length=100, name = "club_place")
 	private String clubPlace; //지역
 	
-	@Column(length=100)
-	private String club_name; //모임명
+	@Column(length=100, name ="club_name")
+	private String clubName; //모임명
 	
-	@Column(length=1000)
-	private String club_content; //내용
+	@Column(length=1000, name = "club_content")
+	private String clubContent; //내용
 	
-	@Column(length=100)
-	private String club_category; //관심 카테고리
+	@Column(length=100, name = "club_category")
+	private String clubCategory; //관심 카테고리
 	
-	@Column(length=100)
-	private String club_logo; //로고 이미지
+	@Column(length=100, name = "club_logo")
+	private String clubLogo; //로고 이미지
 	
-	@Column(length=100)
-	private Long club_head_count;  //인원
+	@Column(length=100, name = "club_head_count")
+	private Long clubHeadCount;  //인원
 	
 	
 	
