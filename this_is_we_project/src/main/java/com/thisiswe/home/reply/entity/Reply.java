@@ -37,8 +37,8 @@ public class Reply extends BaseEntity{
 	@ManyToOne(fetch = FetchType.LAZY)
 	private UserEntity user_id;					// 게시판_댓글 유저ID
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Board board_num;					//게시판 작성자와 회원 닉네임의 관계
-	
-
+	/*
+	 * @ManyToOne(fetch = FetchType.LAZY) private Board board_num; //게시판 작성자와 회원
+	 * 닉네임의 관계
+	 */	
 }
