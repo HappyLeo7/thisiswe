@@ -11,9 +11,85 @@
 	
 	
 	
-	<!-- 내용 -->
 	<title>모임 등록페이지</title>
 	<h1>모임 등록페이지</h1>
+	
+	
+	<!-- 등록 내용  -->
+	
+	<!-- form -->
+	<form th:action="@{/club/register}" th:method="post">
+	
+	
+	<table border="1">
+	<!-- 지역 -->
+  <tr>
+	<td colspan="2">
+	 지역 : <input name="clubPlace">
+	</td>
+  </tr>
+  
+  <!-- 모임명 -->
+  <tr>
+	<td colspan="2">
+	 모임명 : <input name="clubName">
+	</td>
+  </tr>
+  
+  <!-- 모임설명 -->
+  <tr>
+	<td colspan="2">
+	  모임설명 : <textarea name="clubContent"></textarea>
+	</td>
+  </tr>
+  
+  <!-- 카테고리 -->
+  <tr>
+	<td colspan="2">
+	 관심사 카테고리 : 
+	 <select size="5" name="clubCategory">
+	 	<option value="">카테고리를 선택하세요</option>
+	 	<option value="아웃도어/여행">아웃도어/여행</option>
+	 	<option value="운동/스포츠">운동/스포츠</option>
+	 	<option value="인문학/책/글">인문학/책/글</option>
+	 	<option value="업종/직무">업종/직무</option>
+	 	<option value="외국/언어">외국/언어</option>
+	 	<option value="문화/공연/축제">문화/공연/축제</option>
+	 	<option value="음악/악기">음악/악기</option>
+	 	<option value="공예/만들기">공예/만들기</option>
+	 	<option value="댄스/무용">댄스/무용</option>
+	 	<option value="봉사활동">봉사활동</option>
+	 	<option value="사교/인맥">사교/인맥</option>
+	 	<option value="차/오토바이">차/오토바이</option>
+	 	<option value="사진/영상">사진/영상</option>
+	 	<option value="야구관람">야구관람</option>
+	 	<option value="게임/오락">게임/오락</option>
+	 	<option value="요리/제조">요리/제조</option>
+	 	<option value="반려동물">반려동물</option>
+	 	<option value="가족/결혼">가족/결혼</option>
+	 	<option value="자유주제">자유주제</option>
+	 </select>
+	</td>
+  </tr>
+  
+  <tr>
+  <!-- 로고이미지 -->
+  	<td rowspan="2">로고이미지</td>
+  	<!-- 모임정원 -->
+	<td>모임정원<input name="clubHeadCount" type="number" min="1" max="300"></td>
+  </tr>
+  
+  <!-- 등록(개설)버튼 -->
+  <tr>
+	<td><button type="submit">모임등록(개설)</button></td>
+  </tr>
+</table>
+
+	</form>
+	<!-- /form -->
+	
+	<!-- /등록 내용  -->	
+	
 	
 	<hr>
 		<a th:href="@{/club/club_list}">모임목록</a>
@@ -26,8 +102,9 @@
 		<hr>
 	<!-- /내용 -->
 	
-	
+
 	
 	</th:block>
 
 </th:block>
+
