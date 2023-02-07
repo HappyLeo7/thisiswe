@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.thisiswe.home.user.entity.UserEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,11 +31,11 @@ public class ClubEntity extends DateEntity{
 	private Long club_num; //모임번호
 	
 	//유니크 유저 ID
-	@Column(length=100, unique=true)
-	private String user_id; //유저ID
+	@ManyToOne(fetch = FetchType.LAZY)
+	private UserEntity user_id; //유저ID
 	
-	@Column(length=100)
-	private String club_place; //지역
+	@Column(length=100, name = "club_place")
+	private String clubPlace; //지역
 	
 	@Column(length=100)
 	private String club_name; //모임명
