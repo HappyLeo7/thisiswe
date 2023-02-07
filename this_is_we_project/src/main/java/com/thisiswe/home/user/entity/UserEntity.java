@@ -25,35 +25,35 @@ import lombok.ToString;
 public class UserEntity {
 	
 	@Id
-	private String user_id; // 아이디
+	@Column(length=100, name="user_id")
+	private String userId; // 아이디
 	
-	@Column(length=100)
-	private String user_password; // 패스워드
+	@Column(length=100, name="user_password")
+	private String userPassword; // 패스워드
 	
-	@Column(length=100)
-	private String user_nickname; // 닉네임
+	@Column(unique = true, length=100, name="user_nickname")
+	private String userNickname; // 닉네임
 	
-	@Column(length=20)
-	private String user_gender; // 성별
+	@Column(length=20, name="user_gender")
+	private String userGender; // 성별
 	
-	@Column(length=100)
-	private String user_email; // 이메일
+	@Column(unique = true, length=100, name="user_email")
+	private String userEmail; // 이메일
 	
-	@Column(length=100)
-	private String user_phone_numeber; // 핸드폰번호
+	@Column(length=100, name="user_phone_numeber")
+	private String userPhoneNumeber; // 핸드폰번호
 	
-
 	// TODO [Entity] 컬렉션 관리를 위한 별도 테이블 생성
 	@ElementCollection(fetch = FetchType.LAZY)
 	@Builder.Default
 	private Set<UserRole> roleSet = new HashSet<>(); // 중복 허용 x
 	
 	public void changePassword(String password) {
-		this.user_password = password; // 패스워드 변경
+		this.userPassword = password; // 패스워드 변경
 	}
 	
 	public void changeName(String name) {
-		this.user_nickname = name; // 닉네임 변경
+		this.userNickname = name; // 닉네임 변경
 	}
 
 	public void addUserRole(UserRole user) {
