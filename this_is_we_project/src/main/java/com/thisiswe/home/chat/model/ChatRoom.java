@@ -1,4 +1,4 @@
-package com.thisiswe.home.chat;
+package com.thisiswe.home.chat.model;
 
 
 import com.thisiswe.home.club.entity.ClubEntity;
@@ -11,25 +11,21 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "we_chatroom")
+//TODO [Entity]채팅방
 public class ChatRoom {
 
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "chatroom_id")
-    private int id;
+    private Long id;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "user_id")
-//    private UserEntity user;
+//    private UserEntity user;          //방장
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="club_num")
+    @JoinColumn(name = "club_num")
     private ClubEntity club;
-
-    @Column(name = "chatroom_role")
-    private int chatRole;
-
-
 
 }
