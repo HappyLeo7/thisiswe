@@ -6,8 +6,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.thisiswe.home.free.entity.Board;
 import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.AllArgsConstructor;
@@ -35,8 +37,8 @@ public class Reply extends BaseEntity{
 	@ManyToOne(fetch = FetchType.LAZY)
 	private UserEntity user_id;					// 게시판_댓글 유저ID
 	
-	/*
-	 * @ManyToOne(fetch = FetchType.LAZY) private Board board_num; //게시판 작성자와 회원
-	 * 닉네임의 관계
-	 */	
+	@ManyToOne(fetch = FetchType.LAZY) 
+	@JoinColumn
+	private Board board_num; //게시판 작성자와 회원 닉네임의 관계
+	 
 }
