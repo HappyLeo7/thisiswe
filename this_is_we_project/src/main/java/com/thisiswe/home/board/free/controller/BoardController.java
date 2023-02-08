@@ -66,7 +66,7 @@ public class BoardController {
 		return "/board/board_read";
 	}
 	
-	//연결 링크[게시판 상세 조회] - GET
+	//연결 링크[게시판 수정] - GET
 	@GetMapping("/modify")
 	public String board_modify() {
 		

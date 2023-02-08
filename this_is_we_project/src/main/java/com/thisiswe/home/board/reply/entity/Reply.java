@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.thisiswe.home.board.free.entity.Board;
+import com.thisiswe.home.enetity.DateEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +27,7 @@ import lombok.ToString;
 @ToString
 
 //TODO [Entity]Reply table 컬럼(유저ID, 내용)
-public class Reply extends BaseEntity{
+public class Reply extends DateEntity{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
