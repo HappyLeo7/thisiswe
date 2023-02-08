@@ -1,10 +1,6 @@
 package com.thisiswe.home.board.notice.service;
 
-import org.springframework.stereotype.Service;
-
 import com.thisiswe.home.board.notice.dto.NoticeDTO;
-
-@Service
 
 //TODO [Service] 공지사항
 public interface NoticeService {

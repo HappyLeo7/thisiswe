@@ -1,4 +1,4 @@
-package com.keduit.bpro02;
+package com.thisiswe.home;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

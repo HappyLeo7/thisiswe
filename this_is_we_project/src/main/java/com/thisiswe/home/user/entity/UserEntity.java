@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-// TODO [Entity]userEntity 테이블 컬럼(아이디, 비밀번호, 닉네임, 성별, 이메일, 핸드폰번호, 외부권한) *권한 같은 경우에는 값으로 새로운 테이블 생성
+// TODO [Entity]userEntity 테이블 컬럼(아이디, 비밀번호, 닉네임, 성별, 이메일, 핸드폰번호, 소셜로그인) *권한 같은 경우에는 값으로 새로운 테이블 생성
 public class UserEntity {
 	
 	@Id
@@ -44,8 +44,8 @@ public class UserEntity {
 	private String userPhoneNumeber; // 핸드폰번호
 	
 	@Column(name="user_fromSocial")
-	private boolean fromSocial;   // 외부 권한(ex. 카카오, 구글, 네이버)
-	
+	private boolean fromSocial;   // 소셜 로그인(ex. 카카오, 구글, 네이버)
+
 	// TODO [Entity] 컬렉션 관리를 위한 별도 테이블 생성
 	@ElementCollection(fetch = FetchType.LAZY)
 	@Builder.Default
@@ -62,7 +62,7 @@ public class UserEntity {
 	public void addUserRole(UserRole user) {
 		roleSet.add(user); // 권한 추가
 	}
-	
+
 	// 회원가입 화면으로부터 넘어오는 가입정보를 담을 dto를 통해 회원정보를 저장
 //	public static UserEntity createUser(UserFormDTO userFormDTO) {
 //		UserEntity userEntity = UserEntity.builder()
@@ -72,9 +72,8 @@ public class UserEntity {
 //				.userEmail(userFormDTO.getUserEmail())
 //				.userPhoneNumeber(userFormDTO.getUserPoneNumber())
 //				.build();
-//		
+//
 //		return userEntity;
 //	}
 }
-
 
