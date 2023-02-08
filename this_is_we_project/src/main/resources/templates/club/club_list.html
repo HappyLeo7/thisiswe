@@ -13,17 +13,90 @@
 	
 	<!-- 내용 -->
 	<title>모임 목록페이지</title>
-		<h1>모임 목록페이지</h1>
+	
+	
+	
+	
+	
+		<div> 
+		<h1>이런 모임은 어떠세요?</h1>
+		</div>
 		
+		<!-- 모임등록버튼 -->
+		<a th:href="@{/club/register}">
+			<button type="button">모임등록</button>		
+		</a>
+		<br>
+		<!-- /모임등록버튼 -->
+
+<!-- list 1 -->
+
+	<table border="1">
+  <tr>
+    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
+    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
+  </tr>
+  <tr>
+    <td colspan="2">모임명</td>
+    <td colspan="2">모임명
+    </td>
+  </tr>
+  <!-- tr에 가져올 데이터 세팅 -->
+  <tr >
+    <td>지역 </td>
+    <td>인원</td>
+    <td>지역</td>
+    <td>인원</td>
+  </tr>
+</table>
+
+<br>
+<!-- list 2 -->
+	<table border="1">
+  <tr>
+    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
+    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
+  </tr>
+  <tr>
+    <td colspan="2">모임명</td>
+    <td colspan="2">모임명
+    </td>
+  </tr>
+  <tr>
+    <td>지역</td>
+    <td>인원</td>
+    <td>지역</td>
+    <td>인원</td>
+  </tr>
+</table>
+<br>
+
+<!-- list 3 -->
+	<table border="1">
+  <tr>
+    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
+    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
+  </tr>
+  <tr>
+    <td colspan="2">모임명</td>
+    <td colspan="2">모임명
+    </td>
+  </tr>
+  <tr>
+    <td>지역</td>
+    <td>인원</td>
+    <td>지역</td>
+    <td>인원</td>
+  </tr>
+</table>
+<br>
+
 		<hr>
 		<a th:href="@{/club/club_list}">모임목록</a>
 		<hr>
 		<a th:href="@{/club/club_modify}">모임수정</a>
 		<hr>
 		<a th:href="@{/club/club_read}">모임상세</a>
-		<hr>
-		<a th:href="@{/club/club_register}">모임등록</a>
-		<hr>
 	<!-- /내용 -->
 	
 	
