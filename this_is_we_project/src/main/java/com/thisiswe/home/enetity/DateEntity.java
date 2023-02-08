@@ -1,4 +1,4 @@
-package com.thisiswe.home.club.entity;
+package com.thisiswe.home.enetity;
 
 
 import java.time.LocalDateTime;

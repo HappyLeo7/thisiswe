@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.thisiswe.home.club.entity.ClubEntity;
-import com.thisiswe.home.club.entity.DateEntity;
+import com.thisiswe.home.enetity.DateEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
