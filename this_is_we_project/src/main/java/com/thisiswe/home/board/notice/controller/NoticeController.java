@@ -66,9 +66,31 @@ public class NoticeController {
 			return "redirect:/notice/notice_list";
 		}
 		
+		/*
+		 * //연결 링크[게시판 상세 조회, 게시글 수정] - GET
+		 * 
+		 * @GetMapping({"/read", "/modify"}) public void
+		 * notice_read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long
+		 * noticeNum, Model model) {
+		 * 
+		 * log.info("=========================================================");
+		 * log.info("===== noticeController.java => notice_read.html 연결 =====");
+		 * log.info("==== noticeController.java => notice_modify.html 연결 ====");
+		 * 
+		 * log.info("=============== noticeNum ===============> : " + noticeNum);
+		 * NoticeDTO noticeDTO = noticeService.get(noticeNum);
+		 * log.info("=============== noticeDTO ===============> : " + noticeDTO);
+		 * 
+		 * model.addAttribute("noticeDTO", noticeDTO);
+		 * 
+		 * log.info("=========================================================");
+		 * 
+		 * }
+		 */
+		
 		//연결 링크[게시판 상세 조회, 게시글 수정] - GET
 		@GetMapping({"/read", "/modify"})
-		public void notice_read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long noticeNum, Model model) {
+		public void notice_read(Long noticeNum, Model model) {
 			
 			log.info("=========================================================");
 			log.info("===== noticeController.java => notice_read.html 연결 =====");
@@ -84,20 +106,35 @@ public class NoticeController {
 			
 		}
 		
+		/*
+		 * //연결 링크[게시판 수정] - POST
+		 * 
+		 * @PostMapping("/modify") public String notice_modify(NoticeDTO
+		 * noticeDTO, @ModelAttribute("requestDTO") PageRequestDTO requestDTO,
+		 * RedirectAttributes redirectAttributes) {
+		 * 
+		 * log.info("=========================================================");
+		 * log.info("=============== noticeDTO ===============> : " + noticeDTO);
+		 * 
+		 * noticeService.modify(noticeDTO); redirectAttributes.addAttribute("page",
+		 * requestDTO.getPage()); redirectAttributes.addAttribute("type",
+		 * requestDTO.getType()); redirectAttributes.addAttribute("keyword",
+		 * requestDTO.getKeyword()); redirectAttributes.addAttribute("noticeNum",
+		 * noticeDTO.getNoticeNum());
+		 * 
+		 * log.info("=========================================================");
+		 * 
+		 * return "redirect:/notice/notice_modify"; }
+		 */
+		
 		//연결 링크[게시판 수정] - POST
 		@PostMapping("/modify")
-		public String notice_modify(NoticeDTO noticeDTO, @ModelAttribute("requestDTO") PageRequestDTO requestDTO,
-									RedirectAttributes redirectAttributes) {
+		public String notice_modify(NoticeDTO noticeDTO, RedirectAttributes redirectAttributes) {
 			
 			log.info("=========================================================");
 			log.info("=============== noticeDTO ===============> : " + noticeDTO);
 			
 			noticeService.modify(noticeDTO);
-			redirectAttributes.addAttribute("page", requestDTO.getPage());
-			redirectAttributes.addAttribute("type", requestDTO.getType());
-			redirectAttributes.addAttribute("keyword", requestDTO.getKeyword());
-			redirectAttributes.addAttribute("noticeNum", noticeDTO.getNoticeNum());
-			
 			log.info("=========================================================");
 			
 			return "redirect:/notice/notice_modify";
@@ -110,7 +147,7 @@ public class NoticeController {
 			log.info("=========================================================");
 			log.info("=============== noticeNum ===============> : " + noticeNum);
 			
-			noticeService.removeWithReplies(noticeNum);
+			noticeService.remove(noticeNum);
 			redirectAttributes.addFlashAttribute("msg", noticeNum);
 			
 			log.info("=========================================================");

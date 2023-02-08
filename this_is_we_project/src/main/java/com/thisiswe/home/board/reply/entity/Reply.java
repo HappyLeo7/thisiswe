@@ -38,11 +38,11 @@ public class Reply extends DateEntity{
 	private String boardReplyContent;			// 게시판_댓글 내용
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="")
 	private UserEntity userId;					// 게시판_댓글 유저ID
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="board_num")
+	@JoinColumn(name="")
 	private Board boardNum;						//게시판 작성자와 회원 닉네임의 관계
 	 
 }

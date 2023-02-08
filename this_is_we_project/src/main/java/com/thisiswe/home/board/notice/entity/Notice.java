@@ -43,9 +43,23 @@ public class Notice extends DateEntity{
 	private String noticeContent;				// 공지사항 내용
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="")
 	private UserEntity userId;					// 공지사항 유저ID
 	
 	@Column(length=100, name="notice_view")
 	private int noticeView;						// 공지사항 조회수	
+	
+	/*
+	//연관 관계 - 공지사항과 관리자, 게시판=n 관리자=1 n:1 관계다. 그래서 @ManyToOne를 넣어줘야한다.
+	@ManyToOne(fetch = FetchType.Lazy)
+	private //시큐리티,,?
+	*/
+	
+	//NoticeServiceImpl.java와 연결된다.
+	//수정하는 부분 - title과 content
+	public void change(String noticeTitle, String noticeContent) {
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+	}
+	
 }	

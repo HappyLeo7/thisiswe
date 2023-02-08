@@ -43,7 +43,7 @@ public class Board extends DateEntity{
 	private String boardContent;				// 게시판 내용
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="")
 	private UserEntity userId;					// 게시판 유저ID
 	
 	@Column(length=100, name="board_view")
