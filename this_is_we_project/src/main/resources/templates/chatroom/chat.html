@@ -125,7 +125,8 @@
             msg : $("#chatting").val()
         }
         ws.send(JSON.stringify(option))
-        $('#chatting').val("");
+        var chattin = $('#chatting').val("");
+        console.log("채팅 메시지 : " +chattin );
     }
 
     function fileSend(){
