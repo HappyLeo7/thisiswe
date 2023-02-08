@@ -1,12 +1,13 @@
 package com.thisiswe.home.club.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thisiswe.home.club.dto.ClubDTO;
+import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.service.ClubService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,12 +24,13 @@ public class ClubController {
 	
 	//목록 연결링크
 	@GetMapping({"/list"})
-	public String club_list() {
+	public String club_list(ClubEntity clubEntity ,Model model) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_list.html 연결 =======");
+		//TODO [모임목록]clublist를 출력하기 해서 사용
+		model.addAttribute("lla", clubService.entitToDTO(clubEntity));
 		log.info("=========================================================");
 		return "/club/club_list";
-		
 	}
 	
 	//등록 연결링크
@@ -44,11 +46,9 @@ public class ClubController {
 	public String club_register(ClubDTO clubDTO) {
 		log.info("=========================================================");
 		log.info("=========== ClubController.java => 데이터를 받은 후 DTO경유중 return : club_list페이지로 ==============");
-		log.info("=========== ClubDTO"+clubDTO+"                                                   =============");
+		log.info("=========== register ClubDTO  : "+clubDTO+" =============");
 		clubService.register(clubDTO);
 		log.info("=========================================================");
-		
-		
 		return "/club/club_list";
 		
 	}

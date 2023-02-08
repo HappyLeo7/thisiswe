@@ -29,6 +29,8 @@ public class ChatRoom {
 
     @Column(name = "chatroom_role")
     private int chatRole;
+    
+    
 
 
 
