@@ -1,4 +1,4 @@
-package com.thisiswe.home.club.board.reply.entity;
+package com.thisiswe.home.notice.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.enetity.DateEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
@@ -19,30 +18,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@ToString(exclude = "board")
-
-//TODO [Entity]게시판 Reply table 컬럼(유저ID, 내용)
+//TODO [Entity]Notice - Reply table 컬럼(유저ID, 내용)
 public class Reply extends DateEntity{
 	
+	/*
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="board_reply_num")
-	private Long boardReplyNum;				 	// 게시판_댓글 번호
+	@Column(name="notice_reply_num")
+	private Long noticeReplyNum;				// 공지사항_댓글 번호
 	
-	@Column(length=100, name="board_reply_content")
-	private String boardReplyContent;			// 게시판_댓글 내용
+	@Column(length=100, name="notice_reply_content")
+	private String noticeReplyContent;			// 공지사항_댓글 내용
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
-	private UserEntity userId;					// 게시판_댓글 유저ID
+	private UserEntity userId;					// 공지사항_댓글 유저ID
 	
-	//게시판 작성자와 회원 닉네임의 관계
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Board board;						// 게시판 ENTITY,,?	
-	 
+	@JoinColumn(name="notice_num")
+	private Notice noticeNum;					//공지사항 관리자와 유저와의 관계,,,?
+	*/
 }

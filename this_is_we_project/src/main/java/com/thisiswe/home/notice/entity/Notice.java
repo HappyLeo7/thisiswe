@@ -31,23 +31,23 @@ public class Notice extends DateEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="notice_num")
-	private Long noticeNum;						// 공지사항 번호
+	private Long noticeNum;								// 공지사항 번호
 	
 	@Column(length=100, name="notice_category")
-	private String noticeCategory;				// 공지사항 카테고리
+	private String noticeCategory;						// 공지사항 카테고리
 	
 	@Column(length=100, name="notice_title")
-	private String noticeTitle;					// 공지사항 제목
+	private String noticeTitle;							// 공지사항 제목
 	
 	@Column(length=100, name="notice_content")
-	private String noticeContent;				// 공지사항 내용
+	private String noticeContent;						// 공지사항 내용
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id")
-	private UserEntity userId;					// 공지사항 유저ID
+	@JoinColumn
+	private UserEntity userId;							// 공지사항 유저ID
 	
 	@Column(length=100, name="notice_view")
-	private int noticeView;						// 공지사항 조회수	
+	private int noticeView;								// 공지사항 조회수	
 	
 	/*
 	//연관 관계 - 공지사항과 관리자, 게시판=n 관리자=1 n:1 관계다. 그래서 @ManyToOne를 넣어줘야한다.

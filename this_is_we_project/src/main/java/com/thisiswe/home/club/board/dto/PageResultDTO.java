@@ -24,11 +24,11 @@ public class PageResultDTO<DTO, EN> {
 	private boolean prev, next;
 	private List<Integer> pageList;
 	
-	public PageResultDTO(Page<EN> result, Function<EN, DTO> fn) {
+	public PageResultDTO(Page<EN> result, Function<EN, DTO> func) {
 		// TODO [makePageList] - 공지사항
 		
 		System.out.println("======== PageResultDTO 위치 체크! ========");
-		DTOList = result.stream().map(fn).collect(Collectors.toList());
+		DTOList = result.stream().map(func).collect(Collectors.toList());
 		
 		System.out.println("======== PageResultDTO 위치 체크! ========");
 		totalPage = result.getTotalPages();

@@ -21,7 +21,8 @@ public class NoticeDTO {
 	private String noticeContent;					// 공지사항 내용
 	private String userId;							// 공지사항 유저ID
 	private LocalDateTime regDate;					// 공지사항 등록일
-	private LocalDateTime updateDate;			// 공지사항 수정일
-	private int noticeVew;							// 공지사항 조회수
+	private LocalDateTime updateDate;				// 공지사항 수정일
+	private long noticeVew;							// 공지사항 조회수
+	private long replyCount;						// 공지사항 댓글수
 
 }

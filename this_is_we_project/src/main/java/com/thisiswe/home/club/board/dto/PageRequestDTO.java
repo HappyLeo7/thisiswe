@@ -4,11 +4,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
+@AllArgsConstructor
 
-//TODO [DTO]PageRequest - 공지사항
+//TODO [DTO]PageRequest - 게시판
 public class PageRequestDTO {
 	
 	private int page;

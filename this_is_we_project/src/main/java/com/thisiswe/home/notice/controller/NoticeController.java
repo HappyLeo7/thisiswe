@@ -23,6 +23,7 @@ import lombok.extern.log4j.Log4j2;
 //TODO [Controller] 
 public class NoticeController {
 
+	/*
 	private final NoticeService noticeService;
 	
 	//연결 링크[게시판 목록]
@@ -37,5 +38,6 @@ public class NoticeController {
 			log.info("=========================================================");
 			
 			return "/notice/notice_list";
-		}		 
+		}
+	*/		 
 }

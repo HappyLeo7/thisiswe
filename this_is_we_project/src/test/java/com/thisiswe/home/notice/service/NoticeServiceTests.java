@@ -13,6 +13,7 @@ import com.thisiswe.home.notice.dto.PageResultDTO;
 //TODO [NoticeServiceTests] 공지사항
 public class NoticeServiceTests {
 	
+	/*
 	@Autowired
 	private NoticeService noticeService;
 	
@@ -32,4 +33,5 @@ public class NoticeServiceTests {
 		
 		System.out.println("=========================================================");
 	}
+	*/
 }

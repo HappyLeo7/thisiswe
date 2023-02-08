@@ -23,9 +23,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
+@ToString(exclude="userId")
 
-//TODO [Entity]Board table 컬럼(게시글 번호, 카테고리, 제목, 내용, 유저ID, 조회수)
+//TODO [Entity]Board table 컬럼(게시글 번호, 카테고리, 제목, 내용, 유저ID, 조회수, 댓글수)
 public class Board extends DateEntity{
 
 	@Id
@@ -48,5 +48,12 @@ public class Board extends DateEntity{
 	
 	@Column(length=100, name="board_view")
 	private int boardView;						// 게시판 조회수	
+	
+	//boardServiceImpl.java와 연결된다.
+	//수정하는 부분 - title과 content
+	public void change(String boardTitle, String boardContent) {
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+	}
 	
 }
