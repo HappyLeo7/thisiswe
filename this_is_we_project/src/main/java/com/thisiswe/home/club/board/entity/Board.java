@@ -47,7 +47,10 @@ public class Board extends DateEntity{
 	private UserEntity userId;					// 게시판 유저ID
 	
 	@Column(length=100, name="board_view")
-	private int boardView;						// 게시판 조회수	
+	private Long boardView;						// 게시판 조회수	
+	
+	@Column(length=100, name="board_replyCount")
+	private Long replyCount;					// 게시판 댓글수
 	
 	//boardServiceImpl.java와 연결된다.
 	//수정하는 부분 - title과 content

@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import lombok.Data;
 
 @Data
-
 //TODO [DTO]PageResult - 공지사항
 public class PageResultDTO<DTO, EN> {
 

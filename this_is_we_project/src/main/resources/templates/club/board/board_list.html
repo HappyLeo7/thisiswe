@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-<th:block>
-	<th:block>
 
-		<h1 class="">
-			게시판 목록 <span> <a th:href="@/club/board/register}">
+<!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+	<!-- 지정한 변수로 연결할 위치 -->
+	<th:block th:fragment="connection">
+
+		<h1 class="" >게시판 목록 
+			<span>
+					등록 지정 예정
+					<!-- <a th:href="@{/club/board/register}">
 					<button type="button" class="" style="float: right;">REGISTER</button>
-			</a>
+				</a>-->
 			</span>
 		</h1>
 
-		<table>
+		<table class="">
+		
 			<thead>
 				<tr>
 					<th scope="col">번호</th>
@@ -19,6 +25,25 @@
 					<th scope="col">내용</th>
 					<th scope="col">작성자</th>
 					<th scope="col">등록일</th>
+					<th scope="col">조회수</th>
 				</tr>
 			</thead>
+			
+			<tbody>
+            	<tr th:each="boardDTO : ${result.DTOList}">
+            	<th scope="row">[[${boardDTO.boardNum}]]</th>
+           		<td>
+                  <a th:href="@{/club/board/read(boardNum=${boardDTO.boardNum})}">
+                  [[${boardDTO.boardTitle}]]...........[<b th:text="${boardDTO.replyCount}"></b>]
+                  </a>
+               </td>
+               <td>[[${boardDTO.boardContent}]]</td>
+               <td>[[${boardDTO.userId}]]</td>
+               <td>[[${#temporals.format(DateEntity.regDate, 'yyyy/MM/dd')}]]</td>
+            </tr>
+         </tbody>
+			
 		</table>
+
+	</th:block>
+</th:block>

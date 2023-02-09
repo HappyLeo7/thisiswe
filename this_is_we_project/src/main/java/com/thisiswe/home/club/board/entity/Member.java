@@ -8,9 +8,10 @@ import javax.persistence.ManyToOne;
 import com.thisiswe.home.enetity.DateEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
-//TODO [Entity]Notice 회원 컬럼(이메일, 비밀번호, 이름)
+//TODO [Entity]Board 회원 컬럼(유저ID, 이메일, 비밀번호)
 public class Member extends DateEntity{
 	
+	/*
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private UserEntity userId;					//회원 유저ID
@@ -20,7 +21,7 @@ public class Member extends DateEntity{
 	
 	@Column(length=100, name="user_password")
 	private String userPassword;  				//회원 비밀번호
-
+	
+	*/
 	}
 	
-}
