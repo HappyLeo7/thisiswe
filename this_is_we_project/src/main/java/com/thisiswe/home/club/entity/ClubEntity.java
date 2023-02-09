@@ -24,7 +24,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
+@ToString(exclude = "userId")
 
 
 
@@ -33,7 +33,6 @@ public class ClubEntity extends DateEntity{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "club_num")
 	private Long clubNum; //모임번호
 	
 	//유니크 유저 ID
@@ -55,6 +54,12 @@ public class ClubEntity extends DateEntity{
 	
 	@Column(length=100, name = "club_logo")
 	private String clubLogo; //로고 이미지
+	
+	@Column(length=300, name = "club_logo_uuid")
+	private String clubLogoUuid; //로고 uuid
+	
+	@Column(length=300, name = "club_logo_url")
+	private String clubLogoUrl; //로고 경로
 	
 	@Column(length=100, name = "club_head_count")
 	private Long clubHeadCount;  //인원
