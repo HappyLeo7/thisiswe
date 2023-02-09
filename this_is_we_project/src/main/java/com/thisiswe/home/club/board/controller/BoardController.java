@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @Controller
-@RequestMapping("/club/")
+@RequestMapping("/club")
 @Log4j2
 @RequiredArgsConstructor
 
@@ -65,7 +65,7 @@ public class BoardController {
 		return "redirect:/club/board/board_list";
 	}
 	
-	//연결 링크[게시판 상세 조회, 수정] - GET
+	//연결 링크[게시판 상세 조회, 수정] - read, modify
 	@GetMapping({"/board/read", "board/modify"})
 	public void read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long boardNum, Model model) {
 		
@@ -78,5 +78,18 @@ public class BoardController {
 		
 		model.addAttribute("boardDTO", boardDTO);
 	}
+	
+	//연결 링크[게시판 수정] - modify
+	@PostMapping("/board/modify")
+	public String String_modify(BoardDTO boardDTO, 
+								@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO,
+								RedirectAttributes redirectAttributes) {
 		
+		log.info("=========================================================");
+		log.info("================ boardDTO ================> : " + boardDTO);
+		
+		
+		
+		return "redirect:/club/board/board_read";
+	}
 }

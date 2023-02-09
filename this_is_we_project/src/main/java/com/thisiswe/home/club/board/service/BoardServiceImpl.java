@@ -5,6 +5,7 @@ import java.util.function.Function;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
@@ -25,8 +26,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	private final BoardRepository boardRepository;
 	
-	@Override
 	//TODO [ServiceImpl] 게시판 - 등록(register)
+	@Override
 		public Long register (BoardDTO boardDTO) {
 			
 			log.info("=========================================================");
@@ -39,8 +40,8 @@ public class BoardServiceImpl implements BoardService {
 			return board.getBoardNum();
 		}
 	
-	@Override
 	//TODO [ServiceImpl] 게시판 - boardNum 불러오기(get)
+	@Override
 	public BoardDTO get(Long boardNum) {
 		
 		/*
@@ -52,6 +53,7 @@ public class BoardServiceImpl implements BoardService {
 		return null;
 	}
 	
+	//TODO [ServiceImpl] 게시판 - boardNum 불러오기(get)
 	@Override
 	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
 
@@ -70,5 +72,25 @@ public class BoardServiceImpl implements BoardService {
 		return new PageResultDTO<>(result, func);
 	}
 
+	//TODO [ServiceImpl] 게시판 - 수정(modify)
+	@Transactional
+	@Override
+	public void modify(BoardDTO boardDTO) {
+
+		Board board = boardRepository.getById(boardDTO.getBoardNum());
+		
+		if(board != null) {
+			board.change(boardDTO.getBoardCategory(), boardDTO.getBoardTitle(), boardDTO.getBoardContent());
+		}
+		
+		boardRepository.save(board);
+	}
+
+	//TODO [ServiceImpl] 게시판 - 삭제(remove)
+	@Transactional
+	@Override
+	public void remove(Long boardNum) {
+		boardRepository.deleteById(boardNum);
+	}
 	
 }

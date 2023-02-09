@@ -19,9 +19,11 @@ public interface BoardService {
 	PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
 
 	// TODO [Service] 게시판 - 수정(modify)
+	void modify(BoardDTO boardDTO);
 	
 	// TODO [Service] 게시판 - 삭제(remove)
-		
+	void remove(Long boardNum);
+	
 	// TODO [Service] 공지사항 - DTO(WEB)에서 Entity(DB)로
 	default Board boardDTOToEntity(BoardDTO boardDTO) {
 				

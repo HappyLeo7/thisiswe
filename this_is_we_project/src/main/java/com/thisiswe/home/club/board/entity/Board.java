@@ -53,8 +53,9 @@ public class Board extends DateEntity{
 	private Long replyCount;					// 게시판 댓글수
 	
 	//boardServiceImpl.java와 연결된다.
-	//수정하는 부분 - title과 content
-	public void change(String boardTitle, String boardContent) {
+	//TODO [Entity] 게시판 수정하는 부분 - category, title, content
+	public void change(String boardCategory, String boardTitle, String boardContent) {
+		this.boardCategory = boardCategory;
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
 	}
