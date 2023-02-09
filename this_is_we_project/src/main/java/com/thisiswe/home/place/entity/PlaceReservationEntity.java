@@ -27,7 +27,7 @@ import lombok.ToString;
 @Table(name = "we_place_reservation")
 
 //TODO [Entity]place_image 테이블 컬럼 (예약 번호, 장소 구역 번호, 예약자 명, 유저 ID, 예약 날짜, 예약 시간, 인원, 전화 번호)
-public class PlaceReservation {
+public class PlaceReservationEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class PlaceReservation {
 	private Long placeReservationNum; // 예약 번호
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "plcae_zone_num")
+	@JoinColumn(name = "place_zone_num")
 	private PlaceZoneEntity plcaeZoneNum; // 장소 구역 번호
 	
 	@Column(length = 100, name = "place_reservation_name", nullable = false)

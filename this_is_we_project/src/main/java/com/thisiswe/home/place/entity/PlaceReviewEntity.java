@@ -47,7 +47,7 @@ public class PlaceReviewEntity extends DateEntity {
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private UserEntity userId; //유저 아이디
 
 }

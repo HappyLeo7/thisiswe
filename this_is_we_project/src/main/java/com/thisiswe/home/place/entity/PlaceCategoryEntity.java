@@ -28,7 +28,7 @@ import lombok.ToString;
 @Table(name = "we_place_category")
 
 //TODO [Entity]place_image 테이블 컬럼 (장소 유형 번호, 장소 번호, 장소 유형)
-public class PlaceCategory {
+public class PlaceCategoryEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

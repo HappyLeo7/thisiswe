@@ -37,9 +37,11 @@ public class PlaceEntity extends DateEntity {
 	private Long placeNum; // 장소 번호
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private UserEntity userId; // 유저 ID
 
+	
+	
 	@Column(length = 50, name = "place_name", nullable = false)
 	private String placeName; // 장소명
 

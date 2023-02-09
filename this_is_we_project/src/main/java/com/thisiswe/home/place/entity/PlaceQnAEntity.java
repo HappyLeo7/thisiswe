@@ -37,8 +37,8 @@ public class PlaceQnAEntity extends DateEntity {
 	private Long placeQnANum; // 장소 QnA 번호
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "plcae_num")
-	private UserEntity placeNum; // 장소 번호
+	@JoinColumn(name="place_num")
+	private PlaceEntity placeNum; // 장소 번호
 
 	@Column(length = 300, name = "place_QnA_question", nullable = false)
 	private String placeQnAQuestion; // 질문

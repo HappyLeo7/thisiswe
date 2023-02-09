@@ -36,7 +36,7 @@ public class PlaceZoneEntity {
 	private Long placeZoneNum; // 장소 구역 번호
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "plcae_num")
+	@JoinColumn(name= "place_num")
 	private UserEntity placeNum; // 장소 번호
 
 	@Column(length = 100, name = "place_zone_name", nullable = false)

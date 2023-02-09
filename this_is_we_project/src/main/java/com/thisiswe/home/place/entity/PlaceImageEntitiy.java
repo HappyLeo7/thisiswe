@@ -38,7 +38,7 @@ public class PlaceImageEntitiy extends DateEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "place_num")
-	private UserEntity placeNum; // 장소 번호
+	private PlaceEntity placeNum; // 장소 번호
 
 	@Column(length = 500, name = "place_image_uuid", nullable = false)
 	private String placeImageUuid; // uuid
