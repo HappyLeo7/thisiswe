@@ -78,7 +78,8 @@ public class ClubController {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_modify.html 연결 =======");
 		ClubDTO clubDTO = clubService.get(Num);
-		model.addAttribute("readDTO", clubDTO);
+		model.addAttribute("modifyDTO", clubDTO);
+		System.out.println("컨트롤러 modify11");
 		log.info("=========================================================");
 		return "/club/club_modify";
 	}

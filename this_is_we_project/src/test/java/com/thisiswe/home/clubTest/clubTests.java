@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.club.service.ClubService;
@@ -64,6 +65,27 @@ public class clubTests {
 	public void testGetList() {
 
 
+	}
+	
+	//수정하기
+	@Test
+	public void testModfiy() {
+		//클럽 DTO에서 수정을 할거야
+		System.out.println("");
+		ClubDTO clubDTO = ClubDTO.builder()
+				.clubNum(1L)
+				.clubPlace("보라매")
+				.clubName("thisiswe")
+				.clubContent("경원 나영 동완 수찬 세원")
+				.clubCategory("반려동물")
+				.clubLogo("이미지이름")
+				.clubHeadCount(200L)
+				.build();
+		System.out.println("");
+		System.out.println("");
+		
+		clubService.modify(clubDTO);
+		
 	}
 
 }

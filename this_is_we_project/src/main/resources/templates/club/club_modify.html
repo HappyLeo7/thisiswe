@@ -19,34 +19,34 @@
 		<table border="1">
 	<tr>
 		<td>
-			<input th:value="${readDTO.clubNum}" readonly="readonly">
+			<input th:value="${modifyDTO.clubNum}" readonly="readonly">
 		</td>
 	</tr>
 	
 	<!-- userID -->
   <tr>
 	<td colspan="2">
-	 아이디 : <input  name="userId" th:value="${readDTO.userId}" readonly="readonly">
+	 아이디 : <input  name="userId" th:value="${modifyDTO.userId}" readonly="readonly">
 	</td>
   </tr>
 	<!-- 지역 -->
   <tr>
 	<td colspan="2">
-	 지역 : <input name="clubPlace" th:value="${readDTO.clubPlace}">
+	 지역 : <input name="clubPlace" th:value="${modifyDTO.clubPlace}">
 	</td>
   </tr>
 
   <!-- 모임명 -->
   <tr>
 	<td colspan="2">
-	 모임명 : <input name="clubName" th:value="${readDTO.clubName}" >
+	 모임명 : <input name="clubName" th:value="${modifyDTO.clubName}" >
 	</td>
   </tr>
   
   <!-- 모임설명 -->
   <tr>
 	<td colspan="2">
-	  모임설명 : <textarea name="clubContent" >[[${readDTO.clubContent}]]</textarea>
+	  모임설명 : <textarea name="clubContent" >[[${modifyDTO.clubContent}]]</textarea>
 	</td>
   </tr>
   
@@ -55,7 +55,7 @@
 	<td colspan="2">
 	 관심사 카테고리 : 
 	 <select size="1" name="clubCategory" >
-	 	<option th:value="${readDTO.clubCategory}" selected="selected">[[${readDTO.clubCategory}]]</option>
+	 	<option th:value="${modifyDTO.clubCategory}" selected="selected">[[${modifyDTO.clubCategory}]]</option>
 	 	<option value="아웃도어/여행">아웃도어/여행</option>
 	 	<option value="운동/스포츠">운동/스포츠</option>
 	 	<option value="인문학/책/글">인문학/책/글</option>
@@ -84,7 +84,7 @@
   <!-- 로고이미지 -->
   	<td rowspan="2">로고이미지</td>
   	<!-- 모임정원 -->
-	<td>모임정원<input name="clubHeadCount" type="number" min="1" max="300" th:value="${readDTO.clubHeadCount}" ></td>
+	<td>모임정원<input name="clubHeadCount" type="number" min="1" max="300" th:value="${modifyDTO.clubHeadCount}" ></td>
   </tr>
 	
 	

@@ -15,6 +15,13 @@ public interface ClubService {
 	//DTO -> DB 등록
 	Long register(ClubDTO clubDTO);
 	
+	// 1개의 모임 데이터를 불러온다
+	ClubDTO get(Long clubNum);
+
+	// 전체의 모임 데이터를 불러온다.
+	Object getList(ClubDTO clubDTO);
+
+	void modify(ClubDTO clubDTO);
 	
 	// CludDTO(Wed) -> ClubEntity(DB) 
 	default ClubEntity dtoToEntity(ClubDTO clubDTO) {
@@ -56,8 +63,7 @@ public interface ClubService {
 				.clubHeadCount(clubEntity.getClubHeadCount())
 				.build();
 		
-		System.out.println(clubDTO);
-		System.out.println("3번==");
+		System.out.println("서비스 entitToDTO clubDTO :: "+clubDTO);
 		return clubDTO;
 		
 	}
@@ -66,10 +72,6 @@ public interface ClubService {
 
 
 
-	ClubDTO get(Long clubNum);
-
-
-	Object getList(ClubDTO clubDTO);
 
 
 

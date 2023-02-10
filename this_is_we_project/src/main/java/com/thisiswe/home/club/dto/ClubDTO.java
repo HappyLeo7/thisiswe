@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 //TODO[leo]ClubDTO ( 
 public class ClubDTO {
 	
+	/** 모임번호 */
 	private Long clubNum; //모임번호
 	private String userId; //유저ID
 	private String userNickname; //닉네임

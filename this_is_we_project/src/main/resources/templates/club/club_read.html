@@ -32,7 +32,7 @@
 	<!-- 지역 -->
   <tr>
 	<td colspan="2">
-	 지역 : <input name="clubPlace" th:value="${readDTO.clubPlace}" readonly="readonly">
+	 지역 : <input name="clubPlace"  th:value="${readDTO.clubPlace}" readonly="readonly">
 	</td>
   </tr>
 
@@ -84,14 +84,14 @@
   <!-- 로고이미지 -->
   	<td rowspan="2">로고이미지</td>
   	<!-- 모임정원 -->
-	<td>모임정원<input name="clubHeadCount" type="number" min="1" max="300" th:value="${readDTO.clubHeadCount}" readonly="readonly"></td>
+	<td>모임정원<input name="clubHeadCount" th:value="${readDTO.clubHeadCount}" type="number" min="1" max="300"  readonly="readonly"></td>
   </tr>
 	
 	
 	<tr>
 		<td>
-		<a th:href="@{/club/modify(Num=${clubDTO.clubNum})}">
-			<button type="button" >모임수정버튼</button> 
+		<a th:href="@{/club/modify(Num=${readDTO.clubNum})}">
+			<button type="button">모임수정버튼</button> 
 		</a>
 		</td>
 	</tr>

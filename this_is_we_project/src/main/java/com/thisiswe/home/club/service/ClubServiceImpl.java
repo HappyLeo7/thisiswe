@@ -23,6 +23,7 @@ public class ClubServiceImpl implements ClubService {
 	private final ClubRepository clubRepository;
 	
 	
+	// 모임 등록 하는 매서드
 	@Override
 	public Long register(ClubDTO clubDTO) {
 		log.info("등록 :: " + clubDTO);
@@ -39,10 +40,11 @@ public class ClubServiceImpl implements ClubService {
 	//TODO [리스트]clublist 출력해주는메서드
 	@Override
 	public List<ClubDTO> getList(ClubDTO clubDTO) {
+		log.info("[[[[[[[getList매서드");
 		System.out.println("[[[[[서비스 Impl테스트중]]]]]");
 		List<Object[]> list = clubRepository.getClubList();
 		List<ClubDTO> entList = new ArrayList<>(); 
-		System.out.println("aaaA:::::::"+list);
+		System.out.println("list:::::::"+list);
 		for (Object[] arr : list) {
 			entList.add( entitToDTO((ClubEntity)arr[0], (UserEntity)arr[1]));
 		}
@@ -55,17 +57,31 @@ public class ClubServiceImpl implements ClubService {
 	//상세 페이지 1개 가져오는 매서드
 	@Override
 	public ClubDTO get(Long clubNum) {
-		System.out.println(clubNum);
-		System.out.println("1111");
+		log.info("[[[[[[[get매서드");
+		System.out.println("서비스Impl clubNum: "+clubNum);
 		Object clubEntityObject = clubRepository.getClubNum(clubNum);
 		
 		List<Object[]> arr= (List<Object[]>) clubEntityObject;
-		System.out.println("2222"+arr);
-		System.out.println("333");
-		//return null;
+		
 		return entitToDTO((ClubEntity)arr.get(0)[0], (UserEntity)arr.get(0)[1]);
 	}
 
+
+
+	
+	// 모임 수정하는 매서드
+	@Override
+	public void modify(ClubDTO clubDTO) {
+		
+		ClubEntity clubEntity = clubRepository.getById(clubDTO.getClubNum());
+		
+		if(clubEntity != null) {
+			clubEntity.change(clubEntity.getClubPlace(), clubEntity.getClubName(), clubEntity.getClubContent(), clubEntity.getClubCategory(), clubEntity.getClubLogo(),clubEntity.getClubLogoUuid() , clubEntity.getClubLogoUrl() ,clubEntity.getClubHeadCount());
+		}
+		clubRepository.save(clubEntity);
+		
+	}
+ 
 
 
 
