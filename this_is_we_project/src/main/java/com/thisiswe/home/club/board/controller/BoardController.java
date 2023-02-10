@@ -50,7 +50,7 @@ public class BoardController {
 	}
 	
 	//연결 링크[게시판 등록] - POST
-	@PostMapping("/board/register")
+	@PostMapping("board/register")
 	public String board_register(BoardDTO boardDTO, RedirectAttributes redirectAttributes) {
 	
 		log.info("=========================================================");
@@ -88,8 +88,26 @@ public class BoardController {
 		log.info("=========================================================");
 		log.info("================ boardDTO ================> : " + boardDTO);
 		
-		
-		
+		boardService.modify(boardDTO);
+		redirectAttributes.addAttribute("page", pageRequestDTO.getPage());
+		redirectAttributes.addAttribute("type", pageRequestDTO.getType());
+		redirectAttributes.addAttribute("keyword", pageRequestDTO.getKeyword());
+		redirectAttributes.addAttribute("boardNum", boardDTO.getBoardNum());
+			
 		return "redirect:/club/board/board_read";
+	}
+	
+	//연결 링크[게시판 삭제] - remove
+	@PostMapping("/board/remove")
+	public String remove(long boardNum, RedirectAttributes redirectAttributes) {
+		
+		log.info("=========================================================");
+		log.info("================ boardNum ================> : " + boardNum);
+		
+		boardService.remove(boardNum);
+		
+		redirectAttributes.addFlashAttribute("msg", boardNum);
+		
+		return "redirect:/club/board/list";
 	}
 }

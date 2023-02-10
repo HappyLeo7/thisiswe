@@ -44,16 +44,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardDTO get(Long boardNum) {
 		
-		/*
-		 * Object result = boardRepository.getBoardByBoardNum(boardNum); Object[] arr =
-		 * (Object[]) result;
-		 */
-				
-		/* return entityToBoardDTO((Board)arr[0], (UserEntity)arr[1], (Long)arr[2]); */
-		return null;
+		Object result = boardRepository.getBoardByBoardNum(boardNum); 
+		Object[] arr = (Object[]) result;
+					
+		return entityToBoardDTO((Board)arr[0], (UserEntity)arr[1], (Long)arr[2]);
 	}
 	
-	//TODO [ServiceImpl] 게시판 - boardNum 불러오기(get)
+	//TODO [ServiceImpl] 게시판 - 페이지 목록(list)
 	@Override
 	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
 
@@ -90,6 +87,7 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional
 	@Override
 	public void remove(Long boardNum) {
+		
 		boardRepository.deleteById(boardNum);
 	}
 	

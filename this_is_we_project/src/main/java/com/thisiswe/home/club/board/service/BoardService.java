@@ -1,11 +1,14 @@
 package com.thisiswe.home.club.board.service;
 
+import org.springframework.stereotype.Service;
+
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.dto.PageResultDTO;
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.user.entity.UserEntity;
 
+@Service
 //TODO [Service] 게시판
 public interface BoardService {
 

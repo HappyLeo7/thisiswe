@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.dto.PageResultDTO;
+import com.thisiswe.home.club.board.entity.Board;
 
 @SpringBootTest
 
@@ -35,7 +36,7 @@ public class BoardSeviceTest {
 	
 	//TODO [SeviceTest] 게시판 - 번호 불러오기(get)
 	@Test
-	public void testGet() {
+	public void testGet(Board board) {
 		
 		Long boardNum = 1L;
 		BoardDTO boardDTO = boardService.get(boardNum);
