@@ -1,11 +1,13 @@
 package com.thisiswe.home.place.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.thisiswe.home.place.dto.PlaceDTO;
+import com.thisiswe.home.place.entity.PlaceEntity;
 import com.thisiswe.home.place.repository.PlaceRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,12 @@ public class PlaceServiceImpl implements PlaceService {
 				.collect(Collectors.toList());
 		return result;
 	}
+	
+	@Override
+	public PlaceDTO read(Long placeNum) {
+		Optional<PlaceEntity> result =placeRepository.findById(placeNum);
+		return entityToDTO(result.get());
+	}
 
 	@Override
 	public void modify(PlaceDTO placeDTO) {
@@ -38,5 +46,6 @@ public class PlaceServiceImpl implements PlaceService {
 	public void removeWithReplies(Long bno) {
 
 	}
+
 
 }

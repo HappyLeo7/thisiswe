@@ -9,6 +9,8 @@ public interface PlaceService {
 
 	Long register(PlaceDTO placeDTO);
 	
+	PlaceDTO read(Long placeNum);
+	
 	List<PlaceDTO> getList();
 	
 	void modify(PlaceDTO placeDTO);

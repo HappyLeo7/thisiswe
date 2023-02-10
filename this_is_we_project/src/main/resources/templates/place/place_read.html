@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<!-- th를 쓰기위한 thymeleaf.org 선언 -->
+
+<!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+   
+   <!-- 지정한 변수로 연결할 위치 -->
+   <th:block th:fragment="connection">
+
+   <div style="text-align: center;">
+		<div>
+			<div><h1>[[${result.getPlaceName}]]</h1></div>
+			<div><h3>[[${result.getPlaceOneLineIntroduction}]]</h3></div>
+			<br>
+			<h4>소개글</h4>
+			<div>[[${result.getPlaceIntroduction}]]</div>
+			<br>
+			<h4>안내 사항</h4>
+			<div>[[${result.getPlaceGuide}]]</div>
+			<br>
+			
+			
+			
+		</div>
+   	</div>
+   </div>
+   </th:block>
+</th:block>

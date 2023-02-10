@@ -71,10 +71,10 @@ public class PlaceTests {
 	// TODO [테스트] place 데이터 수정
 	@Test
 	public void updateTest() {
-		LongStream.rangeClosed(30, 31).forEach(i -> {
+		LongStream.rangeClosed(1, 100).forEach(i -> {
 
 			PlaceEntity placeEntity = PlaceEntity.builder().placeNum(i)
-					.userId(UserEntity.builder().userId("user" + i).build()).placeName("(수정)유저" + i)
+					.userId(UserEntity.builder().userId("user" + i).build()).placeName("oo플레이스" + i)
 					.placeOneLineIntroduction("(수정)한줄 소개" + i).placeIntroduction("(수정)소개글" + i)
 					.placeBusinessHours("(수정)12시~24시 영업").placeHoliday("(수정)공휴일 휴무")
 					.placeRefundRegulations("(수정)환불 규정은 ~입니다").placeAddress("(수정)관악로" + i + "길")
