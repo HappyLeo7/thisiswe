@@ -1,6 +1,5 @@
 package com.thisiswe.home.chat.controller;
 
-
 import com.thisiswe.home.chat.model.Room;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Controller
 public class ChatController {
-    List<Room> roomList = new ArrayList<Room>();    //roolist를 메모리에 저장?
+    List<Room> roomList = new ArrayList<Room>();    //roomlist를 메모리에 저장?
     static int roomNumber = 0;                   //
 
 
@@ -26,6 +25,7 @@ public class ChatController {
         mv.setViewName("chatroom/chat");
         return mv;
     }
+
 
     //방 페이지
     @RequestMapping("/room")
@@ -59,12 +59,13 @@ public class ChatController {
     public ModelAndView chating(@RequestParam HashMap<Object ,Object> params) {
         ModelAndView mv = new ModelAndView();
         int roomNumber = Integer.parseInt((String) params.get("roomNumber"));
-
+        System.out.println((String) params.get("roomName"));
         List<Room> new_list = roomList.stream().filter(o->o.getRoomNumber()==roomNumber).collect(Collectors.toList());
         if(new_list != null && new_list.size() > 0) {
             mv.addObject("roomName", params.get("roomName"));
             mv.addObject("roomNumber", params.get("roomNumber"));
             mv.setViewName("chatroom/chat");
+
         }else {
             mv.setViewName("chatroom/room");
         }

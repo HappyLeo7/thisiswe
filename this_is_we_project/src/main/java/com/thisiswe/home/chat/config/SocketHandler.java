@@ -33,6 +33,7 @@ public class SocketHandler extends TextWebSocketHandler {
         //메시지 발송
         String msg = message.getPayload(); //JSON형태의 String메시지를 받는다.
         JSONObject obj = jsonToObjectParser(msg); //JSON데이터를 JSONObject로 파싱한다.
+        System.out.println("메시지 : " + msg);
 
         String rN = (String) obj.get("roomNumber"); //방의 번호를 받는다.
         String msgType = (String) obj.get("type"); //메시지의 타입을 확인한다.

@@ -9,7 +9,7 @@ import lombok.extern.log4j.Log4j2;
 
 //연결 이노테이션
 @Controller
-@RequestMapping("/")
+@RequestMapping("/sss")
 @Log4j2
 @RequiredArgsConstructor
 public class indexController {
@@ -21,7 +21,7 @@ public class indexController {
 		log.info("****index.html 연결****");
 		log.info("===========================");
 		return "redirect:/login/index";
-		
+
 	}
 	
 }

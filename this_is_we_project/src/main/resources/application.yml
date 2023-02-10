@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://root:<1111>@cluster0.zaqqq2j.mongodb.net/yapp?retryWrites=true&w=majority
