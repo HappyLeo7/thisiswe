@@ -1,12 +1,14 @@
 package com.thisiswe.home.club.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.thisiswe.home.club.dto.ClubDTO;
-import com.thisiswe.home.club.dto.PageRequestDTO;
-import com.thisiswe.home.club.dto.PageResultDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.repository.ClubRepository;
+import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -18,26 +20,62 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class ClubServiceImpl implements ClubService {
 
-	private final ClubRepository clubrepository;
+	private final ClubRepository clubRepository;
+	
 	
 	@Override
 	public Long register(ClubDTO clubDTO) {
-		// TODO [모임등록 DTO->entity]club register
-		log.info("====================================");
-		log.info("==== ClubServiceImpl register() clubDTO : "+clubDTO+" ====");
-		ClubEntity clubEntity = dtoToEntity(clubDTO);
-		clubrepository.save(clubEntity);
-		log.info("==== ClubServiceImpl register() clubEntity : "+clubEntity+" ====");
-		log.info("====================================");
+		log.info("등록 :: " + clubDTO);
+		ClubEntity clubEntity  = dtoToEntity(clubDTO);
+		clubRepository.save(clubEntity);
 		
-		//club num 모임 번호 리턴받아서 모임entity에 넣는다.
 		return clubEntity.getClubNum();
+		
 	}
 
+
+
+
+	//TODO [리스트]clublist 출력해주는메서드
 	@Override
-	public PageResultDTO<ClubEntity, Object[]> getList(PageRequestDTO pageRequestDTO) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ClubDTO> getList(ClubDTO clubDTO) {
+		System.out.println("[[[[[서비스 Impl테스트중]]]]]");
+		List<Object[]> list = clubRepository.getClubList();
+		List<ClubDTO> entList = new ArrayList<>(); 
+		System.out.println("aaaA:::::::"+list);
+		for (Object[] arr : list) {
+			entList.add( entitToDTO((ClubEntity)arr[0], (UserEntity)arr[1]));
+		}
+		return entList;
+		
 	}
+
+
+
+	//상세 페이지 1개 가져오는 매서드
+	@Override
+	public ClubDTO get(Long clubNum) {
+		System.out.println(clubNum);
+		System.out.println("1111");
+		Object clubEntityObject = clubRepository.getClubNum(clubNum);
+		
+		List<Object[]> arr= (List<Object[]>) clubEntityObject;
+		System.out.println("2222"+arr);
+		System.out.println("333");
+		//return null;
+		return entitToDTO((ClubEntity)arr.get(0)[0], (UserEntity)arr.get(0)[1]);
+	}
+
+
+
+
+
+
+
+
+
+	
+
+
 
 }

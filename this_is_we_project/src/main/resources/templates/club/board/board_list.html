@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-<th:block>
-	<th:block>
 
+<!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+	
+	<!-- 지정한 변수로 연결할 위치 -->
+	<th:block th:fragment="connection">
+
+<h1>게시판 목록11</h1>
 		<h1 class="">
-			게시판 목록 <span> <a th:href="@/club/board/register}">
+			게시판 목록   <a th:href="@{/club/register}">
 					<button type="button" class="" style="float: right;">REGISTER</button>
-			</a>
-			</span>
+			</a> 
+			
+			
 		</h1>
-
 		<table>
 			<thead>
 				<tr>
@@ -22,3 +27,6 @@
 				</tr>
 			</thead>
 		</table>
+		
+		</th:block>
+		</th:block>

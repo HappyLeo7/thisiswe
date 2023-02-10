@@ -18,14 +18,14 @@ import lombok.ToString;
 @Entity
 @Builder
 @Getter
-@ToString
+@ToString(exclude = "roleSet")
 @AllArgsConstructor
 @NoArgsConstructor
 // TODO [Entity]userEntity 테이블 컬럼(아이디, 비밀번호, 닉네임, 성별, 이메일, 핸드폰번호, 소셜로그인) *권한 같은 경우에는 값으로 새로운 테이블 생성
 public class UserEntity {
 	
 	@Id
-	@Column(length=100, name="user_id")
+	@Column(length=100, name = "user_id")
 	private String userId; // 아이디
 	
 	@Column(length=100, name="user_password")

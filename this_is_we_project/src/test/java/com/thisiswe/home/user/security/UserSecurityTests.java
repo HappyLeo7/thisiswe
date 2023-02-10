@@ -18,7 +18,9 @@ public class UserSecurityTests {
 	
 	@Test
 	public void insertDumies() {
-		IntStream.rangeClosed(1, 100).forEach(i -> {
+		IntStream.rangeClosed(1, 50).forEach(i -> {
+			
+			//TODO [테스트]임의 ID 생성
 			UserEntity userEntity = UserEntity.builder()
 					.userId("user" + i)
 					.userPassword("1111")

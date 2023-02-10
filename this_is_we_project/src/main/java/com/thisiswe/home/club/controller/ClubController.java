@@ -1,5 +1,7 @@
 package com.thisiswe.home.club.controller;
 
+import java.io.Console;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thisiswe.home.club.dto.ClubDTO;
-import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.club.dto.PageRequestDTO;
+import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.club.service.ClubService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,15 +24,14 @@ public class ClubController {
 
 	
 	private final ClubService clubService;
-	
+	private final ClubRepository clubRepository;
 	//목록 연결링크
 	@GetMapping({"/list"})
-	public String club_list(ClubEntity clubEntity ,Model model) {
+	public String club_list(ClubDTO clubDTO, Model model ) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_list.html 연결 =======");
-		//TODO [모임목록]clublist를 출력하기 해서 사용
-		model.addAttribute("lla", clubService.entitToDTO(clubEntity));
-		log.info("=========================================================");
+		model.addAttribute("list", clubService.getList(clubDTO));
+		log.info("=======================Get list end==================================");
 		return "/club/club_list";
 	}
 	
@@ -42,31 +44,41 @@ public class ClubController {
 		return "/club/club_register";
 	}
 	
-	@PostMapping("/register")
+	//[모임 등록]register.html에서 post타입으로 받아와서  모임 정보를 등록할때 사용됨
+	@PostMapping("/list")
 	public String club_register(ClubDTO clubDTO) {
 		log.info("=========================================================");
 		log.info("=========== ClubController.java => 데이터를 받은 후 DTO경유중 return : club_list페이지로 ==============");
 		log.info("=========== register ClubDTO  : "+clubDTO+" =============");
-		clubService.register(clubDTO);
+		clubService.register(clubDTO); // 등록 페이지에서 받아온 데이터를 서비스로 보낸다.
 		log.info("=========================================================");
 		return "/club/club_list";
 		
 	}
 	
+	
+	
+	
+	
+	
 	//상세 연결링크
 	@GetMapping({"read"})
-	public String club_read() {
+	public String club_read(Long Num ,Model model) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_read.html 연결 =======");
+		ClubDTO clubDTO = clubService.get(Num);
+		model.addAttribute("readDTO", clubDTO);
 		log.info("=========================================================");
 		return "/club/club_read";
 	}
 	
 	//수정 연결링크
-	@GetMapping({"/club_modify"})
-	public String club_modify() {
+	@GetMapping({"/modify"})
+	public String club_modify(Long Num,Model model) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_modify.html 연결 =======");
+		ClubDTO clubDTO = clubService.get(Num);
+		model.addAttribute("readDTO", clubDTO);
 		log.info("=========================================================");
 		return "/club/club_modify";
 	}

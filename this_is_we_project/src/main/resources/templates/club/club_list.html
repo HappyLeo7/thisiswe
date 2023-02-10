@@ -14,7 +14,11 @@
 	<!-- 내용 -->
 	<title>모임 목록페이지</title>
 	
-	
+	<tbody>
+		<tr> <!-- "result" 위치 :  clubController GetMapping "/list" ~~~~ .clubLogoList-->
+			<th></th>
+		</tr>
+	</tbody>
 	
 	
 	
@@ -31,65 +35,25 @@
 
 <!-- list 1 -->
 
-	<table border="1">
+	<table border="1"th:each="clubDTO : ${list}">
   <tr>
-    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
-    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
+    <th colspan="3"><a th:href="@{/club/read}">이미지</a></th>
   </tr>
   <tr>
-    <td colspan="2">모임명</td>
-    <td colspan="2">모임명
-    </td>
+    <td colspan="3" ><a class="clubNum" th:href="@{/club/read(Num=${clubDTO.clubNum})}"
+    >[[${clubDTO.clubName}]]모임명</a></td>
   </tr>
   <!-- tr에 가져올 데이터 세팅 -->
   <tr >
-    <td>지역 </td>
-    <td>인원</td>
-    <td>지역</td>
-    <td>인원</td>
+    <td >지역 [[${clubDTO.clubPlace}]]</td>
+    <td>인원 [[${clubDTO.clubHeadCount}]]</td>
+    <td>닉네임 [[${clubDTO.userNickname}]]</td>
   </tr>
+  
 </table>
 
 <br>
-<!-- list 2 -->
-	<table border="1">
-  <tr>
-    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
-    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
-  </tr>
-  <tr>
-    <td colspan="2">모임명</td>
-    <td colspan="2">모임명
-    </td>
-  </tr>
-  <tr>
-    <td>지역</td>
-    <td>인원</td>
-    <td>지역</td>
-    <td>인원</td>
-  </tr>
-</table>
-<br>
 
-<!-- list 3 -->
-	<table border="1">
-  <tr>
-    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
-    <th colspan="2"><a th:href="@{/club/read}">이미지</a></th>
-  </tr>
-  <tr>
-    <td colspan="2">모임명</td>
-    <td colspan="2">모임명
-    </td>
-  </tr>
-  <tr>
-    <td>지역</td>
-    <td>인원</td>
-    <td>지역</td>
-    <td>인원</td>
-  </tr>
-</table>
-<br>
 
 		<hr>
 		<a th:href="@{/club/club_list}">모임목록</a>
@@ -104,3 +68,8 @@
 	</th:block>
 
 </th:block>
+<script type="text/javascript">
+$(".clubNum").on("click",function(){
+	console.log("모임 상세 클릭");
+})
+</script>
