@@ -13,7 +13,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public String test() {
         userService.mongoInsert();
         return "test";
