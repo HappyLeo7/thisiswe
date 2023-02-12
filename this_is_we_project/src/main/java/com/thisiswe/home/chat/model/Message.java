@@ -31,7 +31,10 @@ public class Message {
     private LocalDateTime createdAt;
 
     public Message (String clubName, String userNickname, String message, String imageUrl){
+        System.out.println("메시지 작성 시간 : " + createdAt);
         this.clubName = clubName;
-
+        this.userNickname = userNickname;
+        this.message = message;
+        this.imageUrl = imageUrl;
     }
 }

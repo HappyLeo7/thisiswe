@@ -6,18 +6,11 @@ import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 public class Room {
 
     int roomNumber;
     String roomName;
 
-    @Override
-    public String toString() {
-        return "Room [roomNumber="
-                + roomNumber
-                + ", roomName="
-                + roomName
-                + "]";
-    }
 
 }
