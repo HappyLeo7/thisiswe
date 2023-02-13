@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
+import com.thisiswe.home.club.dto.PageResultDTO;
 import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.club.service.ClubService;
 
@@ -32,6 +33,10 @@ public class ClubController {
 		log.info("======= ClubController.java => club_list.html 연결 =======");
 		model.addAttribute("list", clubService.getList(clubDTO)); //그냥 리스트 불러오는 코드
 		//model.addAttribute("list", clubService.getPageList(pageRequestDTO));
+		
+		
+		log.info("커몬 : "+ (Object) clubService.getPageList(pageRequestDTO).toString());
+		
 		
 		log.info("=======================Get list end==================================");
 		return "/club/club_list";
