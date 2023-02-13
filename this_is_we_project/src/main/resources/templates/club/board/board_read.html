@@ -9,6 +9,7 @@
 
 		<!-- 게시판 읽어오기 -->
 		<h1 class="">게시판 조회</h1>
+		
 		<div class="">
 			<lable>번호</lable>
 			<input type="text" class="" name="boardNum"
@@ -28,49 +29,55 @@
 		</div>
 
 		<div class="">
-				<lable>내용</lable>
-				<textarea class="" rows="5" name="boardContent" readonly>
-					[[${boardDTO.boardContent}]]
-				</textarea>
-			</div>
+			<lable>내용</lable>
+			<textarea class="" rows="5" name="boardContent" readonly>
+				[[${boardDTO.boardContent}]]
+			</textarea>
+		</div>
 			
-			<div class="">
-				<lable>작성자</lable>
-				<input type="text" class="" 
-						name="userId" th:value="${boardDTO.userId}" readonly>
-			</div>
+		<div class="">
+			<lable>작성자</lable>
+			<input type="text" class="" 
+					name="userId" th:value="${boardDTO.userId}" readonly>
+		</div>
+		
+		<div class="">
+			<lable>등록일</lable>
+			<input type="text" class="" name="regDate"
+				th:value="${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+		</div>
 			
-			<div class="">
-				<lable>등록일</lable>
-				<input type="text" class="" name="regDate"
-					th:value="${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
-			</div>
+		<div class="">
+			<lable>수정일</lable>
+			<input type="text" class="" name="updateDate"
+				th:value="${#temporals.format(boardDTO.updateDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+		</div>
 			
-			<div class="">
-				<lable>수정일</lable>
-				<input type="text" class="" name="updateDate"
-					th:value="${#temporals.format(boardDTO.updateDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
-			</div>
-						
-			<a th:href="@{/club/board/modify(boardNum=${boardDTO.boardNum}, page=${requestDTO.page},
+			<!--			
+			<a th:href="@{/club/board/modify(boardNum=${boardDTO.boardNum},
+														page=${requestDTO.page},
 														type=${requestDTO.type},
-            											keyword=${requestDTO.keyword}
-														)}">
+            											keyword=${requestDTO.keyword})}">
 				<button type="button" class="btn btn-info">수정</button>
-			</a>
+			</a>			
 			<a th:href="@{/club/board/list (page=${requestDTO.page},
 														type=${requestDTO.type},
-            											keyword=${requestDTO.keyword}
-            											)}">
+            											keyword=${requestDTO.keyword})}">
 				<button type="button" class="btn btn-secondary">목록</button>
+			</a> -->
+			
+			<a th:href="@{/club/board/modify(boardNum=${boardDTO.boardNum})}">
+				<button type="button" class="btn btn-info">수정</button>
 			</a>
+			
+			<button type="button" class="btn btn-secondary">목록</button>
 			<!-- 게시판 읽어오기 -->
 			
 			<!-- 댓글 추가 -->
 			<div>
 				<div class="">
-					<h5><span class="badge badge-info addReply"> 댓글 추가 </span></h5>
-					<h5><span class="badge badge-secondary replyCount"> 댓글 수 [[${boardDTO.replyCount}]] </span></h5>
+					<h4><span class="badge badge-secondary replyCount"> 댓글 수 [[${boardDTO.replyCount}]] </span></h4>
+					<!-- <h5><span class="badge badge-info addReply"> 댓글 추가 </span></h5> -->
 				</div>
 				<div class="list-group replyList">
 				</div>

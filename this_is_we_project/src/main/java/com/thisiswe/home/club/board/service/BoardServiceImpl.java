@@ -43,10 +43,16 @@ public class BoardServiceImpl implements BoardService {
 	//TODO [ServiceImpl] 게시판 - boardNum 불러오기(get)
 	@Override
 	public BoardDTO get(Long boardNum) {
-		
+
+		log.info("========================== get ==========================");
+		log.info("================ boardNum ================> : " + boardNum);
 		Object result = boardRepository.getBoardByBoardNum(boardNum); 
+		log.info("================== result ==================> : " + result);
+		
 		Object[] arr = (Object[]) result;
-					
+		log.info("===================== arr =====================> : " + arr);		
+		log.info("========================== get ==========================");
+		
 		return entityToBoardDTO((Board)arr[0], (UserEntity)arr[1], (Long)arr[2]);
 	}
 	

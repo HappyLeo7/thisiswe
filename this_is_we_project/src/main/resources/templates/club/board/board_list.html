@@ -36,8 +36,8 @@
             	<th scope="row">[[${boardDTO.boardNum}]]</th>
             	<td>[[${boardDTO.boardCategory}]]</td>
            		<td>
-                  <a th:href="@{/club/board/read(boardNum=${boardDTO.boardNum})}">
-                  [[${boardDTO.boardTitle}]]...........[<b th:text="${boardDTO.replyCount}"></b>]
+                  <a th:href="@{/club/board/read(boardNum=${boardDTO.boardNum})}">                                                
+                  [[${boardDTO.boardTitle}]]..[<b th:text="${boardDTO.replyCount}"></b>]
                   </a>
                </td>
                <td>[[${boardDTO.boardContent}]]</td>

@@ -1,6 +1,9 @@
 package com.thisiswe.home.notice.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,6 +14,7 @@ import javax.persistence.ManyToOne;
 
 import com.thisiswe.home.enetity.DateEntity;
 import com.thisiswe.home.user.entity.UserEntity;
+import com.thisiswe.home.user.entity.UserRole;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -54,6 +58,16 @@ public class Notice extends DateEntity{
 	@ManyToOne(fetch = FetchType.Lazy)
 	private //시큐리티,,?
 	*/
+	/*
+	 * 
+	// TODO [Entity] 컬렉션 관리를 위한 별도 테이블 생성
+	@ElementCollection(fetch = FetchType.LAZY)
+	@Builder.Default
+	private Set<UserRole> roleSet = new HashSet<>(); // 중복 허용 x
+	*/
+	
+	
+	
 	
 	//NoticeServiceImpl.java와 연결된다.
 	//수정하는 부분 - title과 content

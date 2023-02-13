@@ -71,7 +71,7 @@ public class BoardController {
 	
 	//연결 링크[게시판 상세 조회] - read
 	@GetMapping("/board/read")
-	public String board_read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long boardNum, Model model) {
+	public String board_read(Long boardNum, Model model) {
 		
 		log.info("=========================================================");
 		log.info("====== BoardController.java => board_read.html 연결 ======");
@@ -82,24 +82,33 @@ public class BoardController {
 		log.info("================ boardDTO ================> : " + boardDTO);
 		
 		model.addAttribute("boardDTO", boardDTO);
+		log.info("========================= model-read ========================");
 		
-		return "redirect:/club/board/board_read";		
+		return "club/board/board_read";
 	}
 	
 	//연결 링크[게시판 상세 수정] - modify
 	@GetMapping("board/modify")
-	public String board_modify() {
+	public String board_modify(Long boardNum, Model model) {
 		
 		log.info("=========================================================");
 		log.info("===== BoardController.java => board_modify.html 연결 =====");
-		log.info("=========================================================");
+		log.info("================ boardNum ================> : " + boardNum);
 		
-		return "redirect:/club/board/board_modify";		
+		BoardDTO boardDTO =boardService.get(boardNum);
+		log.info("========= boardNum =========> : " + boardDTO.getBoardNum());
+		
+		model.addAttribute("boardDTO", boardDTO);
+		
+		log.info("modify boardDTO : "+boardDTO);
+		log.info("========================= model-modify ========================");
+		
+		return "club/board/board_modify";
 	}
 	
 	//연결 링크[게시판 수정] - modify
 	@PostMapping("/board/modify")
-	public String String_modify(BoardDTO boardDTO, 
+	public String String_modify(BoardDTO boardDTO,
 								@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO,
 								RedirectAttributes redirectAttributes) {
 		
@@ -107,12 +116,15 @@ public class BoardController {
 		log.info("================ boardDTO ================> : " + boardDTO);
 		
 		boardService.modify(boardDTO);
+		
 		redirectAttributes.addAttribute("page", pageRequestDTO.getPage());
 		redirectAttributes.addAttribute("type", pageRequestDTO.getType());
 		redirectAttributes.addAttribute("keyword", pageRequestDTO.getKeyword());
 		redirectAttributes.addAttribute("boardNum", boardDTO.getBoardNum());
+		
+		log.info("=========================================================");
 			
-		return "redirect:/club/board/board_read";
+		return "/club/board/board_read";
 	}
 	
 	//연결 링크[게시판 삭제] - remove
@@ -125,6 +137,7 @@ public class BoardController {
 		boardService.remove(boardNum);
 		
 		redirectAttributes.addFlashAttribute("msg", boardNum);
+		log.info("=========================================================");
 		
 		return "redirect:/club/board/list";
 	}

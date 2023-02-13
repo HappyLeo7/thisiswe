@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.board.entity.Board.BoardBuilder;
+import com.thisiswe.home.club.board.reply.dto.ReplyDTO.ReplyDTOBuilder;
 import com.thisiswe.home.enetity.DateEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
@@ -21,10 +23,10 @@ import lombok.ToString;
 
 @Entity
 @Builder
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@ToString(exclude = "board")
+@ToString(exclude={"userId", "board"})
 
 //TODO [Entity]게시판 Reply table 컬럼(유저ID, 내용)
 public class Reply extends DateEntity{
@@ -43,6 +45,6 @@ public class Reply extends DateEntity{
 	
 	//게시판 작성자와 회원 닉네임의 관계
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Board board;						// 게시판 ENTITY,,?	
-	 
-}
+	private Board board;						// 게시판과 게시판_댓글 유저와의 관계
+
+	}

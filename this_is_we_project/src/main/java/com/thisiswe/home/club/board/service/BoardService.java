@@ -1,17 +1,21 @@
 package com.thisiswe.home.club.board.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.dto.PageResultDTO;
 import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.board.repository.BoardRepository;
 import com.thisiswe.home.user.entity.UserEntity;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 //TODO [Service] 게시판
 public interface BoardService {
-
+	
 	// TODO [Service] 게시판 - 등록(register)
 	Long register(BoardDTO boardDTO);
 
@@ -27,12 +31,12 @@ public interface BoardService {
 	// TODO [Service] 게시판 - 삭제(remove)
 	void remove(Long boardNum);
 	
-	// TODO [Service] 공지사항 - DTO(WEB)에서 Entity(DB)로
+	// TODO [Service] 게시판 - DTO(WEB)에서 Entity(DB)로
 	default Board boardDTOToEntity(BoardDTO boardDTO) {
 				
 		UserEntity member = UserEntity.builder().userId(boardDTO.getUserId()).build();
 		
-		// 공지사항 번호, 카테고리, 제목, 내용, 조회수
+		// 게시판 번호, 카테고리, 제목, 내용, 조회수
 		Board board = Board.builder()
 						.boardNum(boardDTO.getBoardNum())
 						.boardCategory(boardDTO.getBoardCategory())
@@ -45,10 +49,10 @@ public interface BoardService {
 		return board;
 	}
 	
-	//TODO [Service] 공지사항 - Entity(DB)에서 DTO(WEB)로
+	//TODO [Service] 게시판 - Entity(DB)에서 DTO(WEB)로
 		default BoardDTO entityToBoardDTO(Board board, UserEntity userEntity, Long replyCount) {
 			
-			//공지사항 번호, 카테고리, 제목, 내용, 유저아이디, 수정일, 조회수, 댓글수
+			//게시판 번호, 카테고리, 제목, 내용, 유저아이디, 수정일, 조회수, 댓글수
 			BoardDTO boardDTO = BoardDTO.builder()
 								.boardNum(board.getBoardNum())
 								.boardCategory(board.getBoardCategory())
