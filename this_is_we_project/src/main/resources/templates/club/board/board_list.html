@@ -85,20 +85,21 @@
 		<!-- 페이지 부분 : 이동, 이전, 다음 -->
   	    <ul class="">
         	<li class="" th:if="${result.prev}">
-         	   <a class="page-link" th:href="@{/board/list(page=${result.start-1},
+         	   <a class="page-link" th:href="@{/club/board/list(page=${result.start-1},
                                 						   type=${pageRequestDTO.type},
                                							   keyword=${pageRequestDTO.keyword})}" 
                                		tabindex="-1">이전</a>
         	 </li>
          
-       	  	 <li th:class="' '+ ${result.page == page?'active':''}" th:each="page: ${result.pageList}">
-          	 	<a class="page-link" th:href="@{/board/list(page=${page},
+       	  	 <li th:class="'page-item '+ ${result.page == page?'active':''}" 
+       	  	 	th:each="page: ${result.pageList}">
+          	 	<a class="page-link" th:href="@{/club/board/list(page=${page},
                                  							type=${pageRequestDTO.type},
                             							    keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
    			 </li>
          
          	<li class="page-item" th:if="${result.next}">
-          	  <a class="page-link" th:href="@{/board/list(page=${result.end},
+          	  <a class="page-link" th:href="@{/club/board/list(page=${result.end},
                                  type=${pageRequestDTO.type},
                                  keyword=${pageRequestDTO.keyword})}">다음</a>
         	</li>
