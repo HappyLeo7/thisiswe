@@ -1,16 +1,27 @@
 package com.thisiswe.home.chat.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import javax.persistence.*;
 
 @Setter
 @Getter
 @ToString
+@Entity
+@RequiredArgsConstructor
 public class Room {
 
-    int roomNumber;
-    String roomName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int roomNumber;
+
+    @Column
+    private String roomName;
+
+    public Room(String roomName){
+        this.roomName = roomName;
+    }
+
 
 
 }

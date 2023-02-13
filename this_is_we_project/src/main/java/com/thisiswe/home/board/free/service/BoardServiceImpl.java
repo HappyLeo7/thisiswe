@@ -1,12 +1,9 @@
 package com.thisiswe.home.board.free.service;
 
-import org.springframework.stereotype.Service;
-
 import com.thisiswe.home.board.free.dto.BoardDTO;
-import com.thisiswe.home.board.reply.service.ReplyService;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor

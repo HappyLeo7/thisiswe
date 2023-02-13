@@ -1,6 +1,7 @@
 package com.thisiswe.home.chat.config;
 
 
+import com.thisiswe.home.chat.service.ChatService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -22,18 +23,28 @@ import java.util.List;
 
 @Component
 public class SocketHandler extends TextWebSocketHandler {
-
     List<HashMap<String, Object>> rls = new ArrayList<>(); //웹소켓 세션을 담아둘 리스트 ---roomListSessions
     private static final String FILE_UPLOAD_PATH = "C:/test/websocket/";
     static int fileUploadIdx = 0;
     static String fileUploadSession = "";
 
+    private final ChatService chatService;
+
+    public SocketHandler(ChatService chatService) {
+        this.chatService = chatService;
+    }
+
+
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
+        System.out.println("여기는 들어오는가?");
         //메시지 발송
         String msg = message.getPayload(); //JSON형태의 String메시지를 받는다.
         JSONObject obj = jsonToObjectParser(msg); //JSON데이터를 JSONObject로 파싱한다.
         System.out.println("메시지 : " + msg);
+        System.out.println("오브젝트 : " + obj);
+        chatService.saveMessage(obj);
+
 
         String rN = (String) obj.get("roomNumber"); //방의 번호를 받는다.
         String msgType = (String) obj.get("type"); //메시지의 타입을 확인한다.

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 @AllArgsConstructor
 @Getter
-@Document("alarm_log")
+@Document("")
 public class AlarmLog {
     @Id
     private Long id;

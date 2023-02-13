@@ -1,12 +1,10 @@
 package com.thisiswe.home.board.reply.service;
 
-import java.util.List;
-
+import com.thisiswe.home.board.reply.dto.ReplyDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import com.thisiswe.home.board.reply.dto.ReplyDTO;
-
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor

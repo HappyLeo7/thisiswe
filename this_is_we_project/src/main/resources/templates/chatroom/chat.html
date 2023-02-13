@@ -69,11 +69,11 @@
     var ws;
 
     function wsOpen() {
-        console.log("룸넘버 : " + $("#roomNumber").val());
+        console.log("룸넘버 : " + $("#roomNum").val());
         //웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
-        ws = new WebSocket("ws://" + location.host + "/chating/" + $("#roomNumber").val());
+        ws = new WebSocket("ws://" + location.host + "/chating/" + $("#roomNum").val());
         wsEvt();
-
+        //
     }
 
     function wsEvt() {
@@ -137,7 +137,7 @@
         console.log("메시지 보냅니다.");
         var option = {
             type: "message",
-            roomNumber: $("#roomNumber").val(),
+            roomNumber: $("#roomNum").val(),
             sessionId: $("#sessionId").val(),
             userName: $("#userName").val(),
             msg: $("#chatting").val()
@@ -154,7 +154,7 @@
             var param = {
                 type: "fileUpload",
                 file: file,
-                roomNumber: $("#roomNumber").val(),
+                roomNumber: $("#roomNum").val(),
                 sessionId: $("#sessionId").val(),
                 msg: $("#chatting").val(),
                 userName: $("#userName").val()
@@ -171,7 +171,7 @@
 <div id="container" class="container">
     <h1>[[${roomName}]]의 채팅방 </h1>
     <input type="hidden" id="sessionId" value="">
-    <input type="hidden" id="roomNumber" th:value="${roomNumber}">
+    <input type="hidden" id="roomNum" th:value="${roomNumber}">
 
     <div id="chating" class="chating">
     </div>

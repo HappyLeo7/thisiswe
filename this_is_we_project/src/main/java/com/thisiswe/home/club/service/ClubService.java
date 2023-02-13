@@ -1,7 +1,5 @@
 package com.thisiswe.home.club.service;
 
-import org.springframework.stereotype.Service;
-
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.dto.PageResultDTO;

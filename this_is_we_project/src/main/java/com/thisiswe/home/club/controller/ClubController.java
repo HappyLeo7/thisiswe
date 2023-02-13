@@ -1,17 +1,15 @@
 package com.thisiswe.home.club.controller;
 
+import com.thisiswe.home.club.dto.ClubDTO;
+import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.club.service.ClubService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.thisiswe.home.club.dto.ClubDTO;
-import com.thisiswe.home.club.entity.ClubEntity;
-import com.thisiswe.home.club.service.ClubService;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
 @RequestMapping("/club")
 @Controller

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html >
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <meta charset="UTF-8">
@@ -89,6 +89,8 @@
         getRoom();              //채팅방을 조회하고
         createRoom();           //채팅방을 만들어라
     }
+
+
     //uri,
     function getRoom() {
         commonAjax('/getRoom', "", 'post', function (result) {
@@ -109,10 +111,12 @@
     }
 
     function goRoom(number, name) {
+        console.log("넘버랑 이름 : " +number + "-" + name)
         location.href = "/moveChating?roomName=" + name + "&" + "roomNumber=" + number;
     }
 
     function createChatingRoom(res) {
+
         if (res != null) {
             var tag = "<tr><th class='num'>순서</th><th class='room'>방 이름</th><th class='go'></th></tr>";
             res.forEach(function (d, idx) {
@@ -148,7 +152,21 @@
 <div class="container">
     <h1>채팅방</h1>
     <div id="roomContainer" class="roomContainer">
-        <table id="roomList" class="roomList"></table>
+        <table id="roomList" class="roomList">
+            <tr>
+                <th class='num'>순서</th>
+                <th class='room'>방 이름</th>
+                <th class='go'></th>
+            </tr>
+            <tr th:each="rooms : ${roomList}">
+                <td class='num' th:text="${rooms.roomNumber}"></td>
+                <td class='room' th:text="${rooms.roomName}"></td>
+                <td class='go'>
+                    <button type='button' th:onclick="goRoom(${rooms.rooNumber}, ${rooms.roomName})">참여</button>
+                </td>
+            </tr>
+
+        </table>
     </div>
     <div>
         <table class="inputTable">
