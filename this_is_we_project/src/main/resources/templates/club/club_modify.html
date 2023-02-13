@@ -15,11 +15,13 @@
 	<title>모임 수정페이지</title>
 		<h1>모임 수정페이지</h1>
 		
+		<!-- form -->
+		<form action="/club/read" method="post">
 		
 		<table border="1">
 	<tr>
 		<td>
-			<input th:value="${modifyDTO.clubNum}" readonly="readonly">
+			<input name="clubNum" th:value="${modifyDTO.clubNum}" readonly="readonly">
 		</td>
 	</tr>
 	
@@ -90,13 +92,13 @@
 	
 	<tr>
 		<td>
-		<a th:href="@{/club/club_modify}">
-			<button type="button" >모임수정</button> 
-		</a>
+			<button type="submit" >모임수정</button>
+			<button class="removeButton" type="submit">삭제</button> 
 		</td>
 	</tr>
 	</table>
-		
+			</form>
+	<!-- /form -->
 		
 		
 		
@@ -110,8 +112,18 @@
 		<a th:href="@{/club/club_register}">모임등록</a>
 		<hr>
 	<!-- /내용 -->
+<script type="text/javascript">
+
+// 삭제버튼 form
+$(".removeButton").click(function(){
+	  $("form")
+      .attr("action","/club/remove")
+      .attr("method","post");
+  
+  actionForm.submit();
 	
-	
+})
+</script>
 	
 	</th:block>
 

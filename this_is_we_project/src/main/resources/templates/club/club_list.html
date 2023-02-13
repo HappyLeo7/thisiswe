@@ -27,7 +27,7 @@
 		</div>
 		
 		<!-- 모임등록버튼 -->
-		<a th:href="@{/club/register}">
+		<a th:href="@{/thisiswe/register}">
 			<button type="button">모임등록</button>		
 		</a>
 		<br>
@@ -40,7 +40,7 @@
     <th colspan="3"><a th:href="@{/club/read}">이미지</a></th>
   </tr>
   <tr>
-    <td colspan="3" ><a class="clubNum" th:href="@{/club/read(Num=${clubDTO.clubNum})}"
+    <td colspan="3" ><a class="clubNum" th:href="@{/thisiswe/club/(Num=${clubDTO.clubNum})}"
     >[[${clubDTO.clubName}]]모임명</a></td>
   </tr>
   <!-- tr에 가져올 데이터 세팅 -->
@@ -50,6 +50,11 @@
     <td>닉네임 [[${clubDTO.userNickname}]]</td>
   </tr>
   
+  <ul>
+  <li> <a> </a> </li>
+  <li> Item two </li>
+</ul>
+
 </table>
 
 <br>

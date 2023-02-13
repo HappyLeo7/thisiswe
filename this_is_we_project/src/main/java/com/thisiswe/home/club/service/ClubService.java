@@ -1,7 +1,5 @@
 package com.thisiswe.home.club.service;
 
-import java.util.List;
-
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.dto.PageResultDTO;
@@ -20,7 +18,8 @@ public interface ClubService {
 
 	// 전체의 모임 데이터를 불러온다.
 	Object getList(ClubDTO clubDTO);
-
+	PageResultDTO<ClubDTO,Object[]> getPageList(PageRequestDTO pageRequestDTO);
+	
 	void modify(ClubDTO clubDTO);
 	
 	// CludDTO(Wed) -> ClubEntity(DB) 
@@ -47,7 +46,7 @@ public interface ClubService {
 	
 	
 	// ClubEntity(DB) -> CludDTO(Wed)
-	default ClubDTO entitToDTO (ClubEntity clubEntity, UserEntity userEntity) {
+	default ClubDTO entityToDTO (ClubEntity clubEntity, UserEntity userEntity) {
 		//지역, 모임명, 내용, 관심 카테고리, 로고이미지, 인원
 		ClubDTO clubDTO = ClubDTO.builder()
 				.clubNum(clubEntity.getClubNum())
@@ -67,6 +66,8 @@ public interface ClubService {
 		return clubDTO;
 		
 	}
+
+	
 
 
 

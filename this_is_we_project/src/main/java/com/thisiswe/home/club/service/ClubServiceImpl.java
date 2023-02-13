@@ -2,10 +2,15 @@ package com.thisiswe.home.club.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
 import com.thisiswe.home.club.dto.ClubDTO;
+import com.thisiswe.home.club.dto.PageRequestDTO;
+import com.thisiswe.home.club.dto.PageResultDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.user.entity.UserEntity;
@@ -46,10 +51,19 @@ public class ClubServiceImpl implements ClubService {
 		List<ClubDTO> entList = new ArrayList<>(); 
 		System.out.println("list:::::::"+list);
 		for (Object[] arr : list) {
-			entList.add( entitToDTO((ClubEntity)arr[0], (UserEntity)arr[1]));
+			entList.add( entityToDTO((ClubEntity)arr[0], (UserEntity)arr[1]));
 		}
 		return entList;
 		
+	}
+	
+	@Override
+	public PageResultDTO<ClubDTO, Object[]> getPageList(PageRequestDTO pageRequestDTO) {
+
+		log.info("===== getPageList() pageRequestDTO =====");
+		Function<Object[], ClubDTO> fn = (en->
+				entityToDTO((ClubEntity)en[0],(UserEntity)en[1]));
+		return new PageResultDTO<>(null, fn);
 	}
 
 
@@ -63,24 +77,42 @@ public class ClubServiceImpl implements ClubService {
 		
 		List<Object[]> arr= (List<Object[]>) clubEntityObject;
 		
-		return entitToDTO((ClubEntity)arr.get(0)[0], (UserEntity)arr.get(0)[1]);
+		return entityToDTO((ClubEntity)arr.get(0)[0], (UserEntity)arr.get(0)[1]);
 	}
 
 
 
 	
 	// 모임 수정하는 매서드
+	@Transactional
 	@Override
 	public void modify(ClubDTO clubDTO) {
+		System.out.println("서비스Impl 테스트 1");
+		log.info("modify() 수정 메서드");
 		
 		ClubEntity clubEntity = clubRepository.getById(clubDTO.getClubNum());
-		
+		log.info( "서비스수정할값 :  "+clubEntity);
 		if(clubEntity != null) {
-			clubEntity.change(clubEntity.getClubPlace(), clubEntity.getClubName(), clubEntity.getClubContent(), clubEntity.getClubCategory(), clubEntity.getClubLogo(),clubEntity.getClubLogoUuid() , clubEntity.getClubLogoUrl() ,clubEntity.getClubHeadCount());
+			clubEntity.change(
+					clubDTO.getClubPlace(),
+					clubDTO.getClubName(), 
+					clubDTO.getClubContent(), 
+					clubDTO.getClubCategory(), 
+					clubDTO.getClubLogo(),
+					clubDTO.getClubLogoUuid(), 
+					clubDTO.getClubLogoUrl(),
+					clubDTO.getClubHeadCount()
+					);
 		}
+		log.info("수정된 clubEntity : "+clubEntity);
 		clubRepository.save(clubEntity);
 		
 	}
+
+
+
+
+	
  
 
 

@@ -22,6 +22,8 @@ public class clubTests {
 	
 	@Autowired
 	private ClubRepository clubRepository;
+	
+	@Autowired
 	private ClubService clubService;
 	
 	
@@ -73,19 +75,36 @@ public class clubTests {
 		//클럽 DTO에서 수정을 할거야
 		System.out.println("");
 		ClubDTO clubDTO = ClubDTO.builder()
-				.clubNum(1L)
+				.clubNum(2L)
 				.clubPlace("보라매")
+				//.userId("user1")
+				//.userNickname("CuteDragon1")
 				.clubName("thisiswe")
 				.clubContent("경원 나영 동완 수찬 세원")
 				.clubCategory("반려동물")
 				.clubLogo("이미지이름")
-				.clubHeadCount(200L)
+				.clubLogoUuid("이미지uuid")
+				.clubLogoUrl("이미지Url")
+				.clubHeadCount(50L)
+				
 				.build();
-		System.out.println("");
-		System.out.println("");
+		System.out.println("수정값 : "+clubDTO);
 		
+		System.out.println("");
 		clubService.modify(clubDTO);
+		System.out.println("modify 실행됨");
 		
 	}
 
+	@Test
+	public void testClubRemove() {
+		clubRepository.deleteById(88L);
+	}
+	
+	@Test
+	public void testPageList() {
+		
+		
+	}
+	
 }

@@ -32,8 +32,8 @@ public class ClubDTO {
 	private LocalDateTime regDate; //등록일
 	private LocalDateTime updateDate; //수정일
 	
-	@Builder.Default
-	private List<ClubDTO> clubLogoList =new ArrayList<>(); 
+	//@Builder.Default
+	//private List<ClubDTO> clubLogoList =new ArrayList<>(); 
 	
 	
 }

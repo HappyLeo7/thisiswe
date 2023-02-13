@@ -16,7 +16,7 @@ import com.thisiswe.home.club.service.ClubService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
-@RequestMapping("/club")
+@RequestMapping("/thisiswe")
 @Controller
 @RequiredArgsConstructor
 @Log4j2
@@ -26,11 +26,13 @@ public class ClubController {
 	private final ClubService clubService;
 	private final ClubRepository clubRepository;
 	//목록 연결링크
-	@GetMapping({"/list"})
-	public String club_list(ClubDTO clubDTO, Model model ) {
+	@GetMapping({"/club"})
+	public String club_list(PageRequestDTO pageRequestDTO, ClubDTO clubDTO, Model model ) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_list.html 연결 =======");
-		model.addAttribute("list", clubService.getList(clubDTO));
+		model.addAttribute("list", clubService.getList(clubDTO)); //그냥 리스트 불러오는 코드
+		//model.addAttribute("list", clubService.getPageList(pageRequestDTO));
+		
 		log.info("=======================Get list end==================================");
 		return "/club/club_list";
 	}
@@ -62,7 +64,7 @@ public class ClubController {
 	
 	
 	//상세 연결링크
-	@GetMapping({"read"})
+	@GetMapping({"/club/"})
 	public String club_read(Long Num ,Model model) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_read.html 연결 =======");
@@ -72,16 +74,41 @@ public class ClubController {
 		return "/club/club_read";
 	}
 	
-	//수정 연결링크
+	//수정 페이지 불러오는 연결링크
 	@GetMapping({"/modify"})
 	public String club_modify(Long Num,Model model) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_modify.html 연결 =======");
 		ClubDTO clubDTO = clubService.get(Num);
 		model.addAttribute("modifyDTO", clubDTO);
-		System.out.println("컨트롤러 modify11");
-		log.info("=========================================================");
-		return "/club/club_modify";
+		log.info("========= /ClubController.java => club_modify.html 연결 ======");
+		return "/club/club_modify";//포워드
+	}
+	
+	//club데이터 수정매서드
+	@PostMapping({"/read"})
+	public String club_modify(ClubDTO clubDTO) {
+		log.info("==============================");
+		log.info("======= ClubController => post타입 modify ==============");
+		// 수정 코드 작성
+		log.info("수정 club : "+clubDTO);
+		clubService.modify(clubDTO);
+		
+		
+		log.info("========/ post 타입 club_modify ======================");
+		return "redirect:/club/read?Num="+clubDTO.getClubNum();
+	}
+	
+	
+	//삭제버튼 클릭시 삭제됨
+	@PostMapping({"/remove"})
+	public String clubRemove(ClubDTO clubDTO) {
+		
+		log.info("========ClubController ==> clubRemove 매서드 =====");
+		log.info("======== 모임 "+clubDTO+"번호 =====");
+		clubRepository.deleteById(clubDTO.getClubNum());
+		log.info(clubDTO.getClubNum()+"번 "+clubDTO.getClubName()+"모임이 삭제되었습니다.");
+		return "redirect:/club/list";
 	}
 	
 	
