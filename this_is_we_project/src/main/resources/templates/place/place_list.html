@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<!-- th를 쓰기위한 thymeleaf.org 선언 -->
+
+<!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+   
+   <!-- 지정한 변수로 연결할 위치 -->
+   <th:block th:fragment="connection">
+
+	<div style="text-align: center;">
+	<div> 이 장소는 어디에</div> 
+	<button style="float: right;">장소 추가</button>
+	<br>
+	<br>
+			<div style="display: inline-block;width: 40%" th:each="dto : ${result}">
+				<div style="border: solid 1px;">
+					<a th:href="@{/place/place(placeNum=${dto.placeNum})}" style="border: solid 1px;">
+						<div><img width="100%" height="100%" src="/image/place/KakaoTalk_20230203_092244158.png"></div>
+						<div style="border: solid 1px;">[[${dto.placeName}]]</div >
+						<div>
+						<div style="border: solid 1px; width: 39%;  display: inline-block;">[[${dto.placeAddress}]]</div>
+						<div style="border: solid 1px; width: 39%;  display: inline-block;">[[${dto.placePhoneNumber}]]</div>
+						</div>
+					</a>
+				</div>
+				<br>
+				<br>
+			</div>
+			
+	</div>
+
+	</th:block>
+</th:block>

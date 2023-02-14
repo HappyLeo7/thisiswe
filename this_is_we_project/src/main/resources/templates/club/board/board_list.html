@@ -3,6 +3,7 @@
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
 <th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+<<<<<<< HEAD
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
 		
@@ -13,10 +14,27 @@
 					<button type="button" class="btn btn-outline-primary">REGISTER</button>
 				</a>
 			</span>
+=======
+	
+	<!-- 지정한 변수로 연결할 위치 -->
+	<th:block th:fragment="connection">
+
+<h1>게시판 목록11</h1>
+		<h1 class="">
+			게시판 목록   <a th:href="@{/club/register}">
+					<button type="button" class="" style="float: right;">REGISTER</button>
+			</a> 
+			
+			
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 		</h1>
+<<<<<<< HEAD
 
 		<table class="">
 			<!-- 게시판 목록 head 부분 -->
+=======
+		<table>
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 			<thead>
 				<tr>
 					<th scope="col">번호</th>
@@ -28,6 +46,7 @@
 					<th scope="col">조회수</th>
 				</tr>
 			</thead>
+<<<<<<< HEAD
 			<!-- /게시판 목록 head 부분 -->
 			
 			<!-- 게시판 목록 body 부분 -->
@@ -107,3 +126,9 @@
 		
 	</th:block>
 </th:block>
+=======
+		</table>
+		
+		</th:block>
+		</th:block>
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git

@@ -15,6 +15,88 @@
 	<title>모임 상세페이지</title>
 	<h1>모임 상세페이지</h1>
 	
+	
+	<table border="1">
+	<tr>
+		<td>
+			<input th:value="${readDTO.clubNum}" readonly="readonly">
+		</td>
+	</tr>
+	
+	<!-- userID -->
+  <tr>
+	<td colspan="2">
+	 아이디 : <input  name="userId" th:value="${readDTO.userId}" readonly="readonly">
+	</td>
+  </tr>
+	<!-- 지역 -->
+  <tr>
+	<td colspan="2">
+	 지역 : <input name="clubPlace"  th:value="${readDTO.clubPlace}" readonly="readonly">
+	</td>
+  </tr>
+
+  <!-- 모임명 -->
+  <tr>
+	<td colspan="2">
+	 모임명 : <input name="clubName" th:value="${readDTO.clubName}" readonly="readonly">
+	</td>
+  </tr>
+  
+  <!-- 모임설명 -->
+  <tr>
+	<td colspan="2">
+	  모임설명 : <textarea name="clubContent" readonly="readonly">[[${readDTO.clubContent}]]</textarea>
+	</td>
+  </tr>
+  
+  <!-- 카테고리 -->
+  <tr>
+	<td colspan="2">
+	 관심사 카테고리 : 
+	 <select size="1" name="clubCategory" required="required">
+	 	<option th:value="${readDTO.clubCategory}" selected="selected">[[${readDTO.clubCategory}]]</option>
+	 	<option value="아웃도어/여행">아웃도어/여행</option>
+	 	<option value="운동/스포츠">운동/스포츠</option>
+	 	<option value="인문학/책/글">인문학/책/글</option>
+	 	<option value="업종/직무">업종/직무</option>
+	 	<option value="외국/언어">외국/언어</option>
+	 	<option value="문화/공연/축제">문화/공연/축제</option>
+	 	<option value="음악/악기">음악/악기</option>
+	 	<option value="공예/만들기">공예/만들기</option>
+	 	<option value="댄스/무용">댄스/무용</option>
+	 	<option value="봉사활동">봉사활동</option>
+	 	<option value="사교/인맥">사교/인맥</option>
+	 	<option value="차/오토바이">차/오토바이</option>
+	 	<option value="사진/영상">사진/영상</option>
+	 	<option value="야구관람">야구관람</option>
+	 	<option value="게임/오락">게임/오락</option>
+	 	<option value="요리/제조">요리/제조</option>
+	 	<option value="반려동물">반려동물</option>
+	 	<option value="가족/결혼">가족/결혼</option>
+	 	<option value="자유주제">자유주제</option>
+	 </select>
+	</td>
+  </tr>
+
+  
+  <tr>
+  <!-- 로고이미지 -->
+  	<td rowspan="2">로고이미지</td>
+  	<!-- 모임정원 -->
+	<td>모임정원<input name="clubHeadCount" th:value="${readDTO.clubHeadCount}" type="number" min="1" max="300"  readonly="readonly"></td>
+  </tr>
+	
+	
+	<tr>
+		<td>
+		<a th:href="@{/club/modify(Num=${readDTO.clubNum})}">
+			<button type="button">모임수정버튼</button> 
+		</a>
+		</td>
+	</tr>
+	</table>
+	
 	<hr>
 		<a th:href="@{/club/club_list}">모임목록</a>
 		<hr>

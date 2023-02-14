@@ -18,10 +18,18 @@
 	<!-- 등록 내용  -->
 	
 	<!-- form -->
-	<form th:action="@{/club/register}" th:method="post">
+	<form th:action="@{/club/list}" th:method="post">
 	
 	
 	<table border="1">
+	
+	
+	<!-- userID -->
+  <tr>
+	<td colspan="2">
+	 아이디 : <input name="userId">
+	</td>
+  </tr>
 	<!-- 지역 -->
   <tr>
 	<td colspan="2">
