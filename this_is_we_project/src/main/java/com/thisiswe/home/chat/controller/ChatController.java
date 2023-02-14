@@ -89,7 +89,7 @@ public class ChatController {
         mv.setViewName("chatroom/chat");
         mv.addObject("roomName", roomName);
         mv.addObject("roomNumber", roomNumber);
-        mv.addObject("roomList", chatService.getMessages(roomName));
+        mv.addObject("chatList", chatService.getMessages(roomName));
         System.out.println("roomList1 : " + chatService.getMessages(roomName));
 //        List<Room> new_list = roomList.stream().filter(o->o.getRoomNumber()==roomNumber).collect(Collectors.toList());
 //        if(new_list != null && new_list.size() > 0) {
