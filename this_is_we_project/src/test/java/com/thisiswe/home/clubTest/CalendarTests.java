@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.thisiswe.home.club.calendar.entity.CalendarEntity;
 import com.thisiswe.home.club.calendar.repository.CalendarRepository;
+import com.thisiswe.home.club.entity.ClubEntity;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -22,7 +23,7 @@ public class CalendarTests {
 	//TODO [테스트] 일정 추가
 	@Test
 	public void calendarRegister() {
-		IntStream.rangeClosed(1, 20).forEach(i->{
+		IntStream.rangeClosed(21, 40).forEach(i->{
 			
 		CalendarEntity calendarEntity = CalendarEntity.builder()
 				//.club_calendarHeadCount(null)
@@ -34,12 +35,18 @@ public class CalendarTests {
 				.clubCalendarPlace("강남역")
 				.clubCalendarHeadCount(5L)
 				.clubCalendarPrice(10000L)
+				.clubNum(ClubEntity.builder().clubNum(1L).build())
 				.build();
 		
 		calendarRepository.save(calendarEntity);
 		
 		});
 		
+		
+	}
+	
+	@Test
+	public void test() {
 		
 	}
 	

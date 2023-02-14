@@ -16,8 +16,35 @@
 	<h1>모임 상세페이지</h1>
 	
 	
+	<!-- 네비창 (정보, 게시판, 사진첩) -->
+	
 	<table border="1">
 	<tr>
+		<td><a th:href="@{/thisiswe/club/(Num=${readDTO.clubNum})}">정보</a></td>
+		<td><a href="/thisiswe/club/calendar">게시판</a></td>
+		<td><a href="">사진첩</a></td>
+		
+	</tr>
+	</table>
+	<!-- /네비창 (정보, 게시판, 사진첩) -->
+	
+	<!-- 모임 수정 버튼 -->
+		<table border="0">
+	<tr>
+		<td>
+		<a th:href="@{/thisiswe/modify(Num=${readDTO.clubNum})}">
+			<button type="button">모임수정버튼</button> 
+		</a>
+		</td>
+	</tr>
+		</table>
+	<!-- /모임 수정 버튼 -->
+	
+	<table border="1">
+	<tr>
+	 <!-- 로고이미지 -->
+  	<td rowspan="4">로고이미지</td>
+	 <!-- /로고이미지 -->
 		<td>
 			<input th:value="${readDTO.clubNum}" readonly="readonly">
 		</td>
@@ -29,12 +56,7 @@
 	 아이디 : <input  name="userId" th:value="${readDTO.userId}" readonly="readonly">
 	</td>
   </tr>
-	<!-- 지역 -->
-  <tr>
-	<td colspan="2">
-	 지역 : <input name="clubPlace"  th:value="${readDTO.clubPlace}" readonly="readonly">
-	</td>
-  </tr>
+
 
   <!-- 모임명 -->
   <tr>
@@ -47,6 +69,13 @@
   <tr>
 	<td colspan="2">
 	  모임설명 : <textarea name="clubContent" readonly="readonly">[[${readDTO.clubContent}]]</textarea>
+	</td>
+  </tr>
+  
+  	<!-- 지역 -->
+  <tr>
+	<td colspan="2">
+	 지역 : <input name="clubPlace"  th:value="${readDTO.clubPlace}" readonly="readonly">
 	</td>
   </tr>
   
@@ -81,21 +110,38 @@
 
   
   <tr>
-  <!-- 로고이미지 -->
-  	<td rowspan="2">로고이미지</td>
+ 
   	<!-- 모임정원 -->
 	<td>모임정원<input name="clubHeadCount" th:value="${readDTO.clubHeadCount}" type="number" min="1" max="300"  readonly="readonly"></td>
   </tr>
 	
-	
-	<tr>
-		<td>
-		<a th:href="@{/club/modify(Num=${readDTO.clubNum})}">
-			<button type="button">모임수정버튼</button> 
-		</a>
-		</td>
-	</tr>
 	</table>
+
+<!-- 모임 일정표 -->
+	<table border="1">
+		<tr>
+			<th><h3>모임 스케줄표</h3></th>
+			<td>
+			<a th:href="@{/thisiswe/club/calendar/register/(num=${readDTO.clubNum})}">
+			<button type="button">일정등록</button></a></td>
+		</tr>
+		
+		<tr>
+		<td rowspan="3">달력이미지</td>
+		<td>날짜 : <input type="date"></td>
+		</tr>
+		
+		
+		<tr>
+		<td>장소 : <input type="text"> </td>
+		</tr>
+		
+		<tr>
+		<td>모임비 : <input type="text"> </td>
+		</tr>
+	</table>
+<!-- /모임 일정표 -->
+
 	
 	<hr>
 		<a th:href="@{/club/club_list}">모임목록</a>

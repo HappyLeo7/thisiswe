@@ -15,8 +15,21 @@
 	<title>모임 수정페이지</title>
 		<h1>모임 수정페이지</h1>
 		
+		
+			<!-- 네비창 (정보, 게시판, 사진첩) -->
+	
+	<table border="1">
+	<tr>
+		<td><a th:href="@{/thisiswe/club/(Num=${modifyDTO.clubNum})}">정보</a></td>
+		<td><a href="/thisiswe/club/calendar">게시판</a></td>
+		<td><a href="">사진첩</a></td>
+		
+	</tr>
+	</table>
+	<!-- /네비창 (정보, 게시판, 사진첩) -->
+		
 		<!-- form -->
-		<form action="/club/read" method="post">
+		<form th:action="@{/thisiswe/read}" th:method="post">
 		
 		<table border="1">
 	<tr>

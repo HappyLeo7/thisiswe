@@ -107,4 +107,8 @@ public class ClubTests {
 		
 	}
 	
+	@Test
+	public void test() {
+	}
+	
 }

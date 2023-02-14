@@ -65,11 +65,16 @@ public class ClubServiceImpl implements ClubService {
 		log.info("===== getPageList() pageRequestDTO =====");
 		Function<Object[], ClubDTO> fn = (en->
 				entityToDTO((ClubEntity)en[0],(UserEntity)en[1]));
+	
+		//Page<Object[]> result = clubRepository.getBoardWithReplyCount(
+		//pageRequestDTO.getPageable(Sort.by("bno").descending()));
+		
 		
 		Page<Object[]> result = clubRepository.searchPage(
 				pageRequestDTO.getType(),
 				pageRequestDTO.getKeyword(),
 				pageRequestDTO.getPageable(Sort.by("clubNum").descending()));
+				
 		return new PageResultDTO<>(result, fn);
 	}
 
