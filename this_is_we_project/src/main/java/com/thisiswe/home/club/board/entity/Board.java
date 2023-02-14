@@ -62,4 +62,9 @@ public class Board extends DateEntity{
 		this.boardContent = boardContent;
 	}
 	
+	//TODO [Entity] 게시판 - 조회수
+	public void countView(Long boardView) {
+		this.boardView = boardView;
+	}
+	
 }

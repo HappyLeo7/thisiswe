@@ -31,6 +31,9 @@ public interface BoardService {
 	// TODO [Service] 게시판 - 삭제(remove)
 	void remove(Long boardNum);
 	
+	// TODO [Service] 게시판 - 조회수 증가(중복 제외)
+	void countView(Long boardNum, BoardDTO boardDTO);
+	
 	// TODO [Service] 게시판 - DTO(WEB)에서 Entity(DB)로
 	default Board boardDTOToEntity(BoardDTO boardDTO) {
 				
@@ -43,7 +46,7 @@ public interface BoardService {
 						.boardTitle(boardDTO.getBoardTitle())
 						.boardContent(boardDTO.getBoardContent())
 						.userId(member)
-						.boardView(boardDTO.getBoardView())
+						.boardView(boardDTO.getBoardView()+1)
 						.build();
 
 		return board;
@@ -66,6 +69,5 @@ public interface BoardService {
 													
 			return boardDTO;
 		}
-	
 
 }

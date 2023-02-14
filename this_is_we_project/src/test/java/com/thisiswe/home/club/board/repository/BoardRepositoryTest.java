@@ -33,16 +33,17 @@ public class BoardRepositoryTest {
 			UserEntity member = UserEntity.builder().userId("user" + i).build();
 			
 			Board board = Board.builder()
-							.boardCategory("모임 변경" + i)
-							.boardTitle("동아리 변경 관련 문의" + i)
-							.boardContent("oo동아리 2명 더 필요해요" + i)
+							.boardCategory("모임 후기")
+							.boardTitle("oo모임으로 버킷 해결했어욕")
+							.boardContent("oo모임 다음은 언제 진행 하나요?")
 							.userId(member)
+							.boardView(8L)
 							.build();							
 			
 			boardRepository.save(board);
 		});
 	}
-	
+		
 	//TODO [RepositoryTest] 게시판 - Query - 게시판 일어오기
 	@Transactional
 	@Test

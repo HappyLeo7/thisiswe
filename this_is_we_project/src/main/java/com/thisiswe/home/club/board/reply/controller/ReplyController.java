@@ -21,7 +21,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @RestController
-@RequestMapping("/replies/")
+/* @RequestMapping("/replies/") */
+@RequestMapping("/club")
 @Log4j2
 @RequiredArgsConstructor
 
@@ -31,7 +32,7 @@ public class ReplyController {
 	private final ReplyService replyService;
 	
 	//TODO [Controller] 게시판-댓글 : 목록 불러오기
-	@GetMapping(value = "/club/board/{boardNum}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/board/read/{boardNum}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ReplyDTO>> getListByBoard(@PathVariable("boardNum") Long boardNum) {
 		
 		log.info("=========================================================");

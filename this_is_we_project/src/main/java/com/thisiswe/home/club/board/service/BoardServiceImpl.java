@@ -20,6 +20,7 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @RequiredArgsConstructor
 @Log4j2
+@Transactional
 
 //TODO [ServiceImpl] 게시판
 public class BoardServiceImpl implements BoardService {
@@ -76,7 +77,6 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	//TODO [ServiceImpl] 게시판 - 수정(modify)
-	@Transactional
 	@Override
 	public void modify(BoardDTO boardDTO) {
 
@@ -90,11 +90,19 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	//TODO [ServiceImpl] 게시판 - 삭제(remove)
-	@Transactional
 	@Override
 	public void remove(Long boardNum) {
 		
 		boardRepository.deleteById(boardNum);
 	}
 	
+	//TODO [ServiceImpl] 게시판 - 조회수 증가(중복 제외)
+	@Override
+	public void countView(Long boardNum, BoardDTO boardDTO) {
+		Board board = boardRepository.findById(boardNum).orElseThrow((() ->
+									new IllegalStateException("게시글이 존재X")));
+		
+		board.countView(boardDTO.getBoardView());
+	}
+
 }

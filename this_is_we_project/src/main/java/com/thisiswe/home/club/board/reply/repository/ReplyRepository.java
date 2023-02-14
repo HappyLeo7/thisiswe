@@ -1,6 +1,7 @@
 package com.thisiswe.home.club.board.reply.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,4 +21,5 @@ public interface ReplyRepository extends JpaRepository<Reply, Long>{
 	
 	//TODO [ReplyRepository] 게시글-댓글 : 게시물로 댓글 가져오기
 	List<Reply> getRepliesByBoardOrderByBoardReplyNum(Board board);
+	
 }

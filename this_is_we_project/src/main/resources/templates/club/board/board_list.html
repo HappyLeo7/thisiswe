@@ -10,7 +10,7 @@
 		<h1 class="" >게시판 목록 
 			<span>
 				<a th:href="@{/club/board/register}">
-					<button type="button" class="" style="float: right;">REGISTER</button>
+					<button type="button" class="btn btn-outline-primary">REGISTER</button>
 				</a>
 			</span>
 		</h1>
@@ -36,11 +36,10 @@
             	<th scope="row">[[${boardDTO.boardNum}]]</th>
             	<td>[[${boardDTO.boardCategory}]]</td>
            		<td>
-                  <a th:href="@{/club/board/read(boardNum=${boardDTO.boardNum})}">                                                
+                  <a th:href="@{/club/board/read/{boardNum}(boardNum=${boardDTO.boardNum})}">                                                
                   [[${boardDTO.boardTitle}]]..[<b th:text="${boardDTO.replyCount}"></b>]
                   </a>
                </td>
-               <td>[[${boardDTO.boardContent}]]</td>
                <td>[[${boardDTO.userId}]]</td>
                <td>[[${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd')}]]</td>
                <td>[[${boardDTO.boardView}]]</td>
@@ -74,13 +73,13 @@
                   </select>
                   
                   <input type="text" name="keyword" th:value="${pageRequestDTO.keyword}">
-                  <button type="button" class="btn btn-search">Click</button>
-                  <button type="button" class="btn btn-clear">Clear</button>
-                  
+                  <button type="button" class="btn btn-outline-secondary btn-search">Click</button>
+                  <button type="button" class="btn btn-outline-secondary btn-clear">Clear</button>
+                  <br><br>
                 </form>
               </div>
         </div>
-		<!-- /검색창 -->
+		<!-- /검색창 추가 -->
 		
 		<!-- 페이지 부분 : 이동, 이전, 다음 -->
   	    <ul class="">
