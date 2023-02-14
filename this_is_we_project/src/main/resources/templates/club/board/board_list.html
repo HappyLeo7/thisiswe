@@ -2,133 +2,108 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
-<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
-<<<<<<< HEAD
-	<!-- 지정한 변수로 연결할 위치 -->
-	<th:block th:fragment="connection">
-		
-		<!-- 게시판 전체 목록 -->
-		<h1 class="" >게시판 목록 
-			<span>
-				<a th:href="@{/club/board/register}">
-					<button type="button" class="btn btn-outline-primary">REGISTER</button>
-				</a>
-			</span>
-=======
-	
+<th:block
+	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
 
-<h1>게시판 목록11</h1>
+		<!-- 게시판 전체 목록 -->
 		<h1 class="">
-			게시판 목록   <a th:href="@{/club/register}">
-					<button type="button" class="" style="float: right;">REGISTER</button>
-			</a> 
-			
-			
->>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
+			게시판 목록 <span> <a th:href="@{/club/board/register}">
+					<button type="button" class="btn btn-outline-primary">REGISTER</button>
+			</a>
+			</span>
 		</h1>
-<<<<<<< HEAD
+
 
 		<table class="">
 			<!-- 게시판 목록 head 부분 -->
-=======
-		<table>
->>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
-			<thead>
-				<tr>
-					<th scope="col">번호</th>
-					<th scope="col">카테고리</th>
-					<th scope="col">제목</th>
-					<th scope="col">내용</th>
-					<th scope="col">작성자</th>
-					<th scope="col">등록일</th>
-					<th scope="col">조회수</th>
-				</tr>
-			</thead>
-<<<<<<< HEAD
-			<!-- /게시판 목록 head 부분 -->
-			
-			<!-- 게시판 목록 body 부분 -->
-			<tbody>
-            	<tr th:each="boardDTO : ${result.DTOList}">
-            	<th scope="row">[[${boardDTO.boardNum}]]</th>
-            	<td>[[${boardDTO.boardCategory}]]</td>
-           		<td>
-                  <a th:href="@{/club/board/read/{boardNum}(boardNum=${boardDTO.boardNum})}">                                                
-                  [[${boardDTO.boardTitle}]]..[<b th:text="${boardDTO.replyCount}"></b>]
-                  </a>
-               </td>
-               <td>[[${boardDTO.userId}]]</td>
-               <td>[[${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd')}]]</td>
-               <td>[[${boardDTO.boardView}]]</td>
-            </tr>
-         </tbody>
-         <!-- /게시판 목록 body 부분 -->
-		</table>
-		<!-- /게시판 전체 목록 -->
-		
-		<br><br><br>
-		
-		<!-- 검색창 추가 -->
-      	<div class="">
-              <div class="">
-                <form id="searchForm" action="/board/list" method="get">
-                
-                  <select name="type">
-                    <option value="" th:selected="${pageRequestDTO.type==null}">-----</option>
-                           
-                    <option value="t" th:selected="${pageRequestDTO.type=='t'}">제목</option>
-                           
-                    <option value="c" th:selected="${pageRequestDTO.type=='c'}">내용</option>
+				<thead>
+					<tr>
+						<th scope="col">번호</th>
+						<th scope="col">카테고리</th>
+						<th scope="col">제목</th>
+						<th scope="col">내용</th>
+						<th scope="col">작성자</th>
+						<th scope="col">등록일</th>
+						<th scope="col">조회수</th>
+					</tr>
+				</thead>
 
-                    <option value="w" th:selected="${pageRequestDTO.type=='w'}">작성자</option>
-                           
-                    <option value="tc" th:selected="${pageRequestDTO.type=='tc'}">제목+내용</option>
+				<!-- /게시판 목록 head 부분 -->
 
-                    <option value="tw" th:selected="${pageRequestDTO.type=='tw'}">제목+작성자</option>
+				<!-- 게시판 목록 body 부분 -->
+				<tbody>
+					<tr th:each="boardDTO : ${result.DTOList}">
+						<th scope="row">[[${boardDTO.boardNum}]]</th>
+						<td>[[${boardDTO.boardCategory}]]</td>
+						<td><a
+							th:href="@{/club/board/read/{boardNum}(boardNum=${boardDTO.boardNum})}">
+								[[${boardDTO.boardTitle}]]..[<b th:text="${boardDTO.replyCount}"></b>]
+						</a></td>
+						<td>[[${boardDTO.userId}]]</td>
+						<td>[[${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd')}]]</td>
+						<td>[[${boardDTO.boardView}]]</td>
+					</tr>
+				</tbody>
+				<!-- /게시판 목록 body 부분 -->
+			</table>
+			<!-- /게시판 전체 목록 -->
 
-                    <option value="tcw" th:selected="${pageRequestDTO.type=='tcw'}">제목+내용+작성자</option>
-                  </select>
-                  
-                  <input type="text" name="keyword" th:value="${pageRequestDTO.keyword}">
-                  <button type="button" class="btn btn-outline-secondary btn-search">Click</button>
-                  <button type="button" class="btn btn-outline-secondary btn-clear">Clear</button>
-                  <br><br>
-                </form>
-              </div>
-        </div>
-		<!-- /검색창 추가 -->
-		
-		<!-- 페이지 부분 : 이동, 이전, 다음 -->
-  	    <ul class="">
-        	<li class="" th:if="${result.prev}">
-         	   <a class="page-link" th:href="@{/club/board/list(page=${result.start-1},
+			<br><br><br>
+
+			<!-- 검색창 추가 -->
+			<div class="">
+				<div class="">
+					<form id="searchForm" action="/board/list" method="get">
+
+						<select name="type">
+							<option value="" th:selected="${pageRequestDTO.type==null}">-----</option>
+
+							<option value="t" th:selected="${pageRequestDTO.type=='t'}">제목</option>
+
+							<option value="c" th:selected="${pageRequestDTO.type=='c'}">내용</option>
+
+							<option value="w" th:selected="${pageRequestDTO.type=='w'}">작성자</option>
+
+							<option value="tc" th:selected="${pageRequestDTO.type=='tc'}">제목+내용</option>
+
+							<option value="tw" th:selected="${pageRequestDTO.type=='tw'}">제목+작성자</option>
+
+							<option value="tcw" th:selected="${pageRequestDTO.type=='tcw'}">제목+내용+작성자</option>
+						</select> <input type="text" name="keyword"
+							th:value="${pageRequestDTO.keyword}">
+						<button type="button" class="btn btn-outline-secondary btn-search">Click</button>
+						<button type="button" class="btn btn-outline-secondary btn-clear">Clear</button>
+						<br> <br>
+					</form>
+				</div>
+			</div>
+			<!-- /검색창 추가 -->
+
+			<!-- 페이지 부분 : 이동, 이전, 다음 -->
+			<ul class="">
+				<li class="" th:if="${result.prev}"><a class="page-link"
+					th:href="@{/club/board/list(page=${result.start-1},
                                 						   type=${pageRequestDTO.type},
-                               							   keyword=${pageRequestDTO.keyword})}" 
-                               		tabindex="-1">이전</a>
-        	 </li>
-         
-       	  	 <li th:class="'page-item '+ ${result.page == page?'active':''}" 
-       	  	 	th:each="page: ${result.pageList}">
-          	 	<a class="page-link" th:href="@{/club/board/list(page=${page},
+                               							   keyword=${pageRequestDTO.keyword})}"
+					tabindex="-1">이전</a></li>
+
+				<li th:class="'page-item '+ ${result.page == page?'active':''}"
+					th:each="page: ${result.pageList}"><a class="page-link"
+					th:href="@{/club/board/list(page=${page},
                                  							type=${pageRequestDTO.type},
                             							    keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
-   			 </li>
-         
-         	<li class="page-item" th:if="${result.next}">
-          	  <a class="page-link" th:href="@{/club/board/list(page=${result.end},
+				</li>
+
+				<li class="page-item" th:if="${result.next}"><a
+					class="page-link"
+					th:href="@{/club/board/list(page=${result.end},
                                  type=${pageRequestDTO.type},
                                  keyword=${pageRequestDTO.keyword})}">다음</a>
-        	</li>
-     	</ul>
-		<!-- /페이지 부분 : 이동, 이전, 다음 -->
-		
-	</th:block>
-</th:block>
-=======
-		</table>
-		
-		</th:block>
-		</th:block>
->>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
+				</li>
+			</ul>
+			<!-- /페이지 부분 : 이동, 이전, 다음 -->
+
+			</th:block>
+			</th:block>
