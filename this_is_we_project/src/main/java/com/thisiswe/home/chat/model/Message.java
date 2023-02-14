@@ -3,6 +3,7 @@ package com.thisiswe.home.chat.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,13 +13,14 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter
-@Document("message")
+@Document(collection = "message")
 @ToString
+@RequiredArgsConstructor
 public class Message {
-    static long countNum;
+    static int countNum;
 
     @Id
-    private Long messageId;
+    private Long id;
 
     private String clubName;
 
@@ -31,18 +33,16 @@ public class Message {
     @CreatedDate
     private LocalDateTime createdAt;
 
+    private String _class;
 
-    public void setMessageId(Long id) {
-        this.messageId = id;
-    }
 
     public Message(String clubName, String userNickname, String message, String imageUrl) {
-        System.out.println("메시지 작성 시간 : " + createdAt);
-        this.messageId = countNum++;
+        this.id = Long.valueOf(countNum++);
         this.clubName = clubName;
         this.userNickname = userNickname;
         this.message = message;
         this.imageUrl = imageUrl;
         this.createdAt = LocalDateTime.now();
+        this._class  = "아무거나";
     }
 }

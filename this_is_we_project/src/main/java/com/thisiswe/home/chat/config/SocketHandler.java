@@ -181,6 +181,7 @@ public class SocketHandler extends TextWebSocketHandler {
         JSONParser parser = new JSONParser();
         JSONObject obj = null;
         try {
+
             obj = (JSONObject) parser.parse(jsonStr);
         } catch (ParseException e) {
             e.printStackTrace();

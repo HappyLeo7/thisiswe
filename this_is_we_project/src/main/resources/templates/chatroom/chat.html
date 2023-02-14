@@ -72,9 +72,48 @@
         console.log("룸넘버 : " + $("#roomNum").val());
         //웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
         ws = new WebSocket("ws://" + location.host + "/chating/" + $("#roomNum").val());
+        // getChat();
         wsEvt();
+
         //
     }
+
+    // function getChat() {
+    //     console.log("getChat 실행");
+    //     commonAjax('/getChat', "", 'post', function (result) {
+    //         createMessages(result);
+    //     });
+    // }
+    //
+    // function createMessages(res) {
+    //     console.log("createMessages 실행 : " + res.toString());
+    //     if (res == null) {
+    //         res.forEach(function (d, idx) {
+    //             console.log($("#userName") + ", " + d.userName )
+    //             if (d.userName == $("#userName").val()) {
+    //                 $("#chating").append("<p class='me'>나 :" + d.message + "</p>");
+    //             } else {
+    //                 $("#chating").append("<p class='others'>" + d.userName + " :" + d.message + "</p>");
+    //             }
+    //         });
+    //     }
+    // }
+    //
+    // function commonAjax(url, parameter, type, calbak, contentType) {// 경로, 파라미터, http메소드타입,
+    //     $.ajax({
+    //         url: url,
+    //         data: parameter,
+    //         type: type,
+    //         contentType: contentType != null ? contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+    //         success: function (res) {//성공할시 리스폰스값을 가져옴
+    //             calbak(res);
+    //         },
+    //         error: function (err) {
+    //             console.log('error');
+    //             calbak(err);
+    //         }
+    //     });
+    // }
 
     function wsEvt() {
         console.log("웹소켓이벤트 발생");
@@ -95,7 +134,7 @@
                         $("#sessionId").val(si);
                     }
                 } else if (d.type == "message") {
-                    if (d.sessionId == $("#sessionId").val()) {
+                    if (d.userName == $("#userName").val()) {
                         $("#chating").append("<p class='me'>나 :" + d.msg + "</p>");
                     } else {
                         $("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
@@ -127,10 +166,15 @@
             alert("사용자 이름을 입력해주세요.");
             $("#userName").focus();
         } else {
+            readMessage(userName);
             wsOpen();
             $("#yourName").hide();
             $("#yourMsg").show();
         }
+    }
+
+    function readMessage(username) {
+        var values = []
     }
 
     function send() {
@@ -140,11 +184,12 @@
             roomNumber: $("#roomNum").val(),
             sessionId: $("#sessionId").val(),
             userName: $("#userName").val(),
-            msg: $("#chatting").val()
+            msg: $("#chatting").val(),
+            roomName: $("#roomName").val()
+            //
         }
         ws.send(JSON.stringify(option))
         $('#chatting').val("");
-        console.log("메세지 내용 : " + $('#chatting').val());
     }
 
     function fileSend() {
@@ -168,12 +213,24 @@
     }
 </script>
 <body>
+<input type="hidden" id="chat-list" th:value="${chatList}">
+<input type="hidden" id="roomName" th:value="${roomName}">
+
 <div id="container" class="container">
-    <h1>[[${roomName}]]의 채팅방 </h1>
+    <h1 th:text="${roomName} + '의 채팅방'"></h1>
     <input type="hidden" id="sessionId" value="">
     <input type="hidden" id="roomNum" th:value="${roomNumber}">
 
     <div id="chating" class="chating">
+        <div th:each="chat : ${chatList}">
+            <p class='others' th:text="${chat.userNickname} + ':' + ${chat.message}"></p>
+
+        </div>
+<!--        if (d.userName == $("#userName").val()) -->
+<!--        <p class='me'>나 : d.msg </p>-->
+
+
+
     </div>
 
     <div id="yourName">
@@ -206,5 +263,9 @@
         </table>
     </div>
 </div>
+
+<script>
+
+</script>
 </body>
 </html>

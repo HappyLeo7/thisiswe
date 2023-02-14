@@ -10,6 +10,8 @@ import org.json.simple.JSONObject;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -19,7 +21,7 @@ public class ChatService {
     private final ChatRoomRepository chatRoomRepository;
 
     public void saveMessage(JSONObject obj) {
-        String clubName = (String) obj.get("roomNumber");
+        String clubName = (String) obj.get("roomName");
         String userNickname = (String) obj.get("userName");
         String getMessage = (String) obj.get("msg");
         String imageUrl = "sssss";
@@ -31,8 +33,10 @@ public class ChatService {
     }
 
     public List<MessageResponseDto> getMessages(String roomName) {
+        System.out.println("getmessage실행되긴함 ");
         List<Message> messages = chatMessageRepository.findAllByClubName(roomName);
-        List<MessageResponseDto> messageResponseDtos = null;
+
+        List<MessageResponseDto> messageResponseDtos = new ArrayList<>();
         for (Message message : messages) {
             messageResponseDtos.add(new MessageResponseDto(message.getUserNickname(), message.getMessage(), message.getImageUrl()));
         }

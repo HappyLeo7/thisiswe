@@ -101,11 +101,9 @@
     function createRoom() {
         $("#createRoom").click(function () {
             var msg = {roomName: $('#roomName').val()};
-
             commonAjax('/createRoom', msg, 'post', function (result) {
                 createChatingRoom(result);
             });
-
             $("#roomName").val("");
         });
     }

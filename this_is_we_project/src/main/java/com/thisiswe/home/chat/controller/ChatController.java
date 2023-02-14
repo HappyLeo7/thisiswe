@@ -1,9 +1,11 @@
 package com.thisiswe.home.chat.controller;
 
+import com.thisiswe.home.chat.dto.MessageResponseDto;
 import com.thisiswe.home.chat.model.Room;
 import com.thisiswe.home.chat.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
+import org.springframework.boot.json.JsonParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,14 +59,22 @@ public class ChatController {
 //        }
         chatService.createChattingRoom(roomName);
         List<Room> roomList = chatService.getAllChatRooms();
+        System.out.println(roomList);
         return roomList;
     }
 
     //방 정보 가져오기
     @RequestMapping("/getRoom")
     public @ResponseBody List<Room> getRoom(@RequestParam HashMap<Object, Object> params){
-
+        System.out.println(chatService.getAllChatRooms());
         return chatService.getAllChatRooms();
+    }
+    //방 정보 가져오기
+    @RequestMapping("/getChat")
+    public @ResponseBody List<MessageResponseDto> getChat(@RequestParam HashMap<Object, Object> params){
+        System.out.println("getChat 실행");
+        String roomName = (String) params.get("roomName");
+        return chatService.getMessages(roomName);
     }
 
     //채팅방으로 이동
@@ -75,10 +85,12 @@ public class ChatController {
         String roomNumber = (String) params.get("roomNumber");
         System.out.println(roomName);
 
+
         mv.setViewName("chatroom/chat");
         mv.addObject("roomName", roomName);
         mv.addObject("roomNumber", roomNumber);
-        mv.addObject("chatList", chatService.getMessages(roomName));
+        mv.addObject("roomList", chatService.getMessages(roomName));
+        System.out.println("roomList1 : " + chatService.getMessages(roomName));
 //        List<Room> new_list = roomList.stream().filter(o->o.getRoomNumber()==roomNumber).collect(Collectors.toList());
 //        if(new_list != null && new_list.size() > 0) {
 //            mv.addObject("roomName", params.get("roomName"));
