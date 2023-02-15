@@ -1,8 +1,8 @@
 package com.thisiswe.home.board.reply.service;
 
-import com.thisiswe.home.board.reply.dto.ReplyDTO;
-
 import java.util.List;
+
+import com.thisiswe.home.board.reply.dto.ReplyDTO;
 
 //TODO [Service] 게시판-댓글
 public interface ReplyService {
