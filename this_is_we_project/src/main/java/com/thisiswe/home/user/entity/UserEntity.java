@@ -45,7 +45,6 @@ public class UserEntity {
 	private String userPhoneNumber; // 핸드폰번호
 
 
-
 	// 이미지
 	@Column(length = 1000, name="user_image_url")
 	private String userImageUrl; // 유저 이미지 경로

@@ -26,16 +26,16 @@ public class UserController {
 	}
 
 	// 회원 가입 페이지
-	@GetMapping("/user/signup")
+	@GetMapping("/login/user/signup")
 	public String signup() {
-		return "signup";
+		return "/login/signup";
 	}
 
 	// 회원 가입 요청 처리
-	@PostMapping("/user/signup")
+	@PostMapping("login/user/signup")
 	public String registerUser(SignupRequestDto requestDto) {
 		userService.registerUser(requestDto);
-		return "redirect:/user/login";
+		return "redirect:login/user/login";
 	}
 
 //	@GetMapping("/user/kakao/callback")
