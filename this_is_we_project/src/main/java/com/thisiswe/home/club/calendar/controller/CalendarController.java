@@ -28,14 +28,7 @@ public class CalendarController {
 	@Autowired
 	private CalendarService calendarService;
 	
-	@GetMapping({"/calendar"})
-	public String calendar_list() {
-		
-		log.info("==== calendar list Contorller ====");
-		log.info("==== /calendar list Contorller ====");
-		
-		return "/club/calendar/calendar_list";
-	}
+	
 	
 	//일정 등록페이지 연결
 	@GetMapping({"/calendar/register/"})
@@ -63,17 +56,26 @@ public class CalendarController {
 		log.info("==== /postMappinig calendar register() Contorller ====");
 		
 		
-		return "redirect:/thisiswe/club/calendar/read?Num="+clubNum.getClubNum();
+		return "redirect:/thisiswe/club/?Num="+clubNum.getClubNum();
 	}
-	//등록페이지에서 -> 상세페이지로 이동
-	@GetMapping({"/calendar/read"})
+	//등록페이지에서 -> 모임상세페이지(일정리스트)로 이동
+	@GetMapping({"/calendar/"})
 	public String calendarRead(Long Num) {
 		log.info("==== getMappinig calendarRead() Contorller ====");
 		CalendarDTO calendarDTO=calendarService.get(Num); //1개의 일정 데이터를 가져옴
+		log.info("calendarDTO : " + calendarDTO);
 		log.info("==== /getMappinig calendarRead() Contorller ====");
 		return "/club/calendar/calendar_read";
 	}
 	
+	@GetMapping({"/calendar"})
+	public String calendar() {
+		
+		log.info("==== calendar list Contorller ====");
+		log.info("==== /calendar list Contorller ====");
+		
+		return "/club/calendar/calendar_list";
+	}
 	
 	
 	

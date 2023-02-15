@@ -1,5 +1,7 @@
 package com.thisiswe.home.clubTest;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
@@ -46,9 +48,32 @@ public class CalendarTests {
 	}
 	
 	@Test
-	public void test() {
+	public void testCalendarList() {
+		
+		Long clubNum=9L;
+		List<Object[]> cal=calendarRepository.getClubNum(clubNum);
+		for (Object[] arr:cal) {
+			log.info("일정 리스트 : " +Arrays.toString(arr));
+			log.info("1 : "+arr[0]);
+			log.info("2 : "+arr[1]);
+		}
+		
+		
 		
 	}
+	
+	@Test
+	public void testCalendarAllList() {
+//		System.out.println("111111111111111111");
+		
+		//List<CalendarEntity> cal=calendarRepository.gggg1(1L);
+		//System.out.println("22222222222222");
+		//System.out.println(cal.toString());
+//		for (CalendarEntity arr : cal) {
+////			System.out.println("33333333333");
+//			log.info("일정 리스트 : " +arr);
+			
+		}
 	
 	
 }
