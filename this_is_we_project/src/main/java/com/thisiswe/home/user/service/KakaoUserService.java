@@ -119,7 +119,7 @@ public class KakaoUserService {
 			String email = kakaoUserInfo.getEmail();
 			// role: 일반 사용자
 			UserRoleEnum role = UserRoleEnum.USER;
-			kakaoUser = new UserEntity(nickname, encodedPassword, email, null, null, null, null, role, kakaoId);
+			kakaoUser = new UserEntity(nickname, encodedPassword, null, null, null, null, null, email, false, role, kakaoId);
 			userRepository.save(kakaoUser);
 		}
 		return kakaoUser;
