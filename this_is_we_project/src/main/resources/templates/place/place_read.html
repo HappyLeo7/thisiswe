@@ -21,7 +21,12 @@
 			<br>
 			
 			<form action="/place/Num=${result.getPlaceNum}">
-				<input type="checkbox" name="placeReviewRate"> 
+				<input type="radio" name="placeReviewRate" value="1"> 
+				<input type="radio" name="placeReviewRate" value="2"> 
+				<input type="radio" name="placeReviewRate" value="3"> 
+				<input type="radio" name="placeReviewRate" value="4"> 
+				<input type="radio" name="placeReviewRate" value="5"> 
+				 
 				<input type="text" name="placeReviewContent">
 				<input type="submit" value="리뷰 등록">
 			</form>	
