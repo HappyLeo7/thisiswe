@@ -19,6 +19,7 @@ public interface CalendarRepository extends JpaRepository<CalendarEntity, Long>{
 			+ "where c.clubNum = :clubNum ")
 	List<Object[]> getClubNum(@Param("clubNum") Long clubNum);
 	
+	/* 테스트용 일정 리스트 불러오기
 	@Query(value="select * "
 			+ "from calendar_entity ca "
 			//+ "from calendar_entity ca "
@@ -38,4 +39,5 @@ public interface CalendarRepository extends JpaRepository<CalendarEntity, Long>{
 			+ "where ca.clubNum = 1"
 			)
 	List<Object[]> gggg();
+	*/
 }

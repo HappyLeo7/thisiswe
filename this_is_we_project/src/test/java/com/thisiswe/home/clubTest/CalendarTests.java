@@ -50,32 +50,29 @@ public class CalendarTests {
 	@Test
 	public void testCalendarList() {
 		
-		Long clubNum=1L;
-		List<Object[]> cal=calendarRepository.getClubNum(1L);
+		Long clubNum=9L;
+		List<Object[]> cal=calendarRepository.getClubNum(clubNum);
 		for (Object[] arr:cal) {
-			//log.info("일정 리스트 : " +Arrays.toString(arr));
+			log.info("일정 리스트 : " +Arrays.toString(arr));
 			log.info("1 : "+arr[0]);
 			log.info("2 : "+arr[1]);
-			log.info("2 : "+arr[2]);
 		}
 		
 		
 		
 	}
+	
 	@Test
 	public void testCalendarAllList() {
 //		System.out.println("111111111111111111");
 		
-		List<CalendarEntity> cal=calendarRepository.gggg1(1L);
-		System.out.println("22222222222222");
-		System.out.println(cal.toString());
+		//List<CalendarEntity> cal=calendarRepository.gggg1(1L);
+		//System.out.println("22222222222222");
+		//System.out.println(cal.toString());
 //		for (CalendarEntity arr : cal) {
 ////			System.out.println("33333333333");
 //			log.info("일정 리스트 : " +arr);
 			
-//			System.out.println("111111111111as;lkjhlsdfkjan;sfdlkgn;sfdlgn");
-//			System.out.println(Arrays.toString(arr));
-//			System.out.println("as;lkjhlsdfkjan;sfdlkgn;sfdlgn");
 		}
 	
 	
