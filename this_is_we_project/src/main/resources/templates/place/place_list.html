@@ -10,14 +10,14 @@
 
 	<div style="text-align: center;">
 	<div> 이 장소는 어디에</div> 
-	<button style="float: right;">장소 추가</button>
+	<a th:href="@{/thisiswe/place/register}"><button type="button" style="float: right;">장소 추가</button></a>
 	<br>
 	<br>
 			<div style="display: inline-block;width: 40%" th:each="dto : ${result}">
 				<div style="border: solid 1px;">
-					<a th:href="@{/place/place(placeNum=${dto.placeNum})}" style="border: solid 1px;">
+					<a th:href="@{/thisiswe/place/c(num=${dto.placeNum})}" style="border: solid 1px;">
 						<div><img width="100%" height="100%" src="/image/place/KakaoTalk_20230203_092244158.png"></div>
-						<div style="border: solid 1px;">[[${dto.placeName}]]</div >
+						<div style="border: solid 1px;">[[${dto.placeName}]]</div>
 						<div>
 						<div style="border: solid 1px; width: 39%;  display: inline-block;">[[${dto.placeAddress}]]</div>
 						<div style="border: solid 1px; width: 39%;  display: inline-block;">[[${dto.placePhoneNumber}]]</div>

@@ -36,15 +36,14 @@ public class PlaceReviewEntity extends DateEntity {
 	private Long placeReviewNum; // 장소 QnA 번호
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "plcae_num")
-	private UserEntity placeNum; // 장소 번호
+	@JoinColumn(name = "place_num")
+	private PlaceEntity placeNum; // 장소 번호
 
 	@Column(length = 300, name = "place_review_content", nullable = false)
 	private String placeReviewContent; // 리뷰 내용
-
+	
 	@Column(name = "place_review_rate", nullable = false)
 	private Integer placeReviewRate; // 별점
-	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")

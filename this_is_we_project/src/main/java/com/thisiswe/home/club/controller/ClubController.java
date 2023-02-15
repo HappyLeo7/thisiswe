@@ -1,6 +1,5 @@
 package com.thisiswe.home.club.controller;
 
-import java.io.Console;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +30,12 @@ public class ClubController {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_list.html 연결 =======");
 		model.addAttribute("list", clubService.getList(clubDTO)); //그냥 리스트 불러오는 코드
-		//model.addAttribute("list", clubService.getPageList(pageRequestDTO));
+		//model.addAttribute("result", clubService.getPageList(pageRequestDTO));
+		//model.addAttribute("list", "model 확인");
+		
+		
+		log.info("커몬 : "+ (Object) clubService.getPageList(pageRequestDTO));
+		
 		
 		log.info("=======================Get list end==================================");
 		return "/club/club_list";
@@ -47,12 +51,13 @@ public class ClubController {
 	}
 	
 	//[모임 등록]register.html에서 post타입으로 받아와서  모임 정보를 등록할때 사용됨
-	@PostMapping("/list")
-	public String club_register(ClubDTO clubDTO) {
+	@PostMapping("/club")
+	public String club_register(ClubDTO clubDTO,Model model) {
 		log.info("=========================================================");
 		log.info("=========== ClubController.java => 데이터를 받은 후 DTO경유중 return : club_list페이지로 ==============");
 		log.info("=========== register ClubDTO  : "+clubDTO+" =============");
 		clubService.register(clubDTO); // 등록 페이지에서 받아온 데이터를 서비스로 보낸다.
+		model.addAttribute("list", clubService.getList(clubDTO)); //그냥 리스트 불러오는 코드
 		log.info("=========================================================");
 		return "/club/club_list";
 		
@@ -63,7 +68,7 @@ public class ClubController {
 	
 	
 	
-	//상세 연결링크
+	//상세페이지 연결링크
 	@GetMapping({"/club/"})
 	public String club_read(Long Num ,Model model) {
 		log.info("=========================================================");
@@ -96,7 +101,7 @@ public class ClubController {
 		
 		
 		log.info("========/ post 타입 club_modify ======================");
-		return "redirect:/club/read?Num="+clubDTO.getClubNum();
+		return "redirect:/thisiswe/club/?Num="+clubDTO.getClubNum();
 	}
 	
 	

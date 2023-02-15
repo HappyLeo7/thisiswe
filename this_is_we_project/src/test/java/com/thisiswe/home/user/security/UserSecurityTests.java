@@ -27,16 +27,16 @@ public class UserSecurityTests {
 					.userNickname("CuteDragon" + i)
 					.userGender("남")
 					.userEmail("user" + i + "@abc.com")
-					.userPhoneNumeber("012-345-6789")
+					.userPhoneNumber("012-345-6789")
 					.fromSocial(false)
 					.build();
 			
 			
-			userEntity.addUserRole(UserRole.USER);
-			
-			if(i>99) {
-				userEntity.addUserRole(UserRole.ADMIN);
-			}
+//			userEntity.addUserRole(UserRole.USER);
+//			
+//			if(i>99) {
+//				userEntity.addUserRole(UserRole.ADMIN);
+//			}
 			
 			userRepository.save(userEntity);
 		});

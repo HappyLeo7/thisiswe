@@ -4,13 +4,16 @@ package com.thisiswe.home.club.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.club.repository.search.SearchClubRepository;
 
-public interface ClubRepository extends JpaRepository<ClubEntity, Long>{
+public interface ClubRepository extends JpaRepository<ClubEntity, Long>, SearchClubRepository {
 
 	//Page<Object[]> getListPage(Pageable pageable);
 
@@ -50,5 +53,9 @@ public interface ClubRepository extends JpaRepository<ClubEntity, Long>{
 			+ "left join UserEntity u "
 			+ "on c.userId = u.userId ")
 	List<Object[]> getClubList();
+
+
+
+
 	
 }
