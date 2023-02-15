@@ -2,6 +2,7 @@ package com.thisiswe.home.place.club.board.service;
 
 import java.util.function.Function;
 
+import com.thisiswe.home.place.club.board.dto.PageResultDTO;
 import com.thisiswe.home.place.club.board.reply.repository.ReplyRepository;
 import com.thisiswe.home.place.club.board.repository.BoardRepository;
 import org.springframework.data.domain.Page;
