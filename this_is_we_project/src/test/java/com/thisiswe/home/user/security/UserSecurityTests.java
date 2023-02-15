@@ -27,7 +27,7 @@ public class UserSecurityTests {
 					.userNickname("CuteDragon" + i)
 					.userGender("남")
 					.userEmail("user" + i + "@abc.com")
-					.userPhoneNumeber("012-345-6789")
+					.userPhoneNumber("012-345-6789")
 					.fromSocial(false)
 					.build();
 			

@@ -21,7 +21,8 @@
 			<br>
 			
 			<form action="/place/Num=${result.getPlaceNum}">
-				<input type="text">
+				<input type="checkbox" name="placeReviewRate"> 
+				<input type="text" name="placeReviewContent">
 				<input type="submit" value="리뷰 등록">
 			</form>	
 			<div style="border: 1px solid;" th:each="review : ${reviews}">

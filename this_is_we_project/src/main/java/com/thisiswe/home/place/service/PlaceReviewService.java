@@ -2,8 +2,6 @@ package com.thisiswe.home.place.service;
 
 import java.util.List;
 
-import com.thisiswe.home.board.reply.dto.ReplyDTO;
-import com.thisiswe.home.board.reply.entity.Reply;
 import com.thisiswe.home.place.dto.PlaceReviewDTO;
 import com.thisiswe.home.place.entity.PlaceEntity;
 import com.thisiswe.home.place.entity.PlaceReviewEntity;

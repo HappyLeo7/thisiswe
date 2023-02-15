@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.thisiswe.home.board.reply.dto.ReplyDTO;
 import com.thisiswe.home.place.dto.PlaceReviewDTO;
 import com.thisiswe.home.place.entity.PlaceReviewEntity;
 import com.thisiswe.home.place.repository.PlaceRepository;
