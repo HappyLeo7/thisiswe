@@ -68,7 +68,7 @@ public class ClubController {
 	
 	
 	
-	//상세 연결링크
+	//상세페이지 연결링크
 	@GetMapping({"/club/"})
 	public String club_read(Long Num ,Model model) {
 		log.info("=========================================================");
