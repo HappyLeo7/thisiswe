@@ -31,8 +31,9 @@
 
 	<table border="1">
 	<tr>
-		<td>
+		<td colspan="2">
 			모임번호 : <input name="clubNum" th:value="${readDTO.clubNum}" readonly="readonly">
+			<br>
 			모임이름 : <input  th:value="${readDTO.clubName}" readonly="readonly">
 		</td>
 	</tr>
@@ -41,7 +42,6 @@
 			제목 : <input name="clubCalendarTitle" type="text">
 		</td>
 	</tr>
-<!-- 
 	<tr>
 		<td colspan="2">
 			모임설명 : <textarea name="clubCalendarContent" rows="" cols=""></textarea>
@@ -76,11 +76,10 @@
 
 	<tr>
 		<td colspan="2">
-			모임 비용 : <input type="number">
+			모임 비용 : <input name="clubCalendarPrice" type="number">
 		</td>
 	</tr>
 	
-	 -->
 	<tr>
 		<td>
 		<button type="submit">일정등록</button>

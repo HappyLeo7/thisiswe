@@ -42,9 +42,9 @@ public class CalendarController {
 	public String calendar_register(Long num ,Model model, ClubDTO cl) {
 		log.info("==== getMapping calendar register() Contorller ====");
 		log.info("num : "+num);
-		ClubDTO clubDTO = clubService.get(num);
-		log.info("clubDTO"+clubDTO);
-		model.addAttribute("readDTO", clubDTO);
+		ClubDTO clubDTO = clubService.get(num); //데이터를 받아온다
+		log.info("clubDTO"+clubDTO); 
+		model.addAttribute("readDTO", clubDTO); //받아온 데이터를 web으로 보내주는 역할
 		log.info("==== /getMapping calendar register() Contorller ====");
 		return "/club/calendar/calendar_register";
 	}
@@ -61,8 +61,20 @@ public class CalendarController {
 		calendarService.register(calendarDTO);
 		ClubEntity clubNum = calendarDTO.getClubNum();
 		log.info("==== /postMappinig calendar register() Contorller ====");
-		return "redirect:/thisiswe/club/?num="+clubNum;
+		
+		
+		return "redirect:/thisiswe/club/calendar/read?Num="+clubNum.getClubNum();
 	}
+	//등록페이지에서 -> 상세페이지로 이동
+	@GetMapping({"/calendar/read"})
+	public String calendarRead(Long Num) {
+		log.info("==== getMappinig calendarRead() Contorller ====");
+		CalendarDTO calendarDTO=calendarService.get(Num); //1개의 일정 데이터를 가져옴
+		log.info("==== /getMappinig calendarRead() Contorller ====");
+		return "/club/calendar/calendar_read";
+	}
+	
+	
 	
 	
 }

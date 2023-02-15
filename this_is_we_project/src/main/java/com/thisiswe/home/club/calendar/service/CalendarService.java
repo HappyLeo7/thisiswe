@@ -15,11 +15,13 @@ public interface CalendarService {
 	//일정등록
 	Long register(CalendarDTO calendarDTO);
 	
+	//1개의 일정 데이터를 불러온다.
+	CalendarDTO get(Long calendarNum);
+	
 	
 	//dto -> entity
 	default CalendarEntity dtoToEntity(CalendarDTO calendarDTO) {
-		System.out.println(".... calendarEntity interface dtoToEntity ....");
-		
+		System.out.println(".... calendarService interface dtoToEntity() ....");
 		
 		CalendarEntity calendarEntity = CalendarEntity.builder()
 				.clubCalendarTitle(calendarDTO.getClubCalendarTitle())
@@ -29,10 +31,10 @@ public interface CalendarService {
 				.clubCalendarPlace(calendarDTO.getClubCalendarPlace())
 				.clubCalendarHeadCount(calendarDTO.getClubCalendarHeadCount())
 				.clubCalendarPrice(calendarDTO.getClubCalendarPrice())
-				.clubNum(ClubEntity.builder().clubNum(2L).build())
+				.clubNum(calendarDTO.getClubNum())
 				.build();
 		
-		System.out.println(".... /calendarEntity interface dtoToEntity ....");
+		System.out.println(".... /calendarService interface dtoToEntity() ....");
 		return calendarEntity;
 	}
 

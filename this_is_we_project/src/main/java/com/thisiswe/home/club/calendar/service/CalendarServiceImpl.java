@@ -1,5 +1,7 @@
 package com.thisiswe.home.club.calendar.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.thisiswe.home.club.calendar.dto.CalendarDTO;
@@ -24,6 +26,16 @@ public class CalendarServiceImpl implements CalendarService {
 		calendarRepository.save(calendarEntity);
 		
 		return calendarEntity.getClubCalendarNum();
+	}
+
+	@Override
+	public CalendarDTO get(Long calendarNum) {
+		log.info("..... calendar get() 1개 데이터 불러오기......");
+		log.info("calendarNum : "+calendarNum );
+		Optional<CalendarEntity> calendarEntity = calendarRepository.findById(calendarNum);
+		log.info(calendarEntity);
+		log.info("..... /calendar get() 1개 데이터 불러오기......");
+		return null;
 	}
 	
 	
