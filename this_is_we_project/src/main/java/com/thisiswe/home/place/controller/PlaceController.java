@@ -40,12 +40,14 @@ public class PlaceController {
 		return "place/place_read";
 	}
 	
+	// 장소 등록
 	@GetMapping("/place/register")
 	public String placeRegisterGet() {
 		log.info("================(get)placeRegisterController==============");
 		return "place/place_register";
 	}
 	
+	// 장소 등록
 	@PostMapping("/place/register")
 	public String placeRegisterPost(PlaceDTO placeDTO) {
 		log.info("================(get)placeRegisterController==============");
@@ -53,5 +55,11 @@ public class PlaceController {
 		return "redirect:/thisiswe/place";
 	}
 	
-	
+	// 장소 리뷰 등록
+//	@PostMapping("/place/register")
+//	public String placeReviewRegisterPost(PlaceDTO placeDTO) {
+//		log.info("================(get)placeRegisterController==============");
+//		placeService.register(placeDTO);
+//		return "redirect:/thisiswe/place";
+//	}
 }
