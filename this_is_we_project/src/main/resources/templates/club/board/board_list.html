@@ -15,7 +15,6 @@
 			</span>
 		</h1>
 
-
 		<table class="">
 			<!-- 게시판 목록 head 부분 -->
 				<thead>
@@ -23,7 +22,6 @@
 						<th scope="col">번호</th>
 						<th scope="col">카테고리</th>
 						<th scope="col">제목</th>
-						<th scope="col">내용</th>
 						<th scope="col">작성자</th>
 						<th scope="col">등록일</th>
 						<th scope="col">조회수</th>
@@ -33,7 +31,7 @@
 				<!-- /게시판 목록 head 부분 -->
 
 				<!-- 게시판 목록 body 부분 -->
-				<tbody>
+				<tbody>		
 					<tr th:each="boardDTO : ${result.DTOList}">
 						<th scope="row">[[${boardDTO.boardNum}]]</th>
 						<td>[[${boardDTO.boardCategory}]]</td>
@@ -42,7 +40,7 @@
 								[[${boardDTO.boardTitle}]]..[<b th:text="${boardDTO.replyCount}"></b>]
 						</a></td>
 						<td>[[${boardDTO.userId}]]</td>
-						<td>[[${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd')}]]</td>
+						<td>[[${#temporals.format(boardDTO.regDate, 'yyyy-MM-dd')}]]</td>
 						<td>[[${boardDTO.boardView}]]</td>
 					</tr>
 				</tbody>
@@ -55,7 +53,7 @@
 			<!-- 검색창 추가 -->
 			<div class="">
 				<div class="">
-					<form id="searchForm" action="/board/list" method="get">
+					<form id="searchForm" action="/club/board/list" method="get">
 
 						<select name="type">
 							<option value="" th:selected="${pageRequestDTO.type==null}">-----</option>
@@ -71,11 +69,11 @@
 							<option value="tw" th:selected="${pageRequestDTO.type=='tw'}">제목+작성자</option>
 
 							<option value="tcw" th:selected="${pageRequestDTO.type=='tcw'}">제목+내용+작성자</option>
-						</select> <input type="text" name="keyword"
-							th:value="${pageRequestDTO.keyword}">
-						<button type="button" class="btn btn-outline-secondary btn-search">Click</button>
-						<button type="button" class="btn btn-outline-secondary btn-clear">Clear</button>
-						<br> <br>
+						</select> 
+						<input type="text" name="keyword" th:value="${pageRequestDTO.keyword}">
+						<button type="button" class="btn btn-outline-secondary btn-search">검색</button>
+						<button type="button" class="btn btn-outline-secondary btn-clear">취소</button>
+						<br><br>
 					</form>
 				</div>
 			</div>
@@ -85,25 +83,76 @@
 			<ul class="">
 				<li class="" th:if="${result.prev}"><a class="page-link"
 					th:href="@{/club/board/list(page=${result.start-1},
-                                						   type=${pageRequestDTO.type},
-                               							   keyword=${pageRequestDTO.keyword})}"
+                                				type=${pageRequestDTO.type},
+                               					keyword=${pageRequestDTO.keyword})}"
 					tabindex="-1">이전</a></li>
 
 				<li th:class="'page-item '+ ${result.page == page?'active':''}"
 					th:each="page: ${result.pageList}"><a class="page-link"
 					th:href="@{/club/board/list(page=${page},
-                                 							type=${pageRequestDTO.type},
-                            							    keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
+                                 				type=${pageRequestDTO.type},
+                            					keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
 				</li>
 
 				<li class="page-item" th:if="${result.next}"><a
 					class="page-link"
 					th:href="@{/club/board/list(page=${result.end},
-                                 type=${pageRequestDTO.type},
-                                 keyword=${pageRequestDTO.keyword})}">다음</a>
+                                 				type=${pageRequestDTO.type},
+                               					keyword=${pageRequestDTO.keyword})}">다음</a>
 				</li>
 			</ul>
 			<!-- /페이지 부분 : 이동, 이전, 다음 -->
+			
+			<!-- Modal : 게시글 등록 될 때 -->
+            <div class="modal" tabindex="-1" role="dialog">
+           		<!-- modal-dialog -->
+              	<div class="modal-dialog" role="document">
+              		 <!-- /modal-content -->
+                	 <div class="modal-content">
+                    	 <div class="modal-header">
+                      	  <h4 class="modal-title">Board</h4>
+                      	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                     </div>
+                     <div class="modal-body">[[${msg}]]번 게시글이 처리되었습니다!</div>
+                     <!-- modal-footer -->
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary">확인</button>
+                     </div>
+                     <!-- /modal-footer -->
+                  </div>
+                  <!-- /modal-content -->
+               </div>
+               <!-- /modal-dialog -->
+            </div>
+            <!-- Modal : 게시글 등록 될 때 -->    
 
-			</th:block>
-			</th:block>
+
+	<!-- 게시판 : 목록 - 검색 기능 script -->
+	<script th:inline="javascript">
+         var msg = [[${msg}]];
+         console.log(msg);
+         
+         // 107행 class="modal"
+         if(msg){
+            $(".modal").modal();
+         }
+         
+         // 56행 id="searchForm"
+         var searchForm = $("#searchForm");
+         
+         // 74행 class="btn-search"
+         $('.btn-search').click(function(e){
+            searchForm.submit();
+         });
+         
+         // 75행 class="btn-clear"
+         $('.btn-clear').click(function(e){
+            searchForm.empty().submit();
+         });
+         
+    </script>
+    <!-- /게시판 : 목록 - 검색 기능 script -->
+
+	</th:block>
+</th:block>

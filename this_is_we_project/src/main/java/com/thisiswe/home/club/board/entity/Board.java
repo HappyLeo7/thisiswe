@@ -48,7 +48,7 @@ public class Board extends DateEntity{
 	@JoinColumn(name="user_id")
 	private UserEntity userId;					// 게시판 유저ID
 	
-	@Column(length=100, name="board_view")
+	@Column(length=100, name="board_view", columnDefinition = "integer default 0", nullable = true)
 	private Long boardView;						// 게시판 조회수	
 	
 	@Column(length=100, name="board_replyCount")

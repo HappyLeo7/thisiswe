@@ -25,7 +25,7 @@ import com.thisiswe.home.user.entity.QUserEntity;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-//TODO [SearchBoard] 게시판_검색
+//TODO [SearchBoardRepositoryImpl] 게시판_검색
 public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport implements SearchBoardRepository {
 
 	public SearchBoardRepositoryImpl() {
@@ -35,9 +35,9 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 	@Override
 	public Page<Object[]> searchPage(String type, String keyword, Pageable pageable) {
 		
-		log.info("=========================================================");
+		log.info("=============== SearchBoardRepositoryImpl ===============");
 		log.info("====================== SearchPage ======================");
-		log.info("=========================================================");		
+		log.info("=============== SearchBoardRepositoryImpl ===============");	
 		
 		QBoard board = QBoard.board;
 		QReply reply = QReply.reply;
@@ -56,7 +56,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 		booleanBuilder.and(expression);
 		
 		if (type != null) {
-			//TODO [SearchBoard] 게시판_검색 : null 기준으로 자르기
+			//TODO [SearchBoardRepositoryImpl] 게시판_검색 : null 기준으로 자르기
 			String[] typeArr = type.split("");
 			
 			BooleanBuilder conditionBuilder = new BooleanBuilder();
@@ -93,7 +93,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 		
 		tuple.groupBy(board);
 		
-		//TODO [SearchBoard] 게시판_검색 : Page 처리하기
+		//TODO [SearchBoardRepositoryImpl] 게시판_검색 : Page 처리하기
 		tuple.offset(pageable.getOffset());
 		tuple.limit(pageable.getPageSize());		
 		log.info("=========================================================");

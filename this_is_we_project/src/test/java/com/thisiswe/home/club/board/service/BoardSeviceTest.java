@@ -88,8 +88,7 @@ public class BoardSeviceTest {
 		System.out.println("=========================================================");
 		System.out.println("============ " + boardNum + " 번이 삭제 되었습니다.============");
 		System.out.println("=========================================================");
-		boardService.remove(boardNum);
+		boardService.removeWithReplies(boardNum);
 		
-	}
-	
+	}	
 }
