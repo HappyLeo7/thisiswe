@@ -21,7 +21,6 @@
 	</tbody>
 	
 	
-	
 		<div> 
 		<h1>이런 모임은 어떠세요?</h1>
 		</div>
@@ -35,13 +34,15 @@
 
 <!-- list 1 -->
 
-	<table border="1"th:each="clubDTO : ${list}">
-  <tr>
+
+
+	<table border="1" th:each="clubDTO : ${list}">
+  <tr >
     <th colspan="3"><a th:href="@{/club/read}">이미지</a></th>
   </tr>
-  <tr>
-    <td colspan="3" ><a class="clubNum" th:href="@{/thisiswe/club/(Num=${clubDTO.clubNum})}"
-    >[[${clubDTO.clubName}]]모임명</a></td>
+  <tr >
+    <td colspan="3" ><a class="clubNum" th:href="@{/thisiswe/club/(Num=${clubDTO.clubNum})}">
+    [[${clubDTO.clubName}]]모임명</a></td>
   </tr>
   <!-- tr에 가져올 데이터 세팅 -->
   <tr >
@@ -50,10 +51,21 @@
     <td>닉네임 [[${clubDTO.userNickname}]]</td>
   </tr>
   
+  <!-- 
   <ul>
-  <li> <a> </a> </li>
-  <li> Item two </li>
+  
+       <li th:class="'page-item '+ ${list.page == page?'active':''} "
+      th:each="page: ${list}">
+        <a class="" th:href="@{/thisiswe/club(page=${page},
+                                        type=${pageRequestDTO.type},
+                                        keyword=${pageRequestDTO.keyword}
+  
+                            )}">[[${page}]]</a>  
+      </li>
+  <li > <a ></a> </li>
 </ul>
+   -->
+ 
 
 </table>
 

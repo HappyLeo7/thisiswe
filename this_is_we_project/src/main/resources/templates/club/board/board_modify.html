@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
+<th:block
+	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+	<!-- 지정한 변수로 연결할 위치 -->
+	<th:block th:fragment="connection">
+
+		<!-- 게시판 수정 -->
+		<h1 class="">게시글 수정</h1>
+			<!--
+			<form th:action="@{/club/board/modify}" th:method="post">
+				
+ 			<input type="hidden" name="page" th:value="${requestDTO.page}">
+			<input type="hidden" name="type" th:value="${requestDTO.type}">
+			<input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
+			<input type="hidden" name="boardName" th:value="${boardDTO.BoardNum()}">
+			</form>
+			 -->
+		
+		<div class="">
+			<lable>번호</lable>
+			<input type="text" class="" name="boardNum"
+				th:value="${boardDTO.boardNum}" readonly>
+		</div>
+		
+		<div class="">
+			<lable>카테고리</lable>
+			<input type="text" class="" name="boardCategory"
+				th:value="${boardDTO.boardCategory}" readonly>
+		</div>
+		
+		<div class="">
+			<lable>제목</lable>
+			<input type="text" class="" name="boardTitle"
+				th:value="${boardDTO.boardTitle}">
+		</div>
+		
+		<div class="">
+			<lable>내용</lable>
+			<textarea class="" rows="5" name="boardContent">
+				[[${boardDTO.boardContent}]]
+			</textarea>
+		</div>
+			
+		<div class="">
+			<lable>작성자</lable>
+			<input type="text" class="" 
+					name="userId" th:value="${boardDTO.userId}" readonly>
+		</div>
+		
+		<div class="">
+			<lable>등록일</lable>
+			<input type="text" class="" name="regDate"
+				th:value="${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+		</div>
+			
+		<div class="">
+			<lable>수정일</lable>
+			<input type="text" class="" name="updateDate"
+				th:value="${#temporals.format(boardDTO.updateDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+		</div>
+		
+		<button type="button" class="btn btn-info modifyBtn">수정</button>
+		<button type="button" class="btn btn-danger removeBtn">삭제</button>
+		<button type="button" class="btn btn-secondary listBtn">목록</button>
+		 
+		</form>
+		<!-- /게시판 수정 -->
+		
+	</th:block>		
+</th:block>		

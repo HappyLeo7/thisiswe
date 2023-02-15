@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+	<!-- 지정한 변수로 연결할 위치 -->
+	<th:block th:fragment="connection">
+	
+	<!-- 게시판 등록 -->
+	<h1 class="">게시글 등록</h1>
+		<form th:action="@{/club/board/register}" th:method="post">
+			
+			<div class="form-group">
+				<lable>카테고리</lable>
+				<select id="" name="boardCategory">
+					<option value="모임관련">모임관련</option>
+					<option value="모임추가">모임추가</option>
+					<option value="모임변경">모임변경</option>
+					<option value="모임삭제">모임삭제</option>
+					<option value="모임후기">모임후기</option>
+					<option value="기타">기타</option>
+					
+				</select>
+			</div>
+			
+			<div class="">
+				<lable>제목</lable>
+				<input type="text" class="" name="boardTitle"
+					placeholder="제목을 반드시 넣어주세요.">
+			</div>
+			
+			<div class="">
+				<lable>내용</lable>
+				<textarea class="" rows="5" name="boardContent"
+							placeholder="내용을 반드시 입력해주세요."></textarea>
+			</div>
+			
+			<div class="">
+				<lable>작성자</lable>
+				<input type="text" class="" name="userId"
+					placeholder="ID를 입력하세요.">
+			</div>
+			
+			<br><br>
+						
+			<button type="submit" class="btn btn-success">등록</button>
+			<button type="reset" class="btn btn-warning">취소</button>
+		</form>
+		<!-- /게시판 등록 -->
+	
+	</th:block>
+</th:block>

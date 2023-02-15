@@ -32,11 +32,11 @@ public class UserSecurityTests {
 					.build();
 			
 			
-			userEntity.addUserRole(UserRole.USER);
-			
-			if(i>99) {
-				userEntity.addUserRole(UserRole.ADMIN);
-			}
+//			userEntity.addUserRole(UserRole.USER);
+//			
+//			if(i>99) {
+//				userEntity.addUserRole(UserRole.ADMIN);
+//			}
 			
 			userRepository.save(userEntity);
 		});

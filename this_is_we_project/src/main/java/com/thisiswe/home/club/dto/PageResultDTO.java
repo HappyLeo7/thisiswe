@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 public class PageResultDTO<DTO, EN> {
 
 	 private List<DTO> dtoList;
-	   
+	  
 	   private int totalPage;
 	   private int page;
 	   private int size;
@@ -20,8 +20,10 @@ public class PageResultDTO<DTO, EN> {
 	   private List<Integer> pageList;
 	   
 	   public PageResultDTO(Page<EN> result, Function<EN, DTO> fn) {
-		   System.out.println("[[[[[PageResultDTO 위치 체크]]]]]11");
+		   System.out.println("[PageResultDTO 위치 체크 result :"+result+"]");
+		   System.out.println("[PageResultDTO 위치 체크 fn :"+fn+"]");
 	      dtoList = result.stream().map(fn).collect(Collectors.toList());
+	      System.out.println("[PageResultDTO 위치 체크 dtoList : "+dtoList+"]");
 
 	      System.out.println("[[[[[PageResultDTO 위치 체크]]]]]22");
 	      totalPage = result.getTotalPages();
@@ -43,5 +45,6 @@ public class PageResultDTO<DTO, EN> {
 	      
 	      this.pageList = IntStream.rangeClosed(start, end)
 	                     .boxed().collect(Collectors.toList());
+	      System.out.println("[makePageList 위치 체크 pageList : "+pageList+"]4");
 	   }
 }
