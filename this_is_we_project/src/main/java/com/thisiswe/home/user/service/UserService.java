@@ -75,6 +75,8 @@ public class UserService {
 			}
 			role = UserRoleEnum.ADMIN;
 		}
+		
+		System.out.println(userId);
 		UserEntity userEntity = new UserEntity(userId, userPassword, userNickname, userGender, userEmail,
 				userPhoneNumber, userImageUrl, role);
 		System.out.println("성공");
