@@ -1,11 +1,11 @@
 package com.thisiswe.home.club.board.reply.service;
 
-import java.util.List;
-
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.club.board.reply.dto.ReplyDTO;
 import com.thisiswe.home.club.board.reply.entity.Reply;
 import com.thisiswe.home.user.entity.UserEntity;
+
+import java.util.List;
 
 //TODO [Service] 게시판-댓글
 public interface ReplyService {

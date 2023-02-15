@@ -1,16 +1,11 @@
 package com.thisiswe.home.club.board.service;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.dto.PageResultDTO;
 import com.thisiswe.home.club.board.entity.Board;
-import com.thisiswe.home.club.board.repository.BoardRepository;
 import com.thisiswe.home.user.entity.UserEntity;
-
-import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 //TODO [Service] 게시판

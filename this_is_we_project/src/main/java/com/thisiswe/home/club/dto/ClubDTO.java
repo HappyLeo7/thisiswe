@@ -1,13 +1,13 @@
 package com.thisiswe.home.club.dto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Builder
 @AllArgsConstructor
@@ -33,7 +33,7 @@ public class ClubDTO {
 	private LocalDateTime updateDate; //수정일
 	
 	//@Builder.Default
-	//private List<ClubDTO> clubLogoList =new ArrayList<>();
-
-
+	//private List<ClubDTO> clubLogoList =new ArrayList<>(); 
+	
+	
 }

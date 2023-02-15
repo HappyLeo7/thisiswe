@@ -102,8 +102,7 @@
 		</dependency>
 		<!-- /[추가] Search -->
 
-
-
+		<!-- [추가] chating -->
 		<!-- websocket -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -135,10 +134,8 @@
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 			<version>2.7.3</version>
 		</dependency>
-
+		<!-- /[추가] chating -->
 	</dependencies>
-
-
 
 	<build>
 		<plugins>
@@ -157,6 +154,9 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>2.4.4</version>
@@ -169,6 +169,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 

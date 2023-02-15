@@ -1,14 +1,12 @@
 package com.thisiswe.home.club.repository;
 
 
-
-import java.util.List;
-
+import com.thisiswe.home.club.entity.ClubEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.thisiswe.home.club.entity.ClubEntity;
+import java.util.List;
 
 public interface ClubRepository extends JpaRepository<ClubEntity, Long>{
 

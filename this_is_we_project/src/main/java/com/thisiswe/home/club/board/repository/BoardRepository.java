@@ -1,7 +1,7 @@
 package com.thisiswe.home.club.board.repository;
 
-import java.util.List;
-
+import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.board.repository.search.SearchBoardRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,8 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.thisiswe.home.club.board.entity.Board;
-import com.thisiswe.home.club.board.repository.search.SearchBoardRepository;
+import java.util.List;
 
 //TODO [Repository] 게시판 - Query
 public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoardRepository{

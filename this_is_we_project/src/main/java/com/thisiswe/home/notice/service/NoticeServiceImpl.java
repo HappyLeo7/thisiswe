@@ -1,15 +1,9 @@
 package com.thisiswe.home.notice.service;
 
-import java.util.function.Function;
-
-import org.springframework.stereotype.Service;
-
 import com.thisiswe.home.notice.dto.NoticeDTO;
-import com.thisiswe.home.notice.dto.PageRequestDTO;
-import com.thisiswe.home.notice.dto.PageResultDTO;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor

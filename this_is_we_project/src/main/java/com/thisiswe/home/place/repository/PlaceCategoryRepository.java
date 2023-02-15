@@ -1,8 +1,7 @@
 package com.thisiswe.home.place.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.thisiswe.home.place.entity.PlaceCategoryEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlaceCategoryRepository extends JpaRepository<PlaceCategoryEntity, Long>{
 	

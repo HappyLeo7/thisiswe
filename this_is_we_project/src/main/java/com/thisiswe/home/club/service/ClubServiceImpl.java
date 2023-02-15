@@ -1,5 +1,11 @@
 package com.thisiswe.home.club.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.thisiswe.home.club.dto.ClubDTO;
@@ -7,6 +13,7 @@ import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.dto.PageResultDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.repository.ClubRepository;
+import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -18,9 +25,9 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class ClubServiceImpl implements ClubService {
 
-	private final ClubRepository clubrepository;
+	private final ClubRepository clubRepository;
 	
-
+	
 	// 모임 등록 하는 매서드
 	@Override
 	public Long register(ClubDTO clubDTO) {
@@ -28,13 +35,13 @@ public class ClubServiceImpl implements ClubService {
 		log.info("====================================");
 		log.info("==== ClubServiceImpl register() clubDTO : "+clubDTO+" ====");
 		ClubEntity clubEntity = dtoToEntity(clubDTO);
-		clubrepository.save(clubEntity);
+		clubRepository.save(clubEntity);
 		log.info("==== ClubServiceImpl register() clubEntity : "+clubEntity+" ====");
 		log.info("====================================");
 		
 		//club num 모임 번호 리턴받아서 모임entity에 넣는다.
 		return clubEntity.getClubNum();
-
+		
 	}
 
 
@@ -46,15 +53,15 @@ public class ClubServiceImpl implements ClubService {
 		log.info("[[[[[[[getList매서드");
 		System.out.println("[[[[[서비스 Impl테스트중]]]]]");
 		List<Object[]> list = clubRepository.getClubList();
-		List<ClubDTO> entList = new ArrayList<>();
+		List<ClubDTO> entList = new ArrayList<>(); 
 		System.out.println("list:::::::"+list);
 		for (Object[] arr : list) {
 			entList.add( entityToDTO((ClubEntity)arr[0], (UserEntity)arr[1]));
 		}
 		return entList;
-
+		
 	}
-
+	
 	@Override
 	public PageResultDTO<ClubDTO, Object[]> getPageList(PageRequestDTO pageRequestDTO) {
 
@@ -72,22 +79,22 @@ public class ClubServiceImpl implements ClubService {
 		log.info("[[[[[[[get매서드");
 		System.out.println("서비스Impl clubNum: "+clubNum);
 		Object clubEntityObject = clubRepository.getClubNum(clubNum);
-
+		
 		List<Object[]> arr= (List<Object[]>) clubEntityObject;
-
+		
 		return entityToDTO((ClubEntity)arr.get(0)[0], (UserEntity)arr.get(0)[1]);
 	}
 
 
 
-
+	
 	// 모임 수정하는 매서드
 	@Transactional
 	@Override
 	public void modify(ClubDTO clubDTO) {
 		System.out.println("서비스Impl 테스트 1");
 		log.info("modify() 수정 메서드");
-
+		
 		ClubEntity clubEntity = clubRepository.getById(clubDTO.getClubNum());
 		log.info( "서비스수정할값 :  "+clubEntity);
 		if(clubEntity != null) {
@@ -110,6 +117,8 @@ public class ClubServiceImpl implements ClubService {
 
 
 
+	
+ 
 
 
 
@@ -118,9 +127,7 @@ public class ClubServiceImpl implements ClubService {
 
 
 
-
-
-
+	
 
 
 
