@@ -45,6 +45,7 @@ public class UserSecurityConfig {
 		.antMatchers("/reservation/**").permitAll()
 		.antMatchers("/place/**").permitAll()
 		.antMatchers("/notice/**").permitAll()
+		.antMatchers("/thisiswe/**").permitAll()
 		
 		// 그 외 어떤 요청이든 '인증'
 		.anyRequest().authenticated()
