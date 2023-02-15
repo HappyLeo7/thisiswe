@@ -61,5 +61,6 @@ public class PlaceController {
 //		log.info("================(get)placeRegisterController==============");
 //		placeService.register(placeDTO);
 //		return "redirect:/thisiswe/place";
+//	
 //	}
 }
