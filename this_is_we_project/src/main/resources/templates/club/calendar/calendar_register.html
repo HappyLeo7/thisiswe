@@ -14,9 +14,82 @@
 	<!-- 내용 -->
 	<title>일정 등록페이지</title>
 	
+		<!-- 네비창 (정보, 게시판, 사진첩) -->
+	
+	<table border="1">
+	<tr>
+		<td><a href="">정보</a></td>
+		<td><a href="/thisiswe/club/calendar">게시판</a></td>
+		<td><a href="">사진첩</a></td>
+	</tr>
+	</table>
+	<!-- /네비창 (정보, 게시판, 사진첩) -->
+<!-- from -->
+
+
+<form th:action="@{/thisiswe/club/calendar/register/(num=${readDTO.clubNum})}" th:method="post">
+
+	<table border="1">
+	<tr>
+		<td colspan="2">
+			모임번호 : <input name="clubNum" th:value="${readDTO.clubNum}" readonly="readonly">
+			<br>
+			모임이름 : <input  th:value="${readDTO.clubName}" readonly="readonly">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			제목 : <input name="clubCalendarTitle" type="text">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			모임설명 : <textarea name="clubCalendarContent" rows="" cols=""></textarea>
+		</td>
+	</tr>
+		<tr>
+		<td>
+			날짜 : <input name="clubCalendarDate" type="date">
+			
+		</td>
+		<td rowspan="2">
+		달력 이미지 
+		</td>
+	</tr>
+			<tr>
+		<td>
+			시간 : <input name="clubCalendarTime" type="number" max="23">시<input type="number" max="59">분
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2">
+			장소 : <input name="clubCalendarPlace" type="text">
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="2">
+			모임정원 : <input name="clubCalendarHeadCount" type="number">
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="2">
+			모임 비용 : <input name="clubCalendarPrice" type="number">
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+		<button type="submit">일정등록</button>
+		</td>
+	</tr>
+	
+	</table>	
 	<!-- /내용 -->
-	
-	
+	</form>
+	<!-- /from -->
 	
 	</th:block>
 

@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.thisiswe.home.club.board.entity.Board;
-import com.thisiswe.home.club.board.reply.entity.Reply;
-import com.thisiswe.home.club.board.reply.repository.ReplyRepository;
+import com.thisiswe.home.place.club.board.entity.Board;
+import com.thisiswe.home.place.club.board.reply.entity.Reply;
+import com.thisiswe.home.place.club.board.reply.repository.ReplyRepository;
 import com.thisiswe.home.user.entity.UserEntity;
 
 @SpringBootTest

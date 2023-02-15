@@ -1,16 +1,14 @@
 package com.thisiswe.home.club.board.service;
 
+import com.thisiswe.home.place.club.board.service.BoardService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.thisiswe.home.club.board.dto.BoardDTO;
-import com.thisiswe.home.club.board.dto.PageRequestDTO;
-import com.thisiswe.home.club.board.dto.PageResultDTO;
-import com.thisiswe.home.club.board.entity.Board;
-
-import lombok.RequiredArgsConstructor;
+import com.thisiswe.home.place.club.board.dto.BoardDTO;
+import com.thisiswe.home.place.club.board.dto.PageRequestDTO;
+import com.thisiswe.home.place.club.board.dto.PageResultDTO;
 
 @SpringBootTest
 //TODO [SeviceTest] 게시판
@@ -88,8 +86,7 @@ public class BoardSeviceTest {
 		System.out.println("=========================================================");
 		System.out.println("============ " + boardNum + " 번이 삭제 되었습니다.============");
 		System.out.println("=========================================================");
-		boardService.remove(boardNum);
+		boardService.removeWithReplies(boardNum);
 		
-	}
-	
+	}	
 }

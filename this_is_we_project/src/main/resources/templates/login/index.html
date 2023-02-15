@@ -17,34 +17,42 @@
 <hr>
 <a th:href="@{/login/narong_test2}">login/narong_test2 김나영</a>
 
-<pre>[][][][][][][][][]
-모임	→	-등록
-		-삭제
-		-수정
-		
-게시판	→	-등록				
-		-삭제				
-		-수정				
-		-검색				
-		-12345페이지번호				
-		-리스트보기				
-		-상세보기	→	-댓글	→	-목록
-						-등록
-						-삭제
-						-수정
-						
-사진첩	→	-등록				
-		-수정				
-		-삭제				
-		-상세보기	→	-댓글	→	-목록
-							-등록
-							-삭제
-							-수정
-						
-예약	→	-등록				
-		-수정				
-		-삭제				
-		-상세보기				
-</pre>
+<div class="header" style="position:relative;">
+<div id="header-title-login-user">
+<span th:text="${userNickname}"></span> 님의
+</div>
+<div id="header-title-select-shop">
+testtset
+</div>
+<form id="my_form" method="post" action="/user/logout">
+<a id="logout-text" href="javascript:{}" onclick="document.getElementById('my_form').submit();">로그아웃</a>
+</form>
+</div>
+<div class="nav">
+<div class="nav-see active">
+모아보기
+</div>
+<div class="nav-search">
+탐색하기
+</div>
+</div>
+<div id="see-area">
+<div id="product-container">
+</div>
+</div>
+<div id="search-area">
+<div>
+<input type="text" id="query">
+<!-- <img src="images/icon-search.png" alt="">-->
+</div>
+<div id="search-result-box">
+</div>
+<div id="container" class="popup-container">
+<div class="popup">
+<button id="close" class="close">
+</button>
+</div>
+</div>
+</div>
 </th:block>
 </th:block>
