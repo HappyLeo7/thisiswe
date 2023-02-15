@@ -31,14 +31,17 @@
 				<!-- /게시판 목록 head 부분 -->
 
 				<!-- 게시판 목록 body 부분 -->
+				
 				<tbody>		
 					<tr th:each="boardDTO : ${result.DTOList}">
 						<th scope="row">[[${boardDTO.boardNum}]]</th>
 						<td>[[${boardDTO.boardCategory}]]</td>
+						
 						<td><a
-							th:href="@{/club/board/read/{boardNum}(boardNum=${boardDTO.boardNum})}">
+							th:href="@{/club/board/read(boardNum=${boardDTO.boardNum})}">
 								[[${boardDTO.boardTitle}]]..[<b th:text="${boardDTO.replyCount}"></b>]
 						</a></td>
+						
 						<td>[[${boardDTO.userId}]]</td>
 						<td>[[${#temporals.format(boardDTO.regDate, 'yyyy-MM-dd')}]]</td>
 						<td>[[${boardDTO.boardView}]]</td>

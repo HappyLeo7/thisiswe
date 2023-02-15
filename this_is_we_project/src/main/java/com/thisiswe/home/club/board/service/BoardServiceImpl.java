@@ -104,17 +104,19 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	//TODO [ServiceImpl] 게시판 - 조회수 증가(중복 제외)
-	/* @Override
+	@Override
 	public void countView(Long boardNum, BoardDTO boardDTO) {
 		Board board = boardRepository.findById(boardNum).orElseThrow((() ->
 									new IllegalStateException("게시글이 존재하지 않습니다.")));
 		
 		board.countView(boardDTO.getBoardView());
-	}*/
+		}
 
+	/*
 	@Override
 	public Long countView(Long boardNum, BoardDTO boardDTO) {
 		
 		return this.boardRepository.boardView(boardNum);
 	}
+	*/
 }

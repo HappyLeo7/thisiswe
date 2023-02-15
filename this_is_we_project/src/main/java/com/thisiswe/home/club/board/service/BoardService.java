@@ -32,7 +32,8 @@ public interface BoardService {
 	void removeWithReplies(Long boardNum);
 	
 	// TODO [Service] 게시판 - 조회수 증가(중복 제외)
-	Long countView(Long boardNum, BoardDTO boardDTO);
+	//void countView(Long boardNum, BoardDTO boardDTO);
+	void countView(Long boardNum, BoardDTO boardDTO);
 	
 	// TODO [Service] 게시판 - DTO(WEB)에서 Entity(DB)로
 	default Board boardDTOToEntity(BoardDTO boardDTO) {

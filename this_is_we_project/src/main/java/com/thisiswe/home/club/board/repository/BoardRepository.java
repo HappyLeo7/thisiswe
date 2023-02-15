@@ -2,6 +2,8 @@ package com.thisiswe.home.club.board.repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -40,6 +42,8 @@ public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoard
 	 
 	//TODO [Repository] 게시판 - Query - 게시판 조회수 증가
 	 @Modifying
-	 @Query(" update Board b set b.boardView = b.boardView + 1 where b.boardNum = :boardNum")
-	 Long boardView(Long boardNum);
+	 @Transactional
+	 @Query(" update Board b set b.boardView = b.boardView +1 where b.boardNum = :boardNum")
+	 //Long boardView(Long boardNum);
+	 int boardView(Long boardNum);
 }

@@ -61,7 +61,7 @@ public class BoardController {
 	
 	//TODO [Controller] 게시판 : 등록 - POST
 	@PostMapping("/board/register")
-	public String board_register(BoardDTO boardDTO, RedirectAttributes redirectAttributes) {
+	public String board_register(BoardDTO boardDTO, RedirectAttributes redirectAttributes,Model model,PageRequestDTO pageRequestDTO) {
 	
 		log.info("=========================================================");
 		log.info("==== BoardController.java => board_register.html 연결 ====");
@@ -72,37 +72,47 @@ public class BoardController {
 		log.info("================ boardNum ================> : " + boardNum);
 		redirectAttributes.addFlashAttribute("msg", boardNum );
 		log.info("=========================================================");
+		log.info("===========pageRequestDTO===================" +pageRequestDTO);
+		model.addAttribute("result", boardService.getList(pageRequestDTO));	
 		
-		return "redirect:/club/board/board_list";
+		return "/club/board/board_list";
 	}
 	
 	//TODO [Controller] 게시판 : 상세 조회 - read, 조회수 증가
-	@GetMapping({"/board/read/{boardNum}"})
-	public String board_read(@PathVariable("boardNum") Long boardNum, Model model) {
+	@GetMapping({"/board/read"})
+	public void board_read(Long boardNum, Model model) {
 		
-		log.info("=========================================================");
+		log.info("[controller] == String read =============================");
 		log.info("====== BoardController.java => board_read.html 연결 ======");
-		log.info("================ boardNum ================> : " + boardNum);
-		log.info("=========================================================");
+		log.info("boardNum :: " + boardNum);
+		log.info("[/controller] == String read ============================");
 		
+		log.info("[controller] == String read == board ====================");
 		Board board = boardRepository.findById(boardNum).get();
-		log.info("================ board ================> : " + board);
+		log.info("===== board =====> : " + board);
+		//boardRepository.boardView(boardNum);
+		log.info("[/controller] == String read == board ===================");
 		
-		Long boardView = board.getBoardView() + 1L;
-		log.info("================ boardView ================> : " + boardView);
-		log.info("================ boardUp ================> : " + board);
+		log.info("11111> : " );
 		
+		log.info("[controller] == String read == boardView ================");
+		//Long boardView = board.getBoardView() + 1L;
+		//log.info("[controller] == String read == boardView ==================> : " + boardView);
+		log.info("[/controller] == String read == boardView ================");		
 		
-		BoardDTO boardDTO = BoardDTO.builder().boardView(boardView).build();
-		log.info("================ boardDTO ================> : " + boardDTO);
+		log.info("[controller] == String read == boardDTO ================");
+		//BoardDTO boardDTO = BoardDTO.builder().boardView(boardView).build();
+		//BoardDTO boardDTO = BoardDTO.builder().boardView(boardView).build();
+		log.info("================ boardDTO ================> : " );
 					
-		boardService.get(boardNum);			
-		boardService.countView(board.getBoardNum(), boardDTO);
+		//boardService.get(boardNum);			
+		//boardService.countView(board.getBoardNum(), boardDTO);
 		
 		model.addAttribute("boardDTO", board);
 		log.info("======================= model-read ======================");
-			
-		return "club/board/board_read";
+		log.info("====== /BoardController.java => board_read.html 연결 ======");	
+		
+		//return "club/board/board_read";
 	}
 	
 	//TODO [Controller] 게시판 : 수정 - get
