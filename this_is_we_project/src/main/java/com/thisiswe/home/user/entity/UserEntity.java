@@ -43,7 +43,6 @@ public class UserEntity {
 	@Column(length=100, name="user_phone_number")
 	private String userPhoneNumber; // 핸드폰번호
 
-
 	// 이미지
 	@Column(length = 1000, name="user_image_url")
 	private String userImageUrl; // 유저 이미지 경로
@@ -55,9 +54,7 @@ public class UserEntity {
 	@Column
 	@Enumerated(value = EnumType.STRING)
 	private UserRoleEnum role;
-	public void changePassword(String password) {
-		this.userPassword = password; // 패스워드 변경
-	}
+
 
 	@Column(unique = true)
 	private Long kakaoId;
@@ -73,9 +70,14 @@ public class UserEntity {
 		this.role = role;
 		}
 
-	public void changeName(String name) {
-		this.userNickname = name; // 닉네임 변경
-	}
+//	public void changeName(String name) {
+//		this.userNickname = name; // 닉네임 변경
+//	}
+//	
+//	
+//	public void changePassword(String password) {
+//		this.userPassword = password; // 패스워드 변경
+//	}
 
 }
 

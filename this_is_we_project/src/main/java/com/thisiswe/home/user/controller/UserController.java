@@ -32,10 +32,12 @@ public class UserController {
 	}
 
 	// 회원 가입 요청 처리
-	@PostMapping("login/user/signup")
+	@PostMapping("/login/user/signup")
 	public String registerUser(SignupRequestDto requestDto) {
+		
+		System.out.println("확인용");
 		userService.registerUser(requestDto);
-		return "redirect:login/user/login";
+		return "redirect:/login/login";
 	}
 
 //	@GetMapping("/user/kakao/callback")
