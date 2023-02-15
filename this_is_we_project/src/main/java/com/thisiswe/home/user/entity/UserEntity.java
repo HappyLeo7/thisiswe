@@ -46,7 +46,6 @@ public class UserEntity {
 
 	private String userPhoneNumeber; // 핸드폰번호
 
-	
 
 	// 이미지
 	@Column(length = 1000, name="user_image_url")
@@ -55,7 +54,6 @@ public class UserEntity {
 	@Column(name="user_fromSocial")
 	private boolean fromSocial;   // 외부 권한(ex. 카카오, 구글, 네이버)
 	
-
 	// 권한
 	@Column
 	@Enumerated(value = EnumType.STRING)
@@ -63,8 +61,6 @@ public class UserEntity {
 	public void changePassword(String password) {
 		this.userPassword = password; // 패스워드 변경
 	}
-
-	
 
 	@Column(unique = true)
 	private Long kakaoId;
