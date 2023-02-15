@@ -1,7 +1,7 @@
 package com.thisiswe.home.chat;
 
 
-import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.place.club.entity.ClubEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

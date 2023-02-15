@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.thisiswe.home.club.calendar.entity.CalendarEntity;
-import com.thisiswe.home.club.calendar.repository.CalendarRepository;
-import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.place.club.calendar.entity.CalendarEntity;
+import com.thisiswe.home.place.club.calendar.repository.CalendarRepository;
+import com.thisiswe.home.place.club.entity.ClubEntity;
 
 import lombok.extern.log4j.Log4j2;
 
