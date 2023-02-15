@@ -26,8 +26,6 @@ import lombok.ToString;
 @Getter
 @ToString(exclude = "userId")
 
-
-
 //TODO [Entity]Club 테이블 컬럼 (모임번호, 유저ID, 지역, 모임명, 내용, 카테고리, 로고이미지, 인원, 등록일, 수정일)
 public class ClubEntity extends DateEntity{
 	
