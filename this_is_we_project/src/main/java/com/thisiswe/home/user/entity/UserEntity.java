@@ -40,11 +40,8 @@ public class UserEntity {
 	@Column(unique = true, length=100, name="user_email")
 	private String userEmail; // 이메일
 	
-	@Column(length=100, name="user_phone_numeber")
-
+	@Column(length=100, name="user_phone_number")
 	private String userPhoneNumber; // 핸드폰번호
-
-	private String userPhoneNumeber; // 핸드폰번호
 
 
 	// 이미지

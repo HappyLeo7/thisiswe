@@ -38,7 +38,7 @@ public class UserSecurityConfig {
 		// css 폴더를 login 없이 허용
 		.antMatchers("/css/**").permitAll()
 		// 회원 관리 처리 API 전부를 login 없이 허용
-		.antMatchers("/user/**").permitAll()
+		.antMatchers("/login/user/**").permitAll()
 		.antMatchers("/club/**").permitAll()
 		.antMatchers("/chatroom/**").permitAll()
 		.antMatchers("/basic/**").permitAll()
