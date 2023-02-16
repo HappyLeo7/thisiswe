@@ -35,7 +35,7 @@ public class SearchClubRepositoryImpl extends QuerydslRepositorySupport implemen
 	@Override
 	public Page<Object[]> searchPage(String type, String keyword, Pageable pageable) {
 		
-		log.info("searchPage.........");
+		log.info("........searchPage.........");
 		
 		QClubEntity clubEntity = QClubEntity.clubEntity;
 	//  QReply reply = QReply.reply;
@@ -71,8 +71,9 @@ public class SearchClubRepositoryImpl extends QuerydslRepositorySupport implemen
 				case "C":
 					conditionBuilder.or(clubEntity.clubContent.contains(keyword));
 					break;
-				case "CG":
+				case "G":
 					conditionBuilder.or(clubEntity.clubCategory.contains(keyword));
+					
 					break;
 				}
 			}
