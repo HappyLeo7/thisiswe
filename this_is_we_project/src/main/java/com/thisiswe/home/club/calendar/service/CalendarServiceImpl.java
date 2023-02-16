@@ -1,9 +1,13 @@
 package com.thisiswe.home.club.calendar.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.thisiswe.home.club.calendar.entity.CalendarEntity;
 import com.thisiswe.home.club.calendar.repository.CalendarRepository;
+import com.thisiswe.home.club.entity.ClubEntity;
+
 import org.springframework.stereotype.Service;
 
 import com.thisiswe.home.club.calendar.dto.CalendarDTO;
@@ -37,6 +41,28 @@ public class CalendarServiceImpl implements CalendarService {
 		log.info("..... /calendar get() 1개 데이터 불러오기......");
 		return null;
 	}
+
+	@Override
+	public List<CalendarDTO> getCalendarList(Long clubNum) {
+		log.info("......getCalendarList()......");
+		List<Object[]> list=calendarRepository.getClubNum(clubNum);
+		List<CalendarDTO> entList= new ArrayList<>(); 
+		log.info("......calendar list : "+list);
+		for(Object[]arr : list) {
+			log.info("배열 1"+arr[0]);
+			log.info("배열 2"+arr[1]);
+			entList.add(entityToDTO((CalendarEntity)arr[1]));
+		}
+		log.info("calendarEntity list 값 : "+entList);
+		
+		
+		log.info("....../getCalendarList()......");
+		
+		
+		return entList;
+		
+	}
+	
 	
 	
 }

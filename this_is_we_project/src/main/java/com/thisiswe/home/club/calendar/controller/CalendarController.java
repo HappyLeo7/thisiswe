@@ -72,6 +72,11 @@ public class CalendarController {
 	public String calendar() {
 		
 		log.info("==== calendar list Contorller ====");
+		
+		//CalendarDTO calendarDTO=calendarService.get(Num);
+		//model.addAttribute("calendarDTO",calendarDTO);
+		//log.info(Num+"번 모임 일정 정보 : "+model.addAttribute("calendarDTO"));
+		
 		log.info("==== /calendar list Contorller ====");
 		
 		return "/club/calendar/calendar_list";

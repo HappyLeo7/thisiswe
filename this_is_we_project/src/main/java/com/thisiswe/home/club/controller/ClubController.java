@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.thisiswe.home.club.calendar.dto.CalendarDTO;
+import com.thisiswe.home.club.calendar.repository.CalendarRepository;
+import com.thisiswe.home.club.calendar.service.CalendarService;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.repository.ClubRepository;
@@ -24,6 +27,9 @@ public class ClubController {
 	
 	private final ClubService clubService;
 	private final ClubRepository clubRepository;
+	private final CalendarRepository calendarRepository;
+	private final CalendarService calendarService;
+	
 	//목록 연결링크
 	@GetMapping({"/club"})
 	public String club_list(PageRequestDTO pageRequestDTO, Model model ) {
@@ -77,11 +83,18 @@ public class ClubController {
 	//상세페이지 연결링크
 	@GetMapping({"/club/"})
 	public String club_read(Long Num ,Model model) {
-		log.info("=========================================================");
+		log.info("======== club_read() start =========");
 		log.info("======= ClubController.java => club_read.html 연결 =======");
+		//1개의 모임 정보 출력코드
 		ClubDTO clubDTO = clubService.get(Num);
 		model.addAttribute("readDTO", clubDTO);
-		log.info("=========================================================");
+		
+		//해당 모임의 일정 리스트 출력코드
+		//model.addAttribute("list", clubService.getList(clubDTO)); 
+		model.addAttribute("calendarDTOList",calendarService.getCalendarList(Num));
+		log.info(Num+"번 모임 일정 List : "+model.addAttribute("calendarDTOList"));
+		
+		log.info("======== /club_read() end =========");
 		return "/club/club_read";
 	}
 	

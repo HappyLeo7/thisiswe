@@ -119,22 +119,24 @@
 
 <!-- 모임 일정표 -->
 	<table border="1">
-		<tr>
-			<th><h3>모임 스케줄표</h3> <br>
-				제목 : <input type="text"> <br>
-				내용 : <input type="text"> <br>
-				날짜 : <input type="text"> <br>
-				시간 : <input type="text"> <br>
-				장소 : <input type="text"> <br>
-				인원 : <input type="text"> <br>
-				비용 : <input type="text"> <br>
-			</th>
-			
-			<td>
+	<tr>
+	<th><h3>모임 스케줄표</h3></th>
+	<td>
 			<a th:href="@{/thisiswe/club/calendar/register/(num=${readDTO.clubNum})}">
-			<button type="button">일정등록</button></a></td>
+			<button type="button">일정등록</button></a>
+			</td>
+	<tr>
+		<tr th:each="calendarDTO : ${calendarDTOList}" >
+			<td colspan="2"> <br>
+				제목 : <input type="text" th:value="${calendarDTO.clubCalendarTitle}">  <br>
+				날짜 : <input type="text" th:value="${calendarDTO.clubCalendarDate}">  <br>
+				장소 : <input type="text" th:value="${calendarDTO.clubCalendarPlace}">  <br>
+				비용 : <input type="text" th:value="${calendarDTO.clubCalendarPrice}"> 원 <br>
+			</td>
+			
+			
 		</tr>
-		
+		<!-- 
 		<tr>
 		<td rowspan="3">달력이미지</td>
 		<td>날짜 : <input type="date"></td>
@@ -148,6 +150,7 @@
 		<tr>
 		<td>모임비 : <input type="text"> </td>
 		</tr>
+		 -->
 	</table>
 <!-- /모임 일정표 -->
 

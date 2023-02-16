@@ -85,10 +85,10 @@ public class ClubServiceImpl implements ClubService {
 
 
 
-	//상세 페이지 1개 가져오는 매서드
+	//모임상세 페이지 1개 가져오는 매서드
 	@Override
 	public ClubDTO get(Long clubNum) {
-		log.info("[[[[[[[get매서드");
+		log.info("........get()........");
 		System.out.println("서비스Impl clubNum: "+clubNum);
 		Object clubEntityObject = clubRepository.getClubNum(clubNum);
 		
