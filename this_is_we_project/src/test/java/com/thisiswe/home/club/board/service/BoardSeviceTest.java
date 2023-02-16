@@ -1,14 +1,13 @@
 package com.thisiswe.home.club.board.service;
 
-import com.thisiswe.home.place.club.board.service.BoardService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.thisiswe.home.place.club.board.dto.BoardDTO;
-import com.thisiswe.home.place.club.board.dto.PageRequestDTO;
-import com.thisiswe.home.place.club.board.dto.PageResultDTO;
+import com.thisiswe.home.club.board.dto.BoardDTO;
+import com.thisiswe.home.club.board.dto.PageRequestDTO;
+import com.thisiswe.home.club.board.dto.PageResultDTO;
 
 @SpringBootTest
 //TODO [SeviceTest] 게시판
