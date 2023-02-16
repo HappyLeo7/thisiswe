@@ -5,54 +5,17 @@
 
 
 	<th:block th:fragment="connection">
-<h1>Hi This is we</h1>
-<h2>member 여러분</h2>
-<div>저는 this is we (2조) 조장 레오 입니다.</div>
-<a th:href="@{/login/test2}">login/test2 문수찬</a>
+<h1>홈화면</h1>
+<h3><a th:href="@{/thisiswe/club}">모임</a></h3>
 <hr>
-<a th:href="@{/login/test3}">login/test3 오세원</a>
-<a th:href="@{/login/test55}">login/test55 오세원</a>
-<hr>
-<a th:href="@{/login/dw_class}">login/dw_class 김동완</a>
-<hr>
-<a th:href="@{/login/narong_test2}">login/narong_test2 김나영</a>
+<h3><a th:href="@{/thisiswe/place}">장소</a></h3>
 
-<div class="header" style="position:relative;">
-<div id="header-title-login-user">
-<span th:text="${userNickname}"></span> 님의
-</div>
-<div id="header-title-select-shop">
-testtset
-</div>
+
+
+
 <form id="my_form" method="post" action="/user/logout">
 <a id="logout-text" href="javascript:{}" onclick="document.getElementById('my_form').submit();">로그아웃</a>
 </form>
-</div>
-<div class="nav">
-<div class="nav-see active">
-모아보기
-</div>
-<div class="nav-search">
-탐색하기
-</div>
-</div>
-<div id="see-area">
-<div id="product-container">
-</div>
-</div>
-<div id="search-area">
-<div>
-<input type="text" id="query">
-<!-- <img src="images/icon-search.png" alt="">-->
-</div>
-<div id="search-result-box">
-</div>
-<div id="container" class="popup-container">
-<div class="popup">
-<button id="close" class="close">
-</button>
-</div>
-</div>
-</div>
+
 </th:block>
 </th:block>
