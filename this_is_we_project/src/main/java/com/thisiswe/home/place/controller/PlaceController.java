@@ -24,14 +24,13 @@ public class PlaceController {
 	private final PlaceService placeService;
 	private final PlaceReviewService placeReviewService;
 
-	
 	@GetMapping("place")
 	public String List(Model model) {
 		log.info("================(get)placeListController==============");
 		model.addAttribute("result", placeService.getList());
 		return "place/place_list";
 	}
-	
+
 	@GetMapping("/place/c{num}")
 	public String placeRead(Long num, Model model) {
 		log.info("================(get)placeReadController==============");
@@ -39,14 +38,14 @@ public class PlaceController {
 		model.addAttribute("reviews", placeReviewService.getList(num));
 		return "place/place_read";
 	}
-	
+
 	// 장소 등록
 	@GetMapping("/place/register")
 	public String placeRegisterGet() {
 		log.info("================(get)placeRegisterController==============");
 		return "place/place_register";
 	}
-	
+
 	// 장소 등록
 	@PostMapping("/place/register")
 	public String placeRegisterPost(PlaceDTO placeDTO) {
@@ -54,13 +53,4 @@ public class PlaceController {
 		placeService.register(placeDTO);
 		return "redirect:/thisiswe/place";
 	}
-	
-	// 장소 리뷰 등록
-//	@PostMapping("/place/register")
-//	public String placeReviewRegisterPost(PlaceDTO placeDTO) {
-//		log.info("================(get)placeRegisterController==============");
-//		placeService.register(placeDTO);
-//		return "redirect:/thisiswe/place";
-//	
-//	}
 }
