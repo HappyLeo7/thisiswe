@@ -10,8 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.thisiswe.home.club.board.entity.Board;
-import com.thisiswe.home.club.board.entity.Board.BoardBuilder;
-import com.thisiswe.home.club.board.reply.dto.ReplyDTO.ReplyDTOBuilder;
 import com.thisiswe.home.enetity.DateEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 

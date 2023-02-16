@@ -3,10 +3,6 @@ package com.thisiswe.home.club.calendar.service;
 
 import com.thisiswe.home.club.calendar.dto.CalendarDTO;
 import com.thisiswe.home.club.calendar.entity.CalendarEntity;
-import com.thisiswe.home.club.dto.ClubDTO;
-import com.thisiswe.home.club.entity.ClubEntity;
-
-import lombok.extern.log4j.Log4j2;
 
 
 public interface CalendarService {

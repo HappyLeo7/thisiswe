@@ -12,7 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.transaction.annotation.Transactional;
+import javax.transaction.Transactional;
 
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.user.entity.UserEntity;
@@ -54,23 +54,12 @@ public class BoardRepositoryTest {
 		Board board = result.get();
 		
 		System.out.println("=========================================================");
-		System.out.println("================ Board 게시판 확인 ================> " + board);
-		System.out.println("====== Board 게시판 UserID 확인 ======> " + board.getUserId());		
-		System.out.println("=========================================================");
-		
-	}
-	
-	//TODO [RepositoryTest] 게시판 - Query - 게시판 내 댓글
-	@Test
-	public void testGetBoardWithReply() {
-		
-		List<Object[]> result = boardRepository.getBoardWithReply(13L);
-		System.out.println("=========================================================");
-		
-		for(Object[] arr : result) {
-			System.out.println(Arrays.toString(arr));
-		}
-		
+		System.out.println("================== BoardRepositoryTest ==================");
+		System.out.println("===================== Board 게시판 확인 =====================");
+		System.out.println(board);
+		System.out.println("================= Board 게시판 UserID 확인 =================");
+		System.out.println(board.getUserId());	
+		System.out.println("================== BoardRepositoryTest ==================");
 		System.out.println("=========================================================");
 	}
 	
@@ -85,6 +74,32 @@ public class BoardRepositoryTest {
 		System.out.println("=========================================================");
 		System.out.println(Arrays.toString(arr));
 		System.out.println("=========================================================");		
+	}
+	
+	//TODO [RepositoryTest] 게시판 - Query - 게시판 과 작성자 간 join
+	@Test
+	public void testReadBoardWithWriter() {
+		
+		Object result = boardRepository.getBoardWithWriter(45L);
+		Object[] arr = (Object[]) result;
+		
+		System.out.println("=========================================================");
+		System.out.println(Arrays.toString(arr));
+		System.out.println("=========================================================");
+	}	
+	
+	//TODO [RepositoryTest] 게시판 - Query - 게시판 내 댓글
+	@Test
+	public void testGetBoardWithReply() {
+		
+		List<Object[]> result = boardRepository.getBoardWithReply(13L);
+		System.out.println("=========================================================");
+		
+		for(Object[] arr : result) {
+			System.out.println(Arrays.toString(arr));
+		}
+		
+		System.out.println("=========================================================");
 	}
 
 	//TODO [RepositoryTest] 게시판 - Query - 댓글 갯수
@@ -106,23 +121,40 @@ public class BoardRepositoryTest {
 		System.out.println("=========================================================");
 	}
 	
-	//TODO [RepositoryTest] 게시판 - Query - 검색 제목 "모임" 입력 시, 총 검색 갯수
+	//TODO [RepositoryTest] 게시판 - Query - 검색 제목 "ex) 모임" 입력 시, 총 검색 갯수
 	@Transactional
 	@Test
 	public void testSearchPage() {
 		
 		Pageable pageable = PageRequest.of(0, 10, Sort.by("boardNum").descending());
+		
+		System.out.println("================== BoardRepositoryTest ==================");
+		System.out.println("================== pageable ==================" + pageable);
+		System.out.println("================== BoardRepositoryTest ==================");
+		
 		Page<Object[]> result = boardRepository.searchPage("t", "모임", pageable);
+		
+		System.out.println("================== BoardRepositoryTest ==================");
+		System.out.println("==================== result ====================" + result);
+		System.out.println("================== BoardRepositoryTest ==================");
+		
 	}
-	
-	/*
+		
 	@Transactional
 	@Test
 	public void testSearchPageSort() {
 		
-		Pageable pageable = PageRequest.of(0, 10, Sort.by("boardNum").descending()
-												.and(Sort.by("title").ascending()));
-		Page<Object[]> result = boardRepository.searchPage("t", "2", pageable);
+		Pageable pageable = PageRequest.of(0, 10, Sort.by("boardNum")
+				.descending().and(Sort.by("boardTitle").ascending()));
+		
+		System.out.println("================== BoardRepositoryTest ==================");
+		System.out.println(pageable);
+		System.out.println("================== BoardRepositoryTest ==================");
+		
+		Page<Object[]> result = boardRepository.searchPage("t", "모임", pageable);
+		
+		System.out.println("================== BoardRepositoryTest ==================");
+		System.out.println(result);
+		System.out.println("================== BoardRepositoryTest ==================");
 	}
-	*/
 }

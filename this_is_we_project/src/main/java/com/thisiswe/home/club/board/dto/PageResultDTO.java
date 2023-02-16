@@ -34,7 +34,6 @@ public class PageResultDTO<DTO, EN> {
 		
 		System.out.println("======== PageResultDTO 위치 체크! ========");
 		makePageList(result.getPageable());
-		
 	}
 
 	private void makePageList(Pageable pageable) {

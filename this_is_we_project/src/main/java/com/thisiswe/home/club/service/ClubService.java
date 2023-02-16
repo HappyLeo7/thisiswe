@@ -1,9 +1,9 @@
 package com.thisiswe.home.club.service;
 
+import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.dto.PageResultDTO;
-import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
 public interface ClubService {

@@ -1,16 +1,12 @@
 package com.thisiswe.home.club.board.service;
 
+import com.thisiswe.home.club.board.entity.Board;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.dto.PageResultDTO;
-import com.thisiswe.home.club.board.entity.Board;
-import com.thisiswe.home.club.board.repository.BoardRepository;
 import com.thisiswe.home.user.entity.UserEntity;
-
-import lombok.RequiredArgsConstructor;
 
 @Service
 //TODO [Service] 게시판
@@ -28,11 +24,11 @@ public interface BoardService {
 	// TODO [Service] 게시판 - 수정(modify)
 	void modify(BoardDTO boardDTO);
 	
-	// TODO [Service] 게시판 - 삭제(remove)
-	void remove(Long boardNum);
+	// TODO [Service] 게시판 - 게시판 1개를 삭제(remove)하면 댓글도 함께 사라지도록
+	void removeWithReplies(Long boardNum);
 	
 	// TODO [Service] 게시판 - 조회수 증가(중복 제외)
-	void countView(Long boardNum, BoardDTO boardDTO);
+	Long countView(Long boardNum, BoardDTO boardDTO);
 	
 	// TODO [Service] 게시판 - DTO(WEB)에서 Entity(DB)로
 	default Board boardDTOToEntity(BoardDTO boardDTO) {
@@ -62,9 +58,10 @@ public interface BoardService {
 								.boardTitle(board.getBoardTitle())
 								.boardContent(board.getBoardContent())
 								.userId(userEntity.getUserId())
+								.regDate(board.getRegDate())
 								.updateDate(board.getUpdateDate())
 								.boardView(board.getBoardView())
-								.replyCount(board.getReplyCount())
+								.replyCount(replyCount.intValue())		//replyCount는 Long보다는 int 타입을 사용하기!
 								.build();
 													
 			return boardDTO;
