@@ -5,21 +5,21 @@
 
 
 	<th:block th:fragment="connection">
+	
 <h1>Hi This is we</h1>
 <h2>member 여러분</h2>
-<div>저는 this is we (2조) 조장 레오 입니다.</div>
-<a th:href="@{/login/test2}">login/test2 문수찬</a>
-<hr>
-<a th:href="@{/login/test3}">login/test3 오세원</a>
-<a th:href="@{/login/test55}">login/test55 오세원</a>
-<hr>
-<a th:href="@{/login/dw_class}">login/dw_class 김동완</a>
-<hr>
-<a th:href="@{/login/narong_test2}">login/narong_test2 김나영</a>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 
 <div class="header" style="position:relative;">
 <div id="header-title-login-user">
 <span th:text="${userNickname}"></span> 님의
+
+<button id="login-id-btn" onclick="location.href='/login/user/signup'">
+			회원 가입하기</button>
 </div>
 <div id="header-title-select-shop">
 testtset
@@ -30,7 +30,7 @@ testtset
 </div>
 <div class="nav">
 <div class="nav-see active">
-모아보기
+모아보기"src/main/resources/templates/mypage/main.html"
 </div>
 <div class="nav-search">
 탐색하기
@@ -54,5 +54,7 @@ testtset
 </div>
 </div>
 </div>
+Authenticated username:
+<sec:authentication="name"></sec:authentication>
 </th:block>
 </th:block>

@@ -70,6 +70,18 @@ public class UserEntity {
 		this.userImageUrl = userImageUrl;
 		this.role = role;
 		}
+	
+	public UserEntity(String userId, String password, String userNickname, String userGender, String userEmail, String userPhoneNumber, String userImageUrl, UserRoleEnum role, Long kakaoId) {
+		this.userId = userId;
+		this.userPassword = password;
+		this.userNickname = userNickname;
+		this.userGender = userGender;
+		this.userEmail = userEmail;
+		this.userPhoneNumber = userPhoneNumber;
+		this.userImageUrl = userImageUrl;
+		this.role = role;
+		}
+
 
 //	public void changeName(String name) {
 //		this.userNickname = name; // 닉네임 변경

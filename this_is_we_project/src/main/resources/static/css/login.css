@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+*{
+    -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+    user-select:none;
+font-family: 'Noto Sans KR', sans-serif;
+list-style:none;
+text-decoration: none;
+margin: 0; padding: 0;
+}
+
+
+input{
+    outline: white;
+}
+
+div#로그인 {
+    margin-top: 170px;
+    text-align: center;
+}
+
+/* 로그인 */
+
+div#로그인>span{
+    font-size: 21px;
+    /* font-weight: bold; */
+}
+
+div#로그인>form{
+    display: inline
+}
+
+div#로그인>form>input{
+    border-radius: 3px;
+    width: 400px;
+    height: 50px;
+    border: solid rgb(201, 201, 201) 1px;
+    margin: 7px;
+}
+
+div#로그인>form>input#입력창{
+    border: solid white;
+    border-bottom: solid 1px rgb(197, 197, 197);
+    height: 32px;
+    font-size: 16px;
+}
+
+div#로그인>form>input#입력창::placeholder{
+    color: rgb(198, 195, 195);
+}
+
+div#로그인>form>span{
+    position: relative;
+    right: 43px;
+}
+
+div#로그인>form>span#로그인상태>input{
+    accent-color: rgb(139, 139, 139);
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+div#로그인>form>span#로그인상태>span{
+    position: relative;
+    left: 2px;
+    bottom: 3px;
+}
+
+div#로그인>form>span#찾기{
+    position: relative;
+    left: 43px;
+}
+
+div#로그인>form>span#찾기>a{
+    color: grey;
+    font-size: 13px;
+    text-decoration: none;
+}
+div#로그인>form>span#찾기>a#idfind{
+
+}
+
+div#로그인>form>input#로그인버튼{
+    position: relative;
+    right: 3px;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    width: 197px;
+}
+
+div#로그인>a#회원가입버튼{
+    position: relative;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 3px;
+    display: inline-block;
+    height: 50px;
+    width: 197px;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    bottom: 13px;
+}
+
+div#로그인>a#회원가입버튼>span{
+    position: relative;
+    top: 12px;
+}
+
+/* 카카오 로그인 */
+
+div#로그인>a#카카오 {
+    position: relative;
+    left: 2px;
+    border-radius: 3px;
+    background-color: rgb(255, 222, 0);
+    height: 50px;
+    width: 410px;
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: none;
+}
+
+div#로그인>a#카카오:link {
+    color: black;
+}
+
+
+div#로그인>a#카카오>img {
+    margin-top: 12px;
+    width: 30px;
+}
+
+div#로그인>a#카카오>span {
+    position: relative;
+    left: 6px;
+    bottom: 8px;
+}
+
+
+/*<-- nav -->  */
+/* 메뉴바 호버시 화이트배경 */
+.navbar:hover {
+    background-color: white;
+}
+
+
+
+/* <-- navbar -->
+display : flex; 목록들을 가로로 나란히 나열시킴
+jsstify-content : space-between; 박스 사이 빈 공간을 넣어준다.
+align-items : center는 navbar;에 있는 박스들을 navbar내에서 가운대 정렬
+padding : 8px 12px navbar;에 공백은 위아래8px, 양 옆12px를 넣어 바짝 붙는 것을 방지시켰다.
+position:sticky; top:0; 으로 스크롤을 내릴때 고정적으로 같이 내려오도록 설정
+box-shadow : 1px 2px 3px gray;는 x축1px y축2px 번짐3px을 이용해 네비가 모든 layout-box위에 있는것처럼 효과를 넣어줬다.
+*/
+.navbar {
+    background-color: white;
+    display: flex;
+    /* position: absolute; */
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 8px 12px;
+    position: sticky; top: 0;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    transition: 0.5s;
+    /* background-color: white; */
+}
+.navbar.sticky {
+    /* position: fixed; */
+    background-color: white;
+}
+
+/* logo */
+.navbar_logo {
+    flex-basis: 30%;
+}
+.navbar_logo>a>h1 {
+    /* margin-left: 20px; */
+    display: inline-block;
+    font-size: 36px;
+    color: rgba(20, 5, 5, 0.801);
+    
+    /* background: orange; */
+    /* width: 10%; height: auto; */
+    /* background-color: aquamarine; */
+    
+}
+
+/* 메뉴들 글자 색상 */
+
+.navbar_menu > a > li  {
+    font-size: 20px;
+    font-weight: 900;
+    color: rgba(20, 5, 5, 0.801);
+    /* background-color: aquamarine; */
+
+}
+
+/* 마우스를 올릴시
+  글자강조(주황색, 20pt, 굵게)표시 */
+.navbar li:hover {
+    /* background-color: rgba(129, 187, 67, 0.745); */
+    border-radius: 4px;
+    color: orangered;
+    font-weight: bold;
+}
+
+
+
+/* display : flex;로 메뉴 목록들을 가로로 위치하도록 변경
+   padding:left:0; 으로 지정해 공백이 생기는것을 방지
+ */
+.navbar_menu {
+    display: flex;
+    flex-basis: 15%;
+    /* margin-left: -60px; */
+
+}
+
+/* padding : 8px 12px;로 각 메뉴마다 공간을 줬음. */
+.navbar_menu li {
+    padding: 8px 12px;
+
+
+}
+
+/* Search */
+.SearchArea{
+    margin-top: -20px;
+    display:inline;
+    padding-left: 10%;
+    text-align: center;
+    width: 300px;
+}
+/* 인풋의 디자인을 없앰 */
+.SearchArea > form > button  {
+    border: none;
+    /* 투명색 적용 */
+    background-color: transparent;
+    
+}
+
+.SearchArea > form > input {
+    border-radius: 5px;
+    border: 1.7px solid black; 
+    background: rgb(255, 255, 255);
+    width: 65%; height: 35px;
+    color:  black;
+    padding-left:10px;
+    
+}
+.SearchArea > form > button > img {
+    width: 30px;
+    height: 30px;
+    position:relative;
+    top:12px;
+    cursor: pointer;
+}
+
+
+/* flex박스로 만들어 가로로 나열 */
+.navbar_login {
+    display: flex;
+    flex-basis: 40%;
+    justify-content: flex-end;
+    /* padding-left: 10px; */
+    
+}
+/* flex-end: */
+
+/* border-right : 2px solid gray; 로그인과 회원가입 오른쪽에 구분선 표시 */
+.navbar_login>a {
+    float: right;
+    padding: 2.5px 10px 2.5px 10px;
+    border-right: 2px solid gray;
+}
+.navbar_login> a > li{
+    font-size: 17px;
+    font-weight: 900;
+    color: rgba(20, 5, 5, 0.801);
+}
+/* last-chile { border: none }로 회원가입 리스트를 지정 후 오른쪽에 표기되있던 선을 없앤다. */
+.navbar_login>a:last-child {
+    border: none;
+}
+
+/* position:absolute; 로 내가 지정한 곳에 위치를 고정시킨다. 
+   right : 25px; top: 30px; 오른쪽끝으로부터 25px, 위에서부터 30px만큼 떨어진곳으로 메뉴버튼을 지정. 
+   display: none; 화면이 768px 전까지 메뉴버튼이 숨겨지도록 설정(media참조)*/
+.navbar_toggleBtn {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    display: none;
+
+}
+
+
+/* media를 사용하여 반응형으로 바꿔준다.
+ screen의 너비가 0부터 최대700px(반대로 너비가 700일때부터)
+ 까지는 아래있는 코드들을 사용한다. */
+@media screen and (max-width: 768px) {
+
+    /* flex-direction:column;은 navbar 박스 내부의 박스들을 세로형태로 변형
+       align-items: flex-start; 내부 박스들을 왼쪽에서 시작할 수 있도록지정
+     */
+    .navbar {
+        z-index: 2;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+        opacity: 1;
+        background-color: white;
+        margin: 0; padding: 0;
+        
+    }
+
+    /*
+    display: none; width가 700이하일때 메뉴들이 안보이도록 지정(스크립트로 버튼 클릭시 보이도록 할 예정) 
+    flex-direction:column; menu들을 박스 내부의 박스들을 세로형태로 변형   
+    align-items: center는 박스 내 menu들이 가운대로 정렬되도록 한다.
+    width: 100%를 줘서 nume박스들의 공간을 줘 정상적으로 align-items가 작동하도록 함.*/
+    .navbar_menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background-color: white;
+        /* border-top: 1px solid black; */
+
+        margin: 0; padding: 0;
+    }
+
+    /* 위와 같은 방법 */
+    .navbar_menu li {
+        width: 100%;
+        text-align: center;
+        /* border-top: 1px solid black; */
+    }
+    .SearchArea{
+        display: none;
+    }
+    /* display: none; width가 700이하일때 메뉴들이 안보이도록 지정(스크립트로 버튼 클릭시 보이도록 할 예정) */
+    .navbar_login {
+        display: none;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+        /* margin-left: 4%; */
+        background-color: white;
+        padding-left: 20px;
+        
+    }
+    .navbar_login li {
+        border: 2px bold black;
+    }
+
+    /* dlsplay:block; 으로 햄버거 메뉴 아이콘이 width가 700이하일때 보이도록 설정  */
+    .navbar_toggleBtn {
+        display: block;
+    }
+
+    /* 햄버거 메뉴 아이콘 클릭시 메뉴와 로그인창이 보이도록 설정(스크립트 이용) */
+    .navbar_menu.active,
+    .navbar_login.active {
+        display: flex;
+    }
+}

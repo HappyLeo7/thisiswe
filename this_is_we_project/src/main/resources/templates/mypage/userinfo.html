@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+
+
+	<th:block th:fragment="connection">
+<h1>마이페이지</h1>
+
+<a th:href="@{/login/test2}">login/test2 문수찬</a>
+<hr>
+<a th:href="@{/login/test3}">login/test3 오세원</a>
+<a th:href="@{/login/test55}">login/test55 오세원</a>
+<hr>
+<a th:href="@{/login/dw_class}">login/dw_class 김동완</a>
+<hr>
+<a th:href="@{/login/narong_test2}">login/narong_test2 김나영</a> <br/>	
+
+닉네임 : <span th:text="${userNickname}"></span> <br/>
+이메일 : <span th:text="${userEmail}"></span> <br/>
+이미지 : <span th:text="${userImageUrl}"></span> <br/>
+
+<form id="my_form" method="post" action="/user/logout">
+<a id="logout-text" href="javascript:{}" onclick="document.getElementById('my_form').submit();">로그아웃</a>
+</form>
+
+</th:block>
+</th:block>

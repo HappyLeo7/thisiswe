@@ -3,6 +3,7 @@ package com.thisiswe.home.user.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,6 +14,7 @@ import com.thisiswe.home.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequestMapping("/thisiswe")
 @RequiredArgsConstructor // final이나 @NonNull인 필드 값만 파라미터로 받는 생성자 만듦
 public class UserController {
 
@@ -20,24 +22,30 @@ public class UserController {
 	private final KakaoUserService kakaoUserService;
 
 	// 회원 로그인 페이지
-	@GetMapping("/login/user/login")
+	@GetMapping("/user/login")
 	public String login() {
-		return "/login/login";
+		return "login/login";
+	}
+	
+	// post login 이동
+	@PostMapping("/user/login")
+	public String loginsucces() {
+		return "login/";
 	}
 
 	// 회원 가입 페이지
-	@GetMapping("/login/user/signup")
+	@GetMapping("/user/signup")
 	public String signup() {
-		return "/login/signup";
+		return "redirect:/thisiswe/home";
 	}
 
 	// 회원 가입 요청 처리
-	@PostMapping("/login/user/signup")
+	@PostMapping("/user/signup")
 	public String registerUser(SignupRequestDto requestDto) {
 		
 		System.out.println("확인용");
 		userService.registerUser(requestDto);
-		return "redirect:/login/login";
+		return "redirect:/user/login";
 	}
 
 //	@GetMapping("/user/kakao/callback")
