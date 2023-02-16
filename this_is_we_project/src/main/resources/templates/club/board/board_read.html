@@ -6,13 +6,19 @@
 	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
-
+		
+	<!-- board.css 연결 -->
+		<link rel="stylesheet" th:href="@{/css/board.css}" />
+	<!-- /board.css 연결 -->
+		
+	<!-- board.js 연결 -->
+		<script th:src="@{/js/board.js}"></script>
+	<!-- /board.js 연결 -->
+		
 		<!-- 게시판 읽어오기 -->
 		<h1 class="">게시판 조회</h1>
 		
-		<!-- 게시판 조회 테이블 -->
-		<!-- /*
-		
+		<!-- 게시판 조회 테이블 -->		
 		<table>
 			<tr>
 				<td>순번</td>
@@ -73,38 +79,27 @@
 				</td>				
 			</tr>
 
-		</table>
-		 */ -->
-		 
+		</table>		 
 		<!-- /게시판 조회 테이블 -->
 		
-		<br>
-		<!--			
-			<a th:href="@{/club/board/modify(boardNum=${boardDTO.boardNum},
-														page=${requestDTO.page},
+		<br>					
+		<!-- <a th:href="@{/thisiswe/club/board/modify(boardNum=${boardDTO.boardNum},
+														page=${result.page},
+                                               			type=${pageRequestDTO.type},
+                                               			keyword=${pageRequestDTO.keyword})}"> -->
+           <a th:href="@{/thisiswe/club/board/modify(boardNum=${boardDTO.boardNum})}">						
+            	<button type="button" class="btn btn-info">수정</button>
+			</a>	
+				
+		<!-- <a th:href="@{/thisiswe/club/board/list(page=${requestDTO.page},
 														type=${requestDTO.type},
-            											keyword=${requestDTO.keyword})}">
-				<button type="button" class="btn btn-info">수정</button>
-			</a>			
-			<a th:href="@{/club/board/list (page=${requestDTO.page},
-														type=${requestDTO.type},
-            											keyword=${requestDTO.keyword})}">
+            											keyword=${requestDTO.keyword})}"> -->
+           	<a th:href="@{/thisiswe/club/board/list(page=${requestDTO.page})}"> 											
 				<button type="button" class="btn btn-secondary">목록</button>
-			</a> -->
-		
-		<!-- /*
-		
-		<a th:href="@{/club/board/modify(boardNum=${boardDTO.boardNum})}">
-			<button type="button" class="btn btn-info">수정</button>
-		</a>
-
-		<button type="button" class="btn btn-secondary">목록</button>
-		
-		*/ -->
+			</a>
 		<!-- 게시판 읽어오기 -->
 
 		<!-- 댓글 추가 -->
-		<!-- /*
 		<div>
 			<div class="">
 				<h4>
@@ -117,7 +112,6 @@
 			</div>
 			<div class="list-group replyList"></div>
 		</div>
-		 */ -->
 		<!-- 댓글 추가 -->
 
 		<!-- 댓글 목록 추가 -->

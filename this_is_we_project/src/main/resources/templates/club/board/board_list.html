@@ -6,10 +6,18 @@
 	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
-
+		
+	<!-- board.css 연결 -->
+		<link rel="stylesheet" th:href="@{/css/board.css}" />
+	<!-- /board.css 연결 -->
+		
+	<!-- board.js 연결 -->
+		<script th:src="@{/js/board.js}"></script>
+	<!-- /board.js 연결 -->
+		
 		<!-- 게시판 전체 목록 -->
 		<h1 class="">
-			게시판 목록 <span> <a th:href="@{/club/board/register}">
+			게시판 목록 <span> <a th:href="@{/thisiswe/club/board/register}">
 					<button type="button" class="btn btn-outline-primary">REGISTER</button>
 			</a>
 			</span>
@@ -27,20 +35,22 @@
 						<th scope="col">조회수</th>
 					</tr>
 				</thead>
-
 				<!-- /게시판 목록 head 부분 -->
 
-				<!-- 게시판 목록 body 부분 -->
-				
+				<!-- 게시판 목록 body 부분 -->				
 				<tbody>		
 					<tr th:each="boardDTO : ${result.DTOList}">
 						<th scope="row">[[${boardDTO.boardNum}]]</th>
 						<td>[[${boardDTO.boardCategory}]]</td>
 						
-						<td><a
-							th:href="@{/club/board/read(boardNum=${boardDTO.boardNum})}">
+						<td>
+							<a th:href="@{/thisiswe/club/board/read(boardNum=${boardDTO.boardNum},
+																	page=${result.page},
+                                               						type=${pageRequestDTO.type},
+                                               						keyword=${pageRequestDTO.keyword})}">
 								[[${boardDTO.boardTitle}]]..[<b th:text="${boardDTO.replyCount}"></b>]
-						</a></td>
+							</a>
+						</td>
 						
 						<td>[[${boardDTO.userId}]]</td>
 						<td>[[${#temporals.format(boardDTO.regDate, 'yyyy-MM-dd')}]]</td>
@@ -56,7 +66,7 @@
 			<!-- 검색창 추가 -->
 			<div class="">
 				<div class="">
-					<form id="searchForm" action="/club/board/list" method="get">
+					<form id="searchForm" action="/thisiswe/club/board/list" method="get">
 
 						<select name="type">
 							<option value="" th:selected="${pageRequestDTO.type==null}">-----</option>
@@ -84,24 +94,24 @@
 
 			<!-- 페이지 부분 : 이동, 이전, 다음 -->
 			<ul class="">
-				<li class="" th:if="${result.prev}"><a class="page-link"
-					th:href="@{/club/board/list(page=${result.start-1},
-                                				type=${pageRequestDTO.type},
-                               					keyword=${pageRequestDTO.keyword})}"
-					tabindex="-1">이전</a></li>
+				<li class="" th:if="${result.prev}">
+					<a class="page-link" th:href="@{/thisiswe/club/board/list(page=${result.start-1},
+                                											type=${pageRequestDTO.type},
+                               												keyword=${pageRequestDTO.keyword})}"
+					tabindex="-1">이전</a>
+				</li>
 
 				<li th:class="'page-item '+ ${result.page == page?'active':''}"
 					th:each="page: ${result.pageList}"><a class="page-link"
-					th:href="@{/club/board/list(page=${page},
-                                 				type=${pageRequestDTO.type},
-                            					keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
+					th:href="@{/thisiswe/club/board/list(page=${page},
+                                 						type=${pageRequestDTO.type},
+                            							keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
 				</li>
 
-				<li class="page-item" th:if="${result.next}"><a
-					class="page-link"
-					th:href="@{/club/board/list(page=${result.end},
-                                 				type=${pageRequestDTO.type},
-                               					keyword=${pageRequestDTO.keyword})}">다음</a>
+				<li class="page-item" th:if="${result.next}">
+					<a class="" th:href="@{/thisiswe/club/board/list(page=${result.end},
+                                 									type=${pageRequestDTO.type},
+                               										keyword=${pageRequestDTO.keyword})}">다음</a>
 				</li>
 			</ul>
 			<!-- /페이지 부분 : 이동, 이전, 다음 -->
@@ -136,20 +146,20 @@
          var msg = [[${msg}]];
          console.log(msg);
          
-         // 107행 class="modal"
+         // 112행 class="modal"
          if(msg){
             $(".modal").modal();
          }
          
-         // 56행 id="searchForm"
+         // 61행 id="searchForm"
          var searchForm = $("#searchForm");
          
-         // 74행 class="btn-search"
+         // 79행 class="btn-search"
          $('.btn-search').click(function(e){
             searchForm.submit();
          });
          
-         // 75행 class="btn-clear"
+         // 80행 class="btn-clear"
          $('.btn-clear').click(function(e){
             searchForm.empty().submit();
          });

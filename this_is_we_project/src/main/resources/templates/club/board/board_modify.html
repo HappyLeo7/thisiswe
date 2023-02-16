@@ -6,18 +6,23 @@
 	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
-
+		
+	<!-- board.css 연결 -->
+		<link rel="stylesheet" th:href="@{/css/board.css}" />
+	<!-- /board.css 연결 -->
+		
+	<!-- board.js 연결 -->
+		<script th:src="@{/js/board.js}"></script>
+	<!-- /board.js 연결 -->
+		
 		<!-- 게시판 수정 -->
 		<h1 class="">게시글 수정</h1>
-			<!--
-			<form th:action="@{/club/board/modify}" th:method="post">
-				
+			<form th:action="@{/thisiswe/club/board/modify(boardNum=${boardDTO.boardNum})}" th:method="post">
+		 
  			<input type="hidden" name="page" th:value="${requestDTO.page}">
-			<input type="hidden" name="type" th:value="${requestDTO.type}">
-			<input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
-			<input type="hidden" name="boardName" th:value="${boardDTO.BoardNum()}">
+			<!--<input type="hidden" name="type" th:value="${requestDTO.type}">
+			<input type="hidden" name="keyword" th:value="${requestDTO.keyword}"> -->	
 			</form>
-			 -->
 			 
 		<!-- 게시판 수정 테이블 -->
 		<table>

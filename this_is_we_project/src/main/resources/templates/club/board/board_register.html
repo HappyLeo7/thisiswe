@@ -6,10 +6,18 @@
 	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
-
+		
+	<!-- board.css 연결 -->
+		<link rel="stylesheet" th:href="@{/css/board.css}" />
+	<!-- /board.css 연결 -->
+		
+	<!-- board.js 연결 -->
+		<script th:src="@{/js/board.js}"></script>
+	<!-- /board.js 연결 -->
+		
 		<!-- 게시판 등록 -->
 		<h1 class="">게시글 등록</h1>
-		<form th:action="@{/club/board/register}" th:method="post">
+		<form th:action="@{/thisiswe/club/board/register}" th:method="post">
 			
 			<!-- 게시판 등록 테이블 -->
 			<table>
@@ -42,19 +50,20 @@
 					</td>
 				</tr>
 				
-			<tr class="">
-					<td>조회수</td>
+				<!-- 게시판 등록: 조회수 숨김 처리 -->
+				<tr class="">
 					<td>
 						<input type="hidden" class="" name="boardView" value="0" >
 					</td>
 				</tr>
+				<!-- /게시판 등록: 조회수 숨김 처리 -->
 			</table>
 			<!-- /게시판 등록 테이블 -->
 
 			<br>
 			
 			<button type="submit" class="btn btn-success">등록</button>
-			<button type="reset" class="btn btn-warning">취소</button>
+			<button type="submit" class="btn btn-warning">목록</button>
 		</form>
 		<!-- /게시판 등록 -->
 
