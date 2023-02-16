@@ -20,7 +20,6 @@
 			<div>[[${place.getPlaceGuide}]]</div>
 			<br>
 			
-			<form action="/thisiswe/place/register">
 				<input type="radio" name="placeReviewRate" value="1"> 
 				<input type="radio" name="placeReviewRate" value="2"> 
 				<input type="radio" name="placeReviewRate" value="3"> 
@@ -28,8 +27,7 @@
 				<input type="radio" name="placeReviewRate" value="5"> 
 				 
 				<input type="text" name="placeReviewContent">
-				<input type="submit" value="리뷰 등록">
-			</form>	
+				<button type="button" class="reviewSave">리뷰 등록</button>
 			<div style="border: 1px solid;" th:each="review : ${reviews}">
 				
 				<div>
@@ -44,9 +42,75 @@
 				</div>
 			</div>
 		</div>
-		
-	
    	</div>
-   </div>
+   	
+   
+   
+<script th:inline="javascript">
+	$(document).ready(function(){
+		
+		
+		
+		var replyer = null;
+		
+		<sec:authorize access="isAuthenticated()">
+		
+			replyer = '<sec:authentication property="principal.username"/>';
+		
+		</sec:authorize>
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
+		
+		
+		
+		
+		
+		
+		const placeNum = [[${place.placeNum}]];
+		
+		$(".reviewSave").click(function(){
+			
+			var review = {
+					placeNum: placeNum, 
+					placeReviewRate: $('input[name=placeReviewRate]:checked').val(),
+					placeReviewContent: $('input[name=placeReviewContent]').val() 
+					
+	      }
+			
+			console.log(review)
+			
+			$.ajax({
+				url: '/place/review',
+				method: 'post',
+				data: JSON.stringify(review),
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				success: function(data){
+					
+					console.log("success...." + data);
+					
+					var newRno = parseInt(data);
+					alert(newRno + "번 댓글이 등록되었습니다.");
+					modal.modal('hide');
+					loadJSONData();
+				}
+			});
+			
+			
+			
+			
+			
+			
+		})
+		
+		
+		
+		
+		
+	})
+</script>
+   
    </th:block>
 </th:block>
