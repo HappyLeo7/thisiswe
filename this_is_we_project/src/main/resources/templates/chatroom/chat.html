@@ -3,12 +3,15 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Chating</title>
     <style>
         * {
             margin: 0;
             padding: 0;
         }
+
+        @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
         .container {
             width: 500px;
@@ -33,22 +36,17 @@
             border: 5px solid green;
             border-radius: 25px;
 
-            margin-left: 3rem;
-            position: relative;
+
+            /* 임시 */
+            outline:2px solid black;
+            position:relative;
+
         }
 
-        .chating > section {
-            position: absolute;
-            top: 0;
-            left: -3rem;
-        }
 
-        .chating > span {
-            display: block;
-        }
 
         .chating .me {
-            padding: 0.8rem;
+            padding: 0.4rem;
             border-radius: 1rem;
             clear: both;
             font-weight: bold;
@@ -58,17 +56,35 @@
             box-shadow: -1px 1px 0 rgba(0, 0, 0, 0.3);
         }
 
-        .chating .others {
-            margin: 0px 0px 0px 0px;
+        .chating .othermessage {
+            /*margin: 1% 0px 0px 0px;*/
             background-color: white;
             float: left;
-            padding: 0.8rem;
+            padding: 0.4rem;
             border-radius: 1rem;
             clear: both;
             font-weight: bold;
             font-size: 1.46rem;
             box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
 
+            margin-left: 3rem;
+            position: relative;
+
+        }
+        .chating .others > section {
+            position: absolute;
+            top: 0;
+            left: -3rem;
+        }
+
+        .chating .others > span {
+            font-size: 1.46rem;
+            display: block;
+        }
+        .chating .others::after {
+            content:"";
+            display:block;
+            clear:both;
         }
 
         input {
@@ -255,14 +271,21 @@
 
         <div th:each="chat : ${chatList}">
             <!--  membername 값을 바로 이쪽으로 쏴주세요-->
+
             <div th:if="${chat.userNickname != memberName }">
+                <div class='others'>
                 <section><i class="fa fa-user"></i></section>
                 <span th:text="${chat.userNickname}"></span>
-                <p class='others' th:text=" ${chat.message}"></p>
+<!--                <p class='others' th:text=" ${chat.message}"></p>-->
+                <p class="othermessage" th:text=" ${chat.message}"></p>
+                </div>
             </div>
+
+
+
             <div th:unless="${chat.userNickname != memberName }">
                 <section><i class="fa fa-user"></i></section>
-                <p class='me' th:text="${chat.message}"></p>
+                <div class='me' th:text="${chat.message}"></div>
             </div>
         </div>
         <!--        if (d.userName == $("#userName").val()) -->
