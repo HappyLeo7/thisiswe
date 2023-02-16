@@ -76,6 +76,11 @@
         .img {
             float: right;
         }
+        #message-box {
+            padding:0 0.7rem;
+            overflow-y:scroll;
+            height:calc(100% - 4.4rem);
+        }
     </style>
 </head>
 
@@ -172,7 +177,7 @@
         });
     }
 
-
+    //chat
     function chatName() {
         console.log("chatName 실행");
         var userName = $("#userName").val();
@@ -236,9 +241,11 @@
     <input type="hidden" id="roomNum" th:value="${roomNumber}">
 
     <div id="chating" class="chating">
-        <div th:each="chat : ${chatList}">
-            <p class='others' th:text="${chat.userNickname} + ':' + ${chat.message}"></p>
 
+        <div th:each="chat : ${chatList}">
+            <div id="message-box">
+            <p class='others' th:text="${chat.userNickname} + ':' + ${chat.message}"></p>
+            </div>
         </div>
 <!--        if (d.userName == $("#userName").val()) -->
 <!--        <p class='me'>나 : d.msg </p>-->

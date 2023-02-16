@@ -30,7 +30,8 @@ public class UserEntity {
 	
 	@Column(length=100, name="user_password")
 	private String userPassword; // 패스워드
-	
+
+
 	@Column(unique = true, length=100, name="user_nickname")
 	private String userNickname; // 닉네임
 	

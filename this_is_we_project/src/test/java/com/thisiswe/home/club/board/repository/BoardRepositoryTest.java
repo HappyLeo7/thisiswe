@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import com.thisiswe.home.place.club.board.repository.BoardRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import javax.transaction.Transactional;
 
-import com.thisiswe.home.place.club.board.entity.Board;
+import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.user.entity.UserEntity;
 
 @SpringBootTest
