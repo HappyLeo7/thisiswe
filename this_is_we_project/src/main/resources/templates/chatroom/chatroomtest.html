@@ -178,6 +178,8 @@
 </style>
 
 <script>
+    window.onload=chatName();
+
     var ws;
 
     function wsOpen() {
@@ -295,7 +297,7 @@
             type: "message",
             roomNumber: $("#roomNum").val(),
             sessionId: $("#sessionId").val(),
-            userName: $("#userName").val(),
+            userName: "문수찬", // $("#userName").val()
             msg: $("#chatting").val(),
             roomName: $("#roomName").val()
             //
