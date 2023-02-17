@@ -1,12 +1,9 @@
 package com.thisiswe.home.place.controller;
 
-<<<<<<< HEAD
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-=======
 import com.thisiswe.home.place.service.PlaceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
->>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
