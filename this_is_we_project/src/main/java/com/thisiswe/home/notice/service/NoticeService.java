@@ -1,8 +1,6 @@
 package com.thisiswe.home.notice.service;
 
 import com.thisiswe.home.notice.dto.NoticeDTO;
-import com.thisiswe.home.notice.dto.PageRequestDTO;
-import com.thisiswe.home.notice.dto.PageResultDTO;
 
 public interface NoticeService {
 

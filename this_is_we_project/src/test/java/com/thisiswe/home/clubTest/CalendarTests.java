@@ -25,7 +25,7 @@ public class CalendarTests {
 	//TODO [테스트] 일정 추가
 	@Test
 	public void calendarRegister() {
-		IntStream.rangeClosed(21, 40).forEach(i->{
+		IntStream.rangeClosed(1, 10).forEach(i->{
 			
 		CalendarEntity calendarEntity = CalendarEntity.builder()
 				//.club_calendarHeadCount(null)
@@ -37,7 +37,7 @@ public class CalendarTests {
 				.clubCalendarPlace("강남역")
 				.clubCalendarHeadCount(5L)
 				.clubCalendarPrice(10000L)
-				.clubNum(ClubEntity.builder().clubNum(1L).build())
+				.clubNum(ClubEntity.builder().clubNum(3L).build())
 				.build();
 		
 		calendarRepository.save(calendarEntity);
