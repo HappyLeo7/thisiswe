@@ -31,7 +31,7 @@ public class ChatController {
     public ModelAndView chat() {
         //ModelAndView클래스
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("chatroom/chat");
+        mv.setViewName("chatroom/chatroomtest");
         return mv;
     }
 
@@ -86,7 +86,7 @@ public class ChatController {
         System.out.println(roomName);
 
 
-        mv.setViewName("chatroom/chat");
+        mv.setViewName("chatroom/chatroomtest");
         mv.addObject("roomName", roomName);
         mv.addObject("roomNumber", roomNumber);
         mv.addObject("chatList", chatService.getMessages(roomName));
