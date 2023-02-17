@@ -36,7 +36,10 @@
 		<a th:href="@{/thisiswe/modify(Num=${readDTO.clubNum})}">
 			<button type="button">모임수정버튼</button> 
 		</a>
-		</td>
+		<a th:href="@{/thisiswe/club/(Num=${readDTO.clubNum})}">
+		<button type="button">모임가입</button></a>
+					
+		<input th:value="${user}">
 	</tr>
 		</table>
 	<!-- /모임 수정 버튼 -->

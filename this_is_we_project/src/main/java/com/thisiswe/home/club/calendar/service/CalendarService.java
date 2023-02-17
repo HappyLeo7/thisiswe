@@ -40,7 +40,7 @@ public interface CalendarService {
 		System.out.println(".... calendarService entityToDTO() ....>>");
 		
 		CalendarDTO calendarDTO = CalendarDTO.builder()
-				.clubCalendarNum(calendarEntity.getClubCalendarNum())
+				//.clubCalendarNum(calendarEntity.getClubCalendarNum())
 				.clubCalendarPlace(calendarEntity.getClubCalendarPlace())
 				.clubCalendarTitle(calendarEntity.getClubCalendarTitle())
 				.clubCalendarContent(calendarEntity.getClubCalendarContent())

@@ -1,6 +1,7 @@
 package com.thisiswe.home.club.controller;
 
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.club.service.ClubService;
+import com.thisiswe.home.user.security.UserDetailsImpl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -64,20 +66,22 @@ public class ClubController {
 	//[모임 등록]register.html에서 post타입으로 받아와서  모임 정보를 등록할때 사용됨
 	@PostMapping("/club")
 	public String club_register(ClubDTO clubDTO,Model model,PageRequestDTO pageRequestDTO) {
-		log.info("=========================================================");
+		log.info("================= post club_register ========================");
 		log.info("=========== ClubController.java => 데이터를 받은 후 DTO경유중 return : club_list페이지로 ==============");
 		log.info("=========== register ClubDTO  : "+clubDTO+" =============");
 		clubService.register(clubDTO); // 등록 페이지에서 받아온 데이터를 서비스로 보낸다.
-		model.addAttribute("list", clubService.getList(clubDTO)); //그냥 리스트 불러오는 코드
-		model.addAttribute("result", clubService.getPageList(pageRequestDTO).getDtoList());
-		log.info("=========================================================");
+		//model.addAttribute("list", clubService.getList(clubDTO)); //그냥 리스트 불러오는 코드
+		model.addAttribute("result", clubService.getPageList(pageRequestDTO).getDtoList());//페이지 1~??? 정보를 가져온다
+		model.addAttribute("resultPage", clubService.getPageList(pageRequestDTO).getPageList());
+		model.addAttribute("Page", clubService.getPageList(pageRequestDTO));
+		log.info("=============== /post club_register ============================");
 		return "/club/club_list";
 		
 	}
 	
 	//상세페이지 연결링크
 	@GetMapping({"/club/"})
-	public String club_read(Long Num ,Model model) {
+	public String club_read(Long Num ,Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 		log.info("======== club_read() start =========");
 		log.info("======= ClubController.java => club_read.html 연결 =======");
 		//1개의 모임 정보 출력코드
@@ -88,6 +92,9 @@ public class ClubController {
 		//model.addAttribute("list", clubService.getList(clubDTO)); 
 		model.addAttribute("calendarDTOList",calendarService.getCalendarList(Num));
 		log.info(Num+"번 모임 일정 List : "+model.addAttribute("calendarDTOList"));
+		
+		model.addAttribute("user",userDetails.getUsername());
+		log.info("사용자 아이디 : "+model.addAttribute("user",userDetails.getUsername()));
 		
 		log.info("======== /club_read() end =========");
 		return "/club/club_read";
