@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <!-- 모바일에서 디바이스의 해상도가 아닌 디바이스의 실제 크기를 기준으로 너비/높이를 잡는다. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -178,7 +180,7 @@
 </style>
 
 <script>
-    window.onload=chatName();
+    window.onload = chatName ;
 
     var ws;
 
@@ -248,10 +250,19 @@
                         $("#sessionId").val(si);
                     }
                 } else if (d.type == "message") {
-                    if (d.userName == $("#userName").val()) {
-                        $("#chating").append("<p class='me'>나 :" + d.msg + "</p>");
+
+                    if (d.userName != $("#userName").val()) {
+                        $(".message-box").append("<div class='chat-message other'>" +
+                            "<section><i class='fa fa-user'></i></section>" +
+                            "<span>" + d.userName + "</span>" +
+                            "<div>" + d.msg + "</div>" +
+                            "</div>");
                     } else {
-                        $("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
+                        $(".message-box").append("<div class='chat-message mine'>" +
+                            "<section><i class='fa fa-user'></i></section>" +
+                            "<span></span>" +
+                            "<div>" + d.msg + "</div>" +
+                            "</div>");
                     }
 
                 } else {
@@ -262,12 +273,14 @@
                 var url = URL.createObjectURL(new Blob([msg]));
                 $("#chating").append("<div class='img'><img class='msgImg' src=" + url + "></div><div class='clearBoth'></div>");
             }
+            scrolldown();
         }
 
         document.addEventListener("keypress", function (e) {
             console.log("addEventlistner발동!");
             if (e.keyCode == 13) { //enter press
                 send();
+
             }
         });
     }
@@ -276,14 +289,16 @@
     function chatName() {
         console.log("chatName 실행");
         var userName = $("#userName").val();
+        console.log(userName);
         if (userName == null || userName.trim() == "") {
             alert("사용자 이름을 입력해주세요.");
             $("#userName").focus();
         } else {
             readMessage(userName);
             wsOpen();
-            $("#yourName").hide();
-            $("#yourMsg").show();
+            // $("#yourName").hide();
+            // $("#yourMsg").show();
+            scrolldown()
         }
     }
 
@@ -297,13 +312,21 @@
             type: "message",
             roomNumber: $("#roomNum").val(),
             sessionId: $("#sessionId").val(),
-            userName: "문수찬", // $("#userName").val()
-            msg: $("#chatting").val(),
+            userName: $("#userName").val(),
+            msg: $("#text-input").val(),
             roomName: $("#roomName").val()
             //
         }
         ws.send(JSON.stringify(option))
         $('#chatting').val("");
+        k();
+
+    }
+    var k = function() {
+        $('#chat-room .input-box #text-input').val('');
+    }
+    function scrolldown() {
+        $(".message-box").scrollTop($(document).height());
     }
 
     // function fileSend() {
@@ -329,6 +352,8 @@
 <body>
 <input type="hidden" id="sessionId" value="">
 <input type="hidden" id="roomNum" th:value="${roomNumber}">
+<input type="hidden" id="userName" value="'문수찬'">
+<input type="hidden" id="roomName" th:value="${roomName}">
 <div id="chat-room">
     <div class="message-box">
         <div class="message-group" data-date-str="2014년 12월 10일 일요일">
@@ -351,38 +376,39 @@
                 <span>아들</span>
                 <div>굿모닝!!!! 입니다!</div>
             </div>
-
-            <div th:each="chat : ${chatList}">
-                <div th:if="${chat.userNickname != memberName }">
-                    <div class="chat-message other">
-                        <section><i class="fa fa-user"></i></section>
-                        <span th:text="${chat.userNickname}"></span>
-                        <div th:text=" ${chat.message}"></div>
-                    </div>
-                </div>
-                <div th:unless="${chat.userNickname != memberName }">
-                    <div class="chat-message mine">
-                        <section><i class="fa fa-user"></i></section>
-                        <span>홍길동</span>
-                        <div th:text="${chat.message}"></div>
-                    </div>
-                </div>
-            </div>
         </div>
-
-        <div class="input-box"><!--    -->
-            <input type="text" id="text-input"><!--메세지 보내는 곳-->
-            <div class="btn-plus"><!--    -->
-                <i class="fa fa-plus" aria-hidden="true"></i>
+        <div class="message-group" data-date-str="2014년 12월 12일 월요일">
+            <div th:each="chat : ${chatList}">
+                <!--                <div th:if="${chat.userNickname != memberName}">-->
+                <div class="chat-message other">
+                    <section><i class="fa fa-user"></i></section>
+                    <span th:text="${chat.userNickname}"></span>
+                    <div th:text=" ${chat.message}"></div>
+                </div>
             </div>
-            <div class="btn-emo">
-                <i class="fa fa-smile-o" aria-hidden="true"></i>
-            </div>
-            <div class="btn-submit">
-                <butoon onclick="send() ">전송</butoon>
-            </div>
+            <!--                <div th:unless="${chat.userNickname != memberName }">-->
+            <!--                    <div class="chat-message mine">-->
+            <!--                        <section><i class="fa fa-user"></i></section>-->
+            <!--                        <span>홍길동</span>-->
+            <!--                        <div th:text="${chat.message}"></div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
         </div>
     </div>
+
+    <div class="input-box" type="text" placeholder="메세지 입력해봐라~"><!--    -->
+        <input type="text" id="text-input"><!--메세지 보내는 곳-->
+        <div class="btn-plus"><!--    -->
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </div>
+        <div class="btn-emo">
+            <i class="fa fa-smile-o" aria-hidden="true"></i>
+        </div>
+        <div class="btn-submit">
+            <butoon onclick="send() ">전송</butoon>
+        </div>
+    </div>
+</div>
 </div>
 </body>
 </html>
