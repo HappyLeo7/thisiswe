@@ -37,9 +37,9 @@ public class CalendarServiceImpl implements CalendarService {
 		log.info("..... calendar get() 1개 데이터 불러오기......");
 		log.info("calendarNum : "+calendarNum );
 		Optional<CalendarEntity> calendarEntity = calendarRepository.findById(calendarNum);
-		log.info(calendarEntity);
+		log.info(calendarEntity.get());
 		log.info("..... /calendar get() 1개 데이터 불러오기......");
-		return null;
+		return entityToDTO(calendarEntity.get());
 	}
 
 	@Override

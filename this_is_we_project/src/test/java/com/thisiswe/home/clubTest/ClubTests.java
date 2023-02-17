@@ -54,7 +54,7 @@ public class ClubTests {
 	//TODO [테스트] club  1개 불러오기
 	@Test
 	public void testGet() {
-		Long clubNum=1L;
+		Long clubNum=2L;
 		System.out.println("1");
 		
 		//ClubEntity clubEntity = clubRepository.getById(clubNum);

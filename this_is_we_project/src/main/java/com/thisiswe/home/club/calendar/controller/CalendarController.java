@@ -62,10 +62,11 @@ public class CalendarController {
 	
 	//일정리스트에서 -> 일정상세페이지로 이동
 	@GetMapping({"/calendar/read"})
-	public String calendarRead(Long Num) {
+	public String calendarRead(Long Num, Model model) {
 		log.info("==== getMappinig calendarRead() Contorller ====");
 		CalendarDTO calendarDTO=calendarService.get(Num); //1개의 일정 데이터를 가져옴
 		log.info("calendarDTO : " + calendarDTO);
+		model.addAttribute("calendarDTO",calendarDTO);
 		log.info("==== /getMappinig calendarRead() Contorller ====");
 		return "/club/calendar/calendar_read";
 	}

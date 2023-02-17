@@ -132,7 +132,8 @@
 	<tr>
 		<tr th:each="calendarDTO : ${calendarDTOList}" >
 			<td colspan="2">
-				<div><a 
+			<div>일정 번호 : [[${calendarDTO.clubCalendarNum}]]</div>
+				<div><a th:href="@{/thisiswe/club/calendar/read(Num=${calendarDTO.clubCalendarNum})}"
 				>제목 : [[${calendarDTO.clubCalendarTitle}]]</a></div> <br>
 				<div>날짜 : [[${calendarDTO.clubCalendarDate}]]</div> <br>
 				 <div>장소 : [[${calendarDTO.clubCalendarPlace}]]</div>  <br>
