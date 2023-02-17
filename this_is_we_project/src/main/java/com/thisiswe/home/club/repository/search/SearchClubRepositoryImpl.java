@@ -2,7 +2,6 @@ package com.thisiswe.home.club.repository.search;
 
 import java.util.List;
 
-import com.thisiswe.home.club.entity.ClubEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +15,7 @@ import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.JPQLQuery;
+import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.entity.QClubEntity;
 import com.thisiswe.home.user.entity.QUserEntity;
 
@@ -35,7 +35,7 @@ public class SearchClubRepositoryImpl extends QuerydslRepositorySupport implemen
 	@Override
 	public Page<Object[]> searchPage(String type, String keyword, Pageable pageable) {
 		
-		log.info("searchPage.........");
+		log.info("........searchPage.........");
 		
 		QClubEntity clubEntity = QClubEntity.clubEntity;
 	//  QReply reply = QReply.reply;
@@ -71,8 +71,9 @@ public class SearchClubRepositoryImpl extends QuerydslRepositorySupport implemen
 				case "C":
 					conditionBuilder.or(clubEntity.clubContent.contains(keyword));
 					break;
-				case "CG":
+				case "G":
 					conditionBuilder.or(clubEntity.clubCategory.contains(keyword));
+					
 					break;
 				}
 			}

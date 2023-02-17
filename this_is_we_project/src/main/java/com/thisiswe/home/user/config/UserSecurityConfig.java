@@ -34,18 +34,19 @@ public class UserSecurityConfig {
 		
 		http.authorizeRequests() // 권한에 대해
 		// image 폴더를 login 없이 허용
-		.antMatchers("/images/**").permitAll()
+		//.antMatchers("/image/**").permitAll()
 		// css 폴더를 login 없이 허용
-		.antMatchers("/css/**").permitAll()
+	//	.antMatchers("/css/**").permitAll()
 		// 회원 관리 처리 API 전부를 login 없이 허용
-		.antMatchers("/login/user/**").permitAll()
-		.antMatchers("/club/**").permitAll()
-		.antMatchers("/chatroom/**").permitAll()
-		.antMatchers("/basic/**").permitAll()
-		.antMatchers("/reservation/**").permitAll()
-		.antMatchers("/place/**").permitAll()
-		.antMatchers("/notice/**").permitAll()
-		.antMatchers("/thisiswe/**").permitAll()
+		//.antMatchers("/login/user/**").permitAll()
+		//.antMatchers("/club/**").permitAll()
+		//.antMatchers("/chatroom/**").permitAll()
+		//.antMatchers("/basic/**").permitAll()
+		//.antMatchers("/reservation/**").permitAll()
+		//.antMatchers("/place/**").permitAll()
+		//.antMatchers("/notice/**").permitAll()
+		//.antMatchers("/thisiswe/**").permitAll()
+		.antMatchers("/**").permitAll()
 		
 		// 그 외 어떤 요청이든 '인증'
 		.anyRequest().authenticated()

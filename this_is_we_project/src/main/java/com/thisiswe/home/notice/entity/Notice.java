@@ -1,26 +1,10 @@
 package com.thisiswe.home.notice.entity;
 
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import com.thisiswe.home.enetity.DateEntity;
 import com.thisiswe.home.user.entity.UserEntity;
-import com.thisiswe.home.user.entity.UserRole;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import javax.persistence.*;
 
 @Entity
 @Builder

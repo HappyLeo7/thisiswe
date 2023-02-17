@@ -25,7 +25,7 @@ public class CalendarTests {
 	//TODO [테스트] 일정 추가
 	@Test
 	public void calendarRegister() {
-		IntStream.rangeClosed(21, 40).forEach(i->{
+		IntStream.rangeClosed(1, 10).forEach(i->{
 			
 		CalendarEntity calendarEntity = CalendarEntity.builder()
 				//.club_calendarHeadCount(null)
@@ -37,7 +37,7 @@ public class CalendarTests {
 				.clubCalendarPlace("강남역")
 				.clubCalendarHeadCount(5L)
 				.clubCalendarPrice(10000L)
-				.clubNum(ClubEntity.builder().clubNum(1L).build())
+				.clubNum(ClubEntity.builder().clubNum(3L).build())
 				.build();
 		
 		calendarRepository.save(calendarEntity);
@@ -50,12 +50,12 @@ public class CalendarTests {
 	@Test
 	public void testCalendarList() {
 		
-		Long clubNum=9L;
+		Long clubNum=195L;
 		List<Object[]> cal=calendarRepository.getClubNum(clubNum);
 		for (Object[] arr:cal) {
 			log.info("일정 리스트 : " +Arrays.toString(arr));
-			log.info("1 : "+arr[0]);
-			log.info("2 : "+arr[1]);
+			log.info("모임정보 : "+arr[0]);
+			log.info("일정정보 : "+arr[1]);
 		}
 		
 		

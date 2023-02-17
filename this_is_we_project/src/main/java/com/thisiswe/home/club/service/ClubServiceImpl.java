@@ -6,15 +6,15 @@ import java.util.function.Function;
 
 import javax.transaction.Transactional;
 
-import com.thisiswe.home.club.entity.ClubEntity;
-import com.thisiswe.home.club.dto.ClubDTO;
-import com.thisiswe.home.club.repository.ClubRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.dto.PageResultDTO;
+import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.RequiredArgsConstructor;
@@ -33,10 +33,15 @@ public class ClubServiceImpl implements ClubService {
 	// 모임 등록 하는 매서드
 	@Override
 	public Long register(ClubDTO clubDTO) {
-		log.info("등록 :: " + clubDTO);
-		ClubEntity clubEntity  = dtoToEntity(clubDTO);
+		// TODO [모임등록 DTO->entity]club register
+		log.info("====================================");
+		log.info("==== ClubServiceImpl register() clubDTO : "+clubDTO+" ====");
+		ClubEntity clubEntity = dtoToEntity(clubDTO);
 		clubRepository.save(clubEntity);
+		log.info("==== ClubServiceImpl register() clubEntity : "+clubEntity+" ====");
+		log.info("====================================");
 		
+		//club num 모임 번호 리턴받아서 모임entity에 넣는다.
 		return clubEntity.getClubNum();
 		
 	}
@@ -47,14 +52,17 @@ public class ClubServiceImpl implements ClubService {
 	//TODO [리스트]clublist 출력해주는메서드
 	@Override
 	public List<ClubDTO> getList(ClubDTO clubDTO) {
-		log.info("[[[[[[[getList매서드");
-		System.out.println("[[[[[서비스 Impl테스트중]]]]]");
+		log.info("...... getList() ......");
+		System.out.println("[모임 서비스 Impl]");
 		List<Object[]> list = clubRepository.getClubList();
 		List<ClubDTO> entList = new ArrayList<>(); 
-		System.out.println("list:::::::"+list);
+		System.out.println(" .... club list : "+list);
 		for (Object[] arr : list) {
 			entList.add( entityToDTO((ClubEntity)arr[0], (UserEntity)arr[1]));
+			
 		}
+		log.info("entList : " +entList);
+		log.info("...... /getList() ......" );
 		return entList;
 		
 	}
@@ -62,7 +70,9 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public PageResultDTO<ClubDTO, Object[]> getPageList(PageRequestDTO pageRequestDTO) {
 
-		log.info("===== getPageList() pageRequestDTO =====");
+		log.info("...... getPageList() pageRequestDTO ......");
+		log.info("pageRequestDTO : " +pageRequestDTO);
+		
 		Function<Object[], ClubDTO> fn = (en->
 				entityToDTO((ClubEntity)en[0],(UserEntity)en[1]));
 	
@@ -80,10 +90,10 @@ public class ClubServiceImpl implements ClubService {
 
 
 
-	//상세 페이지 1개 가져오는 매서드
+	//모임상세 페이지 1개 가져오는 매서드
 	@Override
 	public ClubDTO get(Long clubNum) {
-		log.info("[[[[[[[get매서드");
+		log.info("........get()........");
 		System.out.println("서비스Impl clubNum: "+clubNum);
 		Object clubEntityObject = clubRepository.getClubNum(clubNum);
 		
@@ -107,35 +117,19 @@ public class ClubServiceImpl implements ClubService {
 		if(clubEntity != null) {
 			clubEntity.change(
 					clubDTO.getClubPlace(),
-					clubDTO.getClubName(), 
-					clubDTO.getClubContent(), 
-					clubDTO.getClubCategory(), 
+					clubDTO.getClubName(),
+					clubDTO.getClubContent(),
+					clubDTO.getClubCategory(),
 					clubDTO.getClubLogo(),
-					clubDTO.getClubLogoUuid(), 
+					clubDTO.getClubLogoUuid(),
 					clubDTO.getClubLogoUrl(),
 					clubDTO.getClubHeadCount()
 					);
 		}
 		log.info("수정된 clubEntity : "+clubEntity);
 		clubRepository.save(clubEntity);
-		
+
 	}
-
-
-
-
-	
- 
-
-
-
-
-
-
-
-
-	
-
 
 
 }

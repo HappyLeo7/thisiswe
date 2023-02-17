@@ -13,17 +13,42 @@
 	
 	<!-- 내용 -->
 	<title>일정 상세페이지</title>
-	<table>
+	<table border="1">
+	<tr><th><h3>모임 스케줄표</h3></th></tr>
+			<tr th:each="calendarDTO : ${calendarDTO}">
+			<td>
+				제목 : [[${calendarDTO.clubCalendarTitle}]] <br>
+			</td>
+			</tr>
 			<tr>
-			<th><h3>모임 스케줄표</h3> <br>
-				제목 : <input type="text"> <br>
-				내용 : <input type="text"> <br>
-				날짜 : <input type="text"> <br>
-				시간 : <input type="text"> <br>
-				장소 : <input type="text"> <br>
-				인원 : <input type="text"> <br>
-				비용 : <input type="text"> <br>
-			</th>
+			<td>
+				내용 : [[${calendarDTO.clubCalendarContent}]] <br>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				날짜 : [[${calendarDTO.clubCalendarDate}]] <br>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				시간 : [[${calendarDTO.clubCalendarTime}]] <br>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				장소 : [[${calendarDTO.clubCalendarPlace}]] <br>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				인원 : [[${calendarDTO.clubCalendarHeadCount}]] <br>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				비용 : [[${calendarDTO.clubCalendarPrice}]] <br>
+			</td>
 			
 		</tr>
 	</table>

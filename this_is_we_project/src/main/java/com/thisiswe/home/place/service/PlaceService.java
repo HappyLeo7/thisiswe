@@ -1,10 +1,10 @@
 package com.thisiswe.home.place.service;
 
-import java.util.List;
-
 import com.thisiswe.home.place.dto.PlaceDTO;
 import com.thisiswe.home.place.entity.PlaceEntity;
 import com.thisiswe.home.user.entity.UserEntity;
+
+import java.util.List;
 
 public interface PlaceService {
 
