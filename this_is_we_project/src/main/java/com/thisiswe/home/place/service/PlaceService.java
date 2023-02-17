@@ -43,9 +43,7 @@ public interface PlaceService {
 		PlaceEntity placeEntity = PlaceEntity.builder()
 				.placeNum(placeDTO.getPlaceNum())
 				.placeName(placeDTO.getPlaceName())
-				
 				.userId(UserEntity.builder().userId(placeDTO.getUserId()).build())
-				
 				.placeOneLineIntroduction(placeDTO.getPlaceOneLineIntroduction())
 				.placeIntroduction(placeDTO.getPlaceIntroduction())
 				.placeBusinessHours(placeDTO.getPlaceBusinessHours())

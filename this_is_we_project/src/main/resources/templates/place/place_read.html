@@ -3,83 +3,87 @@
 <!-- th를 쓰기위한 thymeleaf.org 선언 -->
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
-<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
-   
-   <!-- 지정한 변수로 연결할 위치 -->
-   <th:block th:fragment="connection">
+<th:block
+	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 
-   <div style="text-align: center;">
-		<div>
-			<div><h1>[[${place.getPlaceName}]]</h1></div>
-			<div><h3>[[${place.getPlaceOneLineIntroduction}]]</h3></div>
-			<br>
-			<h4>소개글</h4>
-			<div>[[${place.getPlaceIntroduction}]]</div>
-			<br>
-			<h4>안내 사항</h4>
-			<div>[[${place.getPlaceGuide}]]</div>
-			<br>
+	<!-- 지정한 변수로 연결할 위치 -->
+	<th:block th:fragment="connection">
+
+		<div style="text-align: center;">
+			<div>
 			
-				<input type="radio" name="placeReviewRate" value="1"> 
+				<div>
+					<h1>[[${place.getPlaceName}]]</h1>
+				</div>
+				<div>
+					<h3>[[${place.getPlaceOneLineIntroduction}]]</h3>
+				</div>
+				<br>
+				<h4>소개글</h4>
+				<div>[[${place.getPlaceIntroduction}]]</div>
+				<br>
+				<h4>안내 사항</h4>
+				<div>[[${place.getPlaceGuide}]]</div>
+				
+				<!-- 리뷰 등록 시작 -->
+				<br> 
+				<input type="radio" name="placeReviewRate" value="1">
 				<input type="radio" name="placeReviewRate" value="2"> 
 				<input type="radio" name="placeReviewRate" value="3"> 
 				<input type="radio" name="placeReviewRate" value="4"> 
 				<input type="radio" name="placeReviewRate" value="5"> 
-				 
 				<input type="text" name="placeReviewContent">
 				<button type="button" class="reviewSave">리뷰 등록</button>
-			<div style="border: 1px solid;" th:each="review : ${reviews}">
-				
-				<div>
-					작성자 : [[${review.getWriter}]]
-					<br>
-					평점 : [[${review.getPlaceReviewRate}]]
-					<br>
-					내용 : [[${review.getPlaceReviewContent}]]
-					<br>
-					작성일 : [[${review.getRegDate}]]
-				<br>
+				<!-- 리뷰 등록 끝 -->
+
+				<!-- 리뷰 시작 -->
+				<div style="border: 1px solid;" th:each="review : ${reviews}">
+					<div class="review">
+						작성자 : [[${review.getWriter}]] <span
+							th:if="${#authentication.principal.getUsername} == ${review.getUserId}">
+							<button type="button" class="reviewModifyOn">수정</button>
+							<button type="button" class="reviewRemove">삭제</button> 
+							<input type="hidden" th:value="${review.getPlaceReviewNum}"></input>
+						</span> <br>
+						<h1>[[${review.getPlaceReviewNum}]]</h1>
+						평점 : [[${review.getPlaceReviewRate}]] <br> 
+						내용 : [[${review.getPlaceReviewContent}]] <br> 
+						작성일 : [[${review.getRegDate}]] <br>
+					</div>
+					<!-- 수정 버튼 클릭시 입력창 시작-->
+					<div class="reviewModifyInput" style="display: none;">
+						<input type="radio" name="ModifyplaceReviewRate" value="1">
+						<input type="radio" name="ModifyplaceReviewRate" value="2"> 
+						<input type="radio" name="ModifyplaceReviewRate" value="3"> 
+						<input type="radio" name="ModifyplaceReviewRate" value="4"> 
+						<input type="radio" name="ModifyplaceReviewRate" value="5"> 
+						<br>
+						<input name="ModifyplaceReviewContent" th:value="${review.getPlaceReviewContent}">
+						<input name="ModifyplaceReviewNum" type="hidden" th:value="${review.getPlaceReviewNum}">
+						<button type="button" class="reviewModify">수정</button>
+						<button type="button" class="reviewModifyCancel">취소</button>
+					</div>
+					<!-- 수정 버튼 클릭시 입력창  끝-->
 				</div>
+				<!-- 리뷰 끝 -->
+
 			</div>
 		</div>
-   	</div>
-   	
-   
-   
-<script th:inline="javascript">
+
+		<script th:inline="javascript">
 	$(document).ready(function(){
-		
-		
-		
-		var replyer = null;
-		
-		<sec:authorize access="isAuthenticated()">
-		
-			replyer = '<sec:authentication property="principal.username"/>';
-		
-		</sec:authorize>
-		
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
-		
-		
-		
-		
-		
-		
 		
 		const placeNum = [[${place.placeNum}]];
 		
+		
+		// 리뷰 save 버튼 시작		
 		$(".reviewSave").click(function(){
 			
 			var review = {
 					placeNum: placeNum, 
 					placeReviewRate: $('input[name=placeReviewRate]:checked').val(),
 					placeReviewContent: $('input[name=placeReviewContent]').val() 
-					
 	      }
-			
-			console.log(review)
 			
 			$.ajax({
 				url: '/place/review',
@@ -88,29 +92,75 @@
 				contentType: 'application/json; charset=utf-8',
 				dataType: 'json',
 				success: function(data){
-					
-					console.log("success...." + data);
-					
-					var newRno = parseInt(data);
-					alert(newRno + "번 댓글이 등록되었습니다.");
-					modal.modal('hide');
-					loadJSONData();
 				}
 			});
-			
-			
-			
-			
-			
-			
 		})
+		// 리뷰 save 버튼 끝		
 		
+		
+		// 리뷰 reviewModifyOn 버튼 시작
+			$(".reviewModifyOn").click(function(){
+				$(this).parents(".review").hide();
+				
+				$(this).parents("div").parents("div").children(".reviewModifyInput").show();
+			});
+		
+		// 리뷰 reviewModifyOn 버튼 끝
+		
+		
+		// 리뷰 reviewModifyCancel 버튼 시작
+		 
+			$(".reviewModifyCancel").click(function(){
+				$(this).parents("div").parents("div").children(".review").show();
+				
+				$(this).parents("div").parents("div").children(".reviewModifyInput").hide()
+			});
+		
+		// 리뷰 reviewModifyCancel 버튼 끝
+		
+		
+		// 리뷰 modify 버튼 시작
+			$(".reviewModify").click(function(){
+				const placeReviewNum = $('input[name=ModifyplaceReviewNum]').val();		
+				var review = {
+						placeReviewNum: placeReviewNum,
+						placeNum: placeNum, 
+						placeReviewRate: $('input[name=ModifyplaceReviewRate]:checked').val(),
+						placeReviewContent: $('input[name=ModifyplaceReviewContent]').val() 
+	 	      }
+				
+				$.ajax({
+					url: '/place/review/' + placeReviewNum,
+					method: 'post',
+					data: JSON.stringify(review),
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'json',
+					success: function(data){
+					}
+				});
+			});
+		// 리뷰 modify 버튼 끝
+		
+		
+		// 리뷰 remove 버튼 시작
+			$(".reviewRemove").click(function(){
+				var placeReviewNum = $(this).parents("span").children("input").val();
+			
+				$.ajax({
+					url: '/place/review/' + placeReviewNum,
+					method: 'delete',
+					success: function(result){
+					
+					}
+				});
+			})
+		// 리뷰 remove 버튼 끝
 		
 		
 		
 		
 	})
 </script>
-   
-   </th:block>
+
+	</th:block>
 </th:block>

@@ -1,12 +1,16 @@
 package com.thisiswe.home.club.board.service;
 
-import com.thisiswe.home.club.board.entity.Board;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.dto.PageResultDTO;
+import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.board.repository.BoardRepository;
 import com.thisiswe.home.user.entity.UserEntity;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 //TODO [Service] 게시판
@@ -28,7 +32,8 @@ public interface BoardService {
 	void removeWithReplies(Long boardNum);
 	
 	// TODO [Service] 게시판 - 조회수 증가(중복 제외)
-	Long countView(Long boardNum, BoardDTO boardDTO);
+	//void countView(Long boardNum, BoardDTO boardDTO);
+	void countView(Long boardNum, BoardDTO boardDTO);
 	
 	// TODO [Service] 게시판 - DTO(WEB)에서 Entity(DB)로
 	default Board boardDTOToEntity(BoardDTO boardDTO) {

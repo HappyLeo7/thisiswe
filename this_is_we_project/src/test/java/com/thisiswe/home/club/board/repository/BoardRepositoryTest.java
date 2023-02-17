@@ -28,16 +28,16 @@ public class BoardRepositoryTest {
 	@Test
 	public void insertBoards() {
 		
-		IntStream.rangeClosed(1, 10).forEach(i -> {
+		IntStream.rangeClosed(1, 40).forEach(i -> {
 			
 			UserEntity member = UserEntity.builder().userId("user" + i).build();
 			
 			Board board = Board.builder()
-							.boardCategory("모임 후기")
-							.boardTitle("oo모임으로 버킷 해결했어욕")
-							.boardContent("oo모임 다음은 언제 진행 하나요?")
+							.boardCategory("모임 추가")
+							.boardTitle("oo클래스 오픈했어요!")
+							.boardContent("oo클래스 장소는 oo역 2번 출구 바로 앞 공방으로 오세요! pm 14:00. 많관부")
 							.userId(member)
-							.boardView(8L)
+							.boardView(5L)
 							.build();							
 			
 			boardRepository.save(board);
