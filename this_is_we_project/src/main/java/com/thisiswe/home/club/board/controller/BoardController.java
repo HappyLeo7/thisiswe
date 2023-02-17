@@ -1,18 +1,24 @@
 package com.thisiswe.home.club.board.controller;
 
-import com.thisiswe.home.club.board.dto.BoardDTO;
-import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.entity.Board;
-import com.thisiswe.home.club.board.repository.BoardRepository;
 import com.thisiswe.home.club.board.service.BoardService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import com.thisiswe.home.club.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.thisiswe.home.club.board.dto.BoardDTO;
+import com.thisiswe.home.club.board.dto.PageRequestDTO;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @Controller
 @RequestMapping("/club")
@@ -61,6 +67,7 @@ public class BoardController {
 		log.info("==== BoardController.java => board_register.html 연결 ====");
 		log.info("================ boardDTO ================> : " + boardDTO);
 		
+		//TODO [Controller] 게시판 : 등록 - boardService에 등록
 		Long boardNum = boardService.register(boardDTO);
 		log.info("================ boardNum ================> : " + boardNum);
 		redirectAttributes.addFlashAttribute("msg", boardNum );
@@ -70,7 +77,7 @@ public class BoardController {
 	}
 	
 	//TODO [Controller] 게시판 : 상세 조회 - read, 조회수 증가
-	@GetMapping("/board/read/{boardNum}")
+	@GetMapping({"/board/read/{boardNum}"})
 	public String board_read(@PathVariable("boardNum") Long boardNum, Model model) {
 		
 		log.info("=========================================================");
@@ -99,8 +106,8 @@ public class BoardController {
 	}
 	
 	//TODO [Controller] 게시판 : 수정 - get
-	@GetMapping("board/modify")
-	public String board_modify(Long boardNum, Model model) {
+	@GetMapping({"board/modify"})
+	public String board_modify(PageRequestDTO pageRequestDTO, Long boardNum, Model model) {
 		
 		log.info("=========================================================");
 		log.info("===== BoardController.java => board_modify.html 연결 =====");
@@ -145,7 +152,7 @@ public class BoardController {
 		log.info("=========================================================");
 		log.info("================ boardNum ================> : " + boardNum);
 		
-		boardService.remove(boardNum);
+		boardService.removeWithReplies(boardNum);
 		
 		redirectAttributes.addFlashAttribute("msg", boardNum);
 		log.info("=========================================================");

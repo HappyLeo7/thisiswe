@@ -1,8 +1,14 @@
 package com.thisiswe.home.club.board.reply.dto;
 
-import lombok.*;
-
 import java.time.LocalDateTime;
+
+import com.thisiswe.home.user.entity.UserEntity;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Builder

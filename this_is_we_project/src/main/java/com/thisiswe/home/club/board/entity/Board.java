@@ -1,10 +1,23 @@
 package com.thisiswe.home.club.board.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import com.thisiswe.home.enetity.DateEntity;
 import com.thisiswe.home.user.entity.UserEntity;
-import lombok.*;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name="board")
@@ -35,7 +48,7 @@ public class Board extends DateEntity{
 	@JoinColumn(name="user_id")
 	private UserEntity userId;					// 게시판 유저ID
 	
-	@Column(length=100, name="board_view")
+	@Column(length=100, name="board_view", columnDefinition = "integer default 0", nullable = true)
 	private Long boardView;						// 게시판 조회수	
 	
 	@Column(length=100, name="board_replyCount")

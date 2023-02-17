@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j2;
 
 @SpringBootTest
 @Log4j2
-public class clubTests {
+public class ClubTests {
 	
 	@Autowired
 	private ClubRepository clubRepository;
@@ -30,7 +30,7 @@ public class clubTests {
 	//TODO [테스트] club 데이터 추가
 	@Test
 	public void clubRegister() {
-		IntStream.rangeClosed(1, 20).forEach(i->{
+		IntStream.rangeClosed(1, 150).forEach(i->{
 		ClubEntity clubEntity = ClubEntity.builder()
 				.clubPlace("지역"+i)
 				.clubName("모임명")
@@ -105,6 +105,10 @@ public class clubTests {
 	public void testPageList() {
 		
 		
+	}
+	
+	@Test
+	public void test() {
 	}
 	
 }

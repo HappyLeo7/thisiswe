@@ -19,7 +19,8 @@ public class PlaceServiceImpl implements PlaceService {
 	@Override
 	public Long register(PlaceDTO placeDTO) {
 		placeRepository.save(DTOtoEntity(placeDTO));
-		return placeDTO.getPlaceNum();
+		return placeDTO.getPlaceNum(); 
+		
 	}
 
 	@Override

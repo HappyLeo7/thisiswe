@@ -2,6 +2,7 @@ package com.thisiswe.home.place.service;
 
 import com.thisiswe.home.place.dto.PlaceDTO;
 import com.thisiswe.home.place.entity.PlaceEntity;
+import com.thisiswe.home.user.entity.UserEntity;
 
 import java.util.List;
 
@@ -31,7 +32,8 @@ public interface PlaceService {
 				.placeAddress(placeEntity.getPlaceAddress())
 				.placePhoneNumber(placeEntity.getPlacePhoneNumber())
 				.placeCoordinate(placeEntity.getPlaceCoordinate())
-				.placeGuide(placeEntity.getPlaceCaution())
+				.placeGuide(placeEntity.getPlaceGuide())
+				.placeCaution(placeEntity.getPlaceCaution())
 				.build();
 	
 		return placeDTO;
@@ -41,6 +43,9 @@ public interface PlaceService {
 		PlaceEntity placeEntity = PlaceEntity.builder()
 				.placeNum(placeDTO.getPlaceNum())
 				.placeName(placeDTO.getPlaceName())
+				
+				.userId(UserEntity.builder().userId(placeDTO.getUserId()).build())
+				
 				.placeOneLineIntroduction(placeDTO.getPlaceOneLineIntroduction())
 				.placeIntroduction(placeDTO.getPlaceIntroduction())
 				.placeBusinessHours(placeDTO.getPlaceBusinessHours())
@@ -49,7 +54,8 @@ public interface PlaceService {
 				.placeAddress(placeDTO.getPlaceAddress())
 				.placePhoneNumber(placeDTO.getPlacePhoneNumber())
 				.placeCoordinate(placeDTO.getPlaceCoordinate())
-				.placeGuide(placeDTO.getPlaceCaution())
+				.placeGuide(placeDTO.getPlaceGuide())
+				.placeCaution(placeDTO.getPlaceCaution())
 				.build();
 		
 		return placeEntity;

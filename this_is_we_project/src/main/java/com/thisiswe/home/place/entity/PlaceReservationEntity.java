@@ -23,7 +23,7 @@ public class PlaceReservationEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "place_zone_num")
-	private PlaceZoneEntity plcaeZoneNum; // 장소 구역 번호
+	private PlaceZoneEntity placeZoneNum; // 장소 구역 번호
 	
 	@Column(length = 100, name = "place_reservation_name", nullable = false)
 	private String place_reservation_name; // 예약자 명

@@ -1,19 +1,22 @@
 package com.thisiswe.home.club.board.service;
 
-import com.thisiswe.home.club.board.dto.BoardDTO;
-import com.thisiswe.home.club.board.dto.PageRequestDTO;
-import com.thisiswe.home.club.board.dto.PageResultDTO;
+import java.util.function.Function;
+
 import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.board.reply.repository.ReplyRepository;
 import com.thisiswe.home.club.board.repository.BoardRepository;
-import com.thisiswe.home.user.entity.UserEntity;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.function.Function;
+import com.thisiswe.home.club.board.dto.BoardDTO;
+import com.thisiswe.home.club.board.dto.PageRequestDTO;
+import com.thisiswe.home.club.board.dto.PageResultDTO;
+import com.thisiswe.home.user.entity.UserEntity;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @Service
 @RequiredArgsConstructor
@@ -24,17 +27,22 @@ import java.util.function.Function;
 public class BoardServiceImpl implements BoardService {
 	
 	private final BoardRepository boardRepository;
+	private final ReplyRepository replyRepository;
 	
 	//TODO [ServiceImpl] 게시판 - 등록(register)
 	@Override
 		public Long register (BoardDTO boardDTO) {
 			
-			log.info("=========================================================");
+			log.info("================= ServiceImpl register =================");
 			log.info("================ boardDTO ================> : " + boardDTO);
-			log.info("=========================================================");
+			log.info(boardDTO);
+			log.info("================= ServiceImpl register =================");
 			
 			Board board = boardDTOToEntity(boardDTO);
 			boardRepository.save(board);
+			log.info("=================== board ===================> : " + board);
+			log.info(board);
+			log.info("================= ServiceImpl register =================");
 			
 			return board.getBoardNum();
 		}
@@ -43,14 +51,14 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardDTO get(Long boardNum) {
 
-		log.info("========================== get ==========================");
+		log.info("==================== ServiceImpl get ====================");
 		log.info("================ boardNum ================> : " + boardNum);
 		Object result = boardRepository.getBoardByBoardNum(boardNum); 
 		log.info("================== result ==================> : " + result);
 		
 		Object[] arr = (Object[]) result;
 		log.info("===================== arr =====================> : " + arr);		
-		log.info("========================== get ==========================");
+		log.info("==================== ServiceImpl get ====================");
 		
 		return entityToBoardDTO((Board)arr[0], (UserEntity)arr[1], (Long)arr[2]);
 	}
@@ -59,9 +67,9 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
 
-		log.info("=========================================================");
+		log.info("================ ServiceImpl Page getList ================");
 		log.info("========== pageRequestDTO ==========> : " + pageRequestDTO);
-		log.info("=========================================================");
+		log.info("================ ServiceImpl Page getList ================");
 		
 		Function<Object[], BoardDTO> func = (en ->
 									entityToBoardDTO((Board)en[0], (UserEntity)en[1], (Long)en[2]));
@@ -89,18 +97,24 @@ public class BoardServiceImpl implements BoardService {
 
 	//TODO [ServiceImpl] 게시판 - 삭제(remove)
 	@Override
-	public void remove(Long boardNum) {
+	public void removeWithReplies(Long boardNum) {
 		
 		boardRepository.deleteById(boardNum);
+		replyRepository.deleteByBoardNum(boardNum);
 	}
 	
 	//TODO [ServiceImpl] 게시판 - 조회수 증가(중복 제외)
-	@Override
+	/* @Override
 	public void countView(Long boardNum, BoardDTO boardDTO) {
 		Board board = boardRepository.findById(boardNum).orElseThrow((() ->
-									new IllegalStateException("게시글이 존재X")));
+									new IllegalStateException("게시글이 존재하지 않습니다.")));
 		
 		board.countView(boardDTO.getBoardView());
-	}
+	}*/
 
+	@Override
+	public Long countView(Long boardNum, BoardDTO boardDTO) {
+		
+		return this.boardRepository.boardView(boardNum);
+	}
 }

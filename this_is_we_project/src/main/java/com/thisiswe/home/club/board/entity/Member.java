@@ -1,6 +1,12 @@
 package com.thisiswe.home.club.board.entity;
 
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import com.thisiswe.home.enetity.DateEntity;
+import com.thisiswe.home.user.entity.UserEntity;
 
 //TODO [Entity]Board 회원 컬럼(유저ID, 이메일, 비밀번호)
 public class Member extends DateEntity{

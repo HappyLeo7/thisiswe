@@ -10,20 +10,107 @@
 
    <div style="text-align: center;">
 		<div>
-			<div><h1>[[${result.getPlaceName}]]</h1></div>
-			<div><h3>[[${result.getPlaceOneLineIntroduction}]]</h3></div>
+			<div><h1>[[${place.getPlaceName}]]</h1></div>
+			<div><h3>[[${place.getPlaceOneLineIntroduction}]]</h3></div>
 			<br>
 			<h4>소개글</h4>
-			<div>[[${result.getPlaceIntroduction}]]</div>
+			<div>[[${place.getPlaceIntroduction}]]</div>
 			<br>
 			<h4>안내 사항</h4>
-			<div>[[${result.getPlaceGuide}]]</div>
+			<div>[[${place.getPlaceGuide}]]</div>
 			<br>
 			
-			
-			
+				<input type="radio" name="placeReviewRate" value="1"> 
+				<input type="radio" name="placeReviewRate" value="2"> 
+				<input type="radio" name="placeReviewRate" value="3"> 
+				<input type="radio" name="placeReviewRate" value="4"> 
+				<input type="radio" name="placeReviewRate" value="5"> 
+				 
+				<input type="text" name="placeReviewContent">
+				<button type="button" class="reviewSave">리뷰 등록</button>
+			<div style="border: 1px solid;" th:each="review : ${reviews}">
+				
+				<div>
+					작성자 : [[${review.getWriter}]]
+					<br>
+					평점 : [[${review.getPlaceReviewRate}]]
+					<br>
+					내용 : [[${review.getPlaceReviewContent}]]
+					<br>
+					작성일 : [[${review.getRegDate}]]
+				<br>
+				</div>
+			</div>
 		</div>
    	</div>
-   </div>
+   	
+   
+   
+<script th:inline="javascript">
+	$(document).ready(function(){
+		
+		
+		
+		var replyer = null;
+		
+		<sec:authorize access="isAuthenticated()">
+		
+			replyer = '<sec:authentication property="principal.username"/>';
+		
+		</sec:authorize>
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
+		
+		
+		
+		
+		
+		
+		const placeNum = [[${place.placeNum}]];
+		
+		$(".reviewSave").click(function(){
+			
+			var review = {
+					placeNum: placeNum, 
+					placeReviewRate: $('input[name=placeReviewRate]:checked').val(),
+					placeReviewContent: $('input[name=placeReviewContent]').val() 
+					
+	      }
+			
+			console.log(review)
+			
+			$.ajax({
+				url: '/place/review',
+				method: 'post',
+				data: JSON.stringify(review),
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				success: function(data){
+					
+					console.log("success...." + data);
+					
+					var newRno = parseInt(data);
+					alert(newRno + "번 댓글이 등록되었습니다.");
+					modal.modal('hide');
+					loadJSONData();
+				}
+			});
+			
+			
+			
+			
+			
+			
+		})
+		
+		
+		
+		
+		
+	})
+</script>
+   
    </th:block>
 </th:block>
