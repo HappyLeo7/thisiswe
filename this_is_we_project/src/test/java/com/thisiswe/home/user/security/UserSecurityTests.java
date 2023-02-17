@@ -1,14 +1,13 @@
 package com.thisiswe.home.user.security;
 
-import java.util.stream.IntStream;
-
+import com.thisiswe.home.user.entity.UserEntity;
+import com.thisiswe.home.user.entity.UserRole;
+import com.thisiswe.home.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.thisiswe.home.user.entity.UserEntity;
-import com.thisiswe.home.user.entity.UserRole;
-import com.thisiswe.home.user.repository.UserRepository;
+import java.util.stream.IntStream;
 
 @SpringBootTest
 public class UserSecurityTests {

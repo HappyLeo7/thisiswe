@@ -1,10 +1,10 @@
 package com.thisiswe.home.place.service;
 
-import java.util.List;
-
 import com.thisiswe.home.place.dto.PlaceDTO;
 import com.thisiswe.home.place.entity.PlaceEntity;
 import com.thisiswe.home.user.entity.UserEntity;
+
+import java.util.List;
 
 public interface PlaceService {
 
@@ -43,9 +43,7 @@ public interface PlaceService {
 		PlaceEntity placeEntity = PlaceEntity.builder()
 				.placeNum(placeDTO.getPlaceNum())
 				.placeName(placeDTO.getPlaceName())
-				
 				.userId(UserEntity.builder().userId(placeDTO.getUserId()).build())
-				
 				.placeOneLineIntroduction(placeDTO.getPlaceOneLineIntroduction())
 				.placeIntroduction(placeDTO.getPlaceIntroduction())
 				.placeBusinessHours(placeDTO.getPlaceBusinessHours())
