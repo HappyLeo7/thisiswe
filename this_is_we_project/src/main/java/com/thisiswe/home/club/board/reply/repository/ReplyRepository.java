@@ -1,14 +1,12 @@
 package com.thisiswe.home.club.board.reply.repository;
 
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.club.board.reply.entity.Reply;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 //TODO [ReplyRepository] 게시글-댓글
 public interface ReplyRepository extends JpaRepository<Reply, Long>{

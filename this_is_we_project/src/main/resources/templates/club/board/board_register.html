@@ -16,55 +16,71 @@
 	<!-- /board.js 연결 -->
 		
 		<!-- 게시판 등록 -->
-		<h1 class="">게시글 등록</h1>
-		<form th:action="@{/thisiswe/club/board/register}" th:method="post">
+		<div class="inner">
+			<h1 class="">ㄷㅡㅇㄹㅗㄱ</h1>
+			<form th:action="@{/thisiswe/club/board/register}" th:method="post">
 			
-			<!-- 게시판 등록 테이블 -->
-			<table>
-				<tr class="">
-					<td>카테고리</td>
-					<td>
-						<input type="text" class="form-control" name="boardCategory"
-							placeholder="모임추가, 모임변경, 모임후기, 기타">
-					</td>
-				</tr>
-				
-				<tr class="">
-					<td>제목</td>
-					<td>
-						<input type="text" class="" name="boardTitle" placeholder="제목을 반드시 넣어주세요.">
-					</td>
-				</tr>
-				
-				<tr class="">
-					<td>내용</td>
-					<td>
-						<textarea class="" rows="5" name="boardContent" placeholder="내용을 반드시 입력해주세요."></textarea>
-					</td>
-				</tr>
-	
-				<tr class="">
-					<td>작성자</td>
-					<td>
-						<input type="text" class="" name="userId" placeholder="ID를 입력하세요.">
-					</td>
-				</tr>
-				
-				<!-- 게시판 등록: 조회수 숨김 처리 -->
-				<tr class="">
-					<td>
-						<input type="hidden" class="" name="boardView" value="0" >
-					</td>
-				</tr>
-				<!-- /게시판 등록: 조회수 숨김 처리 -->
-			</table>
-			<!-- /게시판 등록 테이블 -->
-
-			<br>
-			
-			<button type="submit" class="btn btn-success">등록</button>
-			<button type="submit" class="btn btn-warning">목록</button>
-		</form>
+			<!-- 게시판 등록 - section -->	
+			<div class="board-section">
+				<!-- 게시판 등록 테이블 -->
+				<table class="board-ri-table">
+					<tr>
+						<th class="board-ri-th">카테고리</th>
+					</tr>
+					<tr>
+						<td class="bd-contain">
+							<input type="text" class="bd-input" name="boardCategory" autocomplete="off"
+													placeholder="모임추가, 모임변경, 모임후기, 기타" required="required">
+						</td>
+					</tr>
+					
+					<tr>
+						<th class="board-ri-th">제목</th>
+					</tr>
+					<tr>
+						<td class="bd-contain">
+							<input type="text" class="bd-input" name="boardTitle" autocomplete="off"
+													placeholder="제목을 반드시 입력해주세요." required="required">
+						</td>	
+					</tr>
+					
+					<tr>
+						<th class="board-ri-th">내용</th>
+					</tr>
+					<tr>
+						<td class="bd-contain">
+							<input type="text" class="bd-input-co" name="boardContent" autocomplete="off"
+													placeholder="내용을 반드시 입력해주세요." required="required">
+						</td>
+					</tr>
+		
+					<tr>
+						<th class="board-ri-th">작성자</th>
+					</tr>
+					<tr>
+						<td class="bd-contain">
+							<input type="text" class="bd-input" name="userId" autocomplete="off"
+													placeholder="ID를 입력하세요." required="required">
+						</td>
+						<!-- 게시판 등록: 조회수 숨김 처리 -->
+						<td>
+							<input type="hidden" class="" name="boardView" value="0" >
+						</td>
+						<!-- /게시판 등록: 조회수 숨김 처리 -->
+					</tr>
+				</table>
+				<!-- /게시판 등록 테이블 -->
+			</div>
+			<!-- /게시판 등록 - section -->
+				<br>				
+				<div class="board-rigi-Btn">
+					<button type="submit" class="searchBtn-mi btn-success">등록</button>
+					<button type="submit" class="searchBtn-mi">
+						<a th:href="@{/thisiswe/club/board/list}">목록</a>
+					</button>
+				</div>
+			</form>
+		</div>
 		<!-- /게시판 등록 -->
 
 	</th:block>

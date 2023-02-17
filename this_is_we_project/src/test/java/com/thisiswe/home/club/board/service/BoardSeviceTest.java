@@ -8,9 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.dto.PageResultDTO;
-import com.thisiswe.home.club.board.entity.Board;
-
-import lombok.RequiredArgsConstructor;
 
 @SpringBootTest
 //TODO [SeviceTest] 게시판

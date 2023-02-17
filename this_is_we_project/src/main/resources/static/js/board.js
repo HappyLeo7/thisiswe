@@ -1,5 +1,5 @@
 /* board 게시판 관련 js */
-
+	 
 	/* [START] board_list.html의 스크립트/
 	/* [START] board_list.html : 모달창 처리 */
 	     var msg = [[${msg}]];
