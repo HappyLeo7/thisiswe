@@ -26,7 +26,7 @@
 		</div>
 		
 		<!-- 모임등록버튼 -->
-		<a th:href="@{/thisiswe/register}">
+		<a th:href="@{/thisiswe/register}" style="float: right;">
 			<button type="button">모임등록</button>		
 		</a>
 		<br>
@@ -35,9 +35,10 @@
 <!-- list 1 -->
 
 <!-- 코드가안됨 -->
-<div th:each="clubDTO : ${result}">
+<div>
+<div th:each="clubDTO : ${result}" style="border:1px solid black; width: 45%; float: left; margin-top: 3%; margin-right: 4.4%" >
 
-	<div><a th:href="@{/club/read}">이미지</a></div>
+	<div><a th:href="@{/club/read}" style="border:5px;">이미지</a></div>
 	<div><a class="clubNum" th:href="@{/thisiswe/club/(Num=${clubDTO.clubNum})}">
     [[${clubDTO.clubName}]]모임명</a></div>
     <div>지역([[${clubDTO.clubPlace}]])</div>
@@ -45,14 +46,21 @@
     <div>닉네임([[${clubDTO.userNickname}]])</div>
 
 </div>
+</div>
 
 
 
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!-- 검색 -->
 		
 	<div>
-		<form th:action="@{/thisiswe/club}" th:method="get">
+		<form th:action="@{/thisiswe/club}" th:method="get" style="float: right;">
 		<select name="type">
 			<option th:selected="${pageRequestDTO.type==null}">------</option>
 			<option th:selected="${pageRequestDTO.type=='N'}" value="N">모임명</option>
@@ -98,12 +106,6 @@
 <br>
 
 
-		<hr>
-		<a th:href="@{/club/club_list}">모임목록</a>
-		<hr>
-		<a th:href="@{/club/club_modify}">모임수정</a>
-		<hr>
-		<a th:href="@{/club/club_read}">모임상세</a>
 	<!-- /내용 -->
 	
 	

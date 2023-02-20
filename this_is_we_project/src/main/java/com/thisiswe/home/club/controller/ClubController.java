@@ -93,7 +93,6 @@ public class ClubController {
 		//model.addAttribute("list", clubService.getList(clubDTO)); 
 		model.addAttribute("calendarDTOList",calendarService.getCalendarList(Num));
 		log.info(Num+"번 모임 일정 List : "+model.addAttribute("calendarDTOList"));
-		
 		model.addAttribute("user",userDetails.getUsername());
 		log.info("사용자 아이디 : "+model.addAttribute("user",userDetails.getUsername()));
 		
