@@ -7,11 +7,10 @@
     <!-- 모바일에서 디바이스의 해상도가 아닌 디바이스의 실제 크기를 기준으로 너비/높이를 잡는다. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <h1 style="display:none;">완료 요구사항 : 메세지 박스의 스크롤바는 입력박스 바로 위까지만 위치해야 합니다.</h1>
-    <h1 style="display:none;">다음 요구사항 : 스크롤바를 디자인 해주세요.</h1>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<title>[[${roomName}]]의 채팅방</title>
 <style>
     /* 노말라이징 */
     body, ul, li {
@@ -44,7 +43,7 @@
         /* 임시 */
         outline: 2px solid black;
         position: relative;
-        margin: 0% 18% 0% 18%;
+
     }
 
     #chat-room .message-box {
@@ -190,46 +189,8 @@
         ws = new WebSocket("ws://" + location.host + "/chating/" + $("#roomNum").val());
         // getChat();
         wsEvt();
-
-        //
     }
 
-    // function getChat() {
-    //     console.log("getChat 실행");
-    //     commonAjax('/getChat', "", 'post', function (result) {
-    //         createMessages(result);
-    //     });
-    // }
-    //
-    // function createMessages(res) {
-    //     console.log("createMessages 실행 : " + res.toString());
-    //     if (res == null) {
-    //         res.forEach(function (d, idx) {
-    //             console.log($("#userName") + ", " + d.userName )
-    //             if (d.userName == $("#userName").val()) {
-    //                 $("#chating").append("<p class='me'>나 :" + d.message + "</p>");
-    //             } else {
-    //                 $("#chating").append("<p class='others'>" + d.userName + " :" + d.message + "</p>");
-    //             }
-    //         });
-    //     }
-    // }
-    //
-    // function commonAjax(url, parameter, type, calbak, contentType) {// 경로, 파라미터, http메소드타입,
-    //     $.ajax({
-    //         url: url,
-    //         data: parameter,
-    //         type: type,
-    //         contentType: contentType != null ? contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-    //         success: function (res) {//성공할시 리스폰스값을 가져옴
-    //             calbak(res);
-    //         },
-    //         error: function (err) {
-    //             console.log('error');
-    //             calbak(err);
-    //         }
-    //     });
-    // }
 
     function wsEvt() {
         console.log("웹소켓이벤트 발생");
@@ -329,30 +290,11 @@
         $(".message-box").scrollTop($(document).height());
     }
 
-    // function fileSend() {
-    //     var file = document.querySelector("#fileUpload").files[0];
-    //     var fileReader = new FileReader();
-    //     fileReader.onload = function () {
-    //         var param = {
-    //             type: "fileUpload",
-    //             file: file,
-    //             roomNumber: $("#roomNum").val(),
-    //             sessionId: $("#sessionId").val(),
-    //             msg: $("#chatting").val(),
-    //             userName: $("#userName").val()
-    //         }
-    //         ws.send(JSON.stringify(param)); //파일 보내기전 메시지를 보내서 파일을 보냄을 명시한다.
-    //
-    //         arrayBuffer = this.result;
-    //         ws.send(arrayBuffer); //파일 소켓 전송
-    //     };
-    //     fileReader.readAsArrayBuffer(file);
-    // }
 </script>
 <body>
 <input type="hidden" id="sessionId" value="">
 <input type="hidden" id="roomNum" th:value="${roomNumber}">
-<input type="hidden" id="userName" value="'문수찬'">
+<input type="hidden" id="userName" value="문수찬">
 <input type="hidden" id="roomName" th:value="${roomName}">
 <div id="chat-room">
     <div class="message-box">

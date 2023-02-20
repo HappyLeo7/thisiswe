@@ -20,6 +20,7 @@ public class ChatService {
     private final ChatMessageRepository chatMessageRepository;
     private final ChatRoomRepository chatRoomRepository;
 
+    //메세지 저장
     public void saveMessage(JSONObject obj) {
         String clubName = (String) obj.get("roomName");
         String userNickname = (String) obj.get("userName");
@@ -31,7 +32,7 @@ public class ChatService {
         chatMessageRepository.save(message);
         System.out.println(message);
     }
-
+    //방에 들어올 시 메세지 조회
     public List<MessageResponseDto> getMessages(String roomName) {
         System.out.println("getmessage실행되긴함 ");
         List<Message> messages = chatMessageRepository.findAllByClubName(roomName);
@@ -43,13 +44,23 @@ public class ChatService {
         return messageResponseDtos;
     }
 
-    public List<Room> getAllChatRooms() {
 
+    public List<Room> getAllChatRooms() {
         return chatRoomRepository.findAll();
     }
 
+    //채팅방 생성
     public void createChattingRoom(String roomName) {
         chatRoomRepository.save(new Room(roomName));
 
     }
+
+    //채팅방 삭제
+    public void deleteChattingRoom(String roomName){
+        chatRoomRepository.deleteByRoomName(roomName);
+        System.out.println("방이 삭제되었습니다. 모임이름 : " + roomName);
+        chatMessageRepository.deleteAllByRoomName(roomName);
+        System.out.println("메세지가 삭제되었습니다. 모임이름 : "+ roomName);
+    }
+
 }

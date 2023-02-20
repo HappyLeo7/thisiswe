@@ -9,4 +9,6 @@ import java.util.List;
 public interface ChatMessageRepository extends MongoRepository<Message, Long> {
 
     List<Message> findAllByClubName(String clubName);
+
+    void deleteAllByRoomName(String roomName);
 }

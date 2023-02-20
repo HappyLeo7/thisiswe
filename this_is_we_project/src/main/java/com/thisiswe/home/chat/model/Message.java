@@ -30,7 +30,6 @@ public class Message {
 
     private String imageUrl;
 
-    @CreatedDate
     private LocalDateTime createdAt;
 
     private String _class;
