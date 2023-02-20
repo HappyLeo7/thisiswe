@@ -122,6 +122,10 @@
 		// 리뷰 modify 버튼 시작
 			$(".reviewModify").click(function(){
 				const placeReviewNum = $('input[name=ModifyplaceReviewNum]').val();		
+				
+				console.log(placeReviewNum);
+				console.log($('input[name=ModifyplaceReviewRate]:checked').val());
+				console.log($('input[name=ModifyplaceReviewContent]').val());
 				var review = {
 						placeReviewNum: placeReviewNum,
 						placeNum: placeNum, 

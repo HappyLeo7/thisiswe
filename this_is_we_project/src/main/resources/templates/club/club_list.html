@@ -36,34 +36,18 @@
 
 <!-- 코드가안됨 -->
 <div th:each="clubDTO : ${result}">
+
 	<div><a th:href="@{/club/read}">이미지</a></div>
 	<div><a class="clubNum" th:href="@{/thisiswe/club/(Num=${clubDTO.clubNum})}">
     [[${clubDTO.clubName}]]모임명</a></div>
     <div>지역([[${clubDTO.clubPlace}]])</div>
     <div>인원([[${clubDTO.clubHeadCount}]])</div>
     <div>닉네임([[${clubDTO.userNickname}]])</div>
+
 </div>
 
 
-<!-- 
- -->
- 	<table border="1" th:each="clubDTO : ${result}">
-  <tr style="width: 100%">
-    <th width="" colspan="3"><a th:href="@{/club/read}">이미지</a></th>
-  </tr>
-  <tr >
-     <td colspan="3" ><a class="clubNum" th:href="@{/thisiswe/club/(Num=${clubDTO.clubNum})}">
-    [[${clubDTO.clubName}]]모임명</a></td>
-  </tr>
 
-
-  <tr >
-    <td >지역 [[${clubDTO.clubPlace}]]</td>
-    <td>인원 [[${clubDTO.clubHeadCount}]]</td>
-    <td>닉네임 [[${clubDTO.userNickname}]]</td>
-  </tr>
-
-</table>
 
 <!-- 검색 -->
 		

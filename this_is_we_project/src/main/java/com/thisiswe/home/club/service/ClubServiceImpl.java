@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.thisiswe.home.chat.service.ChatService;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.dto.PageResultDTO;
@@ -28,6 +29,7 @@ import lombok.extern.log4j.Log4j2;
 public class ClubServiceImpl implements ClubService {
 
 	private final ClubRepository clubRepository;
+	private final ChatService chatService;
 	
 	
 	// 모임 등록 하는 매서드
@@ -38,6 +40,7 @@ public class ClubServiceImpl implements ClubService {
 		log.info("==== ClubServiceImpl register() clubDTO : "+clubDTO+" ====");
 		ClubEntity clubEntity = dtoToEntity(clubDTO);
 		clubRepository.save(clubEntity);
+		chatService.createChattingRoom(clubEntity.getClubName());//모임생성시 모임 이름 채팅방에 저장
 		log.info("==== ClubServiceImpl register() clubEntity : "+clubEntity+" ====");
 		log.info("====================================");
 		
