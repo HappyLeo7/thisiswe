@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.thisiswe.home.chat.service.ChatService;
 import com.thisiswe.home.club.calendar.repository.CalendarRepository;
 import com.thisiswe.home.club.calendar.service.CalendarService;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
+import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.club.service.ClubService;
 import com.thisiswe.home.user.security.UserDetailsImpl;
@@ -26,7 +28,6 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class ClubController {
 
-	
 	private final ClubService clubService;
 	private final ClubRepository clubRepository;
 	private final CalendarRepository calendarRepository;
