@@ -10,5 +10,5 @@ public interface ChatMessageRepository extends MongoRepository<Message, Long> {
 
     List<Message> findAllByClubName(String clubName);
 
-    void deleteAllByRoomName(String roomName);
+//    void deleteAllByRoomName(String roomName);
 }

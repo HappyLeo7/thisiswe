@@ -59,7 +59,7 @@ public class ChatService {
     public void deleteChattingRoom(String roomName){
         chatRoomRepository.deleteByRoomName(roomName);
         System.out.println("방이 삭제되었습니다. 모임이름 : " + roomName);
-        chatMessageRepository.deleteAllByRoomName(roomName);
+//        chatMessageRepository.deleteAllByRoomName(roomName);
         System.out.println("메세지가 삭제되었습니다. 모임이름 : "+ roomName);
     }
 
