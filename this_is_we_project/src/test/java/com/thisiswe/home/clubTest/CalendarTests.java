@@ -43,7 +43,7 @@ public class CalendarTests {
 				.clubCalendarPlace("강남역")
 				.clubCalendarHeadCount(5L)
 				.clubCalendarPrice(10000L)
-				.clubNum(ClubEntity.builder().clubNum(3L).build())
+				.clubNum(ClubEntity.builder().clubNum(1L).build())
 				.build();
 		
 		calendarRepository.save(calendarEntity);
