@@ -3,6 +3,7 @@ package com.thisiswe.home.club.calendar.service;
 
 import com.thisiswe.home.club.calendar.dto.CalendarDTO;
 import com.thisiswe.home.club.calendar.entity.CalendarEntity;
+import com.thisiswe.home.club.dto.ClubDTO;
 
 
 public interface CalendarService {
@@ -16,6 +17,9 @@ public interface CalendarService {
 	
 	Object getCalendarList(Long clubNum);
 	
+	//일정 수정매서드
+	void modify(CalendarDTO calendarDTO, ClubDTO clubDTO);
+
 	
 	//dto -> entity
 	default CalendarEntity dtoToEntity(CalendarDTO calendarDTO) {
@@ -58,6 +62,9 @@ public interface CalendarService {
 		return calendarDTO;
 	}
 
+	
+
+	
 	
 
 }

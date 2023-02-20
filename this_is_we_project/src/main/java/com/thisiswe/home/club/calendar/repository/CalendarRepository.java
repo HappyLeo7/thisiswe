@@ -19,6 +19,15 @@ public interface CalendarRepository extends JpaRepository<CalendarEntity, Long>{
 			+ "where c.clubNum = :clubNum ")
 	List<Object[]> getClubNum(@Param("clubNum") Long clubNum);
 	
+	
+	//해당 모임의 일정 데이터 1개 불러오기
+	@Query("select c,ca "
+			+ "from CalendarEntity ca "
+			+ "join ClubEntity c "
+			+ "on c.clubNum = ca.clubNum "
+			+ "where c.clubNum = :clubNum and ca.clubCalendarNum = :clubCalendarNum")
+	List<Object[]> getClubCalendarNum(@Param("clubNum") Long clubNum,@Param("clubCalendarNum") Long calendarNum);
+	
 	/* 테스트용 일정 리스트 불러오기
 	@Query(value="select * "
 			+ "from calendar_entity ca "

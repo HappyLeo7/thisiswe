@@ -8,8 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.thisiswe.home.club.calendar.dto.CalendarDTO;
 import com.thisiswe.home.club.calendar.entity.CalendarEntity;
 import com.thisiswe.home.club.calendar.repository.CalendarRepository;
+import com.thisiswe.home.club.calendar.service.CalendarService;
+import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
 
 import lombok.extern.log4j.Log4j2;
@@ -21,6 +24,9 @@ public class CalendarTests {
 	
 	@Autowired
 	private CalendarRepository calendarRepository;
+	
+	@Autowired
+	private CalendarService calendarService;
 	
 	//TODO [테스트] 일정 추가
 	@Test
@@ -47,6 +53,7 @@ public class CalendarTests {
 		
 	}
 	
+	//calendarAllList 캘린더 전체 일정 가져오는 테스트
 	@Test
 	public void testCalendarList() {
 		
@@ -62,18 +69,35 @@ public class CalendarTests {
 		
 	}
 	
+	//일정수정테스트
 	@Test
-	public void testCalendarAllList() {
-//		System.out.println("111111111111111111");
-		
-		//List<CalendarEntity> cal=calendarRepository.gggg1(1L);
-		//System.out.println("22222222222222");
-		//System.out.println(cal.toString());
-//		for (CalendarEntity arr : cal) {
-////			System.out.println("33333333333");
-//			log.info("일정 리스트 : " +arr);
+	public void testCalendarModfiy() {
 			
-		}
+		System.out.println("");
+		System.out.println("'''''일정수정 테스트''''''");
+			CalendarDTO calendarDTO = CalendarDTO.builder()
+					.clubCalendarNum(1L)
+					.clubCalendarTitle("점심수정")
+					.clubCalendarContent("연어덮밥 수정")
+					.clubCalendarDate("2025-01-01")
+					.clubCalendarTime("13:50:00")
+					.clubCalendarPlace("수정역")
+					.clubCalendarHeadCount(10L)
+					.clubCalendarPrice(20000L)
+					.build();
+			
+			ClubDTO clubDTO=ClubDTO.builder()
+					.clubNum(3L).build();
+			
+			System.out.println("일정 수정값 : "+calendarDTO);
+			
+			System.out.println("");
+			
+			calendarService.modify(calendarDTO, clubDTO);
+			
+			System.out.println("'''''/일정수정 테스트''''''");
+			System.out.println("");
+	}
 	
 	
 }

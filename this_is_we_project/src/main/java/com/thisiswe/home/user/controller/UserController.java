@@ -37,7 +37,7 @@ public class UserController {
 		
 		System.out.println("확인용");
 		userService.registerUser(requestDto);
-		return "redirect:/login/login";
+		return "/login/login";
 	}
 
 //	@GetMapping("/user/kakao/callback")

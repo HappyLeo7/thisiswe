@@ -13,11 +13,57 @@
 
         @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+        .chating .inputTable .bt    n-plus > i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-45%);
+            color: white;
+            font-size: 3rem;
+        }
+
+        #sendBtn {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px;
+            background-color: #fdf01b;
+            padding: 10px;
+            color: #bfb73d;
+            border-radius: 3px;
+            font-size: 1.3rem;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+            user-select: none;
+        }
+
         .container {
             width: 500px;
             margin: 0 auto;
             padding: 25px
         }
+
+        .inputTable {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .inputTable #chatting {
+            width: 100%;
+            display: block;
+            border: 0;
+            outline: none;
+            padding-right: 8.5rem;
+            padding-left: 4.8rem;
+            padding-top: 0.1rem;
+            font-size: 1.4rem;
+            line-height: 4rem;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
 
         .container h1 {
             text-align: left;
@@ -38,11 +84,10 @@
 
 
             /* 임시 */
-            outline:2px solid black;
-            position:relative;
+            outline: 2px solid black;
+            position: relative;
 
         }
-
 
 
         .chating .me {
@@ -71,6 +116,7 @@
             position: relative;
 
         }
+
         .chating .others > section {
             position: absolute;
             top: 0;
@@ -81,10 +127,11 @@
             font-size: 1.46rem;
             display: block;
         }
+
         .chating .others::after {
-            content:"";
-            display:block;
-            clear:both;
+            content: "";
+            display: block;
+            clear: both;
         }
 
         input {
@@ -264,8 +311,7 @@
 
 <div id="container" class="container">
     <h1 th:text="${roomName} + '의 채팅방'"></h1>
-    <input type="hidden" id="sessionId" value="">
-    <input type="hidden" id="roomNum" th:value="${roomNumber}">
+
 
     <div id="chating" class="chating">
 
@@ -274,13 +320,12 @@
 
             <div th:if="${chat.userNickname != memberName }">
                 <div class='others'>
-                <section><i class="fa fa-user"></i></section>
-                <span th:text="${chat.userNickname}"></span>
-<!--                <p class='others' th:text=" ${chat.message}"></p>-->
-                <p class="othermessage" th:text=" ${chat.message}"></p>
+                    <section><i class="fa fa-user"></i></section>
+                    <span th:text="${chat.userNickname}"></span>
+                    <!--                <p class='others' th:text=" ${chat.message}"></p>-->
+                    <p class="othermessage" th:text=" ${chat.message}"></p>
                 </div>
             </div>
-
 
 
             <div th:unless="${chat.userNickname != memberName }">
@@ -290,12 +335,31 @@
         </div>
         <!--        if (d.userName == $("#userName").val()) -->
         <!--        <p class='me'>나 : d.msg </p>-->
+        <table class="inputTable">
 
+            <div class="btn-plus">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </div>
+            <tr>
+                <th>메시지</th>
+                <th><input type="text" id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
+                <th>
+                    <button onclick="send()" id="sendBtn">보내기</button>
+                </th>
+            </tr>
+            <!--            <tr>-->
+            <!--                <th>파일업로드</th>-->
+            <!--                <th><input type="file" id="fileUpload"></th>-->
+            <!--                <th>-->
+            <!--                    <button onclick="fileSend()" id="sendFileBtn">파일올리기</button>-->
+            <!--                </th>-->
+            <!--            </tr>-->
+        </table>
 
     </div>
 
     <div id="yourName">
-        <table class="inputTable">
+        <table class="inputTable1">
             <tr>
                 <th>사용자명</th>
                 <th><input type="text" name="userName" id="userName"></th>
@@ -306,27 +370,10 @@
         </table>
     </div>
     <div id="yourMsg">
-        <table class="inputTable">
-            <tr>
-                <th>메시지</th>
-                <th><input type="text" id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-                <th>
-                    <button onclick="send()" id="sendBtn">보내기</button>
-                </th>
-            </tr>
-            <tr>
-                <th>파일업로드</th>
-                <th><input type="file" id="fileUpload"></th>
-                <th>
-                    <button onclick="fileSend()" id="sendFileBtn">파일올리기</button>
-                </th>
-            </tr>
-        </table>
+
     </div>
 </div>
 
-<script>
 
-</script>
 </body>
 </html>
