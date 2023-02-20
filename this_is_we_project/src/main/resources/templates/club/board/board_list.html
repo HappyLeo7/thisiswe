@@ -6,153 +6,156 @@
 	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
-
+		
+	<!-- board.css 연결 -->
+		<link rel="stylesheet" th:href="@{/css/board.css}" />
+	<!-- /board.css 연결 -->
+		
+	<!-- board.js 연결 -->
+		<script src="@{/js/board.js}"></script>
+	<!-- /board.js 연결 -->
+		
 		<!-- 게시판 전체 목록 -->
-		<h1 class="">
-			게시판 목록 <span> <a th:href="@{/club/board/register}">
-					<button type="button" class="btn btn-outline-primary">REGISTER</button>
-			</a>
-			</span>
-		</h1>
-
-		<table class="">
-			<!-- 게시판 목록 head 부분 -->
-				<thead>
-					<tr>
-						<th scope="col">번호</th>
-						<th scope="col">카테고리</th>
-						<th scope="col">제목</th>
-						<th scope="col">작성자</th>
-						<th scope="col">등록일</th>
-						<th scope="col">조회수</th>
-					</tr>
-				</thead>
-
-				<!-- /게시판 목록 head 부분 -->
-
-				<!-- 게시판 목록 body 부분 -->
-				<tbody>		
-					<tr th:each="boardDTO : ${result.DTOList}">
-						<th scope="row">[[${boardDTO.boardNum}]]</th>
-						<td>[[${boardDTO.boardCategory}]]</td>
-						<td><a
-							th:href="@{/club/board/read/{boardNum}(boardNum=${boardDTO.boardNum})}">
-								[[${boardDTO.boardTitle}]]..[<b th:text="${boardDTO.replyCount}"></b>]
-						</a></td>
-						<td>[[${boardDTO.userId}]]</td>
-						<td>[[${#temporals.format(boardDTO.regDate, 'yyyy-MM-dd')}]]</td>
-						<td>[[${boardDTO.boardView}]]</td>
-					</tr>
-				</tbody>
-				<!-- /게시판 목록 body 부분 -->
-			</table>
-			<!-- /게시판 전체 목록 -->
-
-			<br><br><br>
-
+		<div class="inner">
+			<h1 class="board-head">ㅁㅗㄱㄹㅗㄱ</h1>
+			
 			<!-- 검색창 추가 -->
-			<div class="">
-				<div class="">
-					<form id="searchForm" action="/club/board/list" method="get">
+			<div class="board-search">
+				<div class="board-search_sub">
+					<form id="searchForm" action="/thisiswe/club/board/list" method="get">
 
-						<select name="type">
+						<select id="searchColumn" name="type">
 							<option value="" th:selected="${pageRequestDTO.type==null}">-----</option>
-
+	
 							<option value="t" th:selected="${pageRequestDTO.type=='t'}">제목</option>
 
 							<option value="c" th:selected="${pageRequestDTO.type=='c'}">내용</option>
 
 							<option value="w" th:selected="${pageRequestDTO.type=='w'}">작성자</option>
-
+	
 							<option value="tc" th:selected="${pageRequestDTO.type=='tc'}">제목+내용</option>
 
 							<option value="tw" th:selected="${pageRequestDTO.type=='tw'}">제목+작성자</option>
 
 							<option value="tcw" th:selected="${pageRequestDTO.type=='tcw'}">제목+내용+작성자</option>
 						</select> 
-						<input type="text" name="keyword" th:value="${pageRequestDTO.keyword}">
-						<button type="button" class="btn btn-outline-secondary btn-search">검색</button>
-						<button type="button" class="btn btn-outline-secondary btn-clear">취소</button>
+					
+						<input type="text" id="searchWord" name="keyword" th:value="${pageRequestDTO.keyword}">
+						<button type="button" class="searchBtn btn-search" onclick="">검색</button>
+						<button type="button" class="searchBtn btn-clear">취소</button>
 						<br><br>
 					</form>
 				</div>
 			</div>
-			<!-- /검색창 추가 -->
-
-			<!-- 페이지 부분 : 이동, 이전, 다음 -->
-			<ul class="">
-				<li class="" th:if="${result.prev}"><a class="page-link"
-					th:href="@{/club/board/list(page=${result.start-1},
-                                				type=${pageRequestDTO.type},
-                               					keyword=${pageRequestDTO.keyword})}"
-					tabindex="-1">이전</a></li>
-
-				<li th:class="'page-item '+ ${result.page == page?'active':''}"
-					th:each="page: ${result.pageList}"><a class="page-link"
-					th:href="@{/club/board/list(page=${page},
-                                 				type=${pageRequestDTO.type},
-                            					keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
-				</li>
-
-				<li class="page-item" th:if="${result.next}"><a
-					class="page-link"
-					th:href="@{/club/board/list(page=${result.end},
-                                 				type=${pageRequestDTO.type},
-                               					keyword=${pageRequestDTO.keyword})}">다음</a>
-				</li>
-			</ul>
-			<!-- /페이지 부분 : 이동, 이전, 다음 -->
+			<!-- /검색창 추가 -->		
 			
-			<!-- Modal : 게시글 등록 될 때 -->
-            <div class="modal" tabindex="-1" role="dialog">
-           		<!-- modal-dialog -->
-              	<div class="modal-dialog" role="document">
-              		 <!-- /modal-content -->
-                	 <div class="modal-content">
-                    	 <div class="modal-header">
-                      	  <h4 class="modal-title">Board</h4>
-                      	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                     </div>
-                     <div class="modal-body">[[${msg}]]번 게시글이 처리되었습니다!</div>
-                     <!-- modal-footer -->
-                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        <button type="button" class="btn btn-primary">확인</button>
-                     </div>
-                     <!-- /modal-footer -->
-                  </div>
-                  <!-- /modal-content -->
-               </div>
-               <!-- /modal-dialog -->
-            </div>
-            <!-- Modal : 게시글 등록 될 때 -->    
+			<!-- 게시판 글쓰기 버튼 -->	
+			<div class="board-regi">
+				<a th:href="@{/thisiswe/club/board/register}">
+					<span> 
+						<button type="button" class="searchBtn-regi">REGISTER</button>
+					</span>
+				</a>
+			</div>	
+			<!-- /게시판 글쓰기 버튼 -->
+			<br>
+			
+			<table class="board-table">
+				<!-- 게시판 목록 head 부분 -->
+				<thead class="board-li-th">
+					<tr>
+						<th scope="col" width="10%">번호</th>
+						<th scope="col" width="11%">카테고리</th>
+						<th scope="col" width="20%">제목</th>
+						<th scope="col" width="12%">작성자</th>
+						<th scope="col" width="12%">등록일</th>
+						<th scope="col" width="10%">조회수</th>
+					</tr>
+				</thead>
+				<!-- /게시판 목록 head 부분 -->	
 
-
-	<!-- 게시판 : 목록 - 검색 기능 script -->
-	<script th:inline="javascript">
-         var msg = [[${msg}]];
-         console.log(msg);
-         
-         // 107행 class="modal"
-         if(msg){
-            $(".modal").modal();
-         }
-         
-         // 56행 id="searchForm"
-         var searchForm = $("#searchForm");
-         
-         // 74행 class="btn-search"
-         $('.btn-search').click(function(e){
-            searchForm.submit();
-         });
-         
-         // 75행 class="btn-clear"
-         $('.btn-clear').click(function(e){
-            searchForm.empty().submit();
-         });
-         
-    </script>
-    <!-- /게시판 : 목록 - 검색 기능 script -->
-
+				<!-- 게시판 목록 body 부분 -->				
+				<tbody class=".board-li-tb">
+					<tr th:each="boardDTO : ${result.DTOList}">
+						<th class="bd-num" scope="row">[[${boardDTO.boardNum}]]</th>
+							<td class="bd-con">
+								<span class="bd-cate-sub">[[${boardDTO.boardCategory}]]</span>
+							</td>
+								
+							<td class="bd-con">
+								<a th:href="@{/thisiswe/club/board/read(boardNum=${boardDTO.boardNum},
+																		page=${result.page},
+           	                            	       						type=${pageRequestDTO.type},
+            	                    	           						keyword=${pageRequestDTO.keyword})}">
+										[[${boardDTO.boardTitle}]]..[<b th:text="${boardDTO.replyCount}"></b>]
+								</a>
+							</td>
+								
+							<td class="bd-con">[[${boardDTO.userId}]]</td>
+							<td class="bd-con">[[${#temporals.format(boardDTO.regDate, 'yyyy-MM-dd')}]]</td>
+							<td class="bd-con">[[${boardDTO.boardView}]]</td>
+						</tr>
+						<!-- /게시판 목록 body 부분 -->
+					</tbody>
+				</table>
+	
+				<br><br><br>
+	
+				<!-- 페이지 부분 : 이동, 이전, 다음 -->
+				<div class="paginate">
+					<ul class="">
+						<li class="link-page active" th:if="${result.prev}">
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/list(page=${result.start-1},
+                   	     	        											type=${pageRequestDTO.type},
+                   	    	        												keyword=${pageRequestDTO.keyword})}"
+							tabindex="-1">이전</a>
+						</li>
+		
+						<li th:class="'page-item '+ ${result.page == page?'active':''}"
+												th:each="page: ${result.pageList}">
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/list(page=${page},
+                		                 								type=${pageRequestDTO.type},
+                   	 	        										keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
+						</li>
+		
+						<li class="link-page-active" th:if="${result.next}">
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/list(page=${result.end},
+            	    	                 								type=${pageRequestDTO.type},
+                		               									keyword=${pageRequestDTO.keyword})}">다음</a>
+						</li>
+					</ul>
+				</div>
+		</div>
+			<!-- /페이지 부분 : 이동, 이전, 다음 -->
+		<!-- /게시판 전체 목록 -->
+	
+		<script th:inline="javascript">
+		/* [START] board_list.html의 스크립트/
+		/* [START] board_list.html : 모달창 처리 */
+		     var msg = [[${msg}]];
+	         console.log(msg);
+	         
+	         // 112행 class="modal"
+	         if(msg){
+	            $(".modal").modal();
+	         }
+	     /* [END] board_list.html : 모달창 처리 */
+	     /* [START] board_list.html : 검색 기능 처리 */    
+	         // 61행 id="searchForm"
+	         var searchForm = $("#searchForm");
+	         
+	         // 79행 class="btn-search"
+	         $('.btn-search').click(function(e){
+	            searchForm.submit();
+	         });
+	         
+	         // 80행 class="btn-clear"
+	         $('.btn-clear').click(function(e){
+	            searchForm.empty().submit();
+	         });
+		/* [END] board_list.html : 검색 기능 처리 */       
+		/* [END] board_list.html의 스크립트 */
+		</script>		
+		
 	</th:block>
 </th:block>

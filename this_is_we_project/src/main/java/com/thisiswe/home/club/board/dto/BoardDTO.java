@@ -28,5 +28,5 @@ public class BoardDTO {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDateTime updateDate;				// 게시판 수정일
 	private Long boardView;							// 게시판 조회수
-	private int replyCount;						// 게시판 댓글수
+	private int replyCount;							// 게시판 댓글수
 }

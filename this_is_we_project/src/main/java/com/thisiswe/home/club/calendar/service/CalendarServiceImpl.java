@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import com.thisiswe.home.club.calendar.entity.CalendarEntity;
 import com.thisiswe.home.club.calendar.repository.CalendarRepository;
+import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
 
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ public class CalendarServiceImpl implements CalendarService {
 		return calendarEntity.getClubCalendarNum();
 	}
 
+	//1개의 일정 데이터 가져오기
 	@Override
 	public CalendarDTO get(Long calendarNum) {
 		log.info("..... calendar get() 1개 데이터 불러오기......");
@@ -42,6 +44,7 @@ public class CalendarServiceImpl implements CalendarService {
 		return entityToDTO(calendarEntity.get());
 	}
 
+	//일정 전체리스트 가져오기
 	@Override
 	public List<CalendarDTO> getCalendarList(Long clubNum) {
 		log.info("......getCalendarList()......");
@@ -62,6 +65,35 @@ public class CalendarServiceImpl implements CalendarService {
 		return entList;
 		
 	}
+
+	//일정 수정하기
+	@Override
+	public void modify(CalendarDTO calendarDTO, ClubDTO clubDTO) {
+		log.info("........ 일정 modify() .........");
+		log.info("받아온 모임 정보 : " + clubDTO);
+		log.info("받아온 모임 일정 정보 : " + calendarDTO);
+		
+		List<Object[]> calendarEntity=calendarRepository.getClubCalendarNum(clubDTO.getClubNum(),calendarDTO.getClubCalendarNum());
+		//List<CalendarDTO> entList =new ArrayList<>();
+		log.info("일정 1개를 받아온 값   : "+calendarEntity);
+		
+		for(Object[] arr : calendarEntity) {
+			log.info("모임정보 : "+ arr[0]);
+			log.info("모임일정정보 : "+ arr[1]);
+			
+		}
+		//if(arr[1] !=null) {
+			//change
+		//
+		//}
+		
+		
+		log.info("........ /일정 modify() .........");
+		
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 	
