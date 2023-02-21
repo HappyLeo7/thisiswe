@@ -6,15 +6,15 @@ import java.util.function.Function;
 
 import javax.transaction.Transactional;
 
-import com.thisiswe.home.club.entity.ClubEntity;
-import com.thisiswe.home.club.dto.ClubDTO;
-import com.thisiswe.home.club.repository.ClubRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.dto.PageResultDTO;
+import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.RequiredArgsConstructor;
@@ -47,14 +47,17 @@ public class ClubServiceImpl implements ClubService {
 	//TODO [리스트]clublist 출력해주는메서드
 	@Override
 	public List<ClubDTO> getList(ClubDTO clubDTO) {
-		log.info("[[[[[[[getList매서드");
-		System.out.println("[[[[[서비스 Impl테스트중]]]]]");
+		log.info("...... getList() ......");
+		System.out.println("[모임 서비스 Impl]");
 		List<Object[]> list = clubRepository.getClubList();
 		List<ClubDTO> entList = new ArrayList<>(); 
-		System.out.println("list:::::::"+list);
+		System.out.println(" .... club list : "+list);
 		for (Object[] arr : list) {
 			entList.add( entityToDTO((ClubEntity)arr[0], (UserEntity)arr[1]));
+			
 		}
+		log.info("entList : " +entList);
+		log.info("...... /getList() ......" );
 		return entList;
 		
 	}
@@ -62,7 +65,9 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public PageResultDTO<ClubDTO, Object[]> getPageList(PageRequestDTO pageRequestDTO) {
 
-		log.info("===== getPageList() pageRequestDTO =====");
+		log.info("...... getPageList() pageRequestDTO ......");
+		log.info("pageRequestDTO : " +pageRequestDTO);
+		
 		Function<Object[], ClubDTO> fn = (en->
 				entityToDTO((ClubEntity)en[0],(UserEntity)en[1]));
 	
@@ -120,22 +125,6 @@ public class ClubServiceImpl implements ClubService {
 		clubRepository.save(clubEntity);
 		
 	}
-
-
-
-
-	
- 
-
-
-
-
-
-
-
-
-	
-
 
 
 }

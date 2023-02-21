@@ -1,13 +1,20 @@
 package com.thisiswe.home.user.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.thisiswe.home.user.dto.SignupRequestDto;
+import com.thisiswe.home.user.security.UserDetailsImpl;
 import com.thisiswe.home.user.service.KakaoUserService;
 import com.thisiswe.home.user.service.UserService;
 
@@ -22,30 +29,30 @@ public class UserController {
 	private final KakaoUserService kakaoUserService;
 
 	// 회원 로그인 페이지
-	@GetMapping("/user/login")
+	@GetMapping("/login")
 	public String login() {
 		return "login/login";
 	}
 	
 	// post login 이동
-	@PostMapping("/user/login")
+	@PostMapping("/login")
 	public String loginsucces() {
-		return "login/";
+		return "login/login";
 	}
 
 	// 회원 가입 페이지
-	@GetMapping("/user/signup")
+	@GetMapping("/signup")
 	public String signup() {
-		return "redirect:/thisiswe/home";
+		return "login/signup";
 	}
 
 	// 회원 가입 요청 처리
-	@PostMapping("/user/signup")
+	@PostMapping("/signup")
 	public String registerUser(SignupRequestDto requestDto) {
 		
 		System.out.println("확인용");
 		userService.registerUser(requestDto);
-		return "redirect:/user/login";
+		return "redirect:/login";
 	}
 
 //	@GetMapping("/user/kakao/callback")
@@ -55,8 +62,36 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/test/check")
-	public String check() {
-		return "onlyAdmin";
+
+	// 회원정보 조회
+	@GetMapping("/userinfo")
+	public String getUserInfo(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+		// 첫번째 방법
+		
+		model.addAttribute("userId", userDetails.getUserEntity().getUserId());
+		model.addAttribute("userNickname", userDetails.getUserEntity().getUserNickname());
+		model.addAttribute("userEmail", userDetails.getUserEntity().getUserEmail());
+
+		return "mypage/userinfo";
+	}
+	
+	// 유저아이디 조회
+	@PostMapping("/{userid}")
+	@ResponseBody
+	public ResponseEntity<Boolean> checkUserId(@PathVariable("userid") String userid) {
+		
+		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userid);
+		
+		return new ResponseEntity<>(userService.checkUserId(userid) ,HttpStatus.OK);
+	}
+	
+	// 유저닉네임 조회
+	@PostMapping("/userEmail/{userNickname}")
+	@ResponseBody
+	public ResponseEntity<Boolean> checkUserNickname(@PathVariable("userNickname") String userNickname) {
+		
+		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userNickname);
+		
+		return new ResponseEntity<>(userService.checkUserNickname(userNickname) ,HttpStatus.OK);
 	}
 }

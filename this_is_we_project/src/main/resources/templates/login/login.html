@@ -1,77 +1,64 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="css/login.css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- css 파일 경로 -->
+<!-- [수정] th:href문 절대경로로 수정 -->
+<link rel="stylesheet" th:href="@{/css/login.css}" />
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
 </head>
-<body>
-	<div id="로그인">
-	<div id="login-form">
-		<a href="/oauth2/authorization/kakao">카카오 로그인</a>
-		<button id="login-kakao-btn"
-			onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=5bd1dab16ee774baea6d62d812f5b773&redirect_uri=http://localhost:8080/login/oauth2/code/kakao&response_type=code'">
-			카카오로 로그인하기</button>
-			
-		<button id="login-id-btn" onclick="location.href='/login/user/signup'">
-			회원 가입하기</button>
-			
-		<form action="/thisiswe/user/login" method="post">
-			<div class="login-id-label">아이디</div>
-			<input type="text" id="입력창" name="username" class="login-input-box"
-				placeholder="아이디"> <br>
-			<div class="login-id-label">비밀번호</div>
-			<input type="password" id="입력창" name="password"
-				class="login-input-box" placeholder="비밀번호">
-			<span id="로그인상태">
-				<input type="checkbox"> 
-					<span>로그인 상태 유지</span>
-			</span> 
-			<span id="찾기">
-				<a href="" id="idfind">아이디 찾기 </a>
-					<span style="color: grey; font-size: 7px; border-left: 1px solid;">&nbsp</span>
-						<a href="">비밀번호 찾기</a>
-					</span> <br>
-			<input id="로그인버튼" type="submit" value="로그인" style="cursor: pointer;">
-		</form>
-		
-		<a href="/login/user/signup" id="회원가입버튼"><span>회원가입</span></a><br>
-		<a
-			href="https://kauth.kakao.com/oauth/authorize?client_id=5bd1dab16ee774baea6d62d812f5b773&redirect_uri=http://localhost:8080/login/oauth2/code/kakao&response_type=code"
-			id="카카오"> <img src="" alt=""><img src="이미지/카카오톡 말풍선.png"
-			alt=""><span>카카오 로그인<span></a>
-		<div id="login-failed" style="display: none"
-			class="alert alert-danger" role="alert">로그인에 실패하였습니다.</div>
-		</div>
-	</div>
-	</body>
-	<script>
-		const href = location.href;
-		const queryString = href.substring(href.indexOf("?")+1)
-			if (queryString === 'error') {
-				const errorDiv = document.getElementById('login-failed');
-					errorDiv.style.display = 'block';
-			}
 
-// 변수선언
+
+<body>
+	<div id="sign-in">
+		<span>로그인</span><br>
+		<br>
+		<form action="/thisiswe/login" method="post">
+			<input type="text" id="input-target" name="username"
+				class="login-input-box" placeholder="아이디"> <br> 
+				<input type="password" id="input-target" name="password"
+				class="login-input-box" placeholder="비밀번호"> <br> 
+				<span
+				id="login-status"><input type="checkbox">
+				 <span>로그인
+					상태 유지</span></span>
+			<!--             <span id="찾기"><a href="" id="idfind">아이디 찾기 </a> -->
+			<!--             <span style="color: grey; font-size: 7px; border-left: 1px solid;">&nbsp</span><a href="">비밀번호 찾기</a></span> -->
+			<br> <input id="login-button" type="submit" value="로그인"
+				style="cursor: pointer;">
+		</form>
+		<a href="/thisiswe/signup" id="signup-button"><span>회원가입</span></a><br>
+		<a href="https://kauth.kakao.com/oauth/authorize?client_id=5bd1dab16ee774baea6d62d812f5b773&redirect_uri=http://localhost:8080/login/oauth2/code/kakao&response_type=code"
+			id="kakao-signin">
+			<img src="" alt=""><img src="이미지/카카오톡 말풍선.png" alt="">
+			<span>카카오 로그인<span></a>
+	</div>
+	<div id="login-failed" style="display: none" class="alert alert-danger"
+		role="alert">로그인에 실패하였습니다.</div>
+
+
+	<script>
+	const href = location.href;
+	const queryString = href.substring(href.indexOf("?")+1)
+		if (queryString === 'error') {
+			const errorDiv = document.getElementById('login-failed');
+				errorDiv.style.display = 'block';
+		}
+
+//변수선언
 const toggleBtn = document.querySelector('.navbar_toggleBtn');
 const menu = document.querySelector('.navbar_menu');
 const login = document.querySelector('.navbar_login');
 
-// navbtn을 클릭할때마다 아래함수들를 호출
+//navbtn을 클릭할때마다 아래함수들를 호출
 toggleBtn.addEventListener('click', () => {
-    menu.classList.toggle('active');
-    login.classList.toggle('active');
+menu.classList.toggle('active');
+login.classList.toggle('active');
 });
 </script>
-
+</body>
 </html>

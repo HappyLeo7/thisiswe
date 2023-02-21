@@ -33,13 +33,12 @@ public class UserSecurityConfig {
 //		http.csrf().ignoringAntMatchers("/user/**"); // 회원 관리 처리 API (POST /user/**) 에 대해 CSRF 무시
 		
 		http.authorizeRequests() // 권한에 대해
+		
 		// image 폴더를 login 없이 허용
 		.antMatchers("/image/**").permitAll()
-		
-		// css 폴더를 login 없이 허용
+
 		.antMatchers("/css/**").permitAll()
 		
-		// 회원 관리 처리 API 전부를 login 없이 허용
 		.antMatchers("/thisiswe/**").permitAll()
 		.antMatchers("/login/user/**").permitAll()
 		.antMatchers("/club/**").permitAll()
@@ -53,6 +52,16 @@ public class UserSecurityConfig {
 		.antMatchers("/place/**").permitAll()
 		.antMatchers("/notice/**").permitAll()
 		
+
+		//.antMatchers("/login/user/**").permitAll()
+		//.antMatchers("/club/**").permitAll()
+		//.antMatchers("/chatroom/**").permitAll()
+		//.antMatchers("/basic/**").permitAll()
+		//.antMatchers("/reservation/**").permitAll()
+		//.antMatchers("/place/**").permitAll()
+		//.antMatchers("/notice/**").permitAll()
+		//.antMatchers("/thisiswe/**").permitAll()
+		.antMatchers("/**").permitAll()
 		
 		// 그 외 어떤 요청이든 '인증'
 		.anyRequest().authenticated()
@@ -62,15 +71,15 @@ public class UserSecurityConfig {
 		.formLogin()
 		
 		// 로그인 View 제공 (GET /user/login)
-		.loginPage("/thisiswe/user/login")
+		.loginPage("/thisiswe/login")
 //		.loginPage("/user/login")
 		
 		// 로그인 즉 인증 처리를 하는 URL을 설정합니다. 
-		.loginProcessingUrl("/thisiswe/user/login")
+		.loginProcessingUrl("/thisiswe/login")
 //		.loginProcessingUrl("/user/login")
 		
 		// 정상적으로 인증성공 했을 경우 이동하고자 하는 페이지를 설정합니다. (default는 /)
-		.defaultSuccessUrl("/thisiswe/mypage/main")
+		.defaultSuccessUrl("/thisiswe/home")
 		
 		// 로그인 실패 후 이동 페이지
 		.failureUrl("/thisiswe/user/login?error")
@@ -79,7 +88,7 @@ public class UserSecurityConfig {
 		// [로그아웃 기능]
 		.logout()
 		// 로그아웃 요청 처리 URL
-		.logoutUrl("/user/logout")
+		.logoutUrl("/logout")
 		.permitAll()
 		.and()
 		.exceptionHandling()
