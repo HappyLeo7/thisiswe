@@ -57,7 +57,7 @@ public class CalendarTests {
 	@Test
 	public void testCalendarList() {
 		
-		Long clubNum=195L;
+		Long clubNum=3L;
 		List<Object[]> cal=calendarRepository.getClubNum(clubNum);
 		for (Object[] arr:cal) {
 			log.info("일정 리스트 : " +Arrays.toString(arr));
