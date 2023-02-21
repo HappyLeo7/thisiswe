@@ -91,20 +91,11 @@ ul li {
 /* /[상단 메뉴바] - container-p -  */
 /* /[상단 메뉴바] - top-container -  */
 
-.box {
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	position: relative;
-	background-color: #FFF;
-}
-/* /[수정] 상단바 햄버거 버튼 */
-
-/* [수정] 홈페이지 상단바_로고 및 메뉴 부분*/
+/* [상단 메뉴바] 홈페이지 상단_로고 및 메뉴 부분*/
 #top-menu {
 	background: #FFF;
-	box-shadow: 0 0 30px #787878;
-	height: 100px;
+	box-shadow: 0 17px 20px -18px #202020;
+	height: 105px;
 	position: fixed;
 	left: 0;
 	right: 0;
@@ -118,7 +109,17 @@ ul li {
 	-moz-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 }
-/* [수정] 홈페이지 상단바_로고 및 메뉴 부분*/
+/* [상단 메뉴바] 홈페이지 상단_로고 및 메뉴 부분*/
+/* [햄버거 버튼] - 버튼 내 상자 박스 */
+.box {
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	background-color: #FFF;
+}
+/* /[햄버거 버튼] - 버튼 내 상자 박스 */
+/* [?] - ? */
 html.active #top-menu {
 	-webkit-transform: matrix(1, 0, 0, 1, -320, 0);
 	-moz-transform: matrix(1, 0, 0, 1, -320, 0);
@@ -127,30 +128,29 @@ html.active #top-menu {
 	-moz-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 }
-
-/* [상단바_로고] */
-/* .logo-we{
-	border: 2px solid black;
-} */
-
+/* [?] - ? */
+/* [?] - ? */
 #top-menu .box {
-	display: none;
+/* 	display: none;
 	height: 40px;
 	line-height: 40px;
 	margin: 0 80px;
-	padding: 10px;
+	padding: 10px; */
 }
-
+/* [?] - ? */
+/* [?] - ? */
 #top-menu .box>ul {
 	display: flex;
 }
-
+/* [?] - ? */
+/* [?] - ? */
 #top-menu .box>ul li {
 	font-size: 12px;
 	font-weight: bold;
 	text-transform: uppercase;
 }
-
+/* [?] - ? */
+/* [?] - ? */
 #overlay {
 	background: #000;
 	bottom: 0;
@@ -168,16 +168,16 @@ html.active #top-menu {
 	-moz-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 }
-
+/* [?] - ? */
+/* [?] - ? */
 html.active #overlay {
-	opacity: .65;
+	opacity: .80;
 	visibility: visible;
 	-webkit-transition: all .5s ease-in-out;
 	-moz-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 }
 
-/* [수정예정] 홈페이지 상단바_로고 부분 */
 #container-logo {
 	width: 90px;
 	height: 90px;
@@ -195,19 +195,23 @@ html.active #overlay {
 /* 	padding: 2px; */
 }
 .container-logo-l{
-	width: 100%;
-	height: 100%;
+	width: 105%;
+	height: 105%;
 }
 
 .logo {
-	font-size: 32px;
-	height: 40px;
-	line-height: 40px;
-	margin: 0 auto;
-	overflow: hidden;
-	padding: 10px;
-	position: relative;
+	font-size: 60px;
 	width: initial;
+	height: 50px;
+	line-height: 40px;
+  	margin: 0 auto;
+	overflow: hidden;
+ 	padding: 30px;
+	position: relative;
+}
+.logo-img{
+	width: 27%;
+	height: 27%;
 }
 /* [수정예정] 홈페이지 상단바_로고 부분 */
 .logo>a {
@@ -220,8 +224,7 @@ html.active #overlay {
 	background-color: #e4481b;
 	border: 1px solid #e4481b;
 	color: #FFF;
-	font-family: 'Nanum Gothic', sans-serif;
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: bold;
 	height: 60px;
 	letter-spacing: 1px;
@@ -248,93 +251,29 @@ html.active #overlay {
 #close-menu {
 	border: 1px solid;
 	border-radius: 20px;
-	color: #333;
+	color: #909090;
 	cursor: pointer;
 	display: block;
+	width: 20px;
 	height: 20px;
 	line-height: 20px;
-	margin: 15px 20px 15px auto;
+	margin: 25px 17px 0 auto;
 	padding: 4px;
 	position: absolute;
 	right: 0;
-	text-align: center;
 	top: 0;
-	width: 20px;
+	text-align: center;
 }
-
-/* section {
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  z-index: 2;
-  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
-  -moz-transform: matrix(1, 0, 0, 1, 0, 0);
-  transform: matrix(1, 0, 0, 1, 0, 0);
-  -webkit-transition: all .5s ease-in-out;
-  -moz-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
-} */
-
-/* #intro {
-  background-image: url('https://goo.gl/BlNbJE');
-}
-
-#portfolio {
-  background-image: url('https://goo.gl/Uwkg0I');
-}
-
-#blog {
-  background-image: url('https://goo.gl/Wy3PSL');
-} */
-
-/* html.active,
-html.active body {
-  overflow: hidden;
-}
-
-html.active section {
-  -webkit-transform: matrix(1, 0, 0, 1, -320, 0);
-  -moz-transform: matrix(1, 0, 0, 1, -320, 0);
-  transform: matrix(1, 0, 0, 1, -320, 0);
-  -webkit-transition: all .5s ease-in-out;
-  -moz-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
-}
-
-section > h1 {
-  color: #FFF;
-  font-size: 2em;
-  left: 0;
-  margin: 0 10%;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  text-transform: uppercase;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-section > h1 > span {
-  display: block;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 16px;
-  font-style: italic;
-  font-weight: 400;
-  text-transform: none;
-} */
 
 /* [햄버거버튼 메뉴 부분] */
 menu {
-/* 	background-color: #FFF;  */
-	background-color: #c0c0c0;
+/* 	right: -320px;
+	width: 320px; */
+	background-color: #FFF; 
 	bottom: 0;
 	margin: 0;
 	padding: 0;
 	position: fixed;
-/* 	right: -320px;
-	width: 320px; */
 	right: -500px; 
 	width: 500px;
 	top: 0;
@@ -374,6 +313,7 @@ menu .container .box {
 
 menu .box ul:nth-child(1) {
 	border-bottom: 3px solid;
+	margin-right: 15px;
 }
 
 menu .box ul {
@@ -427,7 +367,7 @@ html.active menu {
 	right: 0;
 	z-index: 999;
 }
-
+/* [햄버거 버튼] - menu */
 html.active menu .container {
 	-webkit-transform-origin: 0% 50% 0px;
 	-moz-transform-origin: 0% 50% 0px;
@@ -439,21 +379,22 @@ html.active menu .container {
 	-moz-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 }
-
+/* /[햄버거 버튼] - menu */
+/* [햄버거 버튼] - #top-menu - #menu - */
 #menu {
 	cursor: pointer;
 	display: block;
-	font-size: 30px;
-	height: 40px;
-	line-height: 40px;
-	margin: 10px 20px;
-	position: fixed;
-	right: 0;
-	text-align: center;
-	top: 0;
 	width: 40px;
+	height: 40px;
+	font-size: 40px;
+	line-height: 40px;
+ 	top: 0;
+	left: 0;
+ 	margin: 30px 20px;
+	position: fixed;
+	text-align: center;
 }
-
+/* [햄버거 버튼] - #top-menu - #menu - */
 @media only screen and (min-width: 520px) {
 	#top-menu .container {
 		max-width: 640px;
