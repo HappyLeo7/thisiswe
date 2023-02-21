@@ -43,12 +43,12 @@ public class SocketHandler extends TextWebSocketHandler {
         JSONObject obj = jsonToObjectParser(msg); //JSON데이터를 JSONObject로 파싱한다.
         System.out.println("메시지 : " + msg);
         System.out.println("오브젝트 : " + obj);
-        chatService.saveMessage(obj);
+        chatService.saveMessage(obj);       //메세지 저장
 
 
         String rN = (String) obj.get("roomNumber"); //방의 번호를 받는다.
         String msgType = (String) obj.get("type"); //메시지의 타입을 확인한다.
-        HashMap<String, Object> temp = new HashMap<String, Object>();
+        HashMap<String, Object> temp = new HashMap<String, Object>();   //hashmap선언
         if (rls.size() > 0) {
             for (int i = 0; i < rls.size(); i++) {
                 String roomNumber = (String) rls.get(i).get("roomNumber"); //세션리스트의 저장된 방번호를 가져와서
@@ -134,8 +134,8 @@ public class SocketHandler extends TextWebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         //소켓 연결
         super.afterConnectionEstablished(session);
-        boolean flag = false;
-        String url = session.getUri().toString();
+        boolean flag = false;//존재여부
+        String url = session.getUri().toString();//url스트링화
         String roomNumber = url.split("/chating/")[1];
         int idx = rls.size(); //방의 사이즈를 조사한다.
         if (rls.size() > 0) {
@@ -175,6 +175,7 @@ public class SocketHandler extends TextWebSocketHandler {
             }
         }
         super.afterConnectionClosed(session, status);
+
     }
 
     private static JSONObject jsonToObjectParser(String jsonStr) {

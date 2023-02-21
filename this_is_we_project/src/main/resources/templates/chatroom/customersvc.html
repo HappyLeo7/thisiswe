@@ -10,8 +10,11 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<title>[[${roomName}]]의 채팅방</title>
+<title>[[${userId}]]의 고객센터</title>
 <style>
+    .fa-headphones{
+        color: #FFFFFF;
+    }
     /* 노말라이징 */
     body, ul, li {
         margin: 0;
@@ -39,7 +42,7 @@
 
     #chat-room {
         height: 100%;
-        background-color: #FFFFFF;
+        background-color: black;
         /* 임시 */
         outline: 2px solid black;
         position: relative;
@@ -55,7 +58,7 @@
     #chat-room .message-group::before {
         content: attr(data-date-str);
         display: block;
-        background-color: #fdfdfd;
+        background-color: black;
         color: #5d5d5d;
         border-radius: 0.5rem;
         text-align: center;
@@ -76,6 +79,8 @@
 
     #chat-room .chat-message > span {
         display: block;
+        color: #FFFFFF;
+
     }
 
     #chat-room .chat-message > section {
@@ -194,6 +199,7 @@
         ws = new WebSocket("ws://" + location.host + "/chating/" + $("#roomNum").val());
         // getChat();
         wsEvt();
+
     }
 
 
@@ -219,13 +225,13 @@
 
                     if (d.userName != $("#userName").val()) {
                         $(".message-box").append("<div class='chat-message other'>" +
-                            "<section><i class='fa fa-user'></i></section>" +
+                            "<section><i class='fa fa-headphones'></i></section>" +
                             "<span>" + d.userName + "</span>" +
                             "<div>" + d.msg + "</div>" +
                             "</div>");
                     } else {
                         $(".message-box").append("<div class='chat-message mine'>" +
-                            "<section><i class='fa fa-user'></i></section>" +
+                            "<section><i class='fa fa-headphones'></i></section>" +
                             "<span></span>" +
                             "<div>" + d.msg + "</div>" +
                             "</div>");
@@ -274,7 +280,6 @@
 
     function send() {
         console.log("메시지 보냅니다.");
-        //메세지를 서버에 말아서 던져줌
         var option = {
             type: "message",
             roomNumber: $("#roomNum").val(),
@@ -300,19 +305,19 @@
 <body>
 <input type="hidden" id="sessionId" value="">
 <input type="hidden" id="roomNum" th:value="${roomNumber}">
-<input type="hidden" id="userName" value="문수찬">
+<input type="hidden" id="userName" th:value="${userName}">
 <input type="hidden" id="roomName" th:value="${roomName}">
 <div id="chat-room">
     <div class="message-box">
         <div class="message-group" data-date-str="2014년 12월 10일 일요일">
             <div class="chat-message other">
-                <section><i class="fa fa-user"></i></section>
-                <span>아들</span>
-                <div>굿모닝!!!!</div>
+                <section><i class="fa fa-headphones"></i></section>
+                <span>고객센터</span>
+                <div>무엇을 도와드릴까요?</div>
             </div>
             <br>
             <div class="chat-message mine">
-                <section><i class="fa fa-user"></i></section>
+                <section><i class="fa fa-headphones"></i></section>
                 <span>홍길동</span>
                 <div>새벽공기가 쌀쌀하구나</div>
             </div>
@@ -321,8 +326,8 @@
 
         <div class="message-group" data-date-str="2014년 12월 11일 월요일">
             <div class="chat-message other">
-                <section><i class="fa fa-user"></i></section>
-                <span>아들</span>
+                <section><i class="fa fa-headphones"></i></section>
+                <span>고객센터</span>
                 <div>굿모닝!!!! 입니다!</div>
             </div>
         </div>
@@ -331,7 +336,7 @@
             <div th:each="chat : ${chatList}">
                 <!--                <div th:if="${chat.userNickname != memberName}">-->
                 <div class="chat-message other">
-                    <section><i class="fa fa-user"></i></section>
+                    <section><i class="fa fa-headphones"></i></section>
                     <span th:text="${chat.userNickname}"></span>
                     <div th:text=" ${chat.message}"></div>
                 </div>

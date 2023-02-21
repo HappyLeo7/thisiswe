@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +33,7 @@ public class ChatService {
         chatMessageRepository.save(message);
         System.out.println(message);
     }
+
     //방에 들어올 시 메세지 조회
     public List<MessageResponseDto> getMessages(String roomName) {
         System.out.println("getmessage실행되긴함 ");
@@ -56,11 +58,30 @@ public class ChatService {
     }
 
     //채팅방 삭제
-    public void deleteChattingRoom(String roomName){
+    public void deleteChattingRoom(String roomName) {
         chatRoomRepository.deleteByRoomName(roomName);
         System.out.println("방이 삭제되었습니다. 모임이름 : " + roomName);
 //        chatMessageRepository.deleteAllByRoomName(roomName);
-        System.out.println("메세지가 삭제되었습니다. 모임이름 : "+ roomName);
+        System.out.println("메세지가 삭제되었습니다. 모임이름 : " + roomName);
     }
+
+    public void createCustomerRoom(String userId) {
+        chatRoomRepository.save(new Room(userId + "님의 고객센터"));
+        System.out.println("고객센터채팅방 생성 완료");
+
+    }
+
+//    //채팅방체크(있다면 패스, 없다면 채팅방 생성 후 패스)
+//    public Optional<Room> checkCustomerRoom(String userId) {
+//        Optional<Room> chatRoom = chatRoomRepository.findByRoomName(userId + "님의 고객센터");
+//
+//        if (chatRoom.equals(null)) {
+//            createCustomerRoom(userId);
+//            Optional<Room> room = chatRoomRepository.findByRoomName(userId + "님의 고객센터");
+//            return room;
+//        } else {
+//            return chatRoom;
+//        }
+//    }
 
 }
