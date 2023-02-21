@@ -4,20 +4,14 @@ import com.thisiswe.home.chat.dto.MessageResponseDto;
 import com.thisiswe.home.chat.model.Room;
 import com.thisiswe.home.chat.service.ChatService;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
-import org.springframework.boot.json.JsonParser;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -63,13 +57,15 @@ public class ChatController {
         return roomList;
     }
 
-    //방 정보 가져오기
+    //방 정보 조회
     @RequestMapping("/getRoom")
     public @ResponseBody List<Room> getRoom(@RequestParam HashMap<Object, Object> params){
         System.out.println(chatService.getAllChatRooms());
         return chatService.getAllChatRooms();
     }
-    //방 정보 가져오기
+
+
+    //채팅 정보 조회
     @RequestMapping("/getChat")
     public @ResponseBody List<MessageResponseDto> getChat(@RequestParam HashMap<Object, Object> params){
         System.out.println("getChat 실행");
