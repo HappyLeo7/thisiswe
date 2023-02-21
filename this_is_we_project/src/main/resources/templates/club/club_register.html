@@ -18,7 +18,7 @@
 	<!-- 등록 내용  -->
 	
 	<!-- form -->
-	<form th:action="@{/thisiswe/club}" th:method="post">
+	<form th:action="@{/thisiswe/club}" th:method="post" enctype="multipart/form-data">
 	
 	
 	<table border="1">
@@ -27,7 +27,7 @@
 	<!-- userID -->
   <tr>
 	<td colspan="2">
-	 아이디 : <input name="userId">
+	 아이디 : <input name="userId" th:value="${user}">
 	</td>
   </tr>
 	<!-- 지역 -->
@@ -82,7 +82,7 @@
   
   <tr>
   <!-- 로고이미지 -->
-  	<td rowspan="2">로고이미지</td>
+  	<td rowspan="2"> <input type="file" name="file">로고이미지</td>
   	<!-- 모임정원 -->
 	<td>모임정원<input name="clubHeadCount" type="number" min="1" max="300"></td>
   </tr>

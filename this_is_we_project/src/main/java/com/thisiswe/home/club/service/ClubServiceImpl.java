@@ -1,7 +1,9 @@
 package com.thisiswe.home.club.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Function;
 
 import javax.transaction.Transactional;
@@ -9,6 +11,7 @@ import javax.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.thisiswe.home.chat.service.ChatService;
 import com.thisiswe.home.club.dto.ClubDTO;
@@ -34,15 +37,38 @@ public class ClubServiceImpl implements ClubService {
 	
 	// 모임 등록 하는 매서드
 	@Override
-	public Long register(ClubDTO clubDTO) {
+	public Long register(ClubDTO clubDTO, MultipartFile multipartFile) throws Exception{
+		
+		
+		
+		
 		// TODO [모임등록 DTO->entity]club register
-		log.info("====================================");
-		log.info("==== ClubServiceImpl register() clubDTO : "+clubDTO+" ====");
+		log.info("..... ClubServiceImpl register()   .....");
+		
+		log.info("///// 모임 로고 이미지 등록처리 /////");
+		
+		String path = "C:\\upload";
+		
+		UUID uuid = UUID.randomUUID();
+		String logoName = uuid+"_"+multipartFile.getOriginalFilename();
+		clubDTO.setClubLogo(multipartFile.getOriginalFilename());
+		clubDTO.setClubLogoUuid(logoName);
+		clubDTO.setClubLogoUrl(logoName);
+		
+		
+		File saveFile = new File(path,logoName);
+		multipartFile.transferTo(saveFile);
+		
+		log.info(".....  clubDTO : "+clubDTO+" .....");
 		ClubEntity clubEntity = dtoToEntity(clubDTO);
 		clubRepository.save(clubEntity);
 		chatService.createChattingRoom(clubEntity.getClubName());//모임생성시 모임 이름 채팅방에 저장
 		log.info("==== ClubServiceImpl register() clubEntity : "+clubEntity+" ====");
-		log.info("====================================");
+		
+
+		
+		
+		log.info("..... /ClubServiceImpl register()  .....");
 		
 		//club num 모임 번호 리턴받아서 모임entity에 넣는다.
 		return clubEntity.getClubNum();

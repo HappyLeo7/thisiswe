@@ -22,7 +22,7 @@
 		<label>이미지등록</label>
 		<div>
 			모임번호 : <input type="text" name="clubNum" th:value="${clubNum}"> <br>
-			유저ID : <input type="text" name="userId"> <br>
+			등록ID : <input type="text" name="userId" th:value="${user}"> <br>
 			사진 내용 : <input type="text" name="photoContent"> <br>
 				
 			<input type="file" name="file" id="" class="">
@@ -30,14 +30,17 @@
 		</div>
 	</div>
 	
-	<!-- 박스 -->
+	<!-- 박스 
 		<div class="box"></div>
+	-->
 	
-				<!-- 이미지 업로드 값  -->
+				<!-- 이미지 업로드 값  
+				
 	<div class="uploadResult">
 				<ul>
 				</ul>
 			</div>
+				-->
 	
 	<button type="submit" >등록</button>
 	</form>

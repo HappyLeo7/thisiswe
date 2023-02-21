@@ -1,6 +1,8 @@
 package com.thisiswe.home.club.photo.service;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -26,6 +28,7 @@ public class PhotoServiceImpl implements PhotoService{
 		log.info("...... photo register() ......");
 		
 		//파일경로
+//		String path = "C:\\upload";
 		String path = "C:\\upload";
 		log.info("이미지 path 경로 : " +path);
 		
@@ -36,7 +39,7 @@ public class PhotoServiceImpl implements PhotoService{
 		String photoName = uuid + "_" + multipartFile.getOriginalFilename();
 		log.info("이미지 이름 : " +photoName);
 		photoDTO.setPhotoImage(photoName);
-		photoDTO.setPhotoPath(path+"\\"+photoName);
+		photoDTO.setPhotoPath(photoName);
 		
 		log.info("photoDTO : " +photoDTO);
 		
@@ -55,4 +58,27 @@ public class PhotoServiceImpl implements PhotoService{
 		log.info("...... /photo register() ......");
 		
 	}
+	
+	public List<PhotoDTO> getPhotoList(Long clubNum ){
+		log.info("..... get photo list .....");
+		
+		List<Object[]> photoLists = photoRepository.getPhotoList(clubNum);
+		List<PhotoDTO> photoDTO = new ArrayList<PhotoDTO>();
+		
+		log.info(photoLists);
+		for(Object[] photoList : photoLists) {
+			PhotoEntity	photoEntity=(PhotoEntity)photoList[0];
+			PhotoDTO photoDTOList=entityToDTO((PhotoEntity)photoEntity);
+			log.info("photoDTO 1개정보 : "+photoDTOList);
+			photoDTO.add(photoDTOList);
+		}
+		log.info("photoDTO : "+photoDTO);
+		
+		log.info("..... /get photo list .....");
+		
+		return photoDTO;
+		
+	}
+	
+	
 }

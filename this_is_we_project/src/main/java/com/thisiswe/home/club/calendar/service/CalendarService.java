@@ -15,6 +15,7 @@ public interface CalendarService {
 	//1개의 일정 데이터를 불러온다.
 	CalendarDTO get(Long calendarNum);
 	
+	//일정 리스트
 	Object getCalendarList(Long clubNum);
 	
 	//일정 수정매서드
