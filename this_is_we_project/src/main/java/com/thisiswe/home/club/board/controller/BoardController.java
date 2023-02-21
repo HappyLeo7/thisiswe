@@ -1,6 +1,7 @@
 package com.thisiswe.home.club.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -16,12 +17,13 @@ import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.club.board.repository.BoardRepository;
 import com.thisiswe.home.club.board.service.BoardService;
+import com.thisiswe.home.user.security.UserDetailsImpl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @Controller
-@RequestMapping("/thisiswe/club")
+@RequestMapping("/thisiswe")
 @Log4j2
 @RequiredArgsConstructor
 @Transactional
@@ -34,7 +36,7 @@ public class BoardController {
 	private final BoardRepository boardRepository;
 	
 	//TODO [Controller] 게시판 : 목록
-	@GetMapping("/board/list")
+	@GetMapping({"/club/board"})
 	public String board_list(PageRequestDTO pageRequestDTO, Model model) {
 		
 		log.info("=========================================================");
@@ -49,18 +51,21 @@ public class BoardController {
 	}
 	
 	//TODO [Controller] 게시판 : 등록 - GET
-	@GetMapping("/board/register")
-	public String board_register() {
+	@GetMapping("/club/board/register")
+	public String board_register(@AuthenticationPrincipal UserDetailsImpl userDetails, Model model) {
 		
-		log.info("=========================================================");
+		log.info("============== [controller] board-register ============");
 		log.info("==== BoardController.java => board_register.html 연결 ====");
-		log.info("=========================================================");
+		log.info("유저 아이디 userDetails.getUsername() :"+userDetails.getUsername());
+		log.info("userDetails 접속된 유저 ID : " + model.addAttribute("user",userDetails.getUsername()));
+		
+		log.info("============== /[controller] board-register ============");
 		
 		return "/club/board/board_register";	
 	}
 	
 	//TODO [Controller] 게시판 : 등록 - POST
-	@PostMapping("/board/register")
+	@PostMapping("/club/board/register")
 	public String board_register(BoardDTO boardDTO, RedirectAttributes redirectAttributes,Model model,PageRequestDTO pageRequestDTO) {
 	
 		log.info("=========================================================");
@@ -79,8 +84,8 @@ public class BoardController {
 	}
 	
 	//TODO [Controller] 게시판 : 상세 조회 - read, 조회수 증가
-	@GetMapping({"/board/read"})
-	public String board_read(Long boardNum, Model model) {
+	@GetMapping({"/club/board/read"})
+	public String board_read(Long boardNum, Model model, PageRequestDTO pageRequestDTO) {
 		
 		log.info("[controller] ================ String read ===============");
 		log.info("[controller] BoardController.java => board_read.html 연결 ");
@@ -95,18 +100,22 @@ public class BoardController {
 		
 		BoardDTO boardDTO = BoardDTO.builder().boardView(boardView).build();
 					
-		boardService.get(boardNum);			
+		boardService.get(boardNum);	
 		boardService.countView(board.getBoardNum(), boardDTO);
 		
 		model.addAttribute("boardDTO", board);
-		log.info("[/controller] =============== String read ===============");	
+		
+		log.info("pageRequestDTO : " + pageRequestDTO);		
+		model.addAttribute("result", boardService.getList(pageRequestDTO));
+		
+		log.info("[/controller] =============== String read ===============");			
 		
 		return "/club/board/board_read";
 	}
 	
 	//TODO [Controller] 게시판 : 수정 - get
-	@GetMapping({"board/modify"})
-	public String board_modify(PageRequestDTO pageRequestDTO, Long boardNum, Model model) {
+	@GetMapping({"/club/board/modify"})
+	public String board_modify(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long boardNum, Model model) {
 		
 		log.info("[controller] ============= String modify : get ============");
 		log.info("[controller] BoardController.java => board_modify.html 연결 ");
@@ -118,13 +127,17 @@ public class BoardController {
 		model.addAttribute("boardDTO", boardDTO);
 		
 		log.info("[controller] model-read boardDTO :: " + boardDTO);
-		log.info("[controller] ============= String modify : get ============");
+		
+		log.info("pageRequestDTO : " + pageRequestDTO);	
+		model.addAttribute("");
+		
+		log.info("[controller] ============= /String modify : get ============");
 		
 		return "/club/board/board_modify";
 	}
 	
 	//TODO [Controller] 게시판 : 수정 - post
-	@PostMapping({"/board/modify"})
+	@PostMapping({"/club/board/modify"})
 	public String String_modify(BoardDTO boardDTO,
 								@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO,
 								RedirectAttributes redirectAttributes) {
@@ -133,19 +146,21 @@ public class BoardController {
 		log.info("[controller] model-modify boardDTO :: " + boardDTO);
 		
 		boardService.modify(boardDTO);
-		
+				
+		redirectAttributes.addAttribute("boardNum", boardDTO.getBoardNum());
 		redirectAttributes.addAttribute("page", pageRequestDTO.getPage());
 		redirectAttributes.addAttribute("type", pageRequestDTO.getType());
 		redirectAttributes.addAttribute("keyword", pageRequestDTO.getKeyword());
-		redirectAttributes.addAttribute("boardNum", boardDTO.getBoardNum());
 		
+		log.info(" boardDTO :: " + boardDTO);
 		log.info("[controller] ============= String modify : post ===========");
 			
-		return "/club/board/board_read";
+		/* return "/club/board/board_read"; */
+		return "redirect:/thisiswe/club/board/read";
 	}
 	
 	//TODO [Controller] 게시판 : 삭제 - post
-	@PostMapping({"/board/remove"})
+	@PostMapping({"/club/board/remove"})
 	public String remove(long boardNum, RedirectAttributes redirectAttributes) {
 		
 		log.info("=========================================================");
@@ -156,7 +171,7 @@ public class BoardController {
 		redirectAttributes.addFlashAttribute("msg", boardNum);
 		log.info("=========================================================");
 		
-		return "redirect:/club/board/list";
+		return "redirect:/thisiswe/club/board";
 	}
 	
 }

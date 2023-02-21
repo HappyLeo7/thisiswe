@@ -28,10 +28,10 @@ public class BoardRepositoryTest {
 	@Test
 	public void insertBoards() {
 		
-		IntStream.rangeClosed(1, 40).forEach(i -> {
+		IntStream.rangeClosed(1, 50).forEach(i -> {
 			
 			UserEntity member = UserEntity.builder().userId("user" + i).build();
-			
+					
 			Board board = Board.builder()
 							.boardCategory("모임 추가")
 							.boardTitle("oo클래스 오픈했어요!")
