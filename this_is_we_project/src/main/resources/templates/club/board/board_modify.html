@@ -17,6 +17,7 @@
 		<!-- 게시판 수정 -->
 		<div>
 			<h1 class="inner">ㅅㅜㅈㅓㅇ</h1>
+					
 				<form th:action="@{/thisiswe/club/board/modify}" th:method="post">
 				 
  					<input type="hidden" name="page" th:value="${requestDTO.page}">
@@ -80,7 +81,8 @@
 					</tr>
 					<tr>
 						<td class="bd-mo-contain">
-							<input type="text" class="bd-mo-input" name="regDate" th:value="${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd')}" readonly>
+							<input type="text" class="bd-mo-input" 
+									th:value="${#temporals.format(boardDTO.regDate, 'yyyy-MM-dd HH:mm:ss')}" readonly>
 						</td>
 					</tr>
 
@@ -89,7 +91,8 @@
 					</tr>
 					<tr>
 						<td class="bd-mo-contain">
-							<input type="text" class="bd-mo-input" name="updateDate" th:value="${#temporals.format(boardDTO.updateDate, 'yyyy/MM/dd')}" readonly>
+							<input type="text" class="bd-mo-input" 
+									th:value="${#temporals.format(boardDTO.updateDate, 'yyyy-MM-dd HH:mm:ss')}" readonly>
 						</td>
 					</tr>		
 						
@@ -108,7 +111,7 @@
 			<br>
 			<!-- 게시판 조회 - btn -->
 			<div class="board-rigi-Btn">
-				<button type="submit" class="searchBtn-mi modifyBtn">수정</button>
+				<button type="button" class="searchBtn-mi modifyBtn">수정</button>
 				<button type="button" class="searchBtn-mi removeBtn">삭제</button>
 				<button type="button" class="searchBtn-mi listBtn">목록</button>
 			</div>
@@ -121,15 +124,15 @@
 		/* [START] board_modify.html의 스크립트/
 		
 		/* [START] board_modify.html : 수정 확인 모달창 처리 */			
-			$(".modifyBtn").click(function(){
+ 			$(".modifyBtn").click(function(){
+				console.log("수정메서드 실행");
 				//컨펌 창 - true&false cf)alert는 경고창
 				if(!confirm("게시글을 수정하시나요?")){
-					return;
 				}
 				actionForm.attr("action", "/thisiswe/club/board/modify")
-						  .attr("method", "post");
+						  .attr("method", "post")
 						  .submit(); 
-			})	
+			})
 	    /* [END] board_modify.html : 수정 확인 모달창 처리 */
 	    
 	    /* [START] board_modify.html : 삭제 확인 모달창 처리 */

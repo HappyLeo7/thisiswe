@@ -72,7 +72,8 @@
 					</tr>
 					<tr>
 						<td class="bd-re-contain">
-							<input type="text" class="bd-re-input" name="regDate" th:value="${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd')}" readonly>
+							<input type="text" class="bd-re-input" name="regDate" 
+									th:value="${#temporals.format(boardDTO.regDate, 'yyyy-MM-dd HH:mm:ss')}" readonly>
 						</td>
 					</tr>
 					
@@ -81,7 +82,8 @@
 					</tr>					 
 					<tr>
 						<td class="bd-re-contain">
-							<input type="text" class="bd-re-input" name="updateDate" th:value="${#temporals.format(boardDTO.updateDate, 'yyyy/MM/dd')}" readonly>
+							<input type="text" class="bd-re-input" name="updateDate" 
+									th:value="${#temporals.format(boardDTO.updateDate,'yyyy-MM-dd HH:mm:ss')}" readonly>
 						</td>
 					</tr>
 					

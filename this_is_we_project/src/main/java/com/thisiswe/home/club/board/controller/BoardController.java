@@ -146,16 +146,17 @@ public class BoardController {
 		log.info("[controller] model-modify boardDTO :: " + boardDTO);
 		
 		boardService.modify(boardDTO);
-		
-		
+				
 		redirectAttributes.addAttribute("boardNum", boardDTO.getBoardNum());
 		redirectAttributes.addAttribute("page", pageRequestDTO.getPage());
 		redirectAttributes.addAttribute("type", pageRequestDTO.getType());
 		redirectAttributes.addAttribute("keyword", pageRequestDTO.getKeyword());
 		
+		log.info(" boardDTO :: " + boardDTO);
 		log.info("[controller] ============= String modify : post ===========");
 			
-		return "/club/board/board_read";
+		/* return "/club/board/board_read"; */
+		return "redirect:/thisiswe/club/board/read";
 	}
 	
 	//TODO [Controller] 게시판 : 삭제 - post
@@ -170,7 +171,7 @@ public class BoardController {
 		redirectAttributes.addFlashAttribute("msg", boardNum);
 		log.info("=========================================================");
 		
-		return "redirect:/club/board/list";
+		return "redirect:/thisiswe/club/board";
 	}
 	
 }
