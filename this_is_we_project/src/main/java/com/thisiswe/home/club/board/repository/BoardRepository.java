@@ -47,5 +47,5 @@ public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoard
 	 //Long boardView(Long boardNum);
 	 int boardView(Long boardNum);
 	 
-	 List<Board> findAllByUserId(String userId);
+	 Page<Board> findAllByUserId(String userId, Pageable pageable);
 }
