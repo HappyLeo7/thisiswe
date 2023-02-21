@@ -1,8 +1,5 @@
 package com.thisiswe.home.club.board.controller;
 
-import com.thisiswe.home.club.board.entity.Board;
-import com.thisiswe.home.club.board.service.BoardService;
-import com.thisiswe.home.club.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +13,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
+import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.board.repository.BoardRepository;
+import com.thisiswe.home.club.board.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @Controller
-@RequestMapping("/club")
+@RequestMapping("/thisiswe/club")
 @Log4j2
 @RequiredArgsConstructor
 @Transactional
@@ -61,7 +61,7 @@ public class BoardController {
 	
 	//TODO [Controller] 게시판 : 등록 - POST
 	@PostMapping("/board/register")
-	public String board_register(BoardDTO boardDTO, RedirectAttributes redirectAttributes) {
+	public String board_register(BoardDTO boardDTO, RedirectAttributes redirectAttributes,Model model,PageRequestDTO pageRequestDTO) {
 	
 		log.info("=========================================================");
 		log.info("==== BoardController.java => board_register.html 연결 ====");
@@ -72,66 +72,65 @@ public class BoardController {
 		log.info("================ boardNum ================> : " + boardNum);
 		redirectAttributes.addFlashAttribute("msg", boardNum );
 		log.info("=========================================================");
+		log.info("===========pageRequestDTO===================" +pageRequestDTO);
+		model.addAttribute("result", boardService.getList(pageRequestDTO));	
 		
-		return "redirect:/club/board/board_list";
+		return "/club/board/board_list";
 	}
 	
 	//TODO [Controller] 게시판 : 상세 조회 - read, 조회수 증가
-	@GetMapping({"/board/read/{boardNum}"})
-	public String board_read(@PathVariable("boardNum") Long boardNum, Model model) {
+	@GetMapping({"/board/read"})
+	public String board_read(Long boardNum, Model model) {
 		
-		log.info("=========================================================");
-		log.info("====== BoardController.java => board_read.html 연결 ======");
-		log.info("================ boardNum ================> : " + boardNum);
-		log.info("=========================================================");
+		log.info("[controller] ================ String read ===============");
+		log.info("[controller] BoardController.java => board_read.html 연결 ");
+		log.info(" boardNum :: " + boardNum);
 		
 		Board board = boardRepository.findById(boardNum).get();
-		log.info("================ board ================> : " + board);
-		
+		log.info(" board  :: " + board);
+		//boardRepository.boardView(boardNum);
+				
 		Long boardView = board.getBoardView() + 1L;
-		log.info("================ boardView ================> : " + boardView);
-		log.info("================ boardUp ================> : " + board);
-		
+		log.info(" boardView :: " + boardView);
 		
 		BoardDTO boardDTO = BoardDTO.builder().boardView(boardView).build();
-		log.info("================ boardDTO ================> : " + boardDTO);
 					
 		boardService.get(boardNum);			
 		boardService.countView(board.getBoardNum(), boardDTO);
 		
 		model.addAttribute("boardDTO", board);
-		log.info("======================= model-read ======================");
-			
-		return "club/board/board_read";
+		log.info("[/controller] =============== String read ===============");	
+		
+		return "/club/board/board_read";
 	}
 	
 	//TODO [Controller] 게시판 : 수정 - get
 	@GetMapping({"board/modify"})
 	public String board_modify(PageRequestDTO pageRequestDTO, Long boardNum, Model model) {
 		
-		log.info("=========================================================");
-		log.info("===== BoardController.java => board_modify.html 연결 =====");
-		log.info("================ boardNum ================> : " + boardNum);
+		log.info("[controller] ============= String modify : get ============");
+		log.info("[controller] BoardController.java => board_modify.html 연결 ");
+		log.info("[controller] boardNum :: " + boardNum);
 		
 		BoardDTO boardDTO =boardService.get(boardNum);
-		log.info("========= boardNum =========> : " + boardDTO.getBoardNum());
+		log.info("[controller] boardDTO.getBoardNum :: " + boardDTO.getBoardNum());
 		
 		model.addAttribute("boardDTO", boardDTO);
 		
-		log.info("modify boardDTO : "+boardDTO);
-		log.info("========================= model-modify ========================");
+		log.info("[controller] model-read boardDTO :: " + boardDTO);
+		log.info("[controller] ============= String modify : get ============");
 		
-		return "club/board/board_modify";
+		return "/club/board/board_modify";
 	}
 	
 	//TODO [Controller] 게시판 : 수정 - post
-	@PostMapping("/board/modify")
+	@PostMapping({"/board/modify"})
 	public String String_modify(BoardDTO boardDTO,
 								@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO,
 								RedirectAttributes redirectAttributes) {
 		
-		log.info("=========================================================");
-		log.info("================ boardDTO ================> : " + boardDTO);
+		log.info("[controller] ============= String modify : post ===========");
+		log.info("[controller] model-modify boardDTO :: " + boardDTO);
 		
 		boardService.modify(boardDTO);
 		
@@ -140,13 +139,13 @@ public class BoardController {
 		redirectAttributes.addAttribute("keyword", pageRequestDTO.getKeyword());
 		redirectAttributes.addAttribute("boardNum", boardDTO.getBoardNum());
 		
-		log.info("=========================================================");
+		log.info("[controller] ============= String modify : post ===========");
 			
-		return "/club/board/board_read/{boardNum}";
+		return "/club/board/board_read";
 	}
 	
 	//TODO [Controller] 게시판 : 삭제 - post
-	@PostMapping("/board/remove")
+	@PostMapping({"/board/remove"})
 	public String remove(long boardNum, RedirectAttributes redirectAttributes) {
 		
 		log.info("=========================================================");

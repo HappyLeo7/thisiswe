@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.club.member.ClubMemberEntity;
+import com.thisiswe.home.club.member.ClubMemberRepository;
 import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.club.service.ClubService;
 import com.thisiswe.home.user.entity.UserEntity;
@@ -26,21 +28,24 @@ public class ClubTests {
 	@Autowired
 	private ClubService clubService;
 	
+	@Autowired
+	private ClubMemberRepository clubMemberRepository;
+	
 	
 	//TODO [테스트] club 데이터 추가
 	@Test
 	public void clubRegister() {
-		IntStream.rangeClosed(1, 150).forEach(i->{
+		IntStream.rangeClosed(1, 10).forEach(i->{
 		ClubEntity clubEntity = ClubEntity.builder()
 				.clubPlace("지역"+i)
 				.clubName("모임명")
 				.clubContent("내용")
-				.clubCategory("관심 카테고리")
+				.clubCategory("운동")
 				.clubLogo("로고사진")
 				.clubLogoUuid("uuiduuid")
 				.clubLogoUrl("url경로")
 				.clubHeadCount(100L+i)
-				.userId(UserEntity.builder().userId("user2").build())
+				.userId(UserEntity.builder().userId("leo").build())
 				.build();
 		clubRepository.save(clubEntity);
 		});
@@ -49,7 +54,7 @@ public class ClubTests {
 	//TODO [테스트] club  1개 불러오기
 	@Test
 	public void testGet() {
-		Long clubNum=1L;
+		Long clubNum=2L;
 		System.out.println("1");
 		
 		//ClubEntity clubEntity = clubRepository.getById(clubNum);
@@ -96,10 +101,27 @@ public class ClubTests {
 		
 	}
 
+	//TODO [테스트] 모임 삭제
 	@Test
 	public void testClubRemove() {
 		clubRepository.deleteById(88L);
 	}
+	
+	//TODO [테스트] 모임에 회원 가입 하는 테스트
+	@Test
+	public void testMemberRegister() {
+		IntStream.rangeClosed(1, 10).forEach(i->{
+		ClubMemberEntity clubMemberEntity=ClubMemberEntity.builder()
+				.userId(UserEntity.builder().userId("user"+i).build())
+				.clubNum(3L)
+				.clubMemberRole(0L)
+				.build();
+		
+		System.out.println("모임 맴버 추가 : "+clubMemberEntity);
+		clubMemberRepository.save(clubMemberEntity);
+		});
+	}
+
 	
 	@Test
 	public void testPageList() {

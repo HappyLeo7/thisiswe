@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.thisiswe.home.chat.service.ChatService;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.dto.PageResultDTO;
@@ -28,15 +29,22 @@ import lombok.extern.log4j.Log4j2;
 public class ClubServiceImpl implements ClubService {
 
 	private final ClubRepository clubRepository;
+	private final ChatService chatService;
 	
 	
 	// 모임 등록 하는 매서드
 	@Override
 	public Long register(ClubDTO clubDTO) {
-		log.info("등록 :: " + clubDTO);
-		ClubEntity clubEntity  = dtoToEntity(clubDTO);
+		// TODO [모임등록 DTO->entity]club register
+		log.info("====================================");
+		log.info("==== ClubServiceImpl register() clubDTO : "+clubDTO+" ====");
+		ClubEntity clubEntity = dtoToEntity(clubDTO);
 		clubRepository.save(clubEntity);
+		chatService.createChattingRoom(clubEntity.getClubName());//모임생성시 모임 이름 채팅방에 저장
+		log.info("==== ClubServiceImpl register() clubEntity : "+clubEntity+" ====");
+		log.info("====================================");
 		
+		//club num 모임 번호 리턴받아서 모임entity에 넣는다.
 		return clubEntity.getClubNum();
 		
 	}
@@ -85,10 +93,10 @@ public class ClubServiceImpl implements ClubService {
 
 
 
-	//상세 페이지 1개 가져오는 매서드
+	//모임상세 페이지 1개 가져오는 매서드
 	@Override
 	public ClubDTO get(Long clubNum) {
-		log.info("[[[[[[[get매서드");
+		log.info("........get()........");
 		System.out.println("서비스Impl clubNum: "+clubNum);
 		Object clubEntityObject = clubRepository.getClubNum(clubNum);
 		
@@ -112,18 +120,18 @@ public class ClubServiceImpl implements ClubService {
 		if(clubEntity != null) {
 			clubEntity.change(
 					clubDTO.getClubPlace(),
-					clubDTO.getClubName(), 
-					clubDTO.getClubContent(), 
-					clubDTO.getClubCategory(), 
+					clubDTO.getClubName(),
+					clubDTO.getClubContent(),
+					clubDTO.getClubCategory(),
 					clubDTO.getClubLogo(),
-					clubDTO.getClubLogoUuid(), 
+					clubDTO.getClubLogoUuid(),
 					clubDTO.getClubLogoUrl(),
 					clubDTO.getClubHeadCount()
 					);
 		}
 		log.info("수정된 clubEntity : "+clubEntity);
 		clubRepository.save(clubEntity);
-		
+
 	}
 
 

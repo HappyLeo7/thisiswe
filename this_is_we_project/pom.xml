@@ -125,23 +125,39 @@
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-sql-spring</artifactId>
 		</dependency>
-		<!-- /[추가] Search -->
-
-		<!-- 메일인증을 위한  -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
+		<!-- [추가] chating -->
+		<!-- websocket -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+			<version>2.7.5</version>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<!-- sockjs -->
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>sockjs-client</artifactId>
+			<version>1.5.1</version>
 		</dependency>
-		
+		<!-- stomp -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>stomp-websocket</artifactId>
+			<version>2.3.4</version>
+		</dependency>
+		<!-- json-simple -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 
+		<!-- spring-boot-starter-data-mongodb -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+			<version>2.7.3</version>
+		</dependency>
+		<!-- /[추가] chating -->
 
 	</dependencies>
 
@@ -179,6 +195,21 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.4.4</version>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
@@ -187,4 +188,67 @@
   
   </script>
 </body> 
+=======
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<meta charset="UTF-8">
+<title>회원가입 페이지</title>
+<script>
+	function onclickAdmin() {
+		// Get the checkbox
+		var checkBox = document.getElementById("admin-check");
+		// Get the output text
+		var box = document.getElementById("admin-token");
+		// If the checkbox is checked, display the output text
+		if (checkBox.checked == true) {
+			box.style.display = "block";
+		} else {
+			box.style.display = "none";
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="login-form">
+		<div id="login-title">Sign up</div>
+		<form action="/login/user/signup" method="post">
+			<div class="login-id-label">아이디</div>
+			<input type="text" name="userId" placeholder="UserId"
+				class="login-input-box">
+			<div class="login-id-label">패스워드</div>
+			<input type="password" name="userPassword" class="login-input-box">
+			<div class="login-id-label">닉네임</div>
+			<input type="text" name="userNickname" placeholder="Nickname" class="login-input-box">
+			<div class="login-id-label">성별</div>
+			<input type="radio" name="userGender" value="남" class="login-input-box">남
+			<input type="radio" name="userGender" value="여" class="login-input-box">여
+			<div class="login-id-label">E-mail</div>
+			<input type="text" name="userEmail" placeholder="E-mail"
+				class="login-input-box">
+			<div class="login-id-label">핸드폰번호</div>
+			<input type="text" name="userPhoneNumber" placeholder="phonenumber"
+				class="login-input-box">
+			<div>
+				<input id="admin-check" type="checkbox" name="admin"
+					onclick="onclickAdmin()" style="margin-top: 40p x;">관리자 <input
+					id="admin-token" type="password" name="adminToken"
+					placeholder="관리자 암호" class="login-input-box"
+					style="display: none">
+			</div>
+			<button id="login-id-submit">회원 가입</button>
+		</form>
+	</div>
+</body>
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 </html>

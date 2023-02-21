@@ -35,7 +35,7 @@ public interface ClubRepository extends JpaRepository<ClubEntity, Long>, SearchC
 	
 
  */
-	// 모임, 회원 1개의 정보 가져오기
+	//TODO [ClubRepository] 모임, 회원 정보 mysql 에서 1개 가져오는 쿼리문
 	@Query("select c, u "
 			+ "from ClubEntity c "
 			+ "left join UserEntity u "
@@ -44,13 +44,14 @@ public interface ClubRepository extends JpaRepository<ClubEntity, Long>, SearchC
 	List<Object[]> getClubNum(@Param("clubNum") Long clubNum);
 	
 	
-	//모임 , 회원 DB 모두 가져오기
+	//TODO [ClubRepository] 모임리스트 , 모임등록한 회원 DB 가져오기
 	@Query("select c, u "
 			+ "from ClubEntity c "
 			+ "left join UserEntity u "
 			+ "on c.userId = u.userId ")
 	List<Object[]> getClubList();
 
+	//TODO [ClubRepository] 
 
 
 

@@ -2,9 +2,6 @@ package com.thisiswe.home.club.board.service;
 
 import java.util.function.Function;
 
-import com.thisiswe.home.club.board.entity.Board;
-import com.thisiswe.home.club.board.reply.repository.ReplyRepository;
-import com.thisiswe.home.club.board.repository.BoardRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -13,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.dto.PageResultDTO;
+import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.board.reply.repository.ReplyRepository;
+import com.thisiswe.home.club.board.repository.BoardRepository;
 import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.RequiredArgsConstructor;
@@ -104,17 +104,19 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	//TODO [ServiceImpl] 게시판 - 조회수 증가(중복 제외)
-	/* @Override
+	@Override
 	public void countView(Long boardNum, BoardDTO boardDTO) {
 		Board board = boardRepository.findById(boardNum).orElseThrow((() ->
 									new IllegalStateException("게시글이 존재하지 않습니다.")));
 		
 		board.countView(boardDTO.getBoardView());
-	}*/
+		}
 
+	/*
 	@Override
 	public Long countView(Long boardNum, BoardDTO boardDTO) {
 		
 		return this.boardRepository.boardView(boardNum);
 	}
+	*/
 }

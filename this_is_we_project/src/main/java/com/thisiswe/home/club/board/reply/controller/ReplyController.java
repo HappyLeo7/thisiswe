@@ -1,9 +1,8 @@
+
 package com.thisiswe.home.club.board.reply.controller;
 
 import java.util.List;
 
-import com.thisiswe.home.club.board.reply.dto.ReplyDTO;
-import com.thisiswe.home.club.board.reply.service.ReplyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.thisiswe.home.club.board.reply.dto.ReplyDTO;
+import com.thisiswe.home.club.board.reply.service.ReplyService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @RestController
-/* @RequestMapping("/replies/") */
-@RequestMapping("/club")
+@RequestMapping("/replies/")
 @Log4j2
 @RequiredArgsConstructor
 

@@ -22,8 +22,9 @@ public class PlaceReviewServiceImpl implements PlaceReviewService {
 
 	@Override
 	public Long register(PlaceReviewDTO placeReviewDTO) {
-		placeReviewRepository.save(dtoToEntity(placeReviewDTO));
-		return placeReviewDTO.getPlaceReviewNum();
+		PlaceReviewEntity result = dtoToEntity(placeReviewDTO);
+		placeReviewRepository.save(result);
+		return result.getPlaceReviewNum();
 	}
 
 	@Override
