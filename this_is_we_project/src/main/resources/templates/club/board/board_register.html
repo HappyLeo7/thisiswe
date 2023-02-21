@@ -13,10 +13,34 @@
 	<!-- board.js 연결 -->
 		<script th:src="@{/js/board.js}"></script>
 	<!-- /board.js 연결 -->
+				
+		<!-- [club] club의 네비 리스트 -->
+		<div class="top-inner">
+			<div class="top-inner-ul">
+  				<ul class="top-inner-menu top-inner-eff">
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/board}">
+     						<span>BOARD</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/photo/register}">
+     						<span>PHOTO</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/room}">
+     						<span>CHAT</span>
+     					</a>
+     				</li>
+      			</ul>
+  			</div>
+		</div>	
+		<!-- [club] club의 네비 리스트 -->		
 		
 		<!-- 게시판 등록 -->
 		<div class="inner">
-			<h1>ㄷㅡㅇㄹㅗㄱ</h1>
+			<h2>ㄷㅡㅇㄹㅗㄱ</h2>
 			<form th:action="@{/thisiswe/club/board/register}" th:method="post">
 			
 			<!-- 게시판 등록 - section -->	
