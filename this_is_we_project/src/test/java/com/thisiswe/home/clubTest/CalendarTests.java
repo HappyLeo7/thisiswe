@@ -43,7 +43,7 @@ public class CalendarTests {
 				.clubCalendarPlace("강남역")
 				.clubCalendarHeadCount(5L)
 				.clubCalendarPrice(10000L)
-				.clubNum(ClubEntity.builder().clubNum(3L).build())
+				.clubNum(ClubEntity.builder().clubNum(1L).build())
 				.build();
 		
 		calendarRepository.save(calendarEntity);
@@ -57,7 +57,7 @@ public class CalendarTests {
 	@Test
 	public void testCalendarList() {
 		
-		Long clubNum=195L;
+		Long clubNum=3L;
 		List<Object[]> cal=calendarRepository.getClubNum(clubNum);
 		for (Object[] arr:cal) {
 			log.info("일정 리스트 : " +Arrays.toString(arr));

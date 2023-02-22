@@ -7,11 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.thisiswe.home.chat.service.ChatService;
 import com.thisiswe.home.club.calendar.repository.CalendarRepository;
 import com.thisiswe.home.club.calendar.service.CalendarService;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
+import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.club.service.ClubService;
 import com.thisiswe.home.user.security.UserDetailsImpl;
@@ -26,7 +29,6 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class ClubController {
 
-	
 	private final ClubService clubService;
 	private final ClubRepository clubRepository;
 	private final CalendarRepository calendarRepository;
@@ -56,20 +58,23 @@ public class ClubController {
 	
 	//등록 연결링크
 	@GetMapping({"/register"})
-	public String club_register() {
+	public String club_register(Model model,@AuthenticationPrincipal UserDetailsImpl userDetails) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_register.html 연결 =======");
+		model.addAttribute("user");
+		
 		log.info("=========================================================");
 		return "/club/club_register";
 	}
 	
 	//[모임 등록]register.html에서 post타입으로 받아와서  모임 정보를 등록할때 사용됨
 	@PostMapping("/club")
-	public String club_register(ClubDTO clubDTO,Model model,PageRequestDTO pageRequestDTO) {
+	public String club_register(ClubDTO clubDTO,Model model,PageRequestDTO pageRequestDTO,  MultipartFile file) throws Exception{
 		log.info("================= post club_register ========================");
 		log.info("=========== ClubController.java => 데이터를 받은 후 DTO경유중 return : club_list페이지로 ==============");
+		log.info(" 이미지로그 이름 : "+file);
 		log.info("=========== register ClubDTO  : "+clubDTO+" =============");
-		clubService.register(clubDTO); // 등록 페이지에서 받아온 데이터를 서비스로 보낸다.
+		clubService.register(clubDTO,file); // 등록 페이지에서 받아온 데이터를 서비스로 보낸다.
 		//model.addAttribute("list", clubService.getList(clubDTO)); //그냥 리스트 불러오는 코드
 		model.addAttribute("result", clubService.getPageList(pageRequestDTO).getDtoList());//페이지 1~??? 정보를 가져온다
 		model.addAttribute("resultPage", clubService.getPageList(pageRequestDTO).getPageList());
@@ -92,7 +97,6 @@ public class ClubController {
 		//model.addAttribute("list", clubService.getList(clubDTO)); 
 		model.addAttribute("calendarDTOList",calendarService.getCalendarList(Num));
 		log.info(Num+"번 모임 일정 List : "+model.addAttribute("calendarDTOList"));
-		
 		model.addAttribute("user",userDetails.getUsername());
 		log.info("사용자 아이디 : "+model.addAttribute("user",userDetails.getUsername()));
 		

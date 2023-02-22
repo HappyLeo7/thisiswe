@@ -18,10 +18,12 @@ import java.time.LocalDateTime;
 //TODO [Entity]Date 컬럼(등록일, 수정일)
 public class DateEntity {
 	
+	//** 등록일자 */
 	@CreatedDate
 	@Column(name="reg_date", updatable=false)
 	private LocalDateTime regDate; //등록일자
 	
+	//** 수정일자 */
 	@LastModifiedDate
 	@Column(name="update_date")
 	private LocalDateTime updateDate; //수정일자

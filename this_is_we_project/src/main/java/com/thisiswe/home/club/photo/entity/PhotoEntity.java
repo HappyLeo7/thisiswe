@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.enetity.DateEntity;
+import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,11 +40,17 @@ public class PhotoEntity extends DateEntity{
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private ClubEntity userId; //유저ID
+	private UserEntity userId; //유저ID
 	
 	
 	@Column(length = 1000, name = "photo_image")
 	private String photoImage; //사진이미지
+	
+	
+	@Column(length = 1000, name = "photo_path")
+	private String photoPath; //사진 경로
+	
+	
 	@Column(length = 1000, name = "photo_content")
 	private String photoContent; //사진 내용
 	@Column(name = "photo_view")

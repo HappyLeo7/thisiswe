@@ -1,6 +1,9 @@
 package com.thisiswe.home.club.service;
 
 import com.thisiswe.home.club.entity.ClubEntity;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.dto.PageResultDTO;
@@ -11,7 +14,7 @@ public interface ClubService {
 	
 	
 	//DTO -> DB 등록
-	Long register(ClubDTO clubDTO);
+	Long register(ClubDTO clubDTO, MultipartFile file) throws Exception;
 	
 	// 1개의 모임 데이터를 불러온다
 	ClubDTO get(Long clubNum);
@@ -35,6 +38,9 @@ public interface ClubService {
 				.clubCategory(clubDTO.getClubCategory())//관심 카테고리
 				.clubLogo(clubDTO.getClubLogo())//로고
 				.clubHeadCount(clubDTO.getClubHeadCount())//인원
+				.clubLogo(clubDTO.getClubLogo())
+				.clubLogoUrl(clubDTO.getClubLogoUrl())
+				.clubLogoUuid(clubDTO.getClubLogoUuid())
 				.build();
 		
 		

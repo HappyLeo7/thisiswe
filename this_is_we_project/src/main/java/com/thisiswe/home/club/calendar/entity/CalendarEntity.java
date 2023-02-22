@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.enetity.DateEntity;
 
