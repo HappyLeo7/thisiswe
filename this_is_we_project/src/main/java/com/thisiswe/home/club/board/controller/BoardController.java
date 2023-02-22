@@ -110,7 +110,7 @@ public class BoardController {
 		model.addAttribute("boardDTO", board);
 
 		log.info("pageRequestDTO : " + pageRequestDTO);
-		model.addAttribute("result", boardService.getList(pageRequestDTO));
+		model.addAttribute("result", boardService.getList(pageRequestDTO , boardNum));
 
 		log.info("[/controller] =============== String read ===============");
 
