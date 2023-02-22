@@ -117,9 +117,10 @@ public class ClubController {
 	
 	//club데이터 수정매서드
 	@PostMapping({"/read"})
-	public String club_modify(ClubDTO clubDTO) {
-		log.info("==============================");
+	public String club_modify(ClubDTO clubDTO, MultipartFile file) {
 		log.info("======= ClubController => post타입 modify ==============");
+		log.info("======= 이미지 파일명 : " + file);
+		
 		// 수정 코드 작성
 		log.info("수정 club : "+clubDTO);
 		clubService.modify(clubDTO);

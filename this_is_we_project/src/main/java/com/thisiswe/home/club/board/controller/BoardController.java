@@ -91,7 +91,7 @@ public class BoardController {
 	@GetMapping({ "/club/board/read" })
 	public String board_read(Long boardNum, Model model, PageRequestDTO pageRequestDTO, Long num) {
 
-		log.info("[controller] ================ String read ===============");
+		log.info("[controller] ================ String board read ===============");
 		log.info("[controller] BoardController.java => board_read.html 연결 ");
 		log.info(" boardNum :: " + boardNum);
 
@@ -108,8 +108,8 @@ public class BoardController {
 		boardService.countView(board.getBoardNum(), boardDTO);
 
 		model.addAttribute("boardDTO", board);
-
 		log.info("pageRequestDTO : " + pageRequestDTO);
+		model.addAttribute("clubNum",num);
 		model.addAttribute("result", boardService.getList(pageRequestDTO, num));
 
 		log.info("[/controller] =============== String read ===============");
@@ -120,7 +120,7 @@ public class BoardController {
 	// TODO [Controller] 게시판 : 수정 - get
 	@GetMapping({ "/club/board/modify" })
 	public String board_modify(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long boardNum,
-			Model model) {
+			Model model,Long num) {
 
 		log.info("[controller] ============= String modify : get ============");
 		log.info("[controller] BoardController.java => board_modify.html 연결 ");
@@ -135,7 +135,7 @@ public class BoardController {
 
 		log.info("pageRequestDTO : " + pageRequestDTO);
 		model.addAttribute("");
-
+		model.addAttribute("clubNum",num);
 		log.info("[controller] ============= /String modify : get ============");
 
 		return "/club/board/board_modify";
@@ -144,7 +144,7 @@ public class BoardController {
 	// TODO [Controller] 게시판 : 수정 - post
 	@PostMapping({ "/club/board/modify" })
 	public String String_modify(BoardDTO boardDTO, @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes,Long num) {
 
 		log.info("[controller] ============= String modify : post ===========");
 		log.info("[controller] model-modify boardDTO :: " + boardDTO);
@@ -160,7 +160,7 @@ public class BoardController {
 		log.info("[controller] ============= String modify : post ===========");
 
 		/* return "/club/board/board_read"; */
-		return "redirect:/thisiswe/club/board/read";
+		return "redirect:/thisiswe/club/board/read?num="+num;
 	}
 
 	// TODO [Controller] 게시판 : 삭제 - post

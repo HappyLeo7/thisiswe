@@ -45,9 +45,19 @@
 			<!-- 게시판 등록 - section -->	
 			<div class="board-section">
 			<!-- 게시판 조회 테이블 -->		
-				<table class="board-re-table">				
+				<table class="board-re-table">	
 					<tr>
-						<th class="board-re-th">순번</th>
+						<th class="board-ri-th">모임번호</th>
+					</tr>
+					
+					<tr>
+						<td class="bd-contain">
+							<input type="text" class="bd-input" name="num" autocomplete="off"
+													required="required" th:value="${clubNum}">
+						</td>
+					</tr>			
+					<tr>
+						<th class="board-re-th">게시판 번호</th>
 					<tr>
 					<tr>
 						<td class="bd-re-contain">
@@ -126,7 +136,8 @@
 			<br>
 			<!-- 게시판 조회 - btn -->
 			<div class="board-rigi-Btn">
-				<a th:href="@{/thisiswe/club/board/modify(boardNum=${boardDTO.boardNum},
+				<a th:href="@{/thisiswe/club/board/modify(num=${clubNum},
+															boardNum=${boardDTO.boardNum},
 															page=${result.page},
         	   	                            	       		type=${pageRequestDTO.type},
             		                    	           		keyword=${pageRequestDTO.keyword})}">			

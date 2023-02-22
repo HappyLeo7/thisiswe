@@ -31,15 +31,13 @@ public class PhotoController {
 	
 	//사진 등록 페이지
 	@GetMapping("/register")
-	public String photoRegisterPage(ClubDTO clubDTO, Model model, Long clubNum,@AuthenticationPrincipal UserDetailsImpl userDetails) {
+	public String photoRegisterPage(ClubDTO clubDTO, Model model, Long num,@AuthenticationPrincipal UserDetailsImpl userDetails) {
 		log.info("===== photo get register controller =====");
 		
-		log.info("사진등록 모임 번호 : "+clubNum);
+		log.info("사진등록 모임 번호 : "+num);
 		model.addAttribute("user",userDetails.getUsername());
 		log.info("사진등록 등록자 아이디 : "+model.addAttribute("user"));
-		log.info("사진등록 모임 번호 : "+clubDTO);
-		model.addAttribute("clubNum", clubDTO.getClubNum());
-		log.info(model.addAttribute("clubNum"));
+		model.addAttribute("clubNum", num);
 		
 		log.info("===== /photo get register controller =====");
 		

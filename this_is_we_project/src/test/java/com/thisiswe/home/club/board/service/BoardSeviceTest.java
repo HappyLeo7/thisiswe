@@ -50,8 +50,9 @@ public class BoardSeviceTest {
 	public void testList() {
 		
 		PageRequestDTO pageRequestDTO = new PageRequestDTO();
+		Long num=1L;
 		
-		PageResultDTO<BoardDTO, Object[]> result = boardService.getList(pageRequestDTO);
+		PageResultDTO<BoardDTO, Object[]> result = boardService.getList(pageRequestDTO, num);
 		System.out.println("=========================================================");
 		
 		for(BoardDTO boardDTO : result.getDTOList()) {

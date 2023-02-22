@@ -52,7 +52,10 @@
 	<table border="1">
 	<tr>
 	 <!-- 로고이미지 -->
-  	<td rowspan="4">로고이미지</td>
+  	<td rowspan="4">
+  	<img 
+    th:src="|/display?fileName=${readDTO.clubLogoUrl}|">
+  </td>
 	 <!-- /로고이미지 -->
 	
 	</tr>

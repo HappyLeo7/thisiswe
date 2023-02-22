@@ -27,10 +27,12 @@
 	<!-- 내용 -->
 	<h1>사진첩 목록</h1>
 	<!-- 사진등록버튼 -->
-	<div th:each ="photoDTO : ${photoDTOList}">
-	<a th:href="@{/thisiswe/club/photo/register(clubNum=${photoDTO.clubNum.clubNum})}">
+	<a th:href="@{/thisiswe/club/photo/register(num=${clubNum})}">
 			<button type="button">사진등록</button>		
 		</a>
+		
+		<hr>
+	<div th:each ="photoDTO : ${photoDTOList}">
 	<!-- 사진등록버튼 -->
 	모임번호 : <input th:value="${photoDTO.clubNum.clubNum}"> <br>
 	사진번호 : <input th:value="${photoDTO.photoNum}"><br>

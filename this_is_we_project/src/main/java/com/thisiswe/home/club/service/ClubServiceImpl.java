@@ -144,10 +144,12 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public ClubDTO get(Long clubNum) {
 		log.info("........get()........");
-		System.out.println("서비스Impl clubNum: "+clubNum);
+		log.info("........clubNum : " +clubNum);
+		
 		Object clubEntityObject = clubRepository.getClubNum(clubNum);
 		
 		List<Object[]> arr= (List<Object[]>) clubEntityObject;
+		log.info("........arr  : " +arr);
 		
 		return entityToDTO((ClubEntity)arr.get(0)[0], (UserEntity)arr.get(0)[1]);
 	}
