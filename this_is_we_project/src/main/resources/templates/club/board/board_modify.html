@@ -149,7 +149,6 @@
 		
 		/* [START] board_modify.html : 수정 확인 모달창 처리 */			
  			$(".modifyBtn").click(function(){
-				console.log("수정메서드 실행");
 				//컨펌 창 - true&false cf)alert는 경고창
 				if(!confirm("게시글을 수정하시나요?")){
 				}
@@ -163,6 +162,8 @@
 	  	  var actionForm = $("form");
 		
 			$(".removeBtn").click(function(){
+				if(!confirm("게시글을 삭제하시나요?")){
+				}
 				actionForm.attr("action", "/thisiswe/club/board/remove")
 						  .attr("method", "post");
 				//반드시 submit을 넣어줘야 삭제로 넘어간다.
