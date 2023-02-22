@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import javax.transaction.Transactional;
 
 import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
 @SpringBootTest
@@ -28,9 +29,10 @@ public class BoardRepositoryTest {
 	@Test
 	public void insertBoards() {
 		
-		IntStream.rangeClosed(1, 50).forEach(i -> {
+		IntStream.rangeClosed(1, 15).forEach(i -> {
 			
-			UserEntity member = UserEntity.builder().userId("user" + i).build();
+//			UserEntity member = UserEntity.builder().userId("user" + i).build();
+			UserEntity member = UserEntity.builder().userId("leo").build();
 					
 			Board board = Board.builder()
 							.boardCategory("모임 추가")
@@ -38,6 +40,7 @@ public class BoardRepositoryTest {
 							.boardContent("oo클래스 장소는 oo역 2번 출구 바로 앞 공방으로 오세요! pm 14:00. 많관부")
 							.userId(member)
 							.boardView(5L)
+							.clubNum(ClubEntity.builder().clubNum(3L).build())
 							.build();							
 			
 			boardRepository.save(board);

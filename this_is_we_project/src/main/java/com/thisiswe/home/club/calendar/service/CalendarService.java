@@ -30,7 +30,7 @@ public interface CalendarService {
 				.clubCalendarTitle(calendarDTO.getClubCalendarTitle())
 				.clubCalendarContent(calendarDTO.getClubCalendarContent())
 				.clubCalendarDate(calendarDTO.getClubCalendarDate())
-				.clubCalendarTime(calendarDTO.getClubCalendarTime())
+				.clubCalendarTime(calendarDTO.getClubCalendarTimeH()+":"+calendarDTO.getClubCalendarTimeM())
 				.clubCalendarPlace(calendarDTO.getClubCalendarPlace())
 				.clubCalendarHeadCount(calendarDTO.getClubCalendarHeadCount())
 				.clubCalendarPrice(calendarDTO.getClubCalendarPrice())
@@ -46,6 +46,7 @@ public interface CalendarService {
 		System.out.println(".... calendarService entityToDTO() ....>>");
 		
 		CalendarDTO calendarDTO = CalendarDTO.builder()
+				.clubNum(calendarEntity.getClubNum())
 				.clubCalendarNum(calendarEntity.getClubCalendarNum())
 				.clubCalendarPlace(calendarEntity.getClubCalendarPlace())
 				.clubCalendarTitle(calendarEntity.getClubCalendarTitle())

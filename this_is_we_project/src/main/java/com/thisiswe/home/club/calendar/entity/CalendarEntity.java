@@ -9,10 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ColumnDefault;
-
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.enetity.DateEntity;
+import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,7 +46,7 @@ public class CalendarEntity extends DateEntity{
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private ClubEntity userId; //유저ID
+	private UserEntity userId; //유저ID
 	
 	/**
 	 * 제목

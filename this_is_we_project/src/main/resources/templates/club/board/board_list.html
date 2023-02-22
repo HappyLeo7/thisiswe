@@ -15,16 +15,22 @@
 	<!-- /board.js 연결 -->
 		
 		<!-- [club] club의 네비 리스트 -->
-		<div class="top-inner">
+	<!-- 	
+	<div class="top-inner">
 			<div class="top-inner-ul">
   				<ul class="top-inner-menu top-inner-eff">
+  				    <li class="ta-li">
+     					<a th:href="@{/thisiswe/club/(Num=${readDTO.clubNum})}">
+     						<span>INFO</span>
+     					</a>
+     				</li>
      				<li class="ta-li">
      					<a th:href="@{/thisiswe/club/board}">
      						<span>BOARD</span>
      					</a>
      				</li>
      				<li class="ta-li">
-     					<a th:href="@{/thisiswe/club/photo/register}">
+     					<a th:href="@{/thisiswe/club/photo/(clubNum=${readDTO.clubNum})}">
      						<span>PHOTO</span>
      					</a>
      				</li>
@@ -36,6 +42,7 @@
       			</ul>
   			</div>
 		</div>	
+		 -->
 		<!-- [club] club의 네비 리스트 -->		
 		
 		<!-- 게시판 전체 목록 -->
@@ -73,7 +80,7 @@
 			
 			<!-- 게시판 글쓰기 버튼 -->	
 			<div class="board-regi">
-				<a th:href="@{/thisiswe/club/board/register}">
+				<a th:href="@{/thisiswe/club/board/register/(num=${clubNum})}">
 					<span> 
 						<button type="button" class="searchBtn-regi">REGISTER</button>
 					</span>
@@ -135,13 +142,14 @@
 		
 						<li th:class="'page-item '+ ${result.page == page?'active':''}"
 												th:each="page: ${result.pageList}">
-							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${page},
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/(num=${clubNum},
+																		page=${page},
                 		                 								type=${pageRequestDTO.type},
                    	 	        										keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
 						</li>
 		
 						<li class="link-page-active" th:if="${result.next}">
-							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${result.end},
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${result.end+1},
             	    	                 								type=${pageRequestDTO.type},
                 		               									keyword=${pageRequestDTO.keyword})}">다음</a>
 						</li>

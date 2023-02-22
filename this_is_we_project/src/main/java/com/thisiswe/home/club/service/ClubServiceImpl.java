@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.thisiswe.home.chat.service.ChatService;
+import com.thisiswe.home.club.calendar.entity.CalendarEntity;
+import com.thisiswe.home.club.calendar.repository.CalendarRepository;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.dto.PageResultDTO;
@@ -33,6 +35,7 @@ public class ClubServiceImpl implements ClubService {
 
 	private final ClubRepository clubRepository;
 	private final ChatService chatService;
+	private final CalendarRepository calendarRepository;
 	
 	
 	// 모임 등록 하는 매서드
@@ -62,11 +65,29 @@ public class ClubServiceImpl implements ClubService {
 		log.info(".....  clubDTO : "+clubDTO+" .....");
 		ClubEntity clubEntity = dtoToEntity(clubDTO);
 		clubRepository.save(clubEntity);
+		
+	
+	
+		
 		chatService.createChattingRoom(clubEntity.getClubName());//모임생성시 모임 이름 채팅방에 저장
 		log.info("==== ClubServiceImpl register() clubEntity : "+clubEntity+" ====");
 		
 
+		CalendarEntity calendarEntity = CalendarEntity.builder()
+				.clubNum(clubEntity)
+				.clubCalendarTitle("'"+clubEntity.getClubName()+"'의 모임 생일")
+				.clubCalendarDate("")
+				.clubCalendarContent("")
+				.clubCalendarHeadCount(1L)
+				.clubCalendarTime("")
+				.clubCalendarPlace("")
+				.clubCalendarPrice(0L)
+				.build();
 		
+		
+		calendarRepository.save(calendarEntity);
+		
+		log.info(calendarEntity);
 		
 		log.info("..... /ClubServiceImpl register()  .....");
 		
