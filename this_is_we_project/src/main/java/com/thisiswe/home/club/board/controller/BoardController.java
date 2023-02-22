@@ -89,7 +89,7 @@ public class BoardController {
 
 	// TODO [Controller] 게시판 : 상세 조회 - read, 조회수 증가
 	@GetMapping({ "/club/board/read" })
-	public String board_read(Long boardNum, Model model, PageRequestDTO pageRequestDTO) {
+	public String board_read(Long boardNum, Model model, PageRequestDTO pageRequestDTO, Long num) {
 
 		log.info("[controller] ================ String read ===============");
 		log.info("[controller] BoardController.java => board_read.html 연결 ");
@@ -110,7 +110,7 @@ public class BoardController {
 		model.addAttribute("boardDTO", board);
 
 		log.info("pageRequestDTO : " + pageRequestDTO);
-		model.addAttribute("result", boardService.getList(pageRequestDTO));
+		model.addAttribute("result", boardService.getList(pageRequestDTO, num));
 
 		log.info("[/controller] =============== String read ===============");
 
