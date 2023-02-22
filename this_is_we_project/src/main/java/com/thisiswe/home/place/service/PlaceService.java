@@ -1,10 +1,11 @@
 package com.thisiswe.home.place.service;
 
 import com.thisiswe.home.place.dto.PlaceDTO;
+import com.thisiswe.home.place.dto.PlacePageRequestDTO;
+import com.thisiswe.home.place.dto.PlacePageResultDTO;
 import com.thisiswe.home.place.entity.PlaceEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
-import java.util.List;
 
 public interface PlaceService {
 
@@ -12,7 +13,7 @@ public interface PlaceService {
 	
 	PlaceDTO read(Long placeNum);
 	
-	List<PlaceDTO> getList();
+	public PlacePageResultDTO<PlaceDTO, PlaceEntity> getList(PlacePageRequestDTO placePageRequestDTO);
 	
 	void modify(PlaceDTO placeDTO);
 
@@ -59,4 +60,5 @@ public interface PlaceService {
 		return placeEntity;
 		
 	}
+
 }
