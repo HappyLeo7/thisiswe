@@ -25,15 +25,18 @@
 				<h4>안내 사항</h4>
 				<div>[[${place.getPlaceGuide}]]</div>
 
-				<input id="loginID" th:value="@{${loginID}}">
+				<input type="hidden" id="loginID" th:value="@{${loginID}}">
 				<!-- 리뷰 등록 시작 -->
-				<br> <input type="radio" name="placeReviewRate" value="1">
-				<input type="radio" name="placeReviewRate" value="2"> <input
-					type="radio" name="placeReviewRate" value="3"> <input
-					type="radio" name="placeReviewRate" value="4"> <input
-					type="radio" name="placeReviewRate" value="5"> <input
-					type="text" name="placeReviewContent">
-				<button type="button" class="reviewSave">리뷰 등록</button>
+				
+				<br>별점
+				<input type="radio" name="placeReviewRate" value="1">
+				<input type="radio" name="placeReviewRate" value="2"> 
+				<input type="radio" name="placeReviewRate" value="3"> 
+				<input type="radio" name="placeReviewRate" value="4"> 
+				<input type="radio" name="placeReviewRate" value="5"> 
+				<br>
+				<textarea name="placeReviewContent" cols="120" rows="10"></textarea>
+				<button type="button" class="reviewSave" style="height: 60px; margin-bottom: 30px;">리뷰 등록</button>
 				<!-- 리뷰 등록 끝 -->
 
 				<!-- 리뷰 시작 -->
@@ -62,7 +65,7 @@
 					if(s == review.userId){
 						button='<button type="button" class="reviewModifyOn" onclick="reviewModifyOn(this)">수정</button>'+
 						'		<button type="button" class="reviewRemove">삭제</button> '+
-						'		<input type="hidden" th:value="${review.getPlaceReviewNum}"></input>'
+						'		<input  type="hidden" class="placeReviewNum" value="' + review.placeReviewNum + '"></input>'
 					}
 					
 					
@@ -72,20 +75,21 @@
 					'						작성자 :'+ review.writer + 
 												button+
 					'						 <br>'+
-					'						<h1>' + review.placeReviewNum + '</h1>'+
-					'						평점 :' + review.placeReviewRate + '<br> '+
-					'						내용 :' + review.placeReviewContent + ' <br> '+
+					'						리뷰 넘버' + review.placeReviewNum +
+					'						<h2>평점 :' + review.placeReviewRate + '</h2><br> '+
+					'						<h2>내용 :' + review.placeReviewContent + '</h2><br> '+
 					'						작성일 :' + review.regDate + '<br>'+
 					'					</div>'+
-					'					<div class="reviewModifyInput" style="display: none;">'+
-					'						<input class="reviewRate" type="radio" name="ModifyplaceReviewRate' + count + '" value="1">'+
+					'					<div class="reviewModifyInput" style="display: none; border: solid 1px; height: 232px;">'+
+					'						별점<input class="reviewRate" type="radio" name="ModifyplaceReviewRate' + count + '" value="1">'+
 					'						<input class="reviewRate" type="radio" name="ModifyplaceReviewRate' + count + '" value="2"> '+
 					'						<input class="reviewRate" type="radio" name="ModifyplaceReviewRate' + count + '" value="3"> '+
 					'						<input class="reviewRate" type="radio" name="ModifyplaceReviewRate' + count + '" value="4"> '+
 					'						<input class="reviewRate" type="radio" name="ModifyplaceReviewRate' + count + '" value="5"> '+
-					'						<br>'+
-					'						<input name="ModifyplaceReviewContent" th:value="${review.getPlaceReviewContent}">'+
-					'						<input name="ModifyplaceReviewNum" type="hidden" th:value="${review.getPlaceReviewNum}">'+
+					'						<br>' +
+					'						<textarea name="ModifyplaceReviewContent" cols="80" rows="7">'+review.placeReviewContent+'</textarea>'+
+					'                       <br>' +
+					'						<input name="ModifyplaceReviewNum" type="hidden" value="' + review.placeReviewNum + '">'+
 					'						<button type="button" class="reviewModify">수정</button>'+
 					'						<button type="button" class="reviewModifyCancel">취소</button>'+
 					'					</div>' +
@@ -104,7 +108,7 @@
 			var review = {
 					placeNum: placeNum, 
 					placeReviewRate: $('input[name=placeReviewRate]:checked').val(),
-					placeReviewContent: $('input[name=placeReviewContent]').val() 
+					placeReviewContent: $('textarea[name=placeReviewContent]').val() 
 	      }
 			
 			$.ajax({
@@ -115,6 +119,7 @@
 				dataType: 'json',
 				success: function(data){
 				loadJSONData();
+				$('textarea[name=placeReviewContent]').val('');
 				}
 			});
 		})
@@ -135,24 +140,12 @@
 		
 		// 리뷰 modify 버튼 시작
 			$(document).on("click", ".reviewModify", function(){
-				console.log("에구구")
-				console.log($(this).parents(".reviewSet"));
-				const placeReviewNum =  $(this).parents(".reviewModifyInput").children('input[name=ModifyplaceReviewNum]:checked').val();		
-				
-				console.log("로그" + $(this).parents(".reviewSet")[0])
-				console.log("로그" + $(this).parents(".reviewSet").children("div")[0])
-				console.log("로그" + $(this).parents(".reviewSet").children("div")[1])
-				console.log("로그" + $(this).parents(".reviewSet").children("div")[0])
-				console.log("로그" + $(this).parents(".reviewSet").children("div")[0])
-				console.log("로그" + $(this).parents(".reviewSet")[2])
-				console.log("로그" + $(this).parents(".reviewSet")[3])
-				console.log("로 그" + $(this).parents(".reviewSet")[4])
-				console.log("로그" + $(this).parents(".reviewSet")[5])
+				const placeReviewNum =  $(this).parents(".reviewModifyInput").children('input[name=ModifyplaceReviewNum]').val();		
 				var review = {
 						placeReviewNum: placeReviewNum,
 						placeNum: placeNum, 
 						placeReviewRate: $(this).parents(".reviewModifyInput").children('input[class=reviewRate]:checked').val(),
-						placeReviewContent: $(this).parents(".reviewModifyInput").children('input[name=ModifyplaceReviewContent]').val() 
+						placeReviewContent: $(this).parents(".reviewModifyInput").children('textarea[name=ModifyplaceReviewContent]').val() 
 	 	      }
 				
 				$.ajax({
@@ -162,6 +155,7 @@
 					contentType: 'application/json; charset=utf-8',
 					dataType: 'json',
 					success: function(data){
+						loadJSONData();
 					}
 				});
 			}); 
@@ -170,24 +164,28 @@
 		
 		// 리뷰 remove 버튼 시작
 			$(document).on("click",".reviewRemove", function(){
-				console.log(5);
-				var placeReviewNum = $(this).parents("span").children("input").val();
+				var placeReviewNum = $(this).parents(".review").children(".placeReviewNum").val();
+				console.log(placeReviewNum);
 			
 				$.ajax({
 					url: '/place/review/' + placeReviewNum,
 					method: 'delete',
 					success: function(result){
-					
+						loadJSONData();
 					}
 				});
 			})
 		// 리뷰 remove 버튼 끝
 	})
+	// 리뷰 reviewModifyOn 버튼 시작
 function reviewModifyOn(x){
+		$(".review").show();
 		$(x).parents(".review").hide();
+		$(".reviewModifyInput").hide();
 		$(x).parents(".reviewSet").children(".reviewModifyInput").show();	
 	}
-	// 리뷰 reviewModifyOn 버튼 시작
+	// 리뷰 reviewModifyOn 버튼 끝
+
 	
 </script>
 
