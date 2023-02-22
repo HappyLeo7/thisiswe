@@ -6,7 +6,6 @@ import com.thisiswe.home.place.dto.PlacePageResultDTO;
 import com.thisiswe.home.place.entity.PlaceEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
-import java.util.List;
 
 public interface PlaceService {
 

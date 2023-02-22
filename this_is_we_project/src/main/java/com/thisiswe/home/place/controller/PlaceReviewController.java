@@ -52,7 +52,6 @@ public class PlaceReviewController {
 		log.info("============reviewModify=============");
 		placeReviewDTO.setUserId(userDetailsImpl.getUsername());
 
-		
 		Long placeReviewNum = placeReviewService.register(placeReviewDTO);
 		return new ResponseEntity<>(placeReviewNum, HttpStatus.OK);
 	}
