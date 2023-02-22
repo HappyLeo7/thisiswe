@@ -47,7 +47,19 @@
 		
 		<!-- 게시판 전체 목록 -->
 		<div class="inner">
-			<!-- <h2>ㅁㅗㄱㄹㅗㄱ</h2> -->			
+			<!-- <h2>ㅁㅗㄱㄹㅗㄱ</h2> -->		
+				
+			<!-- 게시판 글쓰기 버튼 -->	
+			<div class="board-regi">
+				<a th:href="@{/thisiswe/club/board/register}">
+					<span> 
+						<button type="button" class="searchBtn-regi">REGISTER</button>
+					</span>
+				</a>
+			</div>	
+			<!-- /게시판 글쓰기 버튼 -->
+			<br><br>
+			
 			<!-- 검색창 추가 -->
 			<div class="board-search">
 				<div class="board-search_sub">
@@ -88,6 +100,7 @@
 			</div>	
 			<!-- /게시판 글쓰기 버튼 -->
 			<br>
+			<!-- /검색창 추가 -->				
 			
 			<table class="board-table">
 				<!-- 게시판 목록 head 부분 -->
