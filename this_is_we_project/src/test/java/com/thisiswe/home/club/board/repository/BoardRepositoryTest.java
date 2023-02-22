@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,18 +30,18 @@ public class BoardRepositoryTest {
 	@Test
 	public void insertBoards() {
 		
-		IntStream.rangeClosed(1, 15).forEach(i -> {
+		LongStream.rangeClosed(1, 50).forEach(i -> {
 			
-//			UserEntity member = UserEntity.builder().userId("user" + i).build();
-			UserEntity member = UserEntity.builder().userId("leo").build();
+			UserEntity member = UserEntity.builder().userId("user" + i).build();
+			/* UserEntity member = UserEntity.builder().userId("leo").build(); */
 					
 			Board board = Board.builder()
 							.boardCategory("모임 추가")
 							.boardTitle("oo클래스 오픈했어요!")
-							.boardContent("oo클래스 장소는 oo역 2번 출구 바로 앞 공방으로 오세요! pm 14:00. 많관부")
+							.boardContent("oo클래스 장소는 oo역 2번 출구 바로 앞 공방으로 오세요! 많관부!!")
 							.userId(member)
 							.boardView(5L)
-							.clubNum(ClubEntity.builder().clubNum(3L).build())
+							.clubNum(ClubEntity.builder().clubNum(i).build())
 							.build();							
 			
 			boardRepository.save(board);

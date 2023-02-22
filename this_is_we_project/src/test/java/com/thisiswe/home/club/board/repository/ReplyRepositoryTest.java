@@ -2,7 +2,7 @@ package com.thisiswe.home.club.board.repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,21 +25,30 @@ public class ReplyRepositoryTest {
 	@Test
 	//TODO [ReplyRepositoryTest] 게시글-댓글 : boardNum 댓글 생성하기
 	public void insertReply() {
-		IntStream.range(1, 30).forEach(i -> {
+		
+		System.out.println("[ReplyRepositoryTest][insertReply]=======================");
+		LongStream.range(1, 50).forEach(i -> {
 			
-			long boardNum = (long)(Math.random() * 10) + 1; 
-			
-			Board board = Board.builder().boardNum(boardNum).build();			
 			UserEntity member = UserEntity.builder().userId("user" + i).build();
 			
 			//TODO [ReplyRepositoryTest] 게시글-댓글 : boardNum 내 댓글 내용 생성하기
 			Reply reply = Reply.builder()
+							   .boardNum(Board.builder().boardNum(i).userId(UserEntity.builder().userId("user" + i).build()).build())
 							   .boardReplyContent("reply" + i)
-							   .board(board)
-							   .userId(member)							 
+							   .userId(member)	
 							   .build();
-			
+		
+		/*LongStream.rangeClosed(1, 50).forEach(i -> {
+				
+			Reply reply = Reply.builder()
+						  	.boardNum(Board.builder().boardNum(i).userId(UserEntity.builder().userId("user" + i).build()).build())
+						  	.userId(UserEntity.builder().userId("user" + i).build())
+						  	.boardReplyContent("content" + i)						  	
+							.build();
+		 */
 			replyRepository.save(reply);
+			
+			System.out.println("/[ReplyRepositoryTest][insertReply]======================");
 		});
 	}
 	
@@ -51,10 +60,10 @@ public class ReplyRepositoryTest {
 		Optional<Reply> result = replyRepository.findById(31L);
 		Reply reply = result.get();
 		
-		System.out.println("====================== reply 읽어오기 ======================");
+		System.out.println("[ReplyRepositoryTest][testReadReply]=====================");
 		System.out.println(reply);
 		System.out.println(reply.getBoard());
-		System.out.println("====================== reply 읽어오기 ======================");
+		System.out.println("/[ReplyRepositoryTest][testReadReply]====================");
 				
 		}
 	
@@ -62,14 +71,14 @@ public class ReplyRepositoryTest {
 	@Test
 	public void testListByBoard() {
 		
-		System.out.println("=========================================================");
+		System.out.println("[ReplyRepositoryTest][testListByBoard]===================");
+		/* List<Reply> replyList = replyRepository.getRepliesByBoardOrderByBoardReplyNum( */
+		List<Reply> replyList = replyRepository.findByBoardNum(Board.builder().boardNum(41L).build());
 		
-		List<Reply> replyList = replyRepository.getRepliesByBoardOrderByBoardReplyNum(
-												Board.builder().boardNum(30L).build());
-		
+		System.out.println("[ReplyRepositoryTest][testListByBoard] replyList ===> " + replyList);
 		replyList.forEach(reply -> System.out.println(reply)); 
 		
-		System.out.println("=========================================================");
+		System.out.println("/[ReplyRepositoryTest][testListByBoard]==================");
 		
 	}
 }

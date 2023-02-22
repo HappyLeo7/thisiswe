@@ -41,7 +41,7 @@
 		<!-- 게시판 등록 -->
 		<div class="inner">
 			<h2>ㄷㅡㅇㄹㅗㄱ</h2>
-			<form th:action="@{/thisiswe/club/board/register}" th:method="post">
+			<form th:action="@{/thisiswe/club/board/register/(num=${clubNum})}" th:method="post">
 			
 			<!-- 게시판 등록 - section -->	
 			<div class="board-section">
@@ -109,7 +109,9 @@
 				<br>				
 			<!-- 게시판 등록 - btn -->
 				<div class="board-rigi-Btn">
-					<button type="submit" class="searchBtn-mi btn-success">등록</button>
+					<button type="submit" class="searchBtn-mi btn-success">
+						등록
+					</button>
 					<button type="submit" class="searchBtn-mi">
 						<a th:href="@{/thisiswe/club/board}">목록</a>
 					</button>
