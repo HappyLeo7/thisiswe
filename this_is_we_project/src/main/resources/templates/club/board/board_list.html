@@ -15,22 +15,16 @@
 	<!-- /board.js 연결 -->
 		
 		<!-- [club] club의 네비 리스트 -->
-	<!-- 	
-	<div class="top-inner">
+		<div class="top-inner">
 			<div class="top-inner-ul">
   				<ul class="top-inner-menu top-inner-eff">
-  				    <li class="ta-li">
-     					<a th:href="@{/thisiswe/club/(Num=${readDTO.clubNum})}">
-     						<span>INFO</span>
-     					</a>
-     				</li>
      				<li class="ta-li">
      					<a th:href="@{/thisiswe/club/board}">
      						<span>BOARD</span>
      					</a>
      				</li>
      				<li class="ta-li">
-     					<a th:href="@{/thisiswe/club/photo/(clubNum=${readDTO.clubNum})}">
+     					<a th:href="@{/thisiswe/club/photo/register}">
      						<span>PHOTO</span>
      					</a>
      				</li>
@@ -42,14 +36,22 @@
       			</ul>
   			</div>
 		</div>	
-		 -->
-		<!-- [club] club의 네비 리스트 -->		
+		<!-- /[club] club의 네비 리스트 -->		
 		
 		<!-- 게시판 전체 목록 -->
 		<div class="inner">
 			<!-- <h2>ㅁㅗㄱㄹㅗㄱ</h2> -->		
-				
-			<br><br>
+									
+			<!-- 게시판 글쓰기 버튼 -->	
+			<div class="board-regi">
+				<a th:href="@{/thisiswe/club/board/register/(num=${clubNum})}">
+					<span> 
+						<button type="button" class="searchBtn-regi">REGISTER</button>
+					</span>
+				</a>
+			</div>	
+			<!-- /게시판 글쓰기 버튼 -->
+			<br>			
 			
 			<!-- 검색창 추가 -->
 			<div class="board-search">
@@ -81,17 +83,7 @@
 			</div>
 			<!-- /검색창 추가 -->		
 			
-			<!-- 게시판 글쓰기 버튼 -->	
-			<div class="board-regi">
-				<a th:href="@{/thisiswe/club/board/register/(num=${clubNum})}">
-					<span> 
-						<button type="button" class="searchBtn-regi">REGISTER</button>
-					</span>
-				</a>
-			</div>	
-			<!-- /게시판 글쓰기 버튼 -->
-			<br>
-			<!-- /검색창 추가 -->				
+			<br><br>
 			
 			<table class="board-table">
 				<!-- 게시판 목록 head 부분 -->

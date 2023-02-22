@@ -26,5 +26,12 @@ $(function() {
     $('section').height(h);
     $('menu .container').height(h - 60);
   });
+  
+  // [swiper]- 효과 추가
+        $(".hover").mouseleave(
+            function () {
+            $(this).removeClass("hover");
+            }
+        );
 
 });
