@@ -30,7 +30,7 @@
 		<!-- /네비창 (정보, 게시판, 사진첩) -->
 
 		<!-- form -->
-		<form th:action="@{/thisiswe/read}" th:method="post">
+		<form th:action="@{/thisiswe/read}" th:method="post" enctype="multipart/form-data">
 
 			<table border="1">
 				<tr>
@@ -97,7 +97,8 @@
 					<!-- 로고이미지 -->
 					<td rowspan="2"><input type="file" name="file">로고 수정</td>
 					<td rowspan="2"><img
-						th:src="|/display?fileName=${modifyDTO.clubLogoUrl}|"></td>
+						th:src="|/display?fileName=${modifyDTO.clubLogoUrl}|">
+						 </td>
 					<!-- /로고이미지 -->
 					<!-- 모임정원 -->
 					<td>모임정원<input name="clubHeadCount" type="number" min="1"

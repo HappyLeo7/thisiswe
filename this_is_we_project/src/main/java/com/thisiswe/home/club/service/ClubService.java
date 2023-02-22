@@ -23,7 +23,7 @@ public interface ClubService {
 	Object getList(ClubDTO clubDTO);
 	PageResultDTO<ClubDTO,Object[]> getPageList(PageRequestDTO pageRequestDTO);
 	
-	void modify(ClubDTO clubDTO);
+	void modify(ClubDTO clubDTO,MultipartFile file) throws Exception;
 	
 	// CludDTO(Wed) -> ClubEntity(DB) 
 	default ClubEntity dtoToEntity(ClubDTO clubDTO) {

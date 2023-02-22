@@ -17,7 +17,7 @@
 	
 	
 	<!-- 네비창 (정보, 게시판, 사진첩) -->
-		모임번호 :	<input name="clubNum" th:value="${readDTO.clubNum}" readonly="readonly">
+		모임번호 :	<input class="clubNum" name="clubNum" th:value="${readDTO.clubNum}" readonly="readonly">
 		<table border="1">
    <tr>
       <td><a th:href="@{/thisiswe/club/(Num=${readDTO.clubNum})}">정보</a></td>
@@ -38,15 +38,68 @@
 		<table border="0">
 	<tr>
 		<td>
-		<a th:href="@{/thisiswe/modify(Num=${readDTO.clubNum})}">
+		<a th:href="@{/thisiswe/modify(num=${readDTO.clubNum})}">
 			<button type="button">모임수정버튼</button> 
 		</a>
-		<a th:href="@{/thisiswe/club/(Num=${readDTO.clubNum})}">
-		<button type="button">모임가입</button></a>
+		
+		<button type="button" onclick="memberRegister()">모임가입</button>
 					
-		접속중 ID : <input th:value="${user}">
+		접속중 ID : <input class="userId" th:value="${user}" name="userId">
 	</tr>
 		</table>
+		
+		<script>
+			function memberRegister() {
+				var clubNum = $(".clubNum").val();
+				var userId = $(".userId").val();
+				
+				console.log("모임번호 : "+clubNum);
+				console.log("유저ID : "+userId);
+				
+				
+				//club에 member 등록 처리
+				$.ajax({ 
+					url : "/thisiswe/club/member",
+					type : 'POST',
+					data: JSON.stringify({clubNum : clubNum,userID:userId}),
+					contentType:"application/json; charset=UTF-8",
+					dataType : "json",
+					success: function (data){
+						alert("가입 성공");
+						console.log(data);
+					},
+					error : function(){
+						alert("가입 실패");
+					}
+					
+					
+					 })
+				
+			}
+			
+			/* function memberRegister(){
+				var clubNum = $(".clubNum").val();
+				console.log("모임번호 : "+clubNum);
+				   var params = {
+				       num : clubNum
+				   }
+				   
+				   $.ajax({
+				        url: "/thisiswe/club/member",
+				        type: "POST",
+				        data: params,
+				        success: function(data){
+				            console.log(data);
+				            alert("성공하였습니다.");
+				        },
+				        error: function(){
+				            alert("데이터 통신중 에러발생");
+				        }
+				    });
+				} */
+			
+		</script>
+		
 	<!-- /모임 수정 버튼 -->
 	
 	<table border="1">
