@@ -4,6 +4,8 @@
 
 /* 프로젝트 포인트 색상(임의 01) : #e4481b; - 주황색 */
 /* 프로젝트 포인트 색상(임의 02) : #0d5718; - 초록색 */
+/* 프로젝트 포인트 색상(임의 02) : #BB2649; - 비바마젠타 */
+/* 프로젝트 포인트 색상(임의 02) : #d75f56; - 라즈베리블러시 */
 
 * {
 	font-family: 'Nanum Gothic', sans-serif;
@@ -25,7 +27,6 @@
 }
 .ta-li{
 	padding: 8px 10px 8px 10px;
-	color: gray;
 	font-size: 20px;
 	font-weight: normal;
 }
@@ -43,7 +44,7 @@
     position: absolute;
     width: 30px;
     height: 2px;
-    background: #e4481b;
+    background: #BB2649;
     content: "";
     opacity: 0.8;
     -moz-transition: all 0.5s;
@@ -225,8 +226,8 @@ div>h2 {
     height: 28px;
     padding: 0 4px;
     text-align: center;
-    border: 1px solid #e4481b;
-    color: #e4481b;
+    border: 1px solid #BB2649;
+    color: #BB2649;
     line-height: 26px;
   	border-radius: 5px;
 }
@@ -300,7 +301,7 @@ div>h2 {
 .bd-input:focus, .bd-input-co:focus{
     outline: none;
     border: 2px solid #e7e7e7;
-    border-color: #e4481b;
+    border-color: #BB2649;
 }
 .searchBtn-mi {
 	margin: 0 5px 0 5px;
@@ -460,7 +461,7 @@ div>h2 {
 .bd-modi-input:focus, .bd-modi-input-co:focus{
     outline: none;
     border: 2px solid #e7e7e7;
-    border-color: #e4481b;
+    border-color: #BB2649;
 }
 /* [END] modify - 수정하는 부분만 */
 .searchBtn-mi {
