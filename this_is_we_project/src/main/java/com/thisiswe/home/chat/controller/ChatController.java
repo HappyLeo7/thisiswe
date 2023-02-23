@@ -3,6 +3,7 @@ package com.thisiswe.home.chat.controller;
 import com.thisiswe.home.chat.dto.MessageResponseDto;
 import com.thisiswe.home.chat.model.Room;
 import com.thisiswe.home.chat.service.ChatService;
+import com.thisiswe.home.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -73,7 +74,7 @@ public class ChatController {
 
     //채팅방으로 이동
     @RequestMapping("/moveChating")
-    public ModelAndView chating(@RequestParam HashMap<Object ,Object> params) {
+    public ModelAndView chating(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam HashMap<Object ,Object> params) {
         ModelAndView mv = new ModelAndView();
         String roomName = (String) params.get("roomName");
         String roomNumber = (String) params.get("roomNumber");
@@ -83,6 +84,7 @@ public class ChatController {
         mv.setViewName("chatroom/chatroomtest");
         mv.addObject("roomName", roomName);
         mv.addObject("roomNumber", roomNumber);
+        mv.addObject("username", userDetails.getUserNickname());
         mv.addObject("chatList", chatService.getMessages(roomName));
         System.out.println("roomList1 : " + chatService.getMessages(roomName));
 
