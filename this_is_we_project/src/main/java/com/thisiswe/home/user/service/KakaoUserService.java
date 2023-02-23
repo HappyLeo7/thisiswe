@@ -50,7 +50,10 @@ public class KakaoUserService {
 		
 	}
 
+	//
 	private String getAccessToken(String code) throws JsonProcessingException {
+		
+		// 1. "인가 코드"로 "액세스 토큰" 요청
 		// HTTP Header 생성
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
@@ -79,6 +82,7 @@ public class KakaoUserService {
 
 	private KakaoUserInfoDto getKakaoUserInfo(String accessToken) throws JsonProcessingException {
 
+		// 2. 토큰으로 카카오 API 호출
 		// HTTP Header 생성
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "Bearer " + accessToken);
@@ -105,27 +109,37 @@ public class KakaoUserService {
 	}
 
 	private UserEntity registerKakaoUserIfNeeded(KakaoUserInfoDto kakaoUserInfo) {
+		
 		// DB 에 중복된 Kakao Id 가 있는지 확인
 		Long kakaoId = kakaoUserInfo.getId();
 		UserEntity kakaoUser = userRepository.findByKakaoId(kakaoId).orElse(null);
 		if (kakaoUser == null) {
+			
 			// 회원가입
 			// username: kakao nickname
 			String nickname = kakaoUserInfo.getNickname();
+			
 			// password: random UUID
 			String password = UUID.randomUUID().toString();
+			
 			String encodedPassword = passwordEncoder.encode(password);
+			
 			// email: kakao email
 			String email = kakaoUserInfo.getEmail();
+			
 			// role: 일반 사용자
 			UserRoleEnum role = UserRoleEnum.USER;
-			kakaoUser = new UserEntity(nickname, encodedPassword, null, null, null, null, null, false, role, kakaoId);
+			
+			kakaoUser = new UserEntity(nickname, encodedPassword, null, null, null, email, null, null, role, kakaoId);
+			
 			userRepository.save(kakaoUser);
 		}
 		return kakaoUser;
 	}
 
 	private void forceLogin(UserEntity kakaoUser) {
+		
+		// 4. 강제 로그인 처리
 		UserDetails userDetails = new UserDetailsImpl(kakaoUser);
 		Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
 				userDetails.getAuthorities());
