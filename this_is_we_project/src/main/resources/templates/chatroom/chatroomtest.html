@@ -89,7 +89,8 @@
     }
 
     #chat-room .chat-message > div {
-        background-color: #0d5718;
+
+        background-color: #33a74b;
         color: #FFFFFF;
         float: left;
         padding: 0.8rem;
@@ -184,7 +185,7 @@
 </style>
 
 <script>
-    window.onload = chatName ;
+    window.onload = chatName;
 
     var ws;
 
@@ -207,9 +208,11 @@
         ws.onmessage = function (data) {
             //메시지를 받으면 동작
             var msg = data.data;
+
             if (msg != null && msg.type != '') {
                 //파일 업로드가 아닌 경우 메시지를 뿌려준다.
                 var d = JSON.parse(msg);
+                console.log("d.userName : " + d.userName);
                 if (d.type == "getId") {
                     var si = d.sessionId != null ? d.sessionId : "";
                     if (si != '') {
@@ -246,7 +249,7 @@
             console.log("addEventlistner발동!");
             if (e.keyCode == 13) { //enter press
                 send();
-
+                scrolldown();
             }
         });
     }
@@ -289,9 +292,11 @@
         k();
 
     }
-    var k = function() {
+
+    var k = function () {
         $('#chat-room .input-box #text-input').val('');
     }
+
     function scrolldown() {
         $(".message-box").scrollTop($(document).height());
     }
@@ -300,7 +305,7 @@
 <body>
 <input type="hidden" id="sessionId" value="">
 <input type="hidden" id="roomNum" th:value="${roomNumber}">
-<input type="hidden" id="userName" value="문수찬">
+<input type="hidden" id="userName" th:value="${username}">
 <input type="hidden" id="roomName" th:value="${roomName}">
 <div id="chat-room">
     <div class="message-box">
@@ -329,37 +334,37 @@
         <br>
         <div class="message-group" data-date-str="2014년 12월 12일 월요일">
             <div th:each="chat : ${chatList}">
-                <!--                <div th:if="${chat.userNickname != memberName}">-->
-                <div class="chat-message other">
-                    <section><i class="fa fa-user"></i></section>
-                    <span th:text="${chat.userNickname}"></span>
-                    <div th:text=" ${chat.message}"></div>
+                <div th:if="${chat.userNickname != username}">
+                    <div class="chat-message other">
+                        <section><i class="fa fa-user"></i></section>
+                        <span th:text="${chat.userNickname}"></span>
+                        <div th:text=" ${chat.message}"></div>
+                    </div>
+                </div>
+                <div th:unless="${chat.userNickname != username }">
+                    <div class="chat-message mine">
+                        <section><i class="fa fa-user"></i></section>
+                        <span></span>
+                        <div th:text="${chat.message}"></div>
+                    </div>
                 </div>
             </div>
-            <!--                <div th:unless="${chat.userNickname != memberName }">-->
-            <!--                    <div class="chat-message mine">-->
-            <!--                        <section><i class="fa fa-user"></i></section>-->
-            <!--                        <span>홍길동</span>-->
-            <!--                        <div th:text="${chat.message}"></div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
+            <br>
         </div>
-        <br>
-    </div>
 
-    <div class="input-box" type="text" placeholder="메세지 입력해봐라~"><!--    -->
-        <input type="text" id="text-input"><!--메세지 보내는 곳-->
-        <div class="btn-plus"><!--    -->
-            <i class="fa fa-plus" aria-hidden="true"></i>
-        </div>
-        <div class="btn-emo">
-            <i class="fa fa-smile-o" aria-hidden="true"></i>
-        </div>
-        <div class="btn-submit">
-            <butoon onclick="send() ">전송</butoon>
+        <div class="input-box" type="text" placeholder="메세지 입력해봐라~"><!--    -->
+            <input type="text" id="text-input"><!--메세지 보내는 곳-->
+            <div class="btn-plus"><!--    -->
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </div>
+            <div class="btn-emo">
+                <i class="fa fa-smile-o" aria-hidden="true"></i>
+            </div>
+            <div class="btn-submit">
+                <butoon onclick="send() ">전송</butoon>
+            </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 </html>
