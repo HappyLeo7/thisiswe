@@ -27,10 +27,17 @@
 					th:href="@{/thisiswe/club/board/(num=${readDTO.clubNum})}">게시판</a></td>
 				<td><a
 					th:href="@{/thisiswe/club/photo/(num=${readDTO.clubNum})}">사진첩</a></td>
-				<td><a th:href="@{/room}">채팅방</a></td>
+				<td><a th:onclick="testGoRoom([[${readDTO.clubNum}]], [[${readDTO.clubName}]])">채팅방</a></td>
 
 			</tr>
 		</table>
+		<script>
+			function testGoRoom( number, name){
+				let openWin = window.open("/moveChating?roomName=" + name + "&" + "roomNumber=" + number ,"팝업 테스트","width=350, height=700, top=2050, left=2000");
+
+
+			}
+		</script>
 		<!-- /네비창 (정보, 게시판, 사진첩) -->
 
 		<!-- 모임 수정 버튼 -->
