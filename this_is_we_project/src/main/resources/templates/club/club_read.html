@@ -52,6 +52,7 @@
 			function memberRegister() {
 				var clubNum = $(".clubNum").val();
 				var userId = $(".userId").val();
+				var role = 0;
 				
 				console.log("모임번호 : "+clubNum);
 				console.log("유저ID : "+userId);
@@ -61,7 +62,7 @@
 				$.ajax({ 
 					url : "/thisiswe/club/member",
 					type : 'POST',
-					data: JSON.stringify({clubNum : clubNum,userID:userId}),
+					data: JSON.stringify({clubNum : clubNum,userID:userId,clubMemberRole:role}),
 					contentType:"application/json; charset=UTF-8",
 					dataType : "json",
 					success: function (data){

@@ -19,12 +19,18 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class ClubMemberController {
 
+	private final ClubMemberService clubMemberService;
+	
+	
 	@PostMapping("/member")
 	public ResponseEntity<Long> clubMemberber_register(@RequestBody ClubMemberDTO clubMemberDTO) {
+		
+		log.info("==== post club member register() ====");
 		log.info(clubMemberDTO);
 		
+		clubMemberService.clubMemberRegister(clubMemberDTO);
 		
-		
+		log.info("==== /post club member register() ====");
 		return new ResponseEntity<Long>(clubMemberDTO.getClubNum(), HttpStatus.OK);
 	}
 }
