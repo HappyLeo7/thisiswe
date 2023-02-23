@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
@@ -76,7 +77,7 @@ public class ClubTests {
 	
 	//수정하기
 	@Test
-	public void testModfiy() {
+	public void testModfiy(MultipartFile file) throws Exception {
 		//클럽 DTO에서 수정을 할거야
 		System.out.println("");
 		ClubDTO clubDTO = ClubDTO.builder()
@@ -96,7 +97,7 @@ public class ClubTests {
 		System.out.println("수정값 : "+clubDTO);
 		
 		System.out.println("");
-		clubService.modify(clubDTO);
+		clubService.modify(clubDTO,file);
 		System.out.println("modify 실행됨");
 		
 	}

@@ -90,6 +90,23 @@ public class CalendarEntity extends DateEntity{
 	@Column(name = "club_calendar_price")
 	private Long clubCalendarPrice; //비용
 	
-	
+	//수정 메서드
+	public void change(String clubCalendarTitle, 
+			String clubCalendarContent, 
+			String clubCalendarDate, 
+			String clubCalendarTime,
+			String clubCalendarPlace, 
+			Long clubCalendarHeadCount,
+			Long clubCalendarPrice ) {
+		this.clubCalendarTitle=clubCalendarTitle;
+		this.clubCalendarContent=clubCalendarContent;
+		this.clubCalendarDate=clubCalendarDate;
+		this.clubCalendarTime=clubCalendarTime;
+		this.clubCalendarPlace=clubCalendarPlace;
+		this.clubCalendarHeadCount=clubCalendarHeadCount;
+		this.clubCalendarPrice=clubCalendarPrice;
+		
+		
+	}
 	
 }

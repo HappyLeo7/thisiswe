@@ -56,7 +56,8 @@ public class CalendarController {
 		log.info("==== /postMappinig calendar register() Contorller ====");
 		
 		
-		return "redirect:/thisiswe/club/?Num="+clubNum.getClubNum();
+		return "redirect:/thisiswe/club/?n"
+				+ "um="+clubNum.getClubNum();
 	}
 	
 	

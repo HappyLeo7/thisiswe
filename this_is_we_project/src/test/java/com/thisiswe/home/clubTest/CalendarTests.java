@@ -80,18 +80,19 @@ public class CalendarTests {
 		System.out.println("");
 		System.out.println("'''''일정수정 테스트''''''");
 			CalendarDTO calendarDTO = CalendarDTO.builder()
-					.clubCalendarNum(1L)
+					.clubCalendarNum(14L)
 					.clubCalendarTitle("점심수정")
 					.clubCalendarContent("연어덮밥 수정")
 					.clubCalendarDate("2025-01-01")
-					.clubCalendarTime("13:50:00")
+					.clubCalendarTimeH("13")
+					.clubCalendarTimeM("50")
 					.clubCalendarPlace("수정역")
 					.clubCalendarHeadCount(10L)
 					.clubCalendarPrice(20000L)
 					.build();
 			
 			ClubDTO clubDTO=ClubDTO.builder()
-					.clubNum(3L).build();
+					.clubNum(9L).build();
 			
 			System.out.println("일정 수정값 : "+calendarDTO);
 			

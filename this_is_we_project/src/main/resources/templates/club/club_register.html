@@ -27,7 +27,7 @@
 	<!-- userID -->
   <tr>
 	<td colspan="2">
-	 아이디 : <input name="userId" th:value="${user}">
+	 아이디 : <input name="userId" th:value="${user}" readonly="readonly">
 	</td>
   </tr>
 	<!-- 지역 -->
@@ -56,7 +56,6 @@
 	<td colspan="2">
 	 관심사 카테고리 : 
 	 <select size="5" name="clubCategory">
-	 	<option value="">카테고리를 선택하세요</option>
 	 	<option value="아웃도어/여행">아웃도어/여행</option>
 	 	<option value="운동/스포츠">운동/스포츠</option>
 	 	<option value="인문학/책/글">인문학/책/글</option>
@@ -82,9 +81,9 @@
   
   <tr>
   <!-- 로고이미지 -->
-  	<td rowspan="2"> <input type="file" name="file">로고이미지</td>
+  	<td rowspan="2"> <input type="file" name="file"></td>
   	<!-- 모임정원 -->
-	<td>모임정원<input name="clubHeadCount" type="number" min="1" max="300"></td>
+	<td>모임정원<input name="clubHeadCount" type="number" min="1" max="300">/300</td>
   </tr>
   
   <!-- 등록(개설)버튼 -->
@@ -100,14 +99,6 @@
 	
 	
 	<hr>
-		<a th:href="@{/club/club_list}">모임목록</a>
-		<hr>
-		<a th:href="@{/club/club_modify}">모임수정</a>
-		<hr>
-		<a th:href="@{/club/club_read}">모임상세</a>
-		<hr>
-		<a th:href="@{/club/club_register}">모임등록</a>
-		<hr>
 	<!-- /내용 -->
 	
 

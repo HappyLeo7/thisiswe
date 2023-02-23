@@ -36,16 +36,17 @@
 
 <!-- 코드가안됨 -->
 <div>
-<div th:each="clubDTO : ${result}" style="border:1px solid black; width: 45%; float: left; margin-top: 3%; margin-right: 4.4%" >
+<div th:each="clubDTO : ${result}" style="border:1px solid black; width: 45%;  margin-top: 3%; margin-right: 4.4%" >
 
 	<div><a th:href="@{/club/read}" style="border:5px;">
 	</a></div>
 	<img th:src="|/display?fileName=${clubDTO.clubLogoUrl}|">
 	<div><a class="clubNum" th:href="@{/thisiswe/club/(num=${clubDTO.clubNum})}">
-    [[${clubDTO.clubName}]]모임명</a></div>
-    <div>지역([[${clubDTO.clubPlace}]])</div>
-    <div>인원([[${clubDTO.clubHeadCount}]])</div>
-    <div>닉네임([[${clubDTO.userNickname}]])</div>
+    [ [[${clubDTO.clubName}]] ]모임명</a></div>
+    <div>지역:([[${clubDTO.clubPlace}]])</div>
+    <div>카테고리:([[${clubDTO.clubCategory}]])</div>
+    <div>인원:([[${clubDTO.clubHeadCount}]])</div>
+    <div>모임장:([[${clubDTO.userNickname}]])</div>
 
 </div>
 </div>
@@ -66,8 +67,9 @@
 		<select name="type">
 			<option th:selected="${pageRequestDTO.type==null}">------</option>
 			<option th:selected="${pageRequestDTO.type=='N'}" value="N">모임명</option>
-			<option th:selected="${pageRequestDTO.type=='C'}" value="C">내용</option>
+			<!-- <option th:selected="${pageRequestDTO.type=='C'}" value="C">내용</option> -->
 			<option th:selected="${pageRequestDTO.type=='G'}" value="G">카테고리</option>
+			<option th:selected="${pageRequestDTO.type=='P'}" value="P">지역</option>
 		</select>
 		<input type="text" name="keyword" th:value="${pageRequestDTO.keyword}">
 		<button type="submit">검색</button>

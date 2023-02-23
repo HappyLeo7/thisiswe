@@ -61,7 +61,7 @@ public class ClubController {
 	public String club_register(Model model,@AuthenticationPrincipal UserDetailsImpl userDetails) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_register.html 연결 =======");
-		model.addAttribute("user");
+		model.addAttribute("user",userDetails.getUsername());
 		
 		log.info("=========================================================");
 		return "/club/club_register";

@@ -63,11 +63,11 @@ public class PhotoController {
 	
 	//사진첩 목록페이지 연결링크
 	@GetMapping({"/"})
-	public String photoListPage(Long clubNum, Model model) { 
+	public String photoListPage(Long num, Model model) { 
 		log.info("====== photo controller list ======");
-		log.info("clubNum :  " +clubNum);
-		model.addAttribute("clubNum",clubNum);
-		model.addAttribute("photoDTOList", photoService.getPhotoList(clubNum));
+		log.info("clubNum :  " +num);
+		model.addAttribute("clubNum",num);
+		model.addAttribute("photoDTOList", photoService.getPhotoList(num));
 		log.info("photoDTOList 값 : "+model.addAttribute("photoDTOList"));
 		
 		
