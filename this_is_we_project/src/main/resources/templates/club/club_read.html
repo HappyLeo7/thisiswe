@@ -39,6 +39,7 @@
 				<td><a th:href="@{/thisiswe/modify(num=${readDTO.clubNum})}">
 						<button type="button">모임수정버튼</button>
 				</a>
+				<button type="" onclick="memberRe">모임삭제</button>
 
 					<button type="button" onclick="memberRegister()">모임가입</button> 접속중
 					ID : <input class="userId" th:value="${user}" name="userId">
@@ -195,7 +196,7 @@
 					<div>일정 번호 : [[${calendarDTO.clubCalendarNum}]]</div>
 					<div>
 						<a
-							th:href="@{/thisiswe/club/calendar/read(Num=${calendarDTO.clubCalendarNum})}">제목
+							th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">제목
 							: [[${calendarDTO.clubCalendarTitle}]]</a>
 					</div> <br>
 					<div>날짜 : [[${calendarDTO.clubCalendarDate}]]</div>

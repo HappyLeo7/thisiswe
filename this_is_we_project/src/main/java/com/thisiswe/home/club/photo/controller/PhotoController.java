@@ -58,7 +58,7 @@ public class PhotoController {
 		photoService.photoRegister(photoDTO, file, num);
 		
 		log.info("===== /photo post register controller =====");
-		return "redirect:/thisiswe/club/photo/?clubNum="+num.getClubNum();
+		return "redirect:/thisiswe/club/photo/?num="+num.getClubNum();
 	}
 	
 	//사진첩 목록페이지 연결링크

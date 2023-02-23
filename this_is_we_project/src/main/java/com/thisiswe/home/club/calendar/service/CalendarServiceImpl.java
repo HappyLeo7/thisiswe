@@ -100,6 +100,7 @@ public class CalendarServiceImpl implements CalendarService {
 				
 			};
 			log.info("수정된 일정 정보"+calndarEntity);
+			calendarRepository.save(calndarEntity);
 		}
 		
 		

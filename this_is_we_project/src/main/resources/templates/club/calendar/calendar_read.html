@@ -4,59 +4,86 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
-<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
-	
+<th:block
+	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
-	
-	
-	
-	<!-- 내용 -->
-	<title>일정 상세페이지</title>
-	<table border="1">
-	<tr><th><h3>모임 스케줄표</h3></th></tr>
-			<tr th:each="calendarDTO : ${calendarDTO}">
-			<td>
-				제목 : [[${calendarDTO.clubCalendarTitle}]] <br>
-			</td>
-			</tr>
+
+
+<!-- 네비창 (정보, 게시판, 사진첩) -->
+		모임번호 :	<input class="clubNum" name="clubNum"
+			th:value="${calendarDTO.clubNum.clubNum}" readonly="readonly">
+		<table border="1">
 			<tr>
-			<td>
-				내용 : [[${calendarDTO.clubCalendarContent}]] <br>
-			</td>
+				<td><a th:href="@{/thisiswe/club/(num=${calendarDTO.clubNum.clubNum})}">정보</a></td>
+				<td><a
+					th:href="@{/thisiswe/club/board/(num=${calendarDTO.clubNum.clubNum})}">게시판</a></td>
+				<td><a
+					th:href="@{/thisiswe/club/photo/(num=${calendarDTO.clubNum.clubNum})}">사진첩</a></td>
+				<td><a th:href="@{/room}">채팅방</a></td>
+
 			</tr>
-			<tr>
-			<td>
-				날짜 : [[${calendarDTO.clubCalendarDate}]] <br>
-			</td>
-			</tr>
-			<tr>
-			<td>
-				시간 : [[${calendarDTO.clubCalendarTime}]] <br>
-			</td>
-			</tr>
-			<tr>
-			<td>
-				장소 : [[${calendarDTO.clubCalendarPlace}]] <br>
-			</td>
-			</tr>
-			<tr>
-			<td>
-				인원 : [[${calendarDTO.clubCalendarHeadCount}]] <br>
-			</td>
-			</tr>
-			<tr>
-			<td>
-				비용 : [[${calendarDTO.clubCalendarPrice}]] <br>
-			</td>
-			
-		</tr>
-	</table>
-	
-	<!-- /내용 -->
-	
-	
-	
+		</table>
+		<!-- /네비창 (정보, 게시판, 사진첩) -->
+
+		<!-- form -->
+		<form th:action="@{/thisiswe/club/calendar/modify(num=${calendarDTO.clubCalendarNum})}" th:method="get">
+			<button type="submit">일정수정</button>
+			<!-- 내용 -->
+			<table border="1" th:each="calendarDTO : ${calendarDTO}">
+				<tr>
+					<th><h3>모임 스케줄표</h3></th>
+				</tr>
+				<tr>
+					<td>
+						모임 번호 : <input name="" th:value="${calendarDTO.clubNum.clubNum}"> <br> 
+					</td>
+				</tr>
+				<tr>
+					<td>일정 번호 : <input name="num" th:value="${calendarDTO.clubCalendarNum}"> <br>
+					</td>
+				</tr>
+				<tr>
+
+					<td>제목 : [[${calendarDTO.clubCalendarTitle}]] <br>
+					</td>
+				</tr>
+				<tr>
+					<td>내용 : [[${calendarDTO.clubCalendarContent}]] <br>
+					</td>
+				</tr>
+				<tr>
+					<td>날짜 : [[${calendarDTO.clubCalendarDate}]] <br>
+					</td>
+				</tr>
+				<tr>
+					<td>시간 : [[${calendarDTO.clubCalendarTime}]] <br>
+					</td>
+				</tr>
+				<tr>
+					<td>장소 : [[${calendarDTO.clubCalendarPlace}]] <br>
+					</td>
+				</tr>
+				<tr>
+					<td>인원 : [[${calendarDTO.clubCalendarHeadCount}]] <br>
+					</td>
+				</tr>
+				<tr>
+					<td>비용 : [[${calendarDTO.clubCalendarPrice}]] <br>
+					</td>
+
+				</tr>
+			</table>
+
+			<!-- /내용 -->
+
+
+		</form>
+		<!-- /form -->
+
+
+
 	</th:block>
 
 </th:block>
