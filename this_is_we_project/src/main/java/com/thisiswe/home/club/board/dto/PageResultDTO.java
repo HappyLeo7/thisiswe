@@ -47,7 +47,7 @@ public class PageResultDTO<DTO, EN> {
 	    this.start = tempEnd -9;
 	      
 	    this.prev = start > 1;
-	    this.end = totalPage > tempEnd ? tempEnd + 1 : totalPage + 1;
+	    this.end = totalPage > tempEnd ? tempEnd : totalPage;
 	    this.next = totalPage > tempEnd;
 	      
 	    this.pageList = IntStream.rangeClosed(start, end)

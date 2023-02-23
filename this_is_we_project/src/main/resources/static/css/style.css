@@ -38,14 +38,10 @@ a:hover {
 	color: #e4481b;
 }
 
-/* [수정] header부분 크기 및 간격 조정*/
+/* [header] swiper 부분 크기 및 간격 조정*/
 header {
-	/* 	padding-top: 70px; */
 	height: 100%;
-	padding-top: 120px;
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-bottom: 30px;
+	padding: 10px;
 }
 /* /[수정] header부분 크기 및 간격 조정*/
 
@@ -403,17 +399,17 @@ html.active menu .container {
 		display: block;
 	}
 }
-
+/* [swiper] - swiper 부분 */
 .swiper {
 	width: 100%;
-	height: 100%;
+	height: 90%;
+	margin-left: auto;
+	margin-right: auto;
 }
-
 .swiper-slide {
 	text-align: center;
-	font-size: 20px;
+/* 	font-size: 20px; */
 	background: #fff;
-	/* Center slide text vertically */
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: -webkit-flex;
@@ -426,25 +422,138 @@ html.active menu .container {
 	-ms-flex-align: center;
 	-webkit-align-items: center;
 	align-items: center;
+	background-color: #000000;
 }
-
-.swiper-slide img {
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.swiper {
-	margin-left: auto;
-	margin-right: auto;
-}
-
 .wrapper {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
 }
+/* [swiper] - swiper hover 효과부분 */
+.weSwiper {
+  	position: relative;
+  	margin: 0;
+ 	min-width: 100% -60px;
+ 	max-width: 100%;
+ 	width: 97%;
+ 	color: #ffffff;
+ 	text-align: center;
+  	background-color: #000000;
+ 	font-size: 16px;
+}
+.weSwiper * {
+ 	-webkit-box-sizing: border-box;
+  	box-sizing: border-box;
+  	-webkit-transition: all 0.4s ease-in;
+  	transition: all 0.4s ease-in;
+}
+.weSwiper img {
+  	position: relative;
+ 	max-width: 100%;
+  	vertical-align: top;
+}
+.weSwiper figcaption {
+ 	 position: absolute;
+ 	 top: 0;
+ 	 right: 0;
+ 	 width: 100%;
+  	height: 100%;
+ 	 z-index: 1;
+  	opacity: 0;
+  	padding: 20px 30px;
+}
+.weSwiper figcaption:before,
+.weSwiper figcaption:after {
+ 	width: 1px;
+ 	height: 0;
+}
+.weSwiper figcaption:before {
+  	right: 0;
+  	top: 0;
+}
+.weSwiper figcaption:after {
+  	left: 0;
+  	bottom: 0;
+}
+.weSwiper h3,
+.weSwiper p {
+  	line-height: 1.5em;
+}
+.weSwiper h3 {
+  	margin: 0 0 20px;
+ 	font-weight: 700;
+  	text-transform: uppercase;
+}
+.weSwiper p {
+  	font-size: 0.8em;
+  	font-weight: 500;
+  	margin: 0 0 15px;
+}
+.weSwiper a {
+  	position: absolute;
+  	top: 0;
+  	bottom: 0;
+  	right: 0;
+  	left: 0;
+  	z-index: 1;
+}
+.weSwiper:before,
+.weSwiper:after,
+.weSwiper figcaption:before,
+.weSwiper figcaption:after {
+  	position: absolute;
+  	content: '';
+ 	background-color: #ffffff;
+  	z-index: 1;
+  	-webkit-transition: all 0.5s ease-in;
+ 	transition: all 0.5s ease-in;
+ 	opacity: 0.8;
+}
+.weSwiper:before,
+.weSwiper:after {
+ 	height: 1px;
+ 	width: 0%;
+}
+.weSwiper:before {
+  	top: 0;
+  	left: 0;
+}
+.weSwiper:after {
+  	bottom: 0;
+  	right: 0;
+}
+.weSwiper:hover img,
+.weSwiper.hover img {
+  	opacity: 0.4;
+}	
+.weSwiper:hover figcaption,
+.weSwiper.hover figcaption {
+  	opacity: 1;
+}
+.weSwiper:hover figcaption:before,
+.weSwiper.hover figcaption:before,
+.weSwiper:hover figcaption:after,
+.weSwiper.hover figcaption:after {
+  	height: 100%;
+}
+.weSwiper:hover:before,
+.weSwiper.hover:before,
+.weSwiper:hover:after,
+.weSwiper.hover:after {
+  	width: 100%;
+}
+.weSwiper:hover:before,
+.weSwiper.hover:before,
+.weSwiper:hover:after,
+.weSwiper.hover:after,
+.weSwiper:hover figcaption:before,
+.weSwiper.hover figcaption:before,
+.weSwiper:hover figcaption:after,
+.weSwiper.hover figcaption:after {
+  	opacity: 0.1;
+}
+/* /[swiper] - swiper hover 효과부분 */
+/* /[swiper] - swiper 부분 */
 
 #body-container {
 	flex: 1;
@@ -502,7 +611,7 @@ footer {
 }
 /* /[수정] footer 이미지 및 간격 */
 #ft-bottom-left {
-	width: 150px;
+	width: 160px;
 	margin-right: 30px;
 	overflow: hidden;
 }

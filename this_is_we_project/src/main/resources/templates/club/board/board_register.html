@@ -13,16 +13,51 @@
 	<!-- board.js 연결 -->
 		<script th:src="@{/js/board.js}"></script>
 	<!-- /board.js 연결 -->
+				
+		<!-- [club] club의 네비 리스트 -->
+		<div class="top-inner">
+			<div class="top-inner-ul">
+  				<ul class="top-inner-menu top-inner-eff">
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/board}">
+     						<span>BOARD</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/photo/register}">
+     						<span>PHOTO</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/room}">
+     						<span>CHAT</span>
+     					</a>
+     				</li>
+      			</ul>
+  			</div>
+		</div>	
+		<!-- [club] club의 네비 리스트 -->		
 		
 		<!-- 게시판 등록 -->
 		<div class="inner">
-			<h1>ㄷㅡㅇㄹㅗㄱ</h1>
-			<form th:action="@{/thisiswe/club/board/register}" th:method="post">
+			<h2>ㄷㅡㅇㄹㅗㄱ</h2>
+			<form th:action="@{/thisiswe/club/board/register/(num=${clubNum})}" th:method="post">
 			
 			<!-- 게시판 등록 - section -->	
 			<div class="board-section">
 				<!-- 게시판 등록 테이블 -->
 				<table class="board-ri-table">
+					<tr>
+						<th class="board-ri-th">모임번호</th>
+					</tr>
+					
+					<tr>
+						<td class="bd-contain">
+							<input type="text" class="bd-input" name="num" autocomplete="off"
+													required="required" th:value="${clubNum}">
+						</td>
+					</tr>
+					
 					<tr>
 						<th class="board-ri-th">카테고리</th>
 					</tr>
@@ -74,7 +109,9 @@
 				<br>				
 			<!-- 게시판 등록 - btn -->
 				<div class="board-rigi-Btn">
-					<button type="submit" class="searchBtn-mi btn-success">등록</button>
+					<button type="submit" class="searchBtn-mi btn-success">
+						등록
+					</button>
 					<button type="submit" class="searchBtn-mi">
 						<a th:href="@{/thisiswe/club/board}">목록</a>
 					</button>

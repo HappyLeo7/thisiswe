@@ -7,4 +7,5 @@ import org.springframework.data.domain.Pageable;
 public interface SearchBoardRepository {
 	
 	Page<Object[]> searchPage(String type, String keyword, Pageable pageable);
+	Page<Object[]> searchPageByClubNum(String type, String keyword, Pageable pageable, Long clubNum);
 }

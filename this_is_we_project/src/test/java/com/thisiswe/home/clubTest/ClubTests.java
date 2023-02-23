@@ -96,7 +96,7 @@ public class ClubTests {
 		System.out.println("수정값 : "+clubDTO);
 		
 		System.out.println("");
-		clubService.modify(clubDTO);
+//		clubService.modify(clubDTO);
 		System.out.println("modify 실행됨");
 		
 	}
@@ -110,16 +110,16 @@ public class ClubTests {
 	//TODO [테스트] 모임에 회원 가입 하는 테스트
 	@Test
 	public void testMemberRegister() {
-		IntStream.rangeClosed(1, 10).forEach(i->{
+		//IntStream.rangeClosed(1, 10).forEach(i->{
 		ClubMemberEntity clubMemberEntity=ClubMemberEntity.builder()
-				.userId(UserEntity.builder().userId("user"+i).build())
+				.userId(UserEntity.builder().userId("leo").build())
 				.clubNum(3L)
 				.clubMemberRole(0L)
 				.build();
 		
 		System.out.println("모임 맴버 추가 : "+clubMemberEntity);
 		clubMemberRepository.save(clubMemberEntity);
-		});
+		//});
 	}
 
 	

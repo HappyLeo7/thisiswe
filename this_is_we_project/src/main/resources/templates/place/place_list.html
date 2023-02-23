@@ -6,14 +6,24 @@
 <th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
    
    <!-- 지정한 변수로 연결할 위치 -->
-   <th:block th:fragment="connection">
+<th:block th:fragment="connection">
 
-	<div style="text-align: center;">
-	<div> 이 장소는 어디에</div> 
+<div style="text-align: center;">
+	<form action="">
+		<select>
+			<option></option>
+			<option></option>
+			<option></option>
+			<option></option>
+		</select>
+		<input type="text">
+		<input type="submit" value="검색">
+	</form>
+	<div> 이 장소는 어떠세요</div> 
 	<a th:href="@{/thisiswe/place/register}"><button type="button" style="float: right;">장소 추가</button></a>
 	<br>
 	<br>
-			<div style="display: inline-block;width: 40%" th:each="dto : ${placeList}">
+			<div style="display: inline-block;width: 40%" th:each="dto : ${placeList.dtoList}">
 				<div style="border: solid 1px;">
 					<a th:href="@{/thisiswe/place/c(num=${dto.placeNum})}" style="border: solid 1px;">
 						<div><img width="100%" height="100%" src="/image/place/KakaoTalk_20230203_092244158.png"></div>
@@ -28,7 +38,32 @@
 				<br>
 			</div>
 			
-	</div>
+	<!-- 페이징 블럭 -->
+	<ul>
+	<!-- 이전 버튼 -->
+		<li th:if="${placeList.prev}">
+			<a th:href="@{/thisiswe/place(page=${placeList.start-1}, type=${placePageRequestDTO.type}, keyword=${placePageRequestDTO.keyword})}">
+				이전
+			</a>
+		</li>
+	<!-- 숫자 버튼 -->
+	
+		<li th:class="${placeList.page == page?'active':''}" th:each="page: ${placeList.pageList}">
+			<a th:href="@{/thisiswe/place(page=${page}, type=${placePageRequestDTO.type}, keyword=${placePageRequestDTO.keyword})}">
+				[[${page}]]
+			</a>
+		</li>
+	
+	
+	<!-- 다음 버튼 -->
+		<li th:if="${placeList.next}" >
+			<a th:href="@{/thisiswe/place(page=${placeList.end}, type=${placePageRequestDTO.type}, keyword=${placePageRequestDTO.keyword})}">
+				다음
+			</a>
+		</li>
+	</ul>
+				
+</div>
 
-	</th:block>
+</th:block>
 </th:block>

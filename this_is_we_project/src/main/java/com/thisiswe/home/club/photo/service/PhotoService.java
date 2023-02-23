@@ -12,6 +12,7 @@ public interface PhotoService {
 
 	void photoRegister(PhotoDTO photoDTO, MultipartFile file, ClubDTO clubDTO) throws Exception;
 	
+	Object getPhotoList(Long clubNum);
 	
 	//DTO(wed) -> EN(DB)
 	default PhotoEntity dtoToEntity(PhotoDTO photoDTO,ClubDTO clubDTO) {
@@ -30,6 +31,11 @@ public interface PhotoService {
 	//EN(DB) -> DTO(wed)
 	default PhotoDTO entityToDTO(PhotoEntity photoEntity) {
 		PhotoDTO photoDTO = PhotoDTO.builder()
+					.photoNum(photoEntity.getPhotoNum())
+					.clubNum(photoEntity.getClubNum())
+					.userId(photoEntity.getUserId())
+					.photoPath(photoEntity.getPhotoPath())
+					.photoView(photoEntity.getPhotoView())
 					.photoImage(photoEntity.getPhotoImage())
 					.photoContent(photoEntity.getPhotoContent())
 					.build();
@@ -38,6 +44,7 @@ public interface PhotoService {
 		System.out.println("사진서비스 Entity -> DTO 변환된 값 : "+photoDTO);
 		return photoDTO;
 	}
+
 	
 	
 

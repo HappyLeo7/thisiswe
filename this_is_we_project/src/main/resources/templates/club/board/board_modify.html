@@ -14,9 +14,33 @@
 		<script th:src="@{/js/board.js}"></script>
 	<!-- /board.js 연결 -->
 		
+		<!-- [club] club의 네비 리스트 -->
+		<div class="top-inner">
+			<div class="top-inner-ul">
+  				<ul class="top-inner-menu top-inner-eff">
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/board}">
+     						<span>BOARD</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/photo/register}">
+     						<span>PHOTO</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/room}">
+     						<span>CHAT</span>
+     					</a>
+     				</li>
+      			</ul>
+  			</div>
+		</div>	
+		<!-- [club] club의 네비 리스트 -->	
+		
 		<!-- 게시판 수정 -->
-		<div>
-			<h1 class="inner">ㅅㅜㅈㅓㅇ</h1>
+		<div class="inner">
+			<h2>ㅅㅜㅈㅓㅇ</h2>
 					
 				<form th:action="@{/thisiswe/club/board/modify}" th:method="post">
 				 
@@ -29,7 +53,17 @@
 				<!-- 게시판 조회 테이블 -->		
 				<table class="board-mo-table">	
 					<tr>
-						<th class="board-mo-th">순번</th>
+						<th class="board-ri-th">모임번호</th>
+					</tr>
+					
+					<tr>
+						<td class="bd-contain">
+							<input type="text" class="bd-input" name="num" autocomplete="off"
+													required="required" th:value="${clubNum}">
+						</td>
+					</tr>		
+					<tr>
+						<th class="board-mo-th">게시판 번호</th>
 					</tr>
 					<tr>
 						<td class="bd-mo-contain">
@@ -62,8 +96,8 @@
 					</tr>
 					<tr>
 						<td class="bd-mo-contain">
-							<input type="text" class="bd-modi-input-co" name="boardContent" th:value="${boardDTO.boardContent}" autocomplete="off"
-													placeholder="내용을 반드시 입력해주세요." required="required">
+						<textarea class="bd-modi-input-co" name="boardContent"  autocomplete="off"
+													placeholder="내용을 반드시 입력해주세요." required="required">[[${boardDTO.boardContent}]]</textarea>
 						</td>
 					</tr>
 					
@@ -125,7 +159,6 @@
 		
 		/* [START] board_modify.html : 수정 확인 모달창 처리 */			
  			$(".modifyBtn").click(function(){
-				console.log("수정메서드 실행");
 				//컨펌 창 - true&false cf)alert는 경고창
 				if(!confirm("게시글을 수정하시나요?")){
 				}
@@ -139,6 +172,8 @@
 	  	  var actionForm = $("form");
 		
 			$(".removeBtn").click(function(){
+				if(!confirm("게시글을 삭제하시나요?")){
+				}
 				actionForm.attr("action", "/thisiswe/club/board/remove")
 						  .attr("method", "post");
 				//반드시 submit을 넣어줘야 삭제로 넘어간다.

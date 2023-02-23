@@ -18,6 +18,6 @@ public interface ReplyRepository extends JpaRepository<Reply, Long>{
 	void deleteByBoardNum(Long boardNum);
 	
 	//TODO [ReplyRepository] 게시글-댓글 : 게시물로 댓글 가져오기
-	List<Reply> getRepliesByBoardOrderByBoardReplyNum(Board board);
+	List<Reply> findByBoardNum(Board boardNum);
 	
 }

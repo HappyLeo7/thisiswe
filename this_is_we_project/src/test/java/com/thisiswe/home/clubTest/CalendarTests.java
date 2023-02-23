@@ -14,6 +14,8 @@ import com.thisiswe.home.club.calendar.repository.CalendarRepository;
 import com.thisiswe.home.club.calendar.service.CalendarService;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.club.member.ClubMemberEntity;
+import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -31,10 +33,12 @@ public class CalendarTests {
 	//TODO [테스트] 일정 추가
 	@Test
 	public void calendarRegister() {
-		IntStream.rangeClosed(1, 10).forEach(i->{
+		IntStream.rangeClosed(1, 3).forEach(i->{
 			
 		CalendarEntity calendarEntity = CalendarEntity.builder()
-				//.club_calendarHeadCount(null)
+				//.clubCalendarNum(1L)
+				//.userId(ClubMemberEntity.builder().clubMemberNum(1L).build())
+				.userId(UserEntity.builder().userId("leo").build())
 				.clubCalendarTitle("점심"+i)
 				.clubCalendarContent("연어덮밥먹어요"+i)
 				.clubCalendarTime("")
@@ -43,7 +47,7 @@ public class CalendarTests {
 				.clubCalendarPlace("강남역")
 				.clubCalendarHeadCount(5L)
 				.clubCalendarPrice(10000L)
-				.clubNum(ClubEntity.builder().clubNum(1L).build())
+				.clubNum(ClubEntity.builder().clubNum(3L).build())
 				.build();
 		
 		calendarRepository.save(calendarEntity);

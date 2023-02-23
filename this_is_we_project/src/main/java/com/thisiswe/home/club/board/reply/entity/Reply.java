@@ -34,6 +34,10 @@ public class Reply extends DateEntity{
 	@Column(name="board_reply_num")
 	private Long boardReplyNum;				 	// 게시판_댓글 번호
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="board_num")
+	private Board boardNum;						// 게시판 번호
+	
 	@Column(length=100, name="board_reply_content")
 	private String boardReplyContent;			// 게시판_댓글 내용
 

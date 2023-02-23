@@ -31,9 +31,9 @@ public interface ReplyService {
 		// 게시글-댓글 번호, 내용, userId, 게시판
 		Reply reply = Reply.builder()
 						   .boardReplyNum(replyDTO.getBoardReplyNum())
+						   .boardNum(board)
 						   .boardReplyContent(replyDTO.getBoardReplyContent())
 						   .userId(member)
-						   .board(board)
 						   .build();
 		return reply;
 	}
@@ -43,8 +43,9 @@ public interface ReplyService {
 					
 		ReplyDTO replyDTO = ReplyDTO.builder()
 									.boardReplyNum(reply.getBoardReplyNum())
+									.boardNum(reply.getBoardNum().getBoardNum())
 									.boardReplyContent(reply.getBoardReplyContent())
-									.userId(reply.toString())
+									.userId(reply.getUserId().getUserId())
 									.regDate(reply.getRegDate())
 									.updateDate(reply.getUpdateDate())
 									.build();

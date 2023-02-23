@@ -16,28 +16,42 @@
 		
 		<!-- [club] club의 네비 리스트 -->
 		<div class="top-inner">
-			<table class="top-inner-ta">
-  				<tr>
-     				<!-- <td class="ta-li">
-     					<a th:href="@{/thisiswe/club/(Num=${readDTO.clubNum})}">정보</a>
-     				</td> -->
-     				<td class="ta-li">
-     					<a th:href="@{/thisiswe/club/board}">게시판</a>
-     				</td>
-     				<td class="ta-li">
-     					<a th:href="@{/thisiswe/club/photo/register}">사진첩</a>
-     				</td>
-     				<td class="ta-li">
-     					<a th:href="@{/room}">채팅방</a>
-     				</td>
-      			</tr>
-  			</table>
+			<div class="top-inner-ul">
+  				<ul class="top-inner-menu top-inner-eff">
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/board}">
+     						<span>BOARD</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/photo/register}">
+     						<span>PHOTO</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/room}">
+     						<span>CHAT</span>
+     					</a>
+     				</li>
+      			</ul>
+  			</div>
 		</div>	
-		<!-- [club] club의 네비 리스트 -->		
+		<!-- /[club] club의 네비 리스트 -->		
 		
 		<!-- 게시판 전체 목록 -->
 		<div class="inner">
-			<h1>ㅁㅗㄱㄹㅗㄱ</h1>
+			<!-- <h2>ㅁㅗㄱㄹㅗㄱ</h2> -->		
+									
+			<!-- 게시판 글쓰기 버튼 -->	
+			<div class="board-regi">
+				<a th:href="@{/thisiswe/club/board/register/(num=${clubNum})}">
+					<span> 
+						<button type="button" class="searchBtn-regi">REGISTER</button>
+					</span>
+				</a>
+			</div>	
+			<!-- /게시판 글쓰기 버튼 -->
+			<br>			
 			
 			<!-- 검색창 추가 -->
 			<div class="board-search">
@@ -69,16 +83,7 @@
 			</div>
 			<!-- /검색창 추가 -->		
 			
-			<!-- 게시판 글쓰기 버튼 -->	
-			<div class="board-regi">
-				<a th:href="@{/thisiswe/club/board/register}">
-					<span> 
-						<button type="button" class="searchBtn-regi">REGISTER</button>
-					</span>
-				</a>
-			</div>	
-			<!-- /게시판 글쓰기 버튼 -->
-			<br>
+			<br><br>
 			
 			<table class="board-table">
 				<!-- 게시판 목록 head 부분 -->
@@ -103,7 +108,8 @@
 							</td>
 								
 							<td class="bd-con">
-								<a th:href="@{/thisiswe/club/board/read(boardNum=${boardDTO.boardNum},
+								<a th:href="@{/thisiswe/club/board/read(num=${clubNum},
+																		boardNum=${boardDTO.boardNum},
 																		page=${result.page},
            	                            	       						type=${pageRequestDTO.type},
             	                    	           						keyword=${pageRequestDTO.keyword})}">
@@ -133,13 +139,14 @@
 		
 						<li th:class="'page-item '+ ${result.page == page?'active':''}"
 												th:each="page: ${result.pageList}">
-							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${page},
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/(num=${clubNum},
+																		page=${page},
                 		                 								type=${pageRequestDTO.type},
                    	 	        										keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
 						</li>
 		
 						<li class="link-page-active" th:if="${result.next}">
-							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${result.end},
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${result.end+1},
             	    	                 								type=${pageRequestDTO.type},
                 		               									keyword=${pageRequestDTO.keyword})}">다음</a>
 						</li>
