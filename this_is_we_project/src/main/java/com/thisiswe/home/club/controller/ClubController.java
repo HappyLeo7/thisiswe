@@ -106,10 +106,10 @@ public class ClubController {
 	
 	//수정 페이지 불러오는 연결링크
 	@GetMapping({"/modify"})
-	public String club_modify(Long Num,Model model) {
+	public String club_modify(Long num,Model model) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_modify.html 연결 =======");
-		ClubDTO clubDTO = clubService.get(Num);
+		ClubDTO clubDTO = clubService.get(num);
 		model.addAttribute("modifyDTO", clubDTO);
 		log.info("========= /ClubController.java => club_modify.html 연결 ======");
 		return "/club/club_modify";//포워드

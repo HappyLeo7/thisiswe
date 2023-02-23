@@ -9,6 +9,22 @@
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
 	
+			<!-- 네비창 (정보, 게시판, 사진첩) -->
+		모임번호 :	<input class="clubNum" name="clubNum"
+			th:value="${clubNum}" readonly="readonly">
+		<table border="1">
+			<tr>
+				<td><a th:href="@{/thisiswe/club/(num=${clubNum})}">정보</a></td>
+				<td><a
+					th:href="@{/thisiswe/club/board/(num=${clubNumm})}">게시판</a></td>
+				<td><a
+					th:href="@{/thisiswe/club/photo/(num=${clubNum})}">사진첩</a></td>
+				<td><a th:href="@{/room}">채팅방</a></td>
+
+			</tr>
+		</table>
+		<!-- /네비창 (정보, 게시판, 사진첩) -->
+	
 	
 	
 	<!-- 내용 -->

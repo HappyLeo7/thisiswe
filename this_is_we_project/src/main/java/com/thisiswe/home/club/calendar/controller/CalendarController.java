@@ -63,11 +63,12 @@ public class CalendarController {
 	
 	//일정리스트에서 -> 일정상세페이지로 이동
 	@GetMapping({"/calendar/read"})
-	public String calendarRead(Long Num, Model model) {
+	public String calendarRead(Long num, Model model) {
 		log.info("==== getMappinig calendarRead() Contorller ====");
-		CalendarDTO calendarDTO=calendarService.get(Num); //1개의 일정 데이터를 가져옴
+		CalendarDTO calendarDTO=calendarService.get(num); //1개의 일정 데이터를 가져옴
 		log.info("calendarDTO : " + calendarDTO);
 		model.addAttribute("calendarDTO",calendarDTO);
+		model.addAttribute("calendarNum", calendarDTO.getClubNum().getClubNum());
 		log.info("==== /getMappinig calendarRead() Contorller ====");
 		return "/club/calendar/calendar_read";
 	}
@@ -75,19 +76,37 @@ public class CalendarController {
 	
 	
 	
-	
-	@GetMapping({"/calendar"})
-	public String calendar() {
+	//일정 수정 페이지로 이동
+	@GetMapping({"/calendar/modify"})
+	public String calendarModify(Long num, Model model) {
 		
-		log.info("==== calendar list Contorller ====");
+		log.info("==== get calendar modify Contorller ====");
 		
-		//CalendarDTO calendarDTO=calendarService.get(Num);
-		//model.addAttribute("calendarDTO",calendarDTO);
-		//log.info(Num+"번 모임 일정 정보 : "+model.addAttribute("calendarDTO"));
+		CalendarDTO calendarDTO=calendarService.get(num); //모임 번호로 1개의 일정 데이터를 가져옴
+		log.info("calendarDTO : " + calendarDTO);
+		model.addAttribute("calendarDTO",calendarDTO);
 		
-		log.info("==== /calendar list Contorller ====");
+		log.info("==== /get calendar modify Contorller ====");
 		
-		return "/club/calendar/calendar_list";
+		return "/club/calendar/calendar_modify";
+	}
+	//일정 수정 처리
+	@PostMapping({"/calendar/modify"})
+	public String calendarModifyIng(CalendarDTO calendarDTO, Long num, Model model) {
+		
+		log.info("==== post calendar modify Contorller ====");
+		
+		log.info("calendarDTO : " + calendarDTO);
+		log.info("calendarDTO : " + num);
+		
+		
+		//CalendarDTO calendarDTO=calendarService.get(num); //1개의 일정 데이터를 가져옴
+		log.info("calendarDTO : " + calendarDTO);
+		model.addAttribute("calendarDTO",calendarDTO);
+		
+		log.info("==== / post calendar modify Contorller ====");
+		
+		return "/club/calendar/calendar_read";
 	}
 	
 	
