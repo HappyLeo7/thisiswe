@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
-<th:block
-	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
 		
@@ -14,16 +13,51 @@
 	<!-- board.js 연결 -->
 		<script th:src="@{/js/board.js}"></script>
 	<!-- /board.js 연결 -->
+				
+		<!-- [club] club의 네비 리스트 -->
+		<div class="top-inner">
+			<div class="top-inner-ul">
+  				<ul class="top-inner-menu top-inner-eff">
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/board}">
+     						<span>BOARD</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/photo/register}">
+     						<span>PHOTO</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/room}">
+     						<span>CHAT</span>
+     					</a>
+     				</li>
+      			</ul>
+  			</div>
+		</div>	
+		<!-- [club] club의 네비 리스트 -->		
 		
 		<!-- 게시판 등록 -->
 		<div class="inner">
-			<h1 class="">ㄷㅡㅇㄹㅗㄱ</h1>
-			<form th:action="@{/thisiswe/club/board/register}" th:method="post">
+			<h2>ㄷㅡㅇㄹㅗㄱ</h2>
+			<form th:action="@{/thisiswe/club/board/register/(num=${clubNum})}" th:method="post">
 			
 			<!-- 게시판 등록 - section -->	
 			<div class="board-section">
 				<!-- 게시판 등록 테이블 -->
 				<table class="board-ri-table">
+					<tr>
+						<th class="board-ri-th">모임번호</th>
+					</tr>
+					
+					<tr>
+						<td class="bd-contain">
+							<input type="text" class="bd-input" name="num" autocomplete="off"
+													required="required" th:value="${clubNum}">
+						</td>
+					</tr>
+					
 					<tr>
 						<th class="board-ri-th">카테고리</th>
 					</tr>
@@ -60,11 +94,11 @@
 					<tr>
 						<td class="bd-contain">
 							<input type="text" class="bd-input" name="userId" autocomplete="off"
-													placeholder="ID를 입력하세요." required="required">
+													placeholder="ID를 입력하세요." required="required" th:value="${user}" readonly>
 						</td>
 						<!-- 게시판 등록: 조회수 숨김 처리 -->
 						<td>
-							<input type="hidden" class="" name="boardView" value="0" >
+							<input type="hidden" class="bd-input" name="boardView" value="0" >
 						</td>
 						<!-- /게시판 등록: 조회수 숨김 처리 -->
 					</tr>
@@ -73,12 +107,16 @@
 			</div>
 			<!-- /게시판 등록 - section -->
 				<br>				
+			<!-- 게시판 등록 - btn -->
 				<div class="board-rigi-Btn">
-					<button type="submit" class="searchBtn-mi btn-success">등록</button>
+					<button type="submit" class="searchBtn-mi btn-success">
+						등록
+					</button>
 					<button type="submit" class="searchBtn-mi">
-						<a th:href="@{/thisiswe/club/board/list}">목록</a>
+						<a th:href="@{/thisiswe/club/board}">목록</a>
 					</button>
 				</div>
+			<!-- /게시판 등록 - btn -->
 			</form>
 		</div>
 		<!-- /게시판 등록 -->

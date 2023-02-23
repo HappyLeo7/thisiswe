@@ -62,7 +62,7 @@ public class ClubEntity extends DateEntity{
 	@Column(length=100, name = "club_head_count")
 	private Long clubHeadCount;  //인원
 	
-	public void change(String clubPlace
+	public void changeLogo(String clubPlace
 			
 			, String clubName, String clubContent, String clubCategory, 
 			String clubLogo,String clubLogoUuid,String clubLogoUrl, Long clubHeadCount
@@ -80,5 +80,19 @@ public class ClubEntity extends DateEntity{
 		
 	}
 	
+public void change(String clubPlace
+			
+			, String clubName, String clubContent, String clubCategory, 
+			 Long clubHeadCount
+			
+			) {
+		this.clubPlace =clubPlace;
+		this.clubName =clubName;
+		this.clubContent=clubContent;
+		this.clubCategory=clubCategory;
+		this.clubHeadCount=clubHeadCount;
+		
+		
+	}
 
 }

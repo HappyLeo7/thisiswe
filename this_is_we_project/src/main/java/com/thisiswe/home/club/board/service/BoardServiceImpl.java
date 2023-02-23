@@ -33,8 +33,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 		public Long register (BoardDTO boardDTO) {
 			
-			log.info("================= ServiceImpl register =================");
-			log.info("================ boardDTO ================> : " + boardDTO);
+			log.info("....... ServiceImpl register ......");
+			log.info("....... boardDTO ......> : " + boardDTO);
 			log.info(boardDTO);
 			log.info("================= ServiceImpl register =================");
 			
@@ -65,20 +65,21 @@ public class BoardServiceImpl implements BoardService {
 	
 	//TODO [ServiceImpl] 게시판 - 페이지 목록(list)
 	@Override
-	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
+	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO, Long clubNum) {
 
-		log.info("================ ServiceImpl Page getList ================");
-		log.info("========== pageRequestDTO ==========> : " + pageRequestDTO);
-		log.info("================ ServiceImpl Page getList ================");
+		log.info("............... ServiceImpl Page getList ...............");
+		log.info("............... pageRequestDTO  : " + pageRequestDTO);
 		
 		Function<Object[], BoardDTO> func = (en ->
 									entityToBoardDTO((Board)en[0], (UserEntity)en[1], (Long)en[2]));
 										
-		Page<Object[]> result = boardRepository.searchPage(
+		Page<Object[]> result = boardRepository.searchPageByClubNum(
 												pageRequestDTO.getType(),
 												pageRequestDTO.getKeyword(),
-												pageRequestDTO.getPageable(Sort.by("boardNum").descending()));								
+												pageRequestDTO.getPageable(Sort.by("boardNum").descending()),
+												clubNum);								
 		
+		log.info("................ /ServiceImpl Page getList ..............");
 		return new PageResultDTO<>(result, func);
 	}
 

@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.thisiswe.home.club.dto.ClubDTO;
+import com.thisiswe.home.club.entity.ClubEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +20,8 @@ import lombok.NoArgsConstructor;
 //TODO [DTO]Board 게시판
 public class BoardDTO {
 	
+	/** 모임번호*/
+	private Long clubNum;
 	private Long boardNum;							// 게시글 번호	
 	private String boardCategory;					// 게시판 카테고리
 	private String boardTitle;						// 게시판 제목

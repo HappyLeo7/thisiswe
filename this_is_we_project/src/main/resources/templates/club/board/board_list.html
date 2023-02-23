@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
-<th:block
-	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
 		
@@ -15,14 +14,49 @@
 		<script src="@{/js/board.js}"></script>
 	<!-- /board.js 연결 -->
 		
+		<!-- [club] club의 네비 리스트 -->
+		<div class="top-inner">
+			<div class="top-inner-ul">
+  				<ul class="top-inner-menu top-inner-eff">
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/board}">
+     						<span>BOARD</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/photo/register}">
+     						<span>PHOTO</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/room}">
+     						<span>CHAT</span>
+     					</a>
+     				</li>
+      			</ul>
+  			</div>
+		</div>	
+		<!-- /[club] club의 네비 리스트 -->		
+		
 		<!-- 게시판 전체 목록 -->
 		<div class="inner">
-			<h1 class="board-head">ㅁㅗㄱㄹㅗㄱ</h1>
+			<!-- <h2>ㅁㅗㄱㄹㅗㄱ</h2> -->		
+									
+			<!-- 게시판 글쓰기 버튼 -->	
+			<div class="board-regi">
+				<a th:href="@{/thisiswe/club/board/register/(num=${clubNum})}">
+					<span> 
+						<button type="button" class="searchBtn-regi">REGISTER</button>
+					</span>
+				</a>
+			</div>	
+			<!-- /게시판 글쓰기 버튼 -->
+			<br>			
 			
 			<!-- 검색창 추가 -->
 			<div class="board-search">
 				<div class="board-search_sub">
-					<form id="searchForm" action="/thisiswe/club/board/list" method="get">
+					<form id="searchForm" action="/thisiswe/club/board" method="get">
 
 						<select id="searchColumn" name="type">
 							<option value="" th:selected="${pageRequestDTO.type==null}">-----</option>
@@ -49,16 +83,7 @@
 			</div>
 			<!-- /검색창 추가 -->		
 			
-			<!-- 게시판 글쓰기 버튼 -->	
-			<div class="board-regi">
-				<a th:href="@{/thisiswe/club/board/register}">
-					<span> 
-						<button type="button" class="searchBtn-regi">REGISTER</button>
-					</span>
-				</a>
-			</div>	
-			<!-- /게시판 글쓰기 버튼 -->
-			<br>
+			<br><br>
 			
 			<table class="board-table">
 				<!-- 게시판 목록 head 부분 -->
@@ -83,7 +108,8 @@
 							</td>
 								
 							<td class="bd-con">
-								<a th:href="@{/thisiswe/club/board/read(boardNum=${boardDTO.boardNum},
+								<a th:href="@{/thisiswe/club/board/read(num=${clubNum},
+																		boardNum=${boardDTO.boardNum},
 																		page=${result.page},
            	                            	       						type=${pageRequestDTO.type},
             	                    	           						keyword=${pageRequestDTO.keyword})}">
@@ -105,7 +131,7 @@
 				<div class="paginate">
 					<ul class="">
 						<li class="link-page active" th:if="${result.prev}">
-							<a class="paginate-link" th:href="@{/thisiswe/club/board/list(page=${result.start-1},
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${result.start-1},
                    	     	        											type=${pageRequestDTO.type},
                    	    	        												keyword=${pageRequestDTO.keyword})}"
 							tabindex="-1">이전</a>
@@ -113,20 +139,21 @@
 		
 						<li th:class="'page-item '+ ${result.page == page?'active':''}"
 												th:each="page: ${result.pageList}">
-							<a class="paginate-link" th:href="@{/thisiswe/club/board/list(page=${page},
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/(num=${clubNum},
+																		page=${page},
                 		                 								type=${pageRequestDTO.type},
                    	 	        										keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
 						</li>
 		
 						<li class="link-page-active" th:if="${result.next}">
-							<a class="paginate-link" th:href="@{/thisiswe/club/board/list(page=${result.end},
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${result.end+1},
             	    	                 								type=${pageRequestDTO.type},
                 		               									keyword=${pageRequestDTO.keyword})}">다음</a>
 						</li>
 					</ul>
 				</div>
+				<!-- /페이지 부분 : 이동, 이전, 다음 -->
 		</div>
-			<!-- /페이지 부분 : 이동, 이전, 다음 -->
 		<!-- /게시판 전체 목록 -->
 	
 		<script th:inline="javascript">
