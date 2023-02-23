@@ -44,6 +44,4 @@ public class ClubMemberEntity {
 	
 	@Column(name = "club_num")
 	private Long clubNum; //모임 번호
-	
-	
 }

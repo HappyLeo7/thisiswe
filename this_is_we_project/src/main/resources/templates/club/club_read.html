@@ -67,8 +67,13 @@
 					contentType : "application/json; charset=UTF-8",
 					dataType : "json",
 					success : function(data) {
-						alert("가입 성공");
-						console.log(data);
+						if(data == true) {
+							alert("가입 성공");
+							console.log(data);
+						}else {
+							alert("이미 가입된 멤버입니다.");
+							console.log(data);
+						}
 					},
 					error : function() {
 						alert("가입 실패");
