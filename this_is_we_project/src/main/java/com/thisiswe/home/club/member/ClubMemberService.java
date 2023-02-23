@@ -16,18 +16,16 @@ public class ClubMemberService {
 
 	private final ClubMemberRepository clubMemberRepository;
 	
-	public boolean clubMemberRegister( String username, ClubMemberDTO clubMemberDTO) {
+	public boolean clubMemberRegister( String userId, ClubMemberDTO clubMemberDTO) {
 		Long clubNum = clubMemberDTO.getClubNum();
-		UserEntity userEntity = UserEntity.builder().userId(clubMemberDTO.getUserID()).build();
-
 		ClubMemberEntity clubMemberEntity=ClubMemberEntity.builder()
-				.userId(userEntity)
+				.userId(UserEntity.builder().userId(userId).build())
 				.clubMemberRole(clubMemberDTO.getClubMemberRole())
 				.clubNum(clubNum)
 				.build();
 
 		//값이 없을 경우에 저장
-		if(!checkMember(clubNum,userEntity)) {
+		if(!checkMember(clubNum,userId)) {
 			//없을경우 true
 			clubMemberRepository.save(clubMemberEntity);
 			return true;
@@ -37,9 +35,9 @@ public class ClubMemberService {
 		}
 	}
 
-	//멤버 체크
-	public boolean checkMember(Long clubNum, UserEntity userEntity){
-		return clubMemberRepository.existsByClubNumAndUserId(clubNum, userEntity);
+	//멤버 체크 (clubnum , userId) 리턴: boolean
+	public boolean checkMember(Long clubNum, String userId){
+		return clubMemberRepository.existsByClubNumAndUserId(clubNum, UserEntity.builder().userId(userId).build());
 	}
 	
 }

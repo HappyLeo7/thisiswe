@@ -3,6 +3,8 @@ package com.thisiswe.home.chat.controller;
 import com.thisiswe.home.chat.dto.MessageResponseDto;
 import com.thisiswe.home.chat.model.Room;
 import com.thisiswe.home.chat.service.ChatService;
+import com.thisiswe.home.club.member.ClubMemberService;
+import com.thisiswe.home.user.entity.UserEntity;
 import com.thisiswe.home.user.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,6 +26,7 @@ public class ChatController {
     static int roomNumber = 0;                   //
 
     private final ChatService chatService;
+    private final ClubMemberService clubMemberService;
 
     @RequestMapping("/chat")
     public ModelAndView chat() {
@@ -46,7 +49,7 @@ public class ChatController {
 
     //방 생성하기
     @RequestMapping("/createRoom")
-    public @ResponseBody List<Room> createRoom(@RequestParam HashMap<Object, Object> params){ //@ResponseBody가 붙어 있음 스트링값을 그대로 반환합니다.
+    public @ResponseBody List<Room> createRoom(@RequestParam HashMap<Object, Object> params) { //@ResponseBody가 붙어 있음 스트링값을 그대로 반환합니다.
         String roomName = (String) params.get("roomName");
         System.out.println("채팅방 이름 : " + roomName);
 
@@ -58,7 +61,7 @@ public class ChatController {
 
     //방 정보 조회
     @RequestMapping("/getRoom")
-    public @ResponseBody List<Room> getRoom(@RequestParam HashMap<Object, Object> params){
+    public @ResponseBody List<Room> getRoom(@RequestParam HashMap<Object, Object> params) {
         System.out.println(chatService.getAllChatRooms());
         return chatService.getAllChatRooms();
     }
@@ -66,7 +69,7 @@ public class ChatController {
 
     //채팅 정보 조회
     @RequestMapping("/getChat")
-    public @ResponseBody List<MessageResponseDto> getChat(@RequestParam HashMap<Object, Object> params){
+    public @ResponseBody List<MessageResponseDto> getChat(@RequestParam HashMap<Object, Object> params) {
         System.out.println("getChat 실행");
         String roomName = (String) params.get("roomName");
         return chatService.getMessages(roomName);
@@ -74,27 +77,33 @@ public class ChatController {
 
     //채팅방으로 이동
     @RequestMapping("/moveChating")
-    public ModelAndView chating(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam HashMap<Object ,Object> params) {
+    public ModelAndView chating(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam HashMap<Object, Object> params) {
         ModelAndView mv = new ModelAndView();
         String roomName = (String) params.get("roomName");
         String roomNumber = (String) params.get("roomNumber");
-        System.out.println(roomName);
+
+        if (clubMemberService.checkMember(Long.valueOf(roomNumber), userDetails.getUsername())) {
+            mv.setViewName("chatroom/chatroomtest");
+            mv.addObject("roomName", roomName);
+            mv.addObject("roomNumber", roomNumber);
+            mv.addObject("username", userDetails.getUserNickname());
+            mv.addObject("chatList", chatService.getMessages(roomName));
+            System.out.println("roomList1 : " + chatService.getMessages(roomName));
+
+            return mv;
+        }else{
+            mv.setViewName("chatroom/chatFailure");
+            mv.addObject("roomNumber", roomNumber);
+            return mv;
+        }
 
 
-        mv.setViewName("chatroom/chatroomtest");
-        mv.addObject("roomName", roomName);
-        mv.addObject("roomNumber", roomNumber);
-        mv.addObject("username", userDetails.getUserNickname());
-        mv.addObject("chatList", chatService.getMessages(roomName));
-        System.out.println("roomList1 : " + chatService.getMessages(roomName));
-
-        return mv;
     }
 
 
     //고객센터 채팅방으로 이동
     @RequestMapping("/moveCustomersvc")
-    public ModelAndView customerService( @AuthenticationPrincipal UserDetails userDetails) {
+    public ModelAndView customerService(@AuthenticationPrincipal UserDetails userDetails) {
         String username = userDetails.getUsername();
 //        Room room =  chatService.checkCustomerRoom(username).get();
 //
