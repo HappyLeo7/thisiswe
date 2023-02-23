@@ -8,6 +8,7 @@ class Bpro0511ApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("테스트 서버 이상없음");
 	}
 
 }

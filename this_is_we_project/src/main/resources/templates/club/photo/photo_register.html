@@ -13,9 +13,174 @@
 	
 	<!-- 내용 -->
 	<title>사진첩 등록페이지</title>
+	<h1>사진첩 등록 페이지</h1>
 	
+	
+	<!-- 이미지 등록처리 -->
+	<form action="/thisiswe/club/photo/register" method="post" enctype="multipart/form-data" >
+	<div>
+		<label>이미지등록</label>
+		<div>
+			모임번호 : <input type="text" name="clubNum" th:value="${clubNum}"> <br>
+			등록ID : <input type="text" name="userId" th:value="${user}"> <br>
+			사진 내용 : <input type="text" name="photoContent"> <br>
+				
+			<input type="file" name="file" id="" class="">
+			<!-- <lable class="custom-file-label" data-browse="Browse"></lable> -->
+		</div>
+	</div>
+	
+	<!-- 박스 
+		<div class="box"></div>
+	-->
+	
+				<!-- 이미지 업로드 값  
+				
+	<div class="uploadResult">
+				<ul>
+				</ul>
+			</div>
+				-->
+	
+	<button type="submit" >등록</button>
+	</form>
 	<!-- /내용 -->
 	
+	
+	<script type="text/javascript">
+	
+	$(document).ready(function(e){
+		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
+		var maxSize = 10485760;  //10MB
+		
+		function checkExtension(fileName, fileSize){
+			
+			//파일 사이즈가 큰경우
+			if(fileSize >= maxSize){
+				alert("파일 사이즈 10MB 초과");
+				return false;
+			}
+			
+			//파일 확장자명 체크
+			if(regex.test(fileName)){
+				alert("해당 종류의 파일은 업로드 할 수 없습니다.")
+				return false;
+			}
+			//통과되면 true
+			return true; 
+		}
+		
+		//input에 등록된 파일 명이 바뀔때 처리 하는곳(파일명이 html 에 보이게 처리)
+		$(".custom-file-input").on("change", function(){
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+			
+			//ajax로 form전송을 하기 위해 사용
+			var formData = new FormData();
+			var inputFile = $(this);
+			var files = inputFile[0].files;
+			var appended=false;
+			for (var i = 0 ; i<files.length; i++){
+				if(!checkExtension(files[i].name, files[i].size)){
+					return false;
+				}
+				
+				console.log(files[i]);
+				formDate.append("uploadFiles", files[i]);
+				appended = true;
+			}
+			if(!appended){return;}
+			for (var value of formData.values()){
+				console.log(value);
+			}
+			
+			
+			//실제 업로드 
+			$.ajax({
+				url: '/uploadAjax',
+				processData:false,
+				contentType:false,
+				data:formData,
+				type: 'POST',
+				dataType : 'Json',
+				success: function(result){
+					console.log(result);
+					showResult(result);
+				},
+				error : function (jqXHR, textStatus, errorThrown){
+					console.log(textStatus);
+				}
+				
+				
+			});
+		})
+		
+		function showResult(arr){
+			console.log(arr);
+			
+			var divAreaUL = $(".uploadResult ul");
+			var str = "";
+			
+			for(var i = 0; i < arr.length; i++){
+				str += "<li data-name='"+arr[i].fileName+"' data-path='"+arr[i].folderPath+"' data-uuid='"+arr[i].uuid+"'>";
+				str += "<div>";
+				str += "<button type='button' data-file=\'"+arr[i].imageURL+"\' class='btn-warning btn sm'>X</button><br>";
+				str += "<img src='/display?fileName="+ arr[i].thumbnailURL + "'>";
+				/* str += "<button class='removeBtn' data-name='"+arr[i].imageURL+
+						"'> 삭제 </button>"; */
+				str += "</div>";
+				str += "</li>";
+				
+			}
+			
+			console.log(str);
+			
+			divAreaUL.append(str);
+			
+			$(".uploadResult").on("click", "li button", function(e){
+				console.log("deletefile...");
+				var targetFile =$(this).data("file");
+				var targetLi =$(this).closest("li");
+
+			
+				$.ajax({
+					url: '/removeFile', 
+					type: 'POST',
+					data: {fileName: targetFile}, 
+					dataType: 'text', 
+					success: function(result){ 
+						alert(result);
+					targetLi.remove();						
+					}
+				
+				});
+			});
+			
+		}
+		
+	});
+	
+	
+	//prevent 등록버튼 
+	$(".registerBtn").on("click", function(e){
+		e.preventDefault();
+		
+		var str = "";
+		
+		$(".uploadResult li").each(function(i,obj){
+			var target=$(obj);
+			str += "<input type='hidden' name='imageDTOList["+i+"].img_name' value='"+target.data('name')+"'>";
+			str += "<input type='hidden' name='imageDTOList["+i+"].path' value='"+target.data('path')+"'>";
+			str += "<input type='hidden' name='imageDTOList["+i+"].Uuid' value='"+target.data('uuid')+"'>";
+			
+		});
+		
+		$(".box").html(str);
+		$("form").submit();
+	
+	})
+		
+</script>
 	
 	
 	</th:block>

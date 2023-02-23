@@ -14,19 +14,23 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 
+<h1>홈화면</h1>
+<h3><a th:href="@{/thisiswe/club}">모임</a></h3>
+<hr>
+<h3><a th:href="@{/thisiswe/place}">장소</a></h3>
+
 <div class="header" style="position:relative;">
 <div id="header-title-login-user">
 <span th:text="${userNickname}"></span> 님의
 
-<button id="login-id-btn" onclick="location.href='/login/user/signup'">
+<button id="login-id-btn" onclick="location.href='/login/signup'">
 			회원 가입하기</button>
 </div>
-<div id="header-title-select-shop">
-testtset
-</div>
-<form id="my_form" method="post" action="/user/logout">
+
+<form id="my_form" method="post" action="/logout">
 <a id="logout-text" href="javascript:{}" onclick="document.getElementById('my_form').submit();">로그아웃</a>
 </form>
+
 </div>
 <div class="nav">
 <div class="nav-see active">
@@ -54,7 +58,6 @@ testtset
 </div>
 </div>
 </div>
-Authenticated username:
-<sec:authentication="name"></sec:authentication>
+
 </th:block>
-</th:block>
+

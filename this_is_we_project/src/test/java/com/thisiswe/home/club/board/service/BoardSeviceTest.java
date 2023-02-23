@@ -50,8 +50,9 @@ public class BoardSeviceTest {
 	public void testList() {
 		
 		PageRequestDTO pageRequestDTO = new PageRequestDTO();
+		Long num=1L;
 		
-		PageResultDTO<BoardDTO, Object[]> result = boardService.getList(pageRequestDTO);
+		PageResultDTO<BoardDTO, Object[]> result = boardService.getList(pageRequestDTO, num);
 		System.out.println("=========================================================");
 		
 		for(BoardDTO boardDTO : result.getDTOList()) {
@@ -66,7 +67,7 @@ public class BoardSeviceTest {
 	public void testModify() {
 		
 		BoardDTO boardDTO = BoardDTO.builder()
-									.boardNum(25L)
+									.boardNum(136L)
 									.boardCategory("모임변경")
 									.boardTitle("동아리 변경 관련 문의")
 									.boardContent("oo동아리 1명 더 추가합니다.")

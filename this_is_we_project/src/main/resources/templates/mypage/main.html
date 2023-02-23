@@ -4,8 +4,9 @@
 <th:block
 	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 
-
 	<th:block th:fragment="connection">
+	
+	
 		<h1>마이페이지</h1>
 
 		<a th:href="@{/login/test2}">login/test2 문수찬</a>
@@ -23,9 +24,8 @@
 
 
 <form id="my_form" method="post" action="/user/logout">
-			<a id="logout-text" href="javascript:{}"
-				onclick="document.getElementById('my_form').submit();">로그아웃</a>
-		</form>
+로그아웃
+</form>
 
 		
 	</th:block>

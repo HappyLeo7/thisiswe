@@ -17,37 +17,100 @@
 	
 	
 	<!-- 네비창 (정보, 게시판, 사진첩) -->
-	
-	<table border="1">
-	<tr>
-		<td><a th:href="@{/thisiswe/club/(Num=${readDTO.clubNum})}">정보</a></td>
-		<td><a href="/thisiswe/club/calendar">게시판</a></td>
-		<td><a href="">사진첩</a></td>
+		모임번호 :	<input class="clubNum" name="clubNum" th:value="${readDTO.clubNum}" readonly="readonly">
+		<table border="1">
+   <tr>
+      <td><a th:href="@{/thisiswe/club/(Num=${readDTO.clubNum})}">정보</a></td>
+      <td><a th:href="@{/thisiswe/club/board/(num=${readDTO.clubNum})}">게시판</a></td>
+      <td><a th:href="@{/thisiswe/club/photo/(clubNum=${readDTO.clubNum})}">사진첩</a></td>
+      <td><a th:href="@{/room}">채팅방</a></td>
+      
+   </tr>
+   </table>
 		
-	</tr>
-	</table>
+	
+
+	
+	
 	<!-- /네비창 (정보, 게시판, 사진첩) -->
 	
 	<!-- 모임 수정 버튼 -->
 		<table border="0">
 	<tr>
 		<td>
-		<a th:href="@{/thisiswe/modify(Num=${readDTO.clubNum})}">
+		<a th:href="@{/thisiswe/modify(num=${readDTO.clubNum})}">
 			<button type="button">모임수정버튼</button> 
 		</a>
-		</td>
+		
+		<button type="button" onclick="memberRegister()">모임가입</button>
+					
+		접속중 ID : <input class="userId" th:value="${user}" name="userId">
 	</tr>
 		</table>
+		
+		<script>
+			function memberRegister() {
+				var clubNum = $(".clubNum").val();
+				var userId = $(".userId").val();
+				
+				console.log("모임번호 : "+clubNum);
+				console.log("유저ID : "+userId);
+				
+				
+				//club에 member 등록 처리
+				$.ajax({ 
+					url : "/thisiswe/club/member",
+					type : 'POST',
+					data: JSON.stringify({clubNum : clubNum,userID:userId}),
+					contentType:"application/json; charset=UTF-8",
+					dataType : "json",
+					success: function (data){
+						alert("가입 성공");
+						console.log(data);
+					},
+					error : function(){
+						alert("가입 실패");
+					}
+					
+					
+					 })
+				
+			}
+			
+			/* function memberRegister(){
+				var clubNum = $(".clubNum").val();
+				console.log("모임번호 : "+clubNum);
+				   var params = {
+				       num : clubNum
+				   }
+				   
+				   $.ajax({
+				        url: "/thisiswe/club/member",
+				        type: "POST",
+				        data: params,
+				        success: function(data){
+				            console.log(data);
+				            alert("성공하였습니다.");
+				        },
+				        error: function(){
+				            alert("데이터 통신중 에러발생");
+				        }
+				    });
+				} */
+			
+		</script>
+		
 	<!-- /모임 수정 버튼 -->
 	
 	<table border="1">
 	<tr>
 	 <!-- 로고이미지 -->
-  	<td rowspan="4">로고이미지</td>
+  	<td rowspan="4">
+  	<img 
+    th:src="|/display?fileName=${readDTO.clubLogoUrl}|">
+  </td>
 	 <!-- /로고이미지 -->
-		<td>
-			<input th:value="${readDTO.clubNum}" readonly="readonly">
-		</td>
+	
 	</tr>
 	
 	<!-- userID -->
@@ -109,32 +172,44 @@
   </tr>
 
   
+  	<!-- 모임정원 -->
   <tr>
  
-  	<!-- 모임정원 -->
 	<td>모임정원<input name="clubHeadCount" th:value="${readDTO.clubHeadCount}" type="number" min="1" max="300"  readonly="readonly"></td>
   </tr>
 	
 	</table>
 
-<!-- 모임 일정표 -->
+
+	
+	<hr>
+	<!-- 모임 일정표 -->
+<
 	<table border="1">
-		<tr>
-			<th><h3>모임 스케줄표</h3> <br>
-				제목 : <input type="text"> <br>
-				내용 : <input type="text"> <br>
-				날짜 : <input type="text"> <br>
-				시간 : <input type="text"> <br>
-				장소 : <input type="text"> <br>
-				인원 : <input type="text"> <br>
-				비용 : <input type="text"> <br>
-			</th>
-			
-			<td>
+	<tr>
+	<th><h3>모임 스케줄표</h3></th>
+	<td>
 			<a th:href="@{/thisiswe/club/calendar/register/(num=${readDTO.clubNum})}">
-			<button type="button">일정등록</button></a></td>
+			<button type="button">일정등록</button></a>
+			</td>
+	<tr>
+		<tr th:each="calendarDTO : ${calendarDTOList}" >
+			<td colspan="2">
+			<div>일정 번호 : [[${calendarDTO.clubCalendarNum}]]</div>
+				<div><a th:href="@{/thisiswe/club/calendar/read(Num=${calendarDTO.clubCalendarNum})}"
+				>제목 : [[${calendarDTO.clubCalendarTitle}]]</a></div> <br>
+				<div>날짜 : [[${calendarDTO.clubCalendarDate}]]</div> 
+				<div>시간 : [[${calendarDTO.clubCalendarTime}]]</div> 
+				<br>
+				 <div>장소 : [[${calendarDTO.clubCalendarPlace}]]</div>  <br>
+				 <div>비용 : [[${calendarDTO.clubCalendarPrice}]]원</div>  <br>
+			</td>
+			
+			
 		</tr>
-		
+
+ 
+		<!-- 
 		<tr>
 		<td rowspan="3">달력이미지</td>
 		<td>날짜 : <input type="date"></td>
@@ -148,19 +223,10 @@
 		<tr>
 		<td>모임비 : <input type="text"> </td>
 		</tr>
+		 -->
 	</table>
 <!-- /모임 일정표 -->
 
-	
-	<hr>
-		<a th:href="@{/club/club_list}">모임목록</a>
-		<hr>
-		<a th:href="@{/club/club_modify}">모임수정</a>
-		<hr>
-		<a th:href="@{/club/club_read}">모임상세</a>
-		<hr>
-		<a th:href="@{/club/club_register}">모임등록</a>
-		<hr>
 	<!-- /내용 -->
 	
 	

@@ -2,122 +2,163 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
-<th:block
-	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
-
-		<!-- 게시판 읽어오기 -->
-		<h1 class="">게시판 조회</h1>
+	
+	<!-- board.css 연결 -->
+		<link rel="stylesheet" th:href="@{/css/board.css}" />
+	<!-- /board.css 연결 -->
 		
-		<!-- 게시판 조회 테이블 -->
-		<table>
-			<tr>
-				<td>순번</td>
-				<td>
-					<input type="text" class="" name="boardNum" th:value="${boardDTO.boardNum}" readonly>
-				</td>
-			</tr>
+	<!-- board.js 연결 -->
+		<script th:src="@{/js/board.js}"></script>
+	<!-- /board.js 연결 -->
+				
+		<!-- [club] club의 네비 리스트 -->
+		<div class="top-inner">
+			<div class="top-inner-ul">
+  				<ul class="top-inner-menu top-inner-eff">
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/board}">
+     						<span>BOARD</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/photo/register}">
+     						<span>PHOTO</span>
+     					</a>
+     				</li>
+     				<li class="ta-li">
+     					<a th:href="@{/room}">
+     						<span>CHAT</span>
+     					</a>
+     				</li>
+      			</ul>
+  			</div>
+		</div>	
+		<!-- [club] club의 네비 리스트 -->		
+		
+		<!-- 게시판 조회 -->
+		<div class="inner">
+			<h2>ㅈㅗㅎㅗㅣ</h2>
+		
+			<!-- 게시판 등록 - section -->	
+			<div class="board-section">
+			<!-- 게시판 조회 테이블 -->		
+				<table class="board-re-table">	
+					<tr>
+						<th class="board-ri-th">모임번호</th>
+					</tr>
+					
+					<tr>
+						<td class="bd-contain">
+							<input type="text" class="bd-input" name="num" autocomplete="off"
+													required="required" th:value="${clubNum}">
+						</td>
+					</tr>			
+					<tr>
+						<th class="board-re-th">게시판 번호</th>
+					<tr>
+					<tr>
+						<td class="bd-re-contain">
+							<input type="text" class="bd-re-input" name="boardNum" th:value="${boardDTO.boardNum}" readonly>
+						</td>
+					</tr>	
+					
+					<tr>
+						<th class="board-re-th">카테고리</th>
+					</tr>
+					<tr>
+						<td class="bd-re-contain">
+							<input type="text" class="bd-re-input" name="boardCategory" th:value="${boardDTO.boardCategory}" readonly>
+						</td>
+					</tr>
+					
+					<tr>
+						<th class="board-re-th">제목</th>
+					</tr>
+					<tr>
+						<td class="bd-re-contain">
+							<input type="text" class="bd-re-input" name="boardTitle" th:value="${boardDTO.boardTitle}" readonly>
+						</td>
+					</tr>
+					
+					<tr>
+						<th class="board-re-th">내용</th>
+					</tr>
+					<tr>
+						<td class="bd-re-contain">
+							<input type="text" class="bd-re-input-co" name="boardContent" th:value="${boardDTO.boardContent}" readonly>
+						</td>
+					</tr>
+					
+					<tr>
+						<th class="board-re-th">작성자</th>
+					</tr>
+					<tr>
+						<td class="bd-re-contain">
+							<input type="text" class="bd-re-input" name="userId" th:value="${boardDTO.userId.userId}" readonly>
+						</td>
+					</tr>
+					
+					<tr>
+						<th class="board-re-th">등록일</th>
+					</tr>
+					<tr>
+						<td class="bd-re-contain">
+							<input type="text" class="bd-re-input" name="regDate" 
+									th:value="${#temporals.format(boardDTO.regDate, 'yyyy-MM-dd HH:mm:ss')}" readonly>
+						</td>
+					</tr>
+					
+					<tr>
+						<th class="board-re-th">수정일</th>
+					</tr>					 
+					<tr>
+						<td class="bd-re-contain">
+							<input type="text" class="bd-re-input" name="updateDate" 
+									th:value="${#temporals.format(boardDTO.updateDate,'yyyy-MM-dd HH:mm:ss')}" readonly>
+						</td>
+					</tr>
+					
+					<tr>
+						<th class="board-re-th">조회수</th>
+					</tr>
+					<tr>
+						<td class="bd-re-contain">
+							<input type="text" class="bd-re-input" name="boardView" th:value="${boardDTO.boardView}" readonly>
+						</td>
+					</tr>
+				</table>
+				<!-- /게시판 조회 테이블 -->
+			</div>				 
+			<!-- /게시판 조회 - section -->
+			<br>
+			<!-- 게시판 조회 - btn -->
+			<div class="board-rigi-Btn">
+				<a th:href="@{/thisiswe/club/board/modify(num=${clubNum},
+															boardNum=${boardDTO.boardNum},
+															page=${result.page},
+        	   	                            	       		type=${pageRequestDTO.type},
+            		                    	           		keyword=${pageRequestDTO.keyword})}">			
+        			<button type="button" class="searchBtn-mi">수정</button>
+     	   		</a>	
 			
-			<tr>
-				<td>카테고리</td>
-				<td>
-					<input type="text" class="" name="boardCategory" th:value="${boardDTO.boardCategory}" readonly>
-				</td>				
-			</tr>
-
-			<tr>
-				<td>제목</td>
-				<td>
-					<input type="text" class="" name="boardTitle" th:value="${boardDTO.boardTitle}" readonly>
-				</td>				
-			</tr>
-
-			<tr>
-				<td>내용</td>
-				<td>
-					<textarea class="" rows="5" name="boardContent" readonly>[[${boardDTO.boardContent}]]
-					</textarea>
-				</td>				
-			</tr>
-
-			<tr>
-				<td>작성자</td>
-				<td>
-					<input type="text" class="" name="userId" th:value="${boardDTO.userId.userId}" readonly>
-				</td>				
-			</tr>
-
-			<tr>
-				<td>등록일</td>
-				<td>
-					<input type="text" class="" name="regDate" 
-						th:value="${#temporals.format(boardDTO.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
-				</td>				
-			</tr>
-			
-			<tr>
-				<td>수정일</td>
-				<td>
-					<input type="text" class="" name="updateDate" 
-						th:value="${#temporals.format(boardDTO.updateDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
-				</td>				
-			</tr>
-
-			<tr>
-				<td>조회수</td>
-				<td>
-					<input type="text" class="" name="boardView" th:value="${boardDTO.boardView}" readonly>
-				</td>				
-			</tr>
-
-		</table>
-		<!-- /게시판 조회 테이블 -->
+				<a th:href="@{/thisiswe/club/board}">
+      			<!-- 
+	        	<a th:href="@{/thisiswe/club/board (page=${result.page},
+   	        	            	                	type=${pageRequestDTO.type},
+    	        	        	            	    keyword=${pageRequestDTO.keyword})}">
+       			 -->
+					<button type="submit" class="searchBtn-mi">
+						<a th:href="@{/thisiswe/club/board}">목록</a>
+					</button>
+				</a>
+			</div>					
+			<!-- /게시판 조회 - btn -->
+		</div>	
+		<!-- 게시판 조회 -->		
 		
-		<br>
-		<!--			
-			<a th:href="@{/club/board/modify(boardNum=${boardDTO.boardNum},
-														page=${requestDTO.page},
-														type=${requestDTO.type},
-            											keyword=${requestDTO.keyword})}">
-				<button type="button" class="btn btn-info">수정</button>
-			</a>			
-			<a th:href="@{/club/board/list (page=${requestDTO.page},
-														type=${requestDTO.type},
-            											keyword=${requestDTO.keyword})}">
-				<button type="button" class="btn btn-secondary">목록</button>
-			</a> -->
-		
-		<a th:href="@{/club/board/modify(boardNum=${boardDTO.boardNum})}">
-			<button type="button" class="btn btn-info">수정</button>
-		</a>
-
-		<button type="button" class="btn btn-secondary">목록</button>
-		<!-- 게시판 읽어오기 -->
-
-		<!-- 댓글 추가 -->
-		<div>
-			<div class="">
-				<h4>
-					<span class="badge badge-secondary replyCount"> 댓글 수
-						[[${boardDTO.replyCount}]] </span>
-				</h4>
-				<h4>
-					<span class="badge badge-info addReply"> 댓글 추가 </span>
-				</h4>
-			</div>
-			<div class="list-group replyList"></div>
-		</div>
-		<!-- 댓글 추가 -->
-
-		<!-- 댓글 목록 추가 -->
-		<!-- <div class="">
-			<lable>번호</lable>
-			<input type="text" class="" name="boardReplyNum"
-				th:value="${replyDTO.boardReplyNum}" readonly>
-			</div> -->
-		<!-- /댓글 목록 추가 -->
-
-
 	</th:block>
 </th:block>
+	
