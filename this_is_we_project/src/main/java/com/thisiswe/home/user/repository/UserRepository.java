@@ -1,11 +1,10 @@
 package com.thisiswe.home.user.repository;
 
 import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
+
 
 import com.thisiswe.home.user.entity.UserEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, String> {
 
@@ -20,6 +19,8 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 	Optional<UserEntity> findByUserEmail(String userEmail);
 	Optional<UserEntity> findByUserPhoneNumber(String userPhoneNumber);
 	Optional<UserEntity> findByKakaoId(Long kakaoId);
+	
+
 
 	
 }

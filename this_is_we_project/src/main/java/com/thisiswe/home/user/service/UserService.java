@@ -1,6 +1,12 @@
 package com.thisiswe.home.user.service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
+
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +23,66 @@ public class UserService {
 
 	private final PasswordEncoder passwordEncoder;
 	private final UserRepository userRepository;
+	private final EmailService emailService;
 
+	private final Map<String, String> verificationCodes = new HashMap<>();
 	private static final String ADMIN_TOKEN = "WFizAS/xREgejDFIVCsEsfjSDBgfbDasqWE";
+
+    // 회원가입 시 이메일로 전송할 인증코드 생성 메서드
+    /**
+     * 이메일 인증코드를 생성하는 메서드
+     * @return 4자리 숫자로 이루어진 인증코드
+     */
+    public String generateCode() {
+        Random random = new Random();
+        return String.format("%04d", random.nextInt(10000));
+    }
+	
+
+    /**
+     * 사용자 이메일과 인증코드를 매핑해서 Map에 저장하는 메서드
+     * @param userEmail 사용자 이메일
+     * @param code 인증코드
+     */
+    public void saveCode(String userEmail, String code) {
+    	verificationCodes.put(userEmail, code);
+    }
+    
+    /**
+     * 사용자 이메일과 입력한 인증코드가 일치하는지 확인하는 메서드
+     * @param userEmail 사용자 이메일
+     * @param code 입력한 인증코드
+     * @return 인증코드 일치여부
+     */
+    public boolean verifyCode(String userEmail, String code) {
+        String savedCode = verificationCodes.get(userEmail);
+        if (savedCode == null) {
+            // 저장된 인증코드가 없는 경우
+            return false;
+        } else if (savedCode.equals(code)) {
+            // 저장된 인증코드와 입력한 인증코드가 일치하는 경우
+            return true;
+        } else {
+            // 저장된 인증코드와 입력한 인증코드가 일치하지 않는 경우
+            return false;
+        }
+    }
+    
+    /**
+     * 사용자 이메일로 인증코드 전송하는 메서드
+     * @param userEmail 사용자 이메일
+     */
+    public void sendVerificationCode(String userEmail) {
+    	  // 인증코드 생성
+        String code = generateCode();
+
+        // 이메일 전송
+        emailService.sendVerificationCode(userEmail, code);
+
+        // 사용자 이메일과 인증코드 매핑해서 Map에 저장
+        saveCode(userEmail, code);
+    }
+	
 
 	// view단 회원 ID 중복 확인
 	public boolean checkUserId(String userId) {

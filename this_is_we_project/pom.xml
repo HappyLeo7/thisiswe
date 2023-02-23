@@ -159,6 +159,14 @@
 		</dependency>
 		<!-- /[추가] chating -->
 
+
+		<!--mail  -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

@@ -19,6 +19,7 @@ public class PageResultDTO<DTO, EN> {
 	private int totalPage;
 	private int page;
 	private int size;
+	
 	private int start, end;
 	private boolean prev, next;
 	private List<Integer> pageList;
@@ -33,6 +34,7 @@ public class PageResultDTO<DTO, EN> {
 		totalPage = result.getTotalPages();
 		
 		System.out.println("======== PageResultDTO 위치 체크! ========");
+		
 		makePageList(result.getPageable());
 	}
 

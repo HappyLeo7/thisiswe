@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
-<th:block
-	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
 		
@@ -15,14 +14,35 @@
 		<script src="@{/js/board.js}"></script>
 	<!-- /board.js 연결 -->
 		
+		<!-- [club] club의 네비 리스트 -->
+		<div class="top-inner">
+			<table class="top-inner-ta">
+  				<tr>
+     				<!-- <td class="ta-li">
+     					<a th:href="@{/thisiswe/club/(Num=${readDTO.clubNum})}">정보</a>
+     				</td> -->
+     				<td class="ta-li">
+     					<a th:href="@{/thisiswe/club/board}">게시판</a>
+     				</td>
+     				<td class="ta-li">
+     					<a th:href="@{/thisiswe/club/photo/register}">사진첩</a>
+     				</td>
+     				<td class="ta-li">
+     					<a th:href="@{/room}">채팅방</a>
+     				</td>
+      			</tr>
+  			</table>
+		</div>	
+		<!-- [club] club의 네비 리스트 -->		
+		
 		<!-- 게시판 전체 목록 -->
 		<div class="inner">
-			<h1 class="board-head">ㅁㅗㄱㄹㅗㄱ</h1>
+			<h1>ㅁㅗㄱㄹㅗㄱ</h1>
 			
 			<!-- 검색창 추가 -->
 			<div class="board-search">
 				<div class="board-search_sub">
-					<form id="searchForm" action="/thisiswe/club/board/list" method="get">
+					<form id="searchForm" action="/thisiswe/club/board" method="get">
 
 						<select id="searchColumn" name="type">
 							<option value="" th:selected="${pageRequestDTO.type==null}">-----</option>
@@ -105,7 +125,7 @@
 				<div class="paginate">
 					<ul class="">
 						<li class="link-page active" th:if="${result.prev}">
-							<a class="paginate-link" th:href="@{/thisiswe/club/board/list(page=${result.start-1},
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${result.start-1},
                    	     	        											type=${pageRequestDTO.type},
                    	    	        												keyword=${pageRequestDTO.keyword})}"
 							tabindex="-1">이전</a>
@@ -113,20 +133,20 @@
 		
 						<li th:class="'page-item '+ ${result.page == page?'active':''}"
 												th:each="page: ${result.pageList}">
-							<a class="paginate-link" th:href="@{/thisiswe/club/board/list(page=${page},
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${page},
                 		                 								type=${pageRequestDTO.type},
                    	 	        										keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
 						</li>
 		
 						<li class="link-page-active" th:if="${result.next}">
-							<a class="paginate-link" th:href="@{/thisiswe/club/board/list(page=${result.end},
+							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${result.end},
             	    	                 								type=${pageRequestDTO.type},
                 		               									keyword=${pageRequestDTO.keyword})}">다음</a>
 						</li>
 					</ul>
 				</div>
+				<!-- /페이지 부분 : 이동, 이전, 다음 -->
 		</div>
-			<!-- /페이지 부분 : 이동, 이전, 다음 -->
 		<!-- /게시판 전체 목록 -->
 	
 		<script th:inline="javascript">

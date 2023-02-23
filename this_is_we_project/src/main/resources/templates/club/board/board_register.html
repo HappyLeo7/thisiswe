@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
-<th:block
-	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
 		
@@ -17,7 +16,7 @@
 		
 		<!-- 게시판 등록 -->
 		<div class="inner">
-			<h1 class="">ㄷㅡㅇㄹㅗㄱ</h1>
+			<h1>ㄷㅡㅇㄹㅗㄱ</h1>
 			<form th:action="@{/thisiswe/club/board/register}" th:method="post">
 			
 			<!-- 게시판 등록 - section -->	
@@ -60,11 +59,11 @@
 					<tr>
 						<td class="bd-contain">
 							<input type="text" class="bd-input" name="userId" autocomplete="off"
-													placeholder="ID를 입력하세요." required="required">
+													placeholder="ID를 입력하세요." required="required" th:value="${user}" readonly>
 						</td>
 						<!-- 게시판 등록: 조회수 숨김 처리 -->
 						<td>
-							<input type="hidden" class="" name="boardView" value="0" >
+							<input type="hidden" class="bd-input" name="boardView" value="0" >
 						</td>
 						<!-- /게시판 등록: 조회수 숨김 처리 -->
 					</tr>
@@ -73,12 +72,14 @@
 			</div>
 			<!-- /게시판 등록 - section -->
 				<br>				
+			<!-- 게시판 등록 - btn -->
 				<div class="board-rigi-Btn">
 					<button type="submit" class="searchBtn-mi btn-success">등록</button>
 					<button type="submit" class="searchBtn-mi">
-						<a th:href="@{/thisiswe/club/board/list}">목록</a>
+						<a th:href="@{/thisiswe/club/board}">목록</a>
 					</button>
 				</div>
+			<!-- /게시판 등록 - btn -->
 			</form>
 		</div>
 		<!-- /게시판 등록 -->

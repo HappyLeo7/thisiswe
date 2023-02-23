@@ -57,7 +57,7 @@ public class UserEntity {
 	@Column
 	@Enumerated(value = EnumType.STRING)
 	private UserRoleEnum role;
-
+	
 
 	@Column(unique = true)
 	private Long kakaoId;

@@ -4,14 +4,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
+
 import org.springframework.data.domain.Page;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
-import com.thisiswe.home.club.board.dto.PageResultDTO;
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.club.board.repository.BoardRepository;
 import com.thisiswe.home.user.entity.UserEntity;
@@ -29,6 +30,22 @@ public class MypageServiceImpl implements MypageService {
 	private final PasswordEncoder passwordEncoder;
 	private final BoardRepository boardRepository;
 
+	
+	
+//	 게시글 페이지 목록(list)
+	@Override
+	public MyPageResultDTO<BoardDTO, Board> getList(PageRequestDTO pageRequestDTO, String userId) {
+		
+	    UserEntity userEntity = userRepository.findByUserId(userId)
+	            .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+	    Function<Board, BoardDTO> func = board -> entityToBoardDTO(board, userEntity, board.getReplyCount());
+
+	    Page<Board> result2 = boardRepository.findAllByUserId(userEntity, pageRequestDTO.getPageable(Sort.by("boardNum").descending()));
+
+	    return new MyPageResultDTO<>(result2, func);
+	}
+	
 	@Override
 	public void getUserInfo(String username) {
 		// TODO Auto-generated method stub
@@ -51,21 +68,7 @@ public class MypageServiceImpl implements MypageService {
 		}
 	}
 
-	// 게시글 페이지 목록(list)
-	@Override
-	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
-		Function<Object[], BoardDTO> func = 
-				(en -> entityToBoardDTO((Board)en[0], (UserEntity)en[1], (Long)en[2]));
-			
-		Page<Object[]> result = boardRepository.searchPage(
-					pageRequestDTO.getType(),
-					pageRequestDTO.getKeyword(),
-					pageRequestDTO.getPageable(Sort.by("boardNum").descending()));								
 
-		return new PageResultDTO<>(result, func);
-	}
-	
-	
 	// TODO Auto-generated method stub
 
 	@Override
@@ -87,6 +90,17 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 
-
+//
+//	@Override
+//	public List<BoardDTO> getUserBoards(String userId) {
+//		List<BoardDTO> boardDTOS;
+//		Pageable pageable = .of(page, , sort); //pageable객체를 인스턴스화해준다.
+//		List<Board> boards = boardRepository.findAllByUserId(userId, pageable);
+//		for (Board board : boards) {
+//			// boards에서 boardDto객체로 말아주는 내용
+//			return boardDTOS;
+//		}
+//		return boardDTOS;
+//	}
 
 }

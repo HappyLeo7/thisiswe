@@ -13,6 +13,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.club.board.repository.search.SearchBoardRepository;
+import com.thisiswe.home.user.entity.UserEntity;
 
 //TODO [Repository] 게시판 - Query
 public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoardRepository{
@@ -46,4 +47,6 @@ public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoard
 	 @Query(" update Board b set b.boardView = b.boardView +1 where b.boardNum = :boardNum")
 	 //Long boardView(Long boardNum);
 	 int boardView(Long boardNum);
+	 
+	 Page<Board> findAllByUserId(UserEntity userEntity, Pageable pageable);
 }

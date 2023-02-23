@@ -35,7 +35,7 @@
 		<a href="https://kauth.kakao.com/oauth/authorize?client_id=5bd1dab16ee774baea6d62d812f5b773&redirect_uri=http://localhost:8080/login/oauth2/code/kakao&response_type=code"
 			id="kakao-signin">
 			<img src="" alt=""><img src="이미지/카카오톡 말풍선.png" alt="">
-			<span>카카오 로그인<span></a>
+			<span>카카오 로그인</span></a>
 	</div>
 	<div id="login-failed" style="display: none" class="alert alert-danger"
 		role="alert">로그인에 실패하였습니다.</div>
@@ -48,17 +48,6 @@
 			const errorDiv = document.getElementById('login-failed');
 				errorDiv.style.display = 'block';
 		}
-
-//변수선언
-const toggleBtn = document.querySelector('.navbar_toggleBtn');
-const menu = document.querySelector('.navbar_menu');
-const login = document.querySelector('.navbar_login');
-
-//navbtn을 클릭할때마다 아래함수들를 호출
-toggleBtn.addEventListener('click', () => {
-menu.classList.toggle('active');
-login.classList.toggle('active');
-});
 </script>
 </body>
 </html>

@@ -86,12 +86,33 @@ public class UserController {
 	}
 	
 	// 유저닉네임 조회
-	@PostMapping("/userEmail/{userNickname}")
+	@PostMapping("/nickname/{userNickname}")
 	@ResponseBody
 	public ResponseEntity<Boolean> checkUserNickname(@PathVariable("userNickname") String userNickname) {
 		
 		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userNickname);
 		
 		return new ResponseEntity<>(userService.checkUserNickname(userNickname) ,HttpStatus.OK);
+	}
+	
+	// 유저인증코드 보내기
+	@PostMapping("/userEmail/{emailCheck}")
+	@ResponseBody
+	public void pushUserEmailCode(@PathVariable("emailCheck") String userEmail) {
+		
+		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmail);
+
+		userService.sendVerificationCode(userEmail);
+	}
+	
+	// 이메일 인증코드 확인
+	@PostMapping("/userEmail/{emailCheck}/{emailCodeCheck}")
+	@ResponseBody
+	public ResponseEntity<Boolean> checkUserEmail(@PathVariable("emailCheck") String userEmail, @PathVariable("emailCodeCheck") String userEmialCode) {
+		
+		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmail);
+		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmialCode);
+		
+		return new ResponseEntity<>(userService.verifyCode(userEmail, userEmialCode), HttpStatus.OK);
 	}
 }
