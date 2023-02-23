@@ -30,7 +30,7 @@ public class ClubDTO {
 	private String clubLogoUrl; //로고 경로
 	private Long clubHeadCount;//인원
 	private LocalDateTime regDate; //등록일
-	private LocalDateTime updateDate; //수정일
+	//private LocalDateTime updateDate; //수정일
 	
 	@Builder.Default
 	private List<ClubDTO> clubLogoList =new ArrayList<>(); 

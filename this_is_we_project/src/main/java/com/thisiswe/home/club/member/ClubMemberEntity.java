@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,7 +34,10 @@ public class ClubMemberEntity {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private ClubEntity userId; //유저ID
+	private UserEntity userId; //유저ID
+	
+	//@Column(name = "club_member")
+	//private UserEntity clubMember;
 	
 	@Column(name = "club_member_role")
 	private Long clubMemberRole; //권한 1 2 3 

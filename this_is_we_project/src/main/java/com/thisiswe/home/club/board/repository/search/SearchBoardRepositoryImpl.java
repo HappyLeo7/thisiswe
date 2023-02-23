@@ -20,6 +20,8 @@ import com.querydsl.jpa.JPQLQuery;
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.club.board.entity.QBoard;
 import com.thisiswe.home.club.board.reply.entity.QReply;
+import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.club.entity.QClubEntity;
 import com.thisiswe.home.user.entity.QUserEntity;
 
 import lombok.extern.log4j.Log4j2;
@@ -43,15 +45,101 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 		QReply reply = QReply.reply;
 		QUserEntity userEntity = QUserEntity.userEntity;
 		
-		JPQLQuery<Board> jpqlQuery = from(board);
-		jpqlQuery.leftJoin(userEntity).on(board.userId.eq(userEntity));
-		//reply의 FK는 board.
-		jpqlQuery.leftJoin(reply).on(reply.board.eq(board));
 		
-		JPQLQuery<Tuple> tuple = jpqlQuery.select(board, userEntity, reply.count());
+		// [sql 쿼리문]
+		JPQLQuery<Board> jpqlQuery = from(board);	//board 테이블에서 데이터를 가져와 
+		jpqlQuery.leftJoin(userEntity).on(board.userId.eq(userEntity));//테이블안에 있는 컬럼을 연결해주는 역할 ex) on b.userId=r.userID
+		//reply의 FK는 board.
+		jpqlQuery.leftJoin(reply).on(reply.board.eq(board));//테이블안에 있는 컬럼을 연결해주는 역할 ex) on b.boardNum=r.boardNum
+		
+		JPQLQuery<Tuple> tuple = jpqlQuery.select(board, userEntity, reply.count()); //select 가져올 데이터
+		// [sql 쿼리문]end
 		
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
 		BooleanExpression expression = board.boardNum.gt(0L);
+		
+		booleanBuilder.and(expression);
+		
+		if (type != null) {
+			//TODO [SearchBoardRepositoryImpl] 게시판_검색 : null 기준으로 자르기
+			String[] typeArr = type.split("");
+			
+			BooleanBuilder conditionBuilder = new BooleanBuilder();
+			
+			for(String t: typeArr) {
+				switch (t) {
+				
+				case "t":
+					conditionBuilder.or(board.boardTitle.contains(keyword));
+					break;
+
+				case "c":
+					conditionBuilder.or(board.boardContent.contains(keyword));
+					break;
+					
+				case "w":
+					conditionBuilder.or(userEntity.userId.contains(keyword));
+					break;
+				}
+			}
+			booleanBuilder.and(conditionBuilder);
+		}
+		tuple.where(booleanBuilder);
+			
+		//TODO [SearchBoard] 게시판_검색 : Sort 추가	- 도메인에 있는 sort 가져오기!
+		Sort sort = pageable.getSort();
+		sort.stream().forEach(order -> {
+								Order derction = order.isAscending()? Order.ASC:Order.DESC;
+								String prop = order.getProperty();
+								
+			PathBuilder orderbyExpression = new PathBuilder(Board.class, "board");
+			tuple.orderBy(new OrderSpecifier<>(derction, orderbyExpression.get(prop)));
+		});
+		
+		tuple.groupBy(board);
+		
+		//TODO [SearchBoardRepositoryImpl] 게시판_검색 : Page 처리하기
+		tuple.offset(pageable.getOffset());
+		tuple.limit(pageable.getPageSize());		
+		log.info("=========================================================");
+		log.info("=================== tuple ===================> : " + tuple);
+		log.info("=========================================================");
+		
+		List<Tuple> result = tuple.fetch();
+		log.info("================== result ==================> : " + result);
+		log.info("=========================================================");
+		
+		long count = tuple.fetchCount();
+		log.info("=================== count ===================> : " + count);
+		log.info("=========================================================");
+		
+		return new PageImpl<Object[]>(result.stream()
+						.map(t -> t.toArray()).collect(Collectors.toList()), pageable, count);
+	}
+
+	@Override
+	public Page<Object[]> searchPageByClubNum(String type, String keyword, Pageable pageable, Long clubNum) {
+
+		log.info("<<<<<<<<<<<< SearchBoardRepositoryImpl >>>>>>>>>>");
+		log.info("<<< searchPageByClubNum >>>");
+		
+		QBoard board = QBoard.board;
+		QReply reply = QReply.reply;
+		QUserEntity userEntity = QUserEntity.userEntity;
+		QClubEntity clubEntity = QClubEntity.clubEntity;
+		
+		
+		// [sql 쿼리문]
+		JPQLQuery<Board> jpqlQuery = from(board);	//board 테이블에서 데이터를 가져와 
+		jpqlQuery.leftJoin(userEntity).on(board.userId.eq(userEntity));//테이블안에 있는 컬럼을 연결해주는 역할 ex) on b.userId=r.userID
+		//reply의 FK는 board.
+		jpqlQuery.leftJoin(reply).on(reply.board.eq(board));//테이블안에 있는 컬럼을 연결해주는 역할 ex) on b.boardNum=r.boardNum
+		
+		JPQLQuery<Tuple> tuple = jpqlQuery.select(board, userEntity, reply.count()); //select 가져올 데이터
+		// [sql 쿼리문]end
+		
+		BooleanBuilder booleanBuilder = new BooleanBuilder();
+		BooleanExpression expression = board.clubNum.eq(ClubEntity.builder().clubNum(clubNum).build());
 		
 		booleanBuilder.and(expression);
 		

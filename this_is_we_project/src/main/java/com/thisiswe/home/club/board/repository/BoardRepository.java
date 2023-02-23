@@ -2,8 +2,8 @@ package com.thisiswe.home.club.board.repository;
 
 import java.util.List;
 
-import com.thisiswe.home.club.board.entity.Board;
-import com.thisiswe.home.club.board.repository.search.SearchBoardRepository;
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,8 +11,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.board.repository.search.SearchBoardRepository;
+import com.thisiswe.home.user.entity.UserEntity;
+
 //TODO [Repository] 게시판 - Query
-public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoardRepository {
+public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoardRepository{
 	
 	//TODO [Repository] 게시판 - Query - 게시판 과 작성자 간 join
 	@Query(" select b, u from Board b left join b.userId u where b.boardNum= :boardNum ")
@@ -39,6 +43,10 @@ public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoard
 	 
 	//TODO [Repository] 게시판 - Query - 게시판 조회수 증가
 	 @Modifying
-	 @Query(" update Board b set b.boardView = b.boardView + 1 where b.boardNum = :boardNum")
-	 Long boardView(Long boardNum);
+	 @Transactional
+	 @Query(" update Board b set b.boardView = b.boardView +1 where b.boardNum = :boardNum")
+	 //Long boardView(Long boardNum);
+	 int boardView(Long boardNum);
+	 
+	 Page<Board> findAllByUserId(UserEntity userEntity, Pageable pageable);
 }

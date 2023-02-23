@@ -2,9 +2,6 @@ package com.thisiswe.home.club.board.service;
 
 import java.util.function.Function;
 
-import com.thisiswe.home.club.board.entity.Board;
-import com.thisiswe.home.club.board.reply.repository.ReplyRepository;
-import com.thisiswe.home.club.board.repository.BoardRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -13,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.dto.PageResultDTO;
+import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.board.reply.repository.ReplyRepository;
+import com.thisiswe.home.club.board.repository.BoardRepository;
 import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.RequiredArgsConstructor;
@@ -33,8 +33,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 		public Long register (BoardDTO boardDTO) {
 			
-			log.info("================= ServiceImpl register =================");
-			log.info("================ boardDTO ================> : " + boardDTO);
+			log.info("....... ServiceImpl register ......");
+			log.info("....... boardDTO ......> : " + boardDTO);
 			log.info(boardDTO);
 			log.info("================= ServiceImpl register =================");
 			
@@ -65,20 +65,21 @@ public class BoardServiceImpl implements BoardService {
 	
 	//TODO [ServiceImpl] 게시판 - 페이지 목록(list)
 	@Override
-	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
+	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO, Long clubNum) {
 
-		log.info("================ ServiceImpl Page getList ================");
-		log.info("========== pageRequestDTO ==========> : " + pageRequestDTO);
-		log.info("================ ServiceImpl Page getList ================");
+		log.info("............... ServiceImpl Page getList ...............");
+		log.info("............... pageRequestDTO  : " + pageRequestDTO);
 		
 		Function<Object[], BoardDTO> func = (en ->
 									entityToBoardDTO((Board)en[0], (UserEntity)en[1], (Long)en[2]));
 										
-		Page<Object[]> result = boardRepository.searchPage(
+		Page<Object[]> result = boardRepository.searchPageByClubNum(
 												pageRequestDTO.getType(),
 												pageRequestDTO.getKeyword(),
-												pageRequestDTO.getPageable(Sort.by("boardNum").descending()));								
+												pageRequestDTO.getPageable(Sort.by("boardNum").descending()),
+												clubNum);								
 		
+		log.info("................ /ServiceImpl Page getList ..............");
 		return new PageResultDTO<>(result, func);
 	}
 
@@ -104,17 +105,19 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	//TODO [ServiceImpl] 게시판 - 조회수 증가(중복 제외)
-	/* @Override
+	@Override
 	public void countView(Long boardNum, BoardDTO boardDTO) {
 		Board board = boardRepository.findById(boardNum).orElseThrow((() ->
 									new IllegalStateException("게시글이 존재하지 않습니다.")));
 		
 		board.countView(boardDTO.getBoardView());
-	}*/
+		}
 
+	/*
 	@Override
 	public Long countView(Long boardNum, BoardDTO boardDTO) {
 		
 		return this.boardRepository.boardView(boardNum);
 	}
+	*/
 }

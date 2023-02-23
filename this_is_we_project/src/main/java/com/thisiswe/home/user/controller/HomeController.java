@@ -1,6 +1,5 @@
 package com.thisiswe.home.user.controller;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +16,8 @@ public class HomeController {
 
 //	@Secured("ROLE_ADMIN")
 	@GetMapping("/home")
-	public String home(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails, Authentication authentication) {
+	public String home(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-		System.out.println(authentication.getPrincipal());
 		// addAttribute()와 같은 기능을 통해 모델에 원하는 속성과 그것에 대한 값을 주어 전달할 뷰에 데이터를 전달할 수 있습니다.
 		model.addAttribute("userNickname", userDetails.getUsername());
 

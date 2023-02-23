@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.enetity.DateEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
@@ -35,6 +36,7 @@ public class Board extends DateEntity{
 	@Column(name="board_num")
 	private Long boardNum;						// 게시글 번호
 	
+	
 	@Column(length=100, name="board_category")
 	private String boardCategory;				// 게시판 카테고리
 	
@@ -48,11 +50,17 @@ public class Board extends DateEntity{
 	@JoinColumn(name="user_id")
 	private UserEntity userId;					// 게시판 유저ID
 	
-	@Column(length=100, name="board_view", columnDefinition = "integer default 0", nullable = true)
+	@Column(length=100, name="board_view", columnDefinition = "integer default 0")
 	private Long boardView;						// 게시판 조회수	
 	
 	@Column(length=100, name="board_replyCount")
 	private Long replyCount;					// 게시판 댓글수
+	
+	/** 모임 번호*/
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="club_num")
+	private ClubEntity clubNum;
+	
 	
 	//boardServiceImpl.java와 연결된다.
 	//TODO [Entity] 게시판 수정하는 부분 - category, title, content

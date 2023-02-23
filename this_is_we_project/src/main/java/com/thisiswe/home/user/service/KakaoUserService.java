@@ -130,7 +130,7 @@ public class KakaoUserService {
 			// role: 일반 사용자
 			UserRoleEnum role = UserRoleEnum.USER;
 			
-			kakaoUser = new UserEntity(nickname, encodedPassword, null, null, email, null, null, false, role, kakaoId);
+			kakaoUser = new UserEntity(nickname, encodedPassword, null, null, null, email, null, null, role, kakaoId);
 			
 			userRepository.save(kakaoUser);
 		}

@@ -15,23 +15,23 @@ input{
     outline: white;
 }
 
-div#로그인 {
+div#sign-in {
     margin-top: 170px;
     text-align: center;
 }
 
 /* 로그인 */
 
-div#로그인>span{
+div#sign-in>span{
     font-size: 21px;
     /* font-weight: bold; */
 }
 
-div#로그인>form{
+div#sign-in>form{
     display: inline
 }
 
-div#로그인>form>input{
+div#sign-in>form>input{
     border-radius: 3px;
     width: 400px;
     height: 50px;
@@ -39,23 +39,23 @@ div#로그인>form>input{
     margin: 7px;
 }
 
-div#로그인>form>input#입력창{
+div#sign-in>form>input#input-target{
     border: solid white;
     border-bottom: solid 1px rgb(197, 197, 197);
     height: 32px;
     font-size: 16px;
 }
 
-div#로그인>form>input#입력창::placeholder{
+div#sign-in>form>input#input-target::placeholder{
     color: rgb(198, 195, 195);
 }
 
-div#로그인>form>span{
+div#sign-in>form>span{
     position: relative;
     right: 43px;
 }
 
-div#로그인>form>span#로그인상태>input{
+div#sign-in>form>span#login-status>input{
     accent-color: rgb(139, 139, 139);
     position: relative;
     width: 20px;
@@ -64,27 +64,27 @@ div#로그인>form>span#로그인상태>input{
     cursor: pointer;
 }
 
-div#로그인>form>span#로그인상태>span{
+div#sign-in>form>span#login-status>span{
     position: relative;
     left: 2px;
     bottom: 3px;
 }
 
-div#로그인>form>span#찾기{
+div#sign-in>form>span#찾기{
     position: relative;
     left: 43px;
 }
 
-div#로그인>form>span#찾기>a{
+div#sign-in>form>span#찾기>a{
     color: grey;
     font-size: 13px;
     text-decoration: none;
 }
-div#로그인>form>span#찾기>a#idfind{
+div#sign-in>form>span#찾기>a#idfind{
 
 }
 
-div#로그인>form>input#로그인버튼{
+div#sign-in>form>input#login-button{
     position: relative;
     right: 3px;
     font-size: 17px;
@@ -94,7 +94,7 @@ div#로그인>form>input#로그인버튼{
     width: 197px;
 }
 
-div#로그인>a#회원가입버튼{
+div#sign-in>a#signup-button{
     position: relative;
     font-size: 17px;
     font-weight: bold;
@@ -108,14 +108,14 @@ div#로그인>a#회원가입버튼{
     bottom: 13px;
 }
 
-div#로그인>a#회원가입버튼>span{
+div#sign-in>a#signup-button>span{
     position: relative;
     top: 12px;
 }
 
 /* 카카오 로그인 */
 
-div#로그인>a#카카오 {
+div#sign-in>a#kakao-signin {
     position: relative;
     left: 2px;
     border-radius: 3px;
@@ -127,17 +127,17 @@ div#로그인>a#카카오 {
     text-decoration: none;
 }
 
-div#로그인>a#카카오:link {
+div#sign-in>a#kakao-signin:link {
     color: black;
 }
 
 
-div#로그인>a#카카오>img {
+div#sign-in>a#kakao-signin>img {
     margin-top: 12px;
     width: 30px;
 }
 
-div#로그인>a#카카오>span {
+div#sign-in>a#kakao-signin>span {
     position: relative;
     left: 6px;
     bottom: 8px;

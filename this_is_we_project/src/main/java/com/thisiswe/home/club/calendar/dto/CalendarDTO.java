@@ -36,10 +36,20 @@ public class CalendarDTO {
 	 */
 	private String clubCalendarDate; //일정 날짜
 	
+	
+	
 	/**
 	 * 일정 시간
 	 */
 	private String clubCalendarTime; //일정 시간
+	/**
+	 * 일정 ?시
+	 */
+	private String clubCalendarTimeH; //일정 시간
+	/**
+	 * 일정 ?분
+	 */
+	private String clubCalendarTimeM; //일정 시간
 	
 	/**
 	 * 장소
