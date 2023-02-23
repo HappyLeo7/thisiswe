@@ -10,41 +10,174 @@
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
 
-
-
+		<!-- club.css 연결 -->
+		<link rel="stylesheet" th:href="@{/css/club.css}" />
+		<!-- /club.css 연결 -->
 		<!-- 내용 -->
+
 		<title>모임 상세페이지</title>
-		<h1>모임 상세페이지</h1>
+
+		<!-- 모임 전체 목록 -->
+		<div class="inner">
+			<h2>모임 상세페이지</h2>
+			
+		<div class="board-table">
+			<div class="club-table-read">
+			<!-- 네비창 (정보, 게시판, 사진첩) -->
+			모임번호 : <input class="clubNum" name="clubNum"
+				th:value="${readDTO.clubNum}" readonly="readonly">
+			<table border="1">
+				<tr>
+					<td><a th:href="@{/thisiswe/club/(num=${readDTO.clubNum})}">정보</a></td>
+					<td><a
+						th:href="@{/thisiswe/club/board/(num=${readDTO.clubNum})}">게시판</a></td>
+					<td><a
+						th:href="@{/thisiswe/club/photo/(num=${readDTO.clubNum})}">사진첩</a></td>
+					<td><a th:href="@{/room}">채팅방</a></td>
+
+				</tr>
+			</table>
+			<!-- /네비창 (정보, 게시판, 사진첩) -->
+
+			<!-- 모임 수정 버튼 -->
+			<table border="0">
+				<tr>
+					<td><a th:href="@{/thisiswe/modify(num=${readDTO.clubNum})}">
+							<button type="button">모임수정버튼</button>
+					</a>
+						<button type="" onclick="memberRe">모임삭제</button>
+
+						<button type="button" onclick="memberRegister()">모임가입</button> 접속중
+						ID : <input class="userId" th:value="${user}" name="userId">
+				</tr>
+			</table>
+			<!-- /모임 수정 버튼 -->
+
+			<table border="1">
+				<tr>
+					<!-- 로고이미지 -->
+					<td rowspan="4"><img
+						th:src="|/display?fileName=${readDTO.clubLogoUrl}|"></td>
+					<!-- /로고이미지 -->
+
+				</tr>
+
+				<!-- userID -->
+				<tr>
+					<td colspan="2">모임장 : <input name="userId"
+						th:value="${readDTO.userId}" readonly="readonly">
+					</td>
+				</tr>
 
 
-		<!-- 네비창 (정보, 게시판, 사진첩) -->
-		모임번호 :	<input class="clubNum" name="clubNum"
-			th:value="${readDTO.clubNum}" readonly="readonly">
-		<table border="1">
-			<tr>
-				<td><a th:href="@{/thisiswe/club/(num=${readDTO.clubNum})}">정보</a></td>
-				<td><a
-					th:href="@{/thisiswe/club/board/(num=${readDTO.clubNum})}">게시판</a></td>
-				<td><a
-					th:href="@{/thisiswe/club/photo/(num=${readDTO.clubNum})}">사진첩</a></td>
-				<td><a th:href="@{/room}">채팅방</a></td>
+				<!-- 모임명 -->
+				<tr>
+					<td colspan="2">모임명 : <input name="clubName"
+						th:value="${readDTO.clubName}" readonly="readonly">
+					</td>
+				</tr>
 
-			</tr>
-		</table>
-		<!-- /네비창 (정보, 게시판, 사진첩) -->
+				<!-- 모임설명 -->
+				<tr>
+					<td colspan="2">모임설명 : <textarea name="clubContent"
+							readonly="readonly">[[${readDTO.clubContent}]]</textarea>
+					</td>
+				</tr>
 
-		<!-- 모임 수정 버튼 -->
-		<table border="0">
-			<tr>
-				<td><a th:href="@{/thisiswe/modify(num=${readDTO.clubNum})}">
-						<button type="button">모임수정버튼</button>
-				</a>
-				<button type="" onclick="memberRe">모임삭제</button>
+				<!-- 지역 -->
+				<tr>
+					<td colspan="2">지역 : <input name="clubPlace"
+						th:value="${readDTO.clubPlace}" readonly="readonly">
+					</td>
+				</tr>
 
-					<button type="button" onclick="memberRegister()">모임가입</button> 접속중
-					ID : <input class="userId" th:value="${user}" name="userId">
-			</tr>
-		</table>
+				<!-- 카테고리 -->
+				<tr>
+					<td colspan="2">관심사 카테고리 : <select size="1"
+						name="clubCategory" required="required">
+							<option th:value="${readDTO.clubCategory}" selected="selected">[[${readDTO.clubCategory}]]</option>
+							<option value="아웃도어/여행">아웃도어/여행</option>
+							<option value="운동/스포츠">운동/스포츠</option>
+							<option value="인문학/책/글">인문학/책/글</option>
+							<option value="업종/직무">업종/직무</option>
+							<option value="외국/언어">외국/언어</option>
+							<option value="문화/공연/축제">문화/공연/축제</option>
+							<option value="음악/악기">음악/악기</option>
+							<option value="공예/만들기">공예/만들기</option>
+							<option value="댄스/무용">댄스/무용</option>
+							<option value="봉사활동">봉사활동</option>
+							<option value="사교/인맥">사교/인맥</option>
+							<option value="차/오토바이">차/오토바이</option>
+							<option value="사진/영상">사진/영상</option>
+							<option value="야구관람">야구관람</option>
+							<option value="게임/오락">게임/오락</option>
+							<option value="요리/제조">요리/제조</option>
+							<option value="반려동물">반려동물</option>
+							<option value="가족/결혼">가족/결혼</option>
+							<option value="자유주제">자유주제</option>
+					</select>
+					</td>
+				</tr>
+
+				<!-- 모임정원 -->
+				<tr>
+
+					<td>모임정원<input name="clubHeadCount"
+						th:value="${readDTO.clubHeadCount}" type="number" min="1"
+						max="300" readonly="readonly"></td>
+				</tr>
+			</table>
+
+			<hr>
+			<!-- 모임 일정표 -->
+			<table border="1">
+				<tr>
+					<th><h3>모임 스케줄표</h3></th>
+					<td><a
+						th:href="@{/thisiswe/club/calendar/register/(num=${readDTO.clubNum})}">
+							<button type="button">일정등록</button>
+					</a></td>
+				<tr>
+				<tr th:each="calendarDTO : ${calendarDTOList}">
+					<td colspan="2">
+						<div>일정 번호 : [[${calendarDTO.clubCalendarNum}]]</div>
+						<div>
+							<a
+								th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">제목
+								: [[${calendarDTO.clubCalendarTitle}]]</a>
+						</div> <br>
+						<div>날짜 : [[${calendarDTO.clubCalendarDate}]]</div>
+						<div>시간 : [[${calendarDTO.clubCalendarTime}]]</div> <br>
+						<div>장소 : [[${calendarDTO.clubCalendarPlace}]]</div> <br>
+						<div>비용 : [[${calendarDTO.clubCalendarPrice}]]원</div> <br>
+					</td>
+				</tr>
+
+				<!-- 
+				<tr>
+					<td rowspan="3">달력이미지</td>
+					<td>날짜 : <input type="date"></td>
+				</tr>
+
+
+				<tr>
+					<td>장소 : <input type="text">
+					</td>
+				</tr>
+
+				<tr>
+					<td>모임비 : <input type="text">
+					</td>
+				</tr>
+
+				 -->
+			</table>
+			<!-- /모임 일정표 -->
+			<!-- /내용 -->
+			</div>
+		</div>
+		</div>
+		<!-- /모임 전체 목록 -->
 
 		<script>
 			function memberRegister() {
@@ -67,10 +200,10 @@
 					contentType : "application/json; charset=UTF-8",
 					dataType : "json",
 					success : function(data) {
-						if(data == true) {
+						if (data == true) {
 							alert("가입 성공");
 							console.log(data);
-						}else {
+						} else {
 							alert("이미 가입된 멤버입니다.");
 							console.log(data);
 						}
@@ -105,137 +238,5 @@
 				} */
 		</script>
 
-		<!-- /모임 수정 버튼 -->
-
-		<table border="1">
-			<tr>
-				<!-- 로고이미지 -->
-				<td rowspan="4"><img
-					th:src="|/display?fileName=${readDTO.clubLogoUrl}|"></td>
-				<!-- /로고이미지 -->
-
-			</tr>
-
-			<!-- userID -->
-			<tr>
-				<td colspan="2">모임장 : <input name="userId"
-					th:value="${readDTO.userId}" readonly="readonly">
-				</td>
-			</tr>
-
-
-			<!-- 모임명 -->
-			<tr>
-				<td colspan="2">모임명 : <input name="clubName"
-					th:value="${readDTO.clubName}" readonly="readonly">
-				</td>
-			</tr>
-
-			<!-- 모임설명 -->
-			<tr>
-				<td colspan="2">모임설명 : <textarea name="clubContent"
-						readonly="readonly">[[${readDTO.clubContent}]]</textarea>
-				</td>
-			</tr>
-
-			<!-- 지역 -->
-			<tr>
-				<td colspan="2">지역 : <input name="clubPlace"
-					th:value="${readDTO.clubPlace}" readonly="readonly">
-				</td>
-			</tr>
-
-			<!-- 카테고리 -->
-			<tr>
-				<td colspan="2">관심사 카테고리 : <select size="1" name="clubCategory"
-					required="required">
-						<option th:value="${readDTO.clubCategory}" selected="selected">[[${readDTO.clubCategory}]]</option>
-						<option value="아웃도어/여행">아웃도어/여행</option>
-						<option value="운동/스포츠">운동/스포츠</option>
-						<option value="인문학/책/글">인문학/책/글</option>
-						<option value="업종/직무">업종/직무</option>
-						<option value="외국/언어">외국/언어</option>
-						<option value="문화/공연/축제">문화/공연/축제</option>
-						<option value="음악/악기">음악/악기</option>
-						<option value="공예/만들기">공예/만들기</option>
-						<option value="댄스/무용">댄스/무용</option>
-						<option value="봉사활동">봉사활동</option>
-						<option value="사교/인맥">사교/인맥</option>
-						<option value="차/오토바이">차/오토바이</option>
-						<option value="사진/영상">사진/영상</option>
-						<option value="야구관람">야구관람</option>
-						<option value="게임/오락">게임/오락</option>
-						<option value="요리/제조">요리/제조</option>
-						<option value="반려동물">반려동물</option>
-						<option value="가족/결혼">가족/결혼</option>
-						<option value="자유주제">자유주제</option>
-				</select>
-				</td>
-			</tr>
-
-
-			<!-- 모임정원 -->
-			<tr>
-
-				<td>모임정원<input name="clubHeadCount"
-					th:value="${readDTO.clubHeadCount}" type="number" min="1" max="300"
-					readonly="readonly"></td>
-			</tr>
-
-		</table>
-
-
-
-		<hr>
-		<!-- 모임 일정표 -->
-	<table border="1">
-			<tr>
-				<th><h3>모임 스케줄표</h3></th>
-				<td><a
-					th:href="@{/thisiswe/club/calendar/register/(num=${readDTO.clubNum})}">
-						<button type="button">일정등록</button>
-				</a></td>
-			<tr>
-			<tr th:each="calendarDTO : ${calendarDTOList}">
-				<td colspan="2">
-					<div>일정 번호 : [[${calendarDTO.clubCalendarNum}]]</div>
-					<div>
-						<a
-							th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">제목
-							: [[${calendarDTO.clubCalendarTitle}]]</a>
-					</div> <br>
-					<div>날짜 : [[${calendarDTO.clubCalendarDate}]]</div>
-					<div>시간 : [[${calendarDTO.clubCalendarTime}]]</div> <br>
-					<div>장소 : [[${calendarDTO.clubCalendarPlace}]]</div> <br>
-					<div>비용 : [[${calendarDTO.clubCalendarPrice}]]원</div> <br>
-				</td>
-
-
-			</tr>
-
-
-			<!-- 
-		<tr>
-		<td rowspan="3">달력이미지</td>
-		<td>날짜 : <input type="date"></td>
-		</tr>
-		
-		
-		<tr>
-		<td>장소 : <input type="text"> </td>
-		</tr>
-		
-		<tr>
-		<td>모임비 : <input type="text"> </td>
-		</tr>
-		 -->
-		</table>
-		<!-- /모임 일정표 -->
-
-		<!-- /내용 -->
-
-
-
 	</th:block>
-
 </th:block>

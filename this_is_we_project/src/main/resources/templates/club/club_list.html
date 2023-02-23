@@ -4,121 +4,117 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
-<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
-	
+<th:block
+	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
-	
-	
-	
-	<!-- 내용 -->
-	<title>모임 목록페이지</title>
-	
-	<tbody>
-		<tr> <!-- "result" 위치 :  clubController GetMapping "/list" ~~~~ .clubLogoList-->
-			<th></th>
-		</tr>
-	</tbody>
-	
-	
-		<div> 
-		<h1>이런 모임은 어떠세요? 선택했나?</h1>
-		</div>
-		
-		<!-- 모임등록버튼 -->
-		<a th:href="@{/thisiswe/register}" style="float: right;">
-			<button type="button">모임등록</button>		
-		</a>
-		<br>
-		<!-- /모임등록버튼 -->
 
-<!-- list 1 -->
+		<!-- club.css 연결 -->
+		<link rel="stylesheet" th:href="@{/css/club.css}" />
+		<!-- /club.css 연결 -->
 
-<!-- 코드가안됨 -->
-<div>
-<div th:each="clubDTO : ${result}" style="border:1px solid black; width: 45%;  margin-top: 3%; margin-right: 4.4%" >
+		<!-- 내용 -->
+		<title>모임 목록페이지</title>
 
-	<div><a th:href="@{/club/read}" style="border:5px;">
-	</a></div>
-	<img th:src="|/display?fileName=${clubDTO.clubLogoUrl}|">
-	<div><a class="clubNum" th:href="@{/thisiswe/club/(num=${clubDTO.clubNum})}">
-    [ [[${clubDTO.clubName}]] ]모임명</a></div>
-    <div>지역:([[${clubDTO.clubPlace}]])</div>
-    <div>카테고리:([[${clubDTO.clubCategory}]])</div>
-    <div>인원:([[${clubDTO.clubHeadCount}]])</div>
-    <div>모임장:([[${clubDTO.userNickname}]])</div>
+		<tbody>
+			<tr>
+				<!-- "result" 위치 :  clubController GetMapping "/list" ~~~~ .clubLogoList-->
+				<th></th>
+			</tr>
+		</tbody>
 
-</div>
-</div>
+		<!-- 모임 전체 목록 -->
+		<div class="inner">
+			<h2>이런 모임은 어떠세요? 선택했나?</h2>
 
+			<!-- 모임 등록 버튼 -->
+			<div class="board-regi">
+				<a th:href="@{/thisiswe/register}"> <span>
+						<button type="button" class="searchBtn-regi">모임등록</button>
+				</span>
+				</a>
+			</div>
+			<!-- /모임 등록 버튼 -->
+			<br><br>
+			
+			<!-- list 1 -->
+			<!-- 코드가안됨 -->
+			<div class="board-table">
+				<div class="club-table" th:each="clubDTO : ${result}">
+					<img th:src="|/display?fileName=${clubDTO.clubLogoUrl}|">
+					<div class="club-table-liRe">
+						<a th:href="@{/club/read}"></a>
+					</div>
+					<div>
+						<a class="clubNum" th:href="@{/thisiswe/club/(num=${clubDTO.clubNum})}"> [ [[${clubDTO.clubName}]] ]모임명</a>
+					</div>
+					<div>지역:([[${clubDTO.clubPlace}]])</div>
+					<div>카테고리:([[${clubDTO.clubCategory}]])</div>
+					<div>인원:([[${clubDTO.clubHeadCount}]])</div>
+					<div>모임장:([[${clubDTO.userNickname}]])</div>
+				</div>
+			</div>
 
+			<br><br>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<!-- 검색 -->
-		
-	<div>
-		<form th:action="@{/thisiswe/club}" th:method="get" style="float: right;">
-		<select name="type">
-			<option th:selected="${pageRequestDTO.type==null}">------</option>
-			<option th:selected="${pageRequestDTO.type=='N'}" value="N">모임명</option>
-			<!-- <option th:selected="${pageRequestDTO.type=='C'}" value="C">내용</option> -->
-			<option th:selected="${pageRequestDTO.type=='G'}" value="G">카테고리</option>
-			<option th:selected="${pageRequestDTO.type=='P'}" value="P">지역</option>
-		</select>
-		<input type="text" name="keyword" th:value="${pageRequestDTO.keyword}">
-		<button type="submit">검색</button>
-		</form>
-	</div>
-		 
+			<!-- 검색 -->
+			<div class="board-search">
+				<div class="board-search_sub">
+					<form id="searchForm" th:action="@{/thisiswe/club}" th:method="get">
+						<select id="searchColumn" name="type">
+							<option th:selected="${pageRequestDTO.type==null}">------</option>
+							<option th:selected="${pageRequestDTO.type=='N'}" value="N">모임명</option>
+							<!-- <option th:selected="${pageRequestDTO.type=='C'}" value="C">내용</option> -->
+							<option th:selected="${pageRequestDTO.type=='G'}" value="G">카테고리</option>
+							<option th:selected="${pageRequestDTO.type=='P'}" value="P">지역</option>
+						</select> <input type="text" id="searchWord" name="keyword"
+							th:value="${pageRequestDTO.keyword}">
+						<button type="submit" class="searchBtn">검색</button>
+					</form>
+				</div>
+			</div>
+			<!-- /검색 -->
 
-<!-- /검색 -->
-
-
-<!-- 페이지 처리  -->
- <ul>
-	
-	<!-- 이전버튼 -->
-	<li th:if="${Page.prev}">
-		<a th:href="@{/thisiswe/club(page=${Page.start-1},
-									type=${pageRequestDTO.type},
-									keyword=${pageRequestDTO.keyword})}" tabindex="-1">이전</a>
-	</li>
-	  <!-- 페이지 버튼 -->
-       <li th:each="page: ${resultPage}">
-        <a class="" th:href="@{/thisiswe/club(page=${page},
-                                        type=${pageRequestDTO.type},
-                                        keyword=${pageRequestDTO.keyword}
+			<!-- 페이지 부분 : 이동, 이전, 다음 -->
+			<div class="paginate">
+				<ul class="">
+					<!-- 이전버튼 -->
+					<li class="link-page active" th:if="${Page.prev}">
+						<a class="paginate-link" th:href="@{/thisiswe/club(page=${Page.start-1},
+																		   type=${pageRequestDTO.type},
+																		   keyword=${pageRequestDTO.keyword})}"
+						tabindex="-1">이전</a>
+					</li>
+					<!-- 페이지 버튼 -->
+					<li th:each="page: ${resultPage}">
+						<a class="paginate-link" th:href="@{/thisiswe/club(page=${page},
+                                        					  			   type=${pageRequestDTO.type},
+                                      						  			   keyword=${pageRequestDTO.keyword}
   
-                            )}">[[${page}]]</a>  
-      </li>
-      <!-- 다음버튼 -->
-  <li th:each="page: ${Page.next}"> 
-  <a th:href="@{/thisiswe/club(page=${Page.end+1},
-  								type=${pageRequestDTO.type},
-  								keyword=${pageRequestDTO.keyword})}" tabindex="-1">다음
-  </a> 
-  </li>
-</ul>
-<!-- 페이지 처리  -->
+                            )}">[[${page}]]</a>
+					</li>
+					<!-- 다음버튼 -->
+					<li class="link-page-active" th:each="page: ${Page.next}">
+						<a class="paginate-link" th:href="@{/thisiswe/club(page=${Page.end+1},
+  																		   type=${pageRequestDTO.type},
+  																		   keyword=${pageRequestDTO.keyword})}"
+						tabindex="-1">다음 </a>
+					</li>
+				</ul>
+			</div>
+			<!-- /페이지 부분 : 이동, 이전, 다음 -->
+		</div>
+		<!-- /모임 전체 목록 -->
+		<!-- /내용 -->
 
-<br>
 
 
-	<!-- /내용 -->
-	
-	
-	
 	</th:block>
 
 </th:block>
 <script type="text/javascript">
-$(".clubNum").on("click",function(){
-	console.log("모임 상세 클릭");
-})
+	$(".clubNum").on("click", function() {
+		console.log("모임 상세 클릭");
+	})
 </script>

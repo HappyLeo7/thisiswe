@@ -1,0 +1,141 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+	;
+
+/* 프로젝트 포인트 색상(임의 01) : #e4481b; - 주황색 */
+/* 프로젝트 포인트 색상(임의 02) : #0d5718; - 초록색 */
+/* 프로젝트 포인트 색상(팬톤 올해의 컬러 2023) : #BB2649; - 비바마젠타 */
+
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+/* [START][club] - 공통으로 들어가는 부분 */
+.inner {
+	margin: 30px 5px 30px 5px;
+	padding: 5px 5px 5px 5px;
+}
+div>h2 {
+	text-align: center;
+}
+/* [END][club] - 공통으로 들어가는 부분 */
+/* [START][list] - 모임 등록 버튼 */
+.board-regi{
+	overflow: hidden;
+	position: relative;
+	font-size: 1.6rem;    
+    display: inline-block;
+    height: 50px;
+    margin: 5px 0 5px 0;
+    position: relative;
+	float: right;
+}
+.searchBtn-regi{
+	height: 45px;
+	border: 1px solid #ffffff;
+    border-radius: 5px;
+	background-color: white;
+	width: 100px;
+    margin: 0 1px 0 1px;
+	cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}  
+.searchBtn-regi:hover{
+    box-shadow: 0 2px 3px rgba(0,0,0,0.25), 0 2px 3px rgba(0,0,0,0.22);
+}
+/* [END][list] - 모임 등록 버튼 */
+/* [START][list] - 검색창 */
+.board-search {
+    overflow: hidden;
+    height: 100px;
+    margin: 5px 0 5px 0;
+    text-align: center;
+}
+.board-search_sub{
+    margin-top: 15px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    font-size: 1.6rem;
+    text-align: right;
+}
+#searchForm {
+	margin-top: 12px;
+    margin-bottom: 12px;
+}
+#searchColumn {
+	height: 45px;
+	border: 1px solid #e0e0e0;
+	padding: 0 0 0 10px;
+	background-size: 23px;
+	cursor: pointer;
+}
+#searchWord {
+	height: 45px;
+	border: 1px solid #e0e0e0;
+	width: 250px;
+	padding: 0 0 0 10px;
+	background-size: 23px;
+	cursor: pointer;
+}
+.searchBtn {
+	height: 45px;
+	border: 1px solid #e0e0e0;
+	background-color: white;
+	width: 60px;
+	padding: 10px;
+	cursor: pointer;
+}
+.searchBtn:focus{
+	outline: none;
+    border: 2px solid;
+    border-radius: 4px;
+    border-color: #232323;
+}
+/* [END][list] - 검색창 */
+/* [START][list] - 페이지 처리 부분 */
+.paginate{
+	width: 100%;
+    margin: 50px 0 20px;
+    text-align: center;
+}
+.paginate-link{
+	display: inline-block;
+    width: 38px;
+    height: 36px;
+    margin-right: 5px;
+    border: 1px solid #d9d9d9;
+    color: #666;
+    line-height: 34px;
+    vertical-align: middle;
+}
+/* [END][list] - 페이지 처리 부분 */
+/*[START][list] - 목록 list 부분 */
+.board-table {
+	margin: 30px 0 0 0;
+	width: 100%;
+	border-spacing: 0;
+	word-break: break-all;
+	text-indent: initial;
+	border-top: 1px solid #191919;
+	border-bottom: 1px solid #191919;
+}
+.club-table{
+	margin: 10px;
+	padding: 10px;
+	background-color: #f0f0f0;
+}
+.club-table img{
+	width: 300px;
+  	height: 200px;
+  	object-fit: fill;
+}
+/* [END][list] - 목록 list 부분 */
+/* ----------------------------------- */
+/*[START][read] - 부분 */
+.club-table-read{
+	margin: 10px;
+	padding: 10px;
+	background-color: #f0f0f0;
+}
+/*[END][read] - 부분 */
