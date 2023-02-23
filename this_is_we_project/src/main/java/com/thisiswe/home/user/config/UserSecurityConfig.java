@@ -47,26 +47,34 @@ public class UserSecurityConfig {
 		.antMatchers("/notice/**").permitAll()
 		.antMatchers("/thisiswe/**").permitAll()
 //		.antMatchers("/**").permitAll()
+
 		
 		// 그 외 어떤 요청이든 '인증'
 		.anyRequest().authenticated()
 		.and()
+		
 		// 로그인 기능 허용
 		.formLogin()
+		
 		// 로그인 View 제공 (GET /user/login)
-		.loginPage("/login/user/login")
-		// 로그인 처리 (POST /user/login)
-		.loginProcessingUrl("/user/login")
-		// 로그인 처리 후 성공 시 URL
-		.defaultSuccessUrl("/")
+		.loginPage("/thisiswe/login")
+//		.loginPage("/user/login")
+		
+		// 로그인 즉 인증 처리를 하는 URL을 설정합니다. 
+		.loginProcessingUrl("/thisiswe/login")
+//		.loginProcessingUrl("/user/login")
+		
+		// 정상적으로 인증성공 했을 경우 이동하고자 하는 페이지를 설정합니다. (default는 /)
+		.defaultSuccessUrl("/thisiswe/home")
+		
 		// 로그인 실패 후 이동 페이지
-		.failureUrl("/login/user/login?error")
+		.failureUrl("/thisiswe/user/login?error")
 		.permitAll()
 		.and()
 		// [로그아웃 기능]
 		.logout()
 		// 로그아웃 요청 처리 URL
-		.logoutUrl("/user/logout")
+		.logoutUrl("/logout")
 		.permitAll()
 		.and()
 		.exceptionHandling()

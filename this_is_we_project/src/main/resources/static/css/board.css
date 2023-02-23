@@ -45,10 +45,10 @@
     height: 2px;
     background: #e4481b;
     content: "";
-    opacity: 0.2;
-    -moz-transition: all 0.4s;
-    -webkit-transition: all 0.4s;
-    transition: all 0.4s;
+    opacity: 0.8;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
     pointer-events: none;
     }
 
@@ -76,11 +76,12 @@
 
 .top-inner-eff a:hover:before,.top-inner-eff a:hover:after,
 .top-inner-eff a:focus:before,.top-inner-eff a:focus:after {
-        opacity: 1;
+    opacity: 1;
     }
 
 .top-inner-eff a:hover:before,.top-inner-eff a:focus:before {
     left: 50%;
+    left: 45%;
     -webkit-transform: rotate(0deg) translateX(-50%);
     -moz-transform: rotate(0deg) translateX(-50%);
     transform: rotate(0deg) translateX(-50%);
@@ -88,6 +89,7 @@
 
 .top-inner-eff a:hover:after,.top-inner-eff a:focus:after {
     right: 50%;
+    right: 45%;
     -webkit-transform: rotate(0deg) translateX(50%);
     -moz-transform: rotate(0deg) translateX(50%);
     transform: rotate(0deg) translateX(50%);

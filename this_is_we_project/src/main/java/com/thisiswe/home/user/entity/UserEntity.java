@@ -34,6 +34,9 @@ public class UserEntity {
 	@Column(unique = true, length=100, name="user_nickname")
 	private String userNickname; // 닉네임
 	
+	@Column(unique = true, length=100, name="user_name")
+	private String userName; // 실제 이름
+	
 	@Column(length=20, name="user_gender")
 	private String userGender; // 성별
 	
@@ -41,7 +44,6 @@ public class UserEntity {
 	private String userEmail; // 이메일
 	
 	@Column(length=100, name="user_phone_number")
-
 	private String userPhoneNumber; // 핸드폰번호
 
 	// 이미지
@@ -55,15 +57,28 @@ public class UserEntity {
 	@Column
 	@Enumerated(value = EnumType.STRING)
 	private UserRoleEnum role;
-
+	
 
 	@Column(unique = true)
 	private Long kakaoId;
 	
-	public UserEntity(String userId, String password, String userNickname, String userGender, String userEmail, String userPhoneNumber, String userImageUrl, UserRoleEnum role) {
+	public UserEntity(String userId, String password, String userNickname, String userName ,String userGender, String userEmail, String userPhoneNumber, String userImageUrl, UserRoleEnum role) {
 		this.userId = userId;
 		this.userPassword = password;
 		this.userNickname = userNickname;
+		this.userName = userName;
+		this.userGender = userGender;
+		this.userEmail = userEmail;
+		this.userPhoneNumber = userPhoneNumber;
+		this.userImageUrl = userImageUrl;
+		this.role = role;
+		}
+	
+	public UserEntity(String userId, String password, String userNickname, String userName, String userGender, String userEmail, String userPhoneNumber, String userImageUrl, UserRoleEnum role, Long kakaoId) {
+		this.userId = userId;
+		this.userPassword = password;
+		this.userNickname = userNickname;
+		this.userName = userName;
 		this.userGender = userGender;
 		this.userEmail = userEmail;
 		this.userPhoneNumber = userPhoneNumber;
@@ -71,14 +86,21 @@ public class UserEntity {
 		this.role = role;
 		}
 
-//	public void changeName(String name) {
-//		this.userNickname = name; // 닉네임 변경
-//	}
-//	
-//	
-//	public void changePassword(String password) {
-//		this.userPassword = password; // 패스워드 변경
-//	}
+	public void changeNickName(String name) {
+		this.userNickname = name; // 닉네임 변경
+	}
+	
+	
+	public void changePassword(String password) {
+		this.userPassword = password; // 패스워드 변경
+	}
 
+	public void changeImage(String userImageUrl) {
+		this.userImageUrl = userImageUrl; // 이미지 변경
+	}
+	
+	
+	
+    
 }
 

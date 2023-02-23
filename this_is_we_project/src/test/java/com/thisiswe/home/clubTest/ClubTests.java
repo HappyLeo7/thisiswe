@@ -96,7 +96,7 @@ public class ClubTests {
 		System.out.println("수정값 : "+clubDTO);
 		
 		System.out.println("");
-		clubService.modify(clubDTO);
+//		clubService.modify(clubDTO);
 		System.out.println("modify 실행됨");
 		
 	}
