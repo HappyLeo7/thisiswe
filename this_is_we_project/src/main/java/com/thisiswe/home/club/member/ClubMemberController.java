@@ -23,14 +23,14 @@ public class ClubMemberController {
 	
 	
 	@PostMapping("/member")
-	public ResponseEntity<Long> clubMemberber_register(@RequestBody ClubMemberDTO clubMemberDTO) {
+	public ResponseEntity<Boolean> clubMember_register(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody ClubMemberDTO clubMemberDTO) {
 		
 		log.info("==== post club member register() ====");
 		log.info(clubMemberDTO);
-		
-		clubMemberService.clubMemberRegister(clubMemberDTO);
+
+		boolean checkMember = clubMemberService.clubMemberRegister(userDetails.getUsername(), clubMemberDTO);
 		
 		log.info("==== /post club member register() ====");
-		return new ResponseEntity<Long>(clubMemberDTO.getClubNum(), HttpStatus.OK);
+		return new ResponseEntity<Boolean>(checkMember, HttpStatus.OK);
 	}
 }
