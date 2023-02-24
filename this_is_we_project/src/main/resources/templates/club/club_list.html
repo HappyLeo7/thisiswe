@@ -29,7 +29,7 @@
 			<h2>이런 모임은 어떠세요? 선택했나?</h2>
 
 			<!-- 모임 등록 버튼 -->
-			<div class="board-regi">
+			<div class="club-regi">
 				<a th:href="@{/thisiswe/register}"> <span>
 						<button type="button" class="searchBtn-regi">모임등록</button>
 				</span>
@@ -40,8 +40,8 @@
 			
 			<!-- list 1 -->
 			<!-- 코드가안됨 -->
-			<div class="board-table">
-				<div class="club-table" th:each="clubDTO : ${result}">
+			<div class="club-table">
+				<div class="club-table-li" th:each="clubDTO : ${result}">
 					<img th:src="|/display?fileName=${clubDTO.clubLogoUrl}|">
 					<div class="club-table-liRe">
 						<a th:href="@{/club/read}"></a>
@@ -59,8 +59,8 @@
 			<br><br>
 
 			<!-- 검색 -->
-			<div class="board-search">
-				<div class="board-search_sub">
+			<div class="club-search">
+				<div class="club-search_sub">
 					<form id="searchForm" th:action="@{/thisiswe/club}" th:method="get">
 						<select id="searchColumn" name="type">
 							<option th:selected="${pageRequestDTO.type==null}">------</option>
