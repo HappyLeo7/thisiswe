@@ -98,9 +98,6 @@ public class UserEntity {
 	public void changeImage(String userImageUrl) {
 		this.userImageUrl = userImageUrl; // 이미지 변경
 	}
-	
-	
-	
-    
+  
 }
 

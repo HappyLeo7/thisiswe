@@ -2,9 +2,13 @@ package com.thisiswe.home.user.mypage;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.dto.ClubDTO;
+import com.thisiswe.home.club.photo.dto.PhotoDTO;
 import com.thisiswe.home.user.entity.UserEntity;
 
 public interface MypageService {
@@ -35,17 +39,13 @@ public interface MypageService {
 	void getUserInfo(String username);
 
 	// 회원정보 수정
-	void modifyUserInfo(MypageDTO mypageDTO);
-	
-	public List<BoardDTO> getUserBoards(String username);
+	void modifyUserInfo(MultipartFile userImageFile, String userNickname, String userPassword, String userId);
 	
 	// TODO [Service] 게시판 - 페이지 목록(list)
 	public MyPageResultDTO<BoardDTO, Board> getList(PageRequestDTO pageRequestDTO, String userId);
 
-	public void getUserClubs(String username);
-
 	// 사진을 받는 메서드
-	public void insertUserImage(String username);
+
 
 
 	

@@ -22,32 +22,29 @@
 				class="login-input-box" placeholder="아이디"> <br> 
 				<input type="password" id="input-target" name="password"
 				class="login-input-box" placeholder="비밀번호"> <br> 
-				<span
-				id="login-status"><input type="checkbox">
-				 <span>로그인
-					상태 유지</span></span>
-			<!--             <span id="찾기"><a href="" id="idfind">아이디 찾기 </a> -->
-			<!--             <span style="color: grey; font-size: 7px; border-left: 1px solid;">&nbsp</span><a href="">비밀번호 찾기</a></span> -->
-			<br> <input id="login-button" type="submit" value="로그인"
+				<input id="login-button" type="submit" value="로그인"
 				style="cursor: pointer;">
 		</form>
 		<a href="/thisiswe/signup" id="signup-button"><span>회원가입</span></a><br>
 		<a href="https://kauth.kakao.com/oauth/authorize?client_id=5bd1dab16ee774baea6d62d812f5b773&redirect_uri=http://localhost:8080/login/oauth2/code/kakao&response_type=code"
 			id="kakao-signin">
-			<img src="" alt=""><img src="이미지/카카오톡 말풍선.png" alt="">
+			<br>
 			<span>카카오 로그인</span></a>
+			
+			<br><br>
+			<div id="login-failed" style="display:none" class="alert alert-danger" role="alert">로그인에 실패하였습니다.</div>
 	</div>
-	<div id="login-failed" style="display: none" class="alert alert-danger"
-		role="alert">로그인에 실패하였습니다.</div>
 
-
-	<script>
-	const href = location.href;
-	const queryString = href.substring(href.indexOf("?")+1)
-		if (queryString === 'error') {
-			const errorDiv = document.getElementById('login-failed');
-				errorDiv.style.display = 'block';
-		}
-</script>
 </body>
+	
+
+
+<script>
+const href = location.href;
+const queryString = href.substring(href.indexOf("?")+1)
+if (queryString === 'error') {
+const errorDiv = document.getElementById('login-failed');
+errorDiv.style.display = 'block';
+}
+</script>
 </html>

@@ -1,5 +1,7 @@
 package com.thisiswe.home.user.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -36,8 +38,16 @@ public class UserController {
 	
 	// post login 이동
 	@PostMapping("/login")
-	public String loginsucces() {
-		return "login/login";
+	public String loginsucces(@AuthenticationPrincipal UserDetailsImpl userDetails, HttpSession session) {
+		session.setAttribute("userDetails", userDetails);
+	    return "redirect:/thisiswe/home";
+	}
+	
+	// 회원 로그아웃
+	@PostMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("userDetails");
+		return "redirect:/thisiswe/login";
 	}
 
 	// 회원 가입 페이지
@@ -68,7 +78,7 @@ public class UserController {
 	public String getUserInfo(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 		// 첫번째 방법
 		
-		model.addAttribute("userId", userDetails.getUserEntity().getUserId());
+		model.addAttribute("userId", userDetails.getUsername());
 		model.addAttribute("userNickname", userDetails.getUserEntity().getUserNickname());
 		model.addAttribute("userEmail", userDetails.getUserEntity().getUserEmail());
 

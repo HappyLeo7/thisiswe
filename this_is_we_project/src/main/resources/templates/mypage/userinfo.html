@@ -27,6 +27,12 @@
 		}
 	}
 </script>
+  <style>
+    #previewImage {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
 </head>
 
 <body>
@@ -34,7 +40,12 @@
     <span>회원정보 수정</span><br>
       <span class="signup-classification">아이디</span><br>
       <span class="test" th:text="${userId}"></span> <br>
-      	
+      
+      <span class="signup-classification">이미지</span><br>
+      <img id="previewImage" src="#" alt="미리보기 이미지"> <br>
+      <input type="file" id="userImageFile" name="userImageFile" accept="image/*"><br>
+      
+      
       <span class="signup-classification">비밀번호</span><br>
       <input id="password" name="userPassword" type="password" placeholder="변경할 비밀번호를 입력해 주세요." onfocus="checkPassword(this)">
       <span class="verification" id="passwordCheck"> </span><br>
@@ -44,18 +55,40 @@
       <input type="text" name="userNickname" class="login-input-nickname" placeholder="변경할 닉네임을 입력해 주세요." onfocus="nicknamecheck(this)">
       <span class="verification" id="nicknameCheck"> </span><br>
 
-      <!-- <button id="signup-button" class="signup-button-class">회원 가입</button> -->
       <button type="button" class="btn btn-warning modifyBtn">수정하기 </button>
   </div>
   <script th:inline="javascript">
+  var inputImageFile = document.getElementById('userImageFile');
+  var previewImage = document.getElementById('previewImage');
+
+  inputImageFile.addEventListener('change', function() {
+    var file = inputImageFile.files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function() {
+      previewImage.src = reader.result;
+    }
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      previewImage.src = "";
+    }
+  });
+  
+  
+  
+  
   $(document).ready(function() {
       
 	  // controller에서 가져온 값을 userId라는 변수에 넣기.
 	  let userId = [[${userId}]];
 	  console.log("TEST ==============> " + userId);
 	  
+	  var inputImageFile = $('input[name="userImageFile"]');
       var inputNickname = $('input[name="userNickname"]');
       var inputPassword = $('input[name="userPassword"]');
+      
       
 
       
@@ -64,58 +97,28 @@
       
       $(".modifyBtn").on("click", function(){
 
-          var data = {userId:userId, userNickname:inputNickname.val(), userPassword: inputPassword.val() };
+    	    var formData = new FormData();
+    	    formData.append("userId", userId);
+    	    formData.append("userImageFile", inputImageFile[0].files[0]);
+    	    formData.append("userNickname", inputNickname.val());
+    	    formData.append("userPassword", inputPassword.val());
 
-          console.log(data);
+    	    console.log(formData);
 
-          $.ajax({
-              url: '/thisiswe/mypage/' + userId ,  
-              type:"PUT",
-              data:JSON.stringify(data),
-              contentType:"application/json; charset=utf-8",
-              dataType:"text",
-              success: function(result){
-
-                  console.log("result: " + result);
-
-                  /* self.location.reload(); */
-
-              }
+    	    $.ajax({
+    	      url: '/thisiswe/mypage/' + userId ,  
+    	      type: "PUT",
+    	      data: formData,
+    	      // contentType: false 옵션을 사용하면 multipart/form-data 형식으로 데이터를 보내기 때문에 
+    	      // @RequestBody 어노테이션을 사용하여 요청 본문을 객체로 변환할 수 없습니다.
+    	      contentType: false,
+    	      processData: false,
+    	      success: function(){
+    	        alert("수정완료했습니다.")
+    	      }
           })
       });
       
-  $(".nicknameVerificationCheckBtn").on("click", function(){
-	  
-      // 양식을 잘 지켯는지 확인하기 위해
-      var userNicknameForm = $("#nicknameCheck").html();
-      
-      // 실제로 입력받은 값.
-      var userNickname = $(".login-input-nickname").val();
-	  
-      console.log("양식을 지켰는지에 대한 내용" + userNicknameForm);
-      console.log("실제로 입력받은 값" + userNickname);
-
-              $.ajax({
-                  url:'/thisiswe/userEmail/' + userNickname , //Controller에서 요청 받을 주소
-                  type:"POST", // post 방식으로 전달
-                  success: function(result){ //컨트롤러에서 넘어온 result값을 받는다 
-
-                      console.log("result: " + result);
-
-                  	if(result==true) {
-                  		alert("중복이야");
-                  	}
-                  	else {
-                  		if(userNicknameForm == "") {
-                  			alert("사용해도 된다");
-                  		}
-                  		else
-                  			alert("양식을 지켜달라에요");
-                  	}
-                      /* self.location.reload(); */
-                  }
-              })
-          });
   });
   
   </script>

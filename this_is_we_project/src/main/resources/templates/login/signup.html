@@ -66,14 +66,15 @@ function onclickAdmin() {
       
       <span class="signup-classification">이메일</span><br>
       <button type="button" class="emailCodeVerificationCheckPushBtn">이메일코드 보내기 </button>
-      <button type="button" class="emailVerificationCheckBtn">이메일 검증 </button>
       <input type="text" id="email-input" class="login-input-email" name="userEmail" placeholder="이메일을 입력해 주세요." onfocus="checkEmail(this)">
-      <span class="signup-classification">이메일 인증코드 확인</span><br>
-      <input type="text" id="emailcode-input" class="login-input-emailCode" name="userEmailCode">
+      <span class="signup-classification email-verification-check" style="display: none;" >이메일 인증코드 확인</span><br>
+      <button type="button" class="emailVerificationCheckBtn" style="display: none;">이메일 검증 </button>
+      <input type="text" id="emailcode-input" class="login-input-emailCode" name="userEmailCode" style="display: none;">
       <span class="verification" id="emailCheck"> </span><br>
         
       <span class="signup-classification">휴대전화</span><br>
-      <input type="tel" name="userPhoneNumber" placeholder="휴대전화번호를 입력해 주세요.">
+      <input type="tel" name="userPhoneNumber" placeholder="(-)를 제외한 휴대전화번호를 입력해 주세요." onfocus="checkPhoneCheck(this)">
+      <span class="verification" id="phoneCheck"> </span><br>
 
 
 	  <div>
@@ -101,6 +102,7 @@ function onclickAdmin() {
   var nicknamePass = false; // 초기값을 boolean 타입으로 설정
   var userIdPass = false; // 초기값을 boolean 타입으로 설정
   var emailCodePass = false; // 초기값을 boolean 타입으로 설정
+  
   
   $(document).ready(function() {
 
@@ -193,6 +195,25 @@ function onclickAdmin() {
 	  
 	  var emailCheck = $(".login-input-email").val();
 
+	  
+	  // 이메일 입력란 값 확인
+	  const emailInput = document.querySelector('#email-input').value;
+	  if (!emailInput) {
+	    alert('이메일을 입력해주세요.');
+	    return;
+	  }
+
+		// 이메일 검증 버튼, 인증코드 입력란, 이메일 인증코드 확인 부분 보이기
+		const emailVerification = document.querySelector('.email-verification-check');
+	    const emailVerificationCheckBtn = document.querySelector('.emailVerificationCheckBtn');
+	    const emailCodeInput = document.querySelector('#emailcode-input');
+
+
+	    emailVerification.style.display = 'block';
+	    emailVerificationCheckBtn.style.display = 'block';
+	    emailCodeInput.style.display = 'block';
+
+	  
       console.log("===========emailCheck===== : " + emailCheck);
  
 
@@ -368,6 +389,21 @@ function checkEmail(elem) {
     allcollect();
   });
 }
+
+
+//휴대전화 체크
+function checkPhoneCheck(elem) {
+  elem.addEventListener("keyup", () => {
+    const pattern4 = /^(?:(010\d{4})|(01[1|6|7|8|9]\d{3,4}))(\d{4})$/i;
+    document.getElementById("phoneCheck").innerHTML = pattern4.test(
+      elem.value
+    )
+      ? ""
+      : "-를 제외한 휴대폰번호를 입력해주세요";
+    allcollect();
+  });
+}
+
 
 // 전체 체크 및 체크해제
 function allchecked(elem) {
