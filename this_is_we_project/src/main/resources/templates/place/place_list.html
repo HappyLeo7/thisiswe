@@ -7,22 +7,41 @@
    
    <!-- 지정한 변수로 연결할 위치 -->
 <th:block th:fragment="connection">
+<style>
+	.active {
+	color : orange;
+	}
+	
+</style>
+
 
 <div style="text-align: center;">
 	<form action="">
 		<select>
-			<option></option>
-			<option></option>
-			<option></option>
-			<option></option>
+			<option value="">카테고리 선택</option>
+			<option value="">파티룸</option>
+			<option value="">연습실</option>
+			<option value="">스튜디오</option>
+			<option value="">공연장</option>
+			<option value="">스터디 룸</option>
+			<option value="">회의실</option>
+			<option value="">공유 주방</option>
+			<option value="">기타</option>
 		</select>
+		
 		<input type="text">
 		<input type="submit" value="검색">
 	</form>
 	<div> 이 장소는 어떠세요</div> 
 	<a th:href="@{/thisiswe/place/register}"><button type="button" style="float: right;">장소 추가</button></a>
+	<select style="float: left;">
+			<option value="">최신순</option>
+			<option value="">오래된 순</option>
+			<option value="">별점순</option>
+	</select>
 	<br>
 	<br>
+	
 			<div style="display: inline-block;width: 40%" th:each="dto : ${placeList.dtoList}">
 				<div style="border: solid 1px;">
 					<a th:href="@{/thisiswe/place/c(num=${dto.placeNum})}" style="border: solid 1px;">

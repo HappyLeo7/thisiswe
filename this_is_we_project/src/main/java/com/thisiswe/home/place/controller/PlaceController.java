@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thisiswe.home.place.dto.PlaceDTO;
 import com.thisiswe.home.place.dto.PlacePageRequestDTO;
+import com.thisiswe.home.place.dto.PlaceReviewPageRequestDTO;
 import com.thisiswe.home.place.service.PlaceReviewService;
 import com.thisiswe.home.place.service.PlaceService;
 import com.thisiswe.home.user.security.UserDetailsImpl;
@@ -36,8 +37,9 @@ public class PlaceController {
 	@GetMapping("/place/c{num}")
 	public String placeRead(Long num, Model model, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		log.info("================(get)placeReadController==============");
-		model.addAttribute("place", placeService.read(num));
 		model.addAttribute("loginID", userDetailsImpl.getUsername());
+		model.addAttribute("place", placeService.read(num));
+
 		return "place/place_read";
 	}
 
