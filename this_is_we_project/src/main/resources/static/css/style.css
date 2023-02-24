@@ -4,6 +4,7 @@
 
 /* 프로젝트 포인트 색상(임의 01) : #e4481b; - 주황색 */
 /* 프로젝트 포인트 색상(임의 02) : #0d5718; - 초록색 */
+/* 프로젝트 포인트 색상(팬톤 올해의 컬러 2023) : #BB2649; - 비바마젠타 */
 
 /* [ALL][CSS] header, body, footer */
 * {
@@ -11,9 +12,10 @@
 }
 
 body {
-	background: #eee;
+	/* background: #eee; */
+	background: #383838;
 	font-size: 16px;
-	color: #000;
+	color: #fff;
 	margin: 10px;
 	padding: 10px;
 }
@@ -35,7 +37,7 @@ a {
 }
 
 a:hover {
-	color: #e4481b;
+	color: #BB2649;
 }
 
 /* [header] swiper 부분 크기 및 간격 조정*/
@@ -73,7 +75,6 @@ ul li {
 	height: 100%;
 	overflow: hidden;
 	position: relative;
-	background-color: #FFF;
 }
 /* [상단 메뉴바] - container-p -  */
 .container-p{
@@ -208,8 +209,8 @@ html.active #overlay {
 	position: relative;
 }
 .logo-img{
-	width: 27%;
-	height: 27%;
+	width: 20%;
+	height: 20%;
 }
 /* [수정예정] 홈페이지 상단바_로고 부분 */
 .logo>a {
@@ -219,8 +220,8 @@ html.active #overlay {
 }
 
 .sign-up {
-	background-color: #e4481b;
-	border: 1px solid #e4481b;
+	background-color: #BB2649;
+	border: 1px solid #BB2649;
 	color: #FFF;
 	font-size: 24px;
 	font-weight: bold;
@@ -387,8 +388,8 @@ html.active menu .container {
 	font-size: 40px;
 	line-height: 40px;
  	top: 0;
-	left: 0;
- 	margin: 30px 20px;
+	right: 0;
+ 	margin: 33px 33px;
 	position: fixed;
 	text-align: center;
 }
@@ -508,7 +509,7 @@ html.active menu .container {
 .weSwiper figcaption:after {
   	position: absolute;
   	content: '';
- 	background-color: #000000;
+ 	background-color: #BB2649;
  /* background-color: #ffffff; */
   	z-index: 1;
   	-webkit-transition: all 0.6s ease-in;
@@ -569,13 +570,6 @@ html.active menu .container {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-
-/* [나영] font-size-test */
-.font-test {
-	font-size: 20px;
-}
-/* /[나영] font-size-test */
-
 /* ----------------------------- 푸터 추가 예정 ---------------------------- */
 /* [FOOTER-ALL] - footer - */
 footer {

@@ -28,10 +28,10 @@ $(function() {
   });
   
   // [swiper]- 효과 추가
-        $(".hover").mouseleave(
-            function () {
-            $(this).removeClass("hover");
-            }
-        );
+    $(".hover").mouseleave(
+    	function () {
+        $(this).removeClass("hover");
+        }
+    );
 
 });

@@ -10,7 +10,8 @@ public class MessageResponseDto {
     private String message;
     private String imageUrl;
 
-    public MessageResponseDto(String userNickname, String message, String imageUrl){
+    public MessageResponseDto( String userNickname, String message, String imageUrl){
+
         this.userNickname = userNickname;
         this.message = message ;
         this.imageUrl = imageUrl;

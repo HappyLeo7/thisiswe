@@ -4,13 +4,18 @@ import com.thisiswe.home.club.calendar.service.CalendarService;
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.service.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thisiswe.home.club.calendar.dto.CalendarDTO;
+import com.thisiswe.home.club.calendar.repository.CalendarRepository;
 import com.thisiswe.home.club.dto.ClubDTO;
 
 import lombok.RequiredArgsConstructor;
@@ -27,7 +32,8 @@ public class CalendarController {
 	
 	@Autowired
 	private CalendarService calendarService;
-	
+	@Autowired
+	private CalendarRepository calendarRepository;
 	
 	
 	//일정 등록페이지 연결
@@ -56,17 +62,19 @@ public class CalendarController {
 		log.info("==== /postMappinig calendar register() Contorller ====");
 		
 		
-		return "redirect:/thisiswe/club/?Num="+clubNum.getClubNum();
+		return "redirect:/thisiswe/club/?n"
+				+ "um="+clubNum.getClubNum();
 	}
 	
 	
 	//일정리스트에서 -> 일정상세페이지로 이동
 	@GetMapping({"/calendar/read"})
-	public String calendarRead(Long Num, Model model) {
+	public String calendarRead(Long num, Model model) {
 		log.info("==== getMappinig calendarRead() Contorller ====");
-		CalendarDTO calendarDTO=calendarService.get(Num); //1개의 일정 데이터를 가져옴
+		CalendarDTO calendarDTO=calendarService.get(num); //1개의 일정 데이터를 가져옴
 		log.info("calendarDTO : " + calendarDTO);
 		model.addAttribute("calendarDTO",calendarDTO);
+		model.addAttribute("calendarNum", calendarDTO.getClubNum().getClubNum());
 		log.info("==== /getMappinig calendarRead() Contorller ====");
 		return "/club/calendar/calendar_read";
 	}
@@ -74,19 +82,50 @@ public class CalendarController {
 	
 	
 	
+	//일정 수정 페이지로 이동
+	@GetMapping({"/calendar/modify"})
+	public String calendarModify(Long num, Model model) {
+		
+		log.info("==== get calendar modify Contorller ====");
+		
+		CalendarDTO calendarDTO=calendarService.get(num); //모임 번호로 1개의 일정 데이터를 가져옴
+		log.info("calendarDTO : " + calendarDTO);
+		model.addAttribute("calendarDTO",calendarDTO);
+		
+		log.info("==== /get calendar modify Contorller ====");
+		
+		return "/club/calendar/calendar_modify";
+	}
+	//일정 수정 처리
+	@PostMapping({"/calendar/modify"})
+	public String calendarModifyIng(CalendarDTO calendarDTO, Long num, Model model) {
+		
+		log.info("==== post calendar modify Contorller ====");
+		
+		log.info("calendarDTO : " + calendarDTO);
+		log.info("calendarDTO : " + num);
+		
+		
+		//CalendarDTO calendarDTO=calendarService.get(num); //1개의 일정 데이터를 가져옴
+		log.info("calendarDTO : " + calendarDTO);
+		model.addAttribute("calendarDTO",calendarDTO);
+		
+		log.info("==== / post calendar modify Contorller ====");
+		
+		return "/club/calendar/calendar_read";
+	}
 	
-	@GetMapping({"/calendar"})
-	public String calendar() {
+	//일정 삭제 처리
+	@DeleteMapping({"/calendar/remove/{calendarNum}"})
+	public ResponseEntity<String> calnedarRemove(@PathVariable("calendarNum") Long calendarNum){
+		log.info("=== delete controller calnedar remove ===");
 		
-		log.info("==== calendar list Contorller ====");
+		log.info("=== calendarNum : "+calendarNum);
 		
-		//CalendarDTO calendarDTO=calendarService.get(Num);
-		//model.addAttribute("calendarDTO",calendarDTO);
-		//log.info(Num+"번 모임 일정 정보 : "+model.addAttribute("calendarDTO"));
+		calendarRepository.deleteById(calendarNum);
 		
-		log.info("==== /calendar list Contorller ====");
-		
-		return "/club/calendar/calendar_list";
+		log.info("=== /delete controller calnedar remove ===");
+		return new ResponseEntity<String>("success",HttpStatus.OK);
 	}
 	
 	

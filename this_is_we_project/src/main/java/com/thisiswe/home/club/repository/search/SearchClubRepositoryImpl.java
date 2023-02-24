@@ -74,6 +74,9 @@ public class SearchClubRepositoryImpl extends QuerydslRepositorySupport implemen
 				case "G":
 					conditionBuilder.or(clubEntity.clubCategory.contains(keyword));
 					
+				case "P":
+					conditionBuilder.or(clubEntity.clubPlace.contains(keyword));
+				
 					break;
 				}
 			}

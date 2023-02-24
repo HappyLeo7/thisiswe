@@ -4,6 +4,7 @@
 
 /* 프로젝트 포인트 색상(임의 01) : #e4481b; - 주황색 */
 /* 프로젝트 포인트 색상(임의 02) : #0d5718; - 초록색 */
+/* 프로젝트 포인트 색상(팬톤 올해의 컬러 2023) : #BB2649; - 비바마젠타 */
 
 * {
 	font-family: 'Nanum Gothic', sans-serif;
@@ -25,7 +26,6 @@
 }
 .ta-li{
 	padding: 8px 10px 8px 10px;
-	color: gray;
 	font-size: 20px;
 	font-weight: normal;
 }
@@ -43,7 +43,7 @@
     position: absolute;
     width: 30px;
     height: 2px;
-    background: #e4481b;
+    background: #BB2649;
     content: "";
     opacity: 0.8;
     -moz-transition: all 0.5s;
@@ -100,7 +100,6 @@
 .inner {
 	margin: 30px 5px 30px 5px;
 	padding: 5px 5px 5px 5px;
-/* 	background-color: #f0f0f0; */
 }
 div>h2 {
 	text-align: center;
@@ -151,12 +150,10 @@ div>h2 {
 	font-size: 1.6rem;
 	text-align: right;
 }
-
 #searchForm {
 	margin-left: 20px;
 	margin-top: 25px;
 }
-
 #searchColumn {
 	height: 45px;
 	border: 1px solid #e0e0e0;
@@ -164,7 +161,6 @@ div>h2 {
 	background-size: 23px;
 	cursor: pointer;
 }
-
 #searchWord {
 	height: 45px;
 	border: 1px solid #e0e0e0;
@@ -173,7 +169,6 @@ div>h2 {
 	background-size: 23px;
 	cursor: pointer;
 }
-
 .searchBtn {
 	height: 45px;
 	border: 1px solid #e0e0e0;
@@ -188,7 +183,7 @@ div>h2 {
     border-radius: 4px;
     border-color: #232323;
 }
-
+/*[START] 게시판 - 목록 list 부분 */
 .board-table {
 	width: 100%;
 	border-spacing: 0;
@@ -225,12 +220,13 @@ div>h2 {
     height: 28px;
     padding: 0 4px;
     text-align: center;
-    border: 1px solid #e4481b;
-    color: #e4481b;
+    border: 1px solid #BB2649;
+    color: #BB2649;
     line-height: 26px;
   	border-radius: 5px;
 }
-
+/* [END] 게시판 - 목록 list 부분 */
+/* [START] 게시판 - 페이지 처리 부분 */
 .paginate{
 	width: 100%;
     margin: 50px 0 20px;
@@ -246,7 +242,7 @@ div>h2 {
     line-height: 34px;
     vertical-align: middle;
 }
-
+/* [END] 게시판 - 페이지 처리 부분 */
 /* [START] 검색 목록 부분 */
 
 /* [END] 검색 목록 부분 */
@@ -300,7 +296,7 @@ div>h2 {
 .bd-input:focus, .bd-input-co:focus{
     outline: none;
     border: 2px solid #e7e7e7;
-    border-color: #e4481b;
+    border-color: #BB2649;
 }
 .searchBtn-mi {
 	margin: 0 5px 0 5px;
@@ -460,7 +456,7 @@ div>h2 {
 .bd-modi-input:focus, .bd-modi-input-co:focus{
     outline: none;
     border: 2px solid #e7e7e7;
-    border-color: #e4481b;
+    border-color: #BB2649;
 }
 /* [END] modify - 수정하는 부분만 */
 .searchBtn-mi {

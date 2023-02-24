@@ -51,9 +51,10 @@ public interface ClubRepository extends JpaRepository<ClubEntity, Long>, SearchC
 			+ "on c.userId = u.userId ")
 	List<Object[]> getClubList();
 
-	//TODO [ClubRepository] 
+	//TODO [ClubRepository] 모임 삭제
+	@Query(value = "delete from club_entity where club_num= 3 " ,nativeQuery = true)
+	Long clubRemove(@Param("clubNum") Long clubNum);
 
-
-
+	 
 	
 }

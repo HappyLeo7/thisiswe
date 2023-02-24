@@ -86,9 +86,15 @@ public class ClubServiceImpl implements ClubService {
 		List<Object[]> list = clubRepository.getClubList();
 		List<ClubDTO> entList = new ArrayList<>();
 		System.out.println(" .... club list : " + list);
-		for (Object[] arr : list) {
-			entList.add(entityToDTO((ClubEntity) arr[0], (UserEntity) arr[1]));
 
+		try {
+
+			for (Object[] arr : list) {
+				entList.add(entityToDTO((ClubEntity) arr[0], (UserEntity) arr[1]));
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		log.info("entList : " + entList);
 		log.info("...... /getList() ......");
@@ -130,66 +136,52 @@ public class ClubServiceImpl implements ClubService {
 	// 모임 수정하는 매서드
 	@Transactional
 	@Override
-	public void modify(ClubDTO clubDTO, MultipartFile file) throws Exception{
+	public void modify(ClubDTO clubDTO, MultipartFile file) throws Exception {
 		System.out.println("서비스Impl 테스트 1");
-		log.info("modify() 수정 메서드 : "+ file.getOriginalFilename());
+		log.info("modify() 수정 메서드 : " + file.getOriginalFilename());
 
-		if(file.getOriginalFilename() != "") {
-			
+		if (file.getOriginalFilename() != "") {
+
 			log.info("..... ClubServiceImpl modify()   .....");
 			log.info("///// 모임 로고 이미지 등록처리 /////");
 			String path = "C:\\upload";
-			
+
 			UUID uuid = UUID.randomUUID();
-			String photoName = uuid +"_"+ file.getOriginalFilename();
+			String photoName = uuid + "_" + file.getOriginalFilename();
 			log.info("이미지 이름 : " + photoName);
-			
+
 			clubDTO.setClubLogo(file.getOriginalFilename());
 			clubDTO.setClubLogoUuid(photoName);
 			clubDTO.setClubLogoUrl(photoName);
-			
-			//지정한 폴더로 이미지 저장
+
+			// 지정한 폴더로 이미지 저장
 			File saveFile = new File(path, photoName);
 			log.info("saveFile : " + saveFile);
 			file.transferTo(saveFile);
 
-			log.info("clubDTO 로고 이름이 들어가있는지 테스트 : "+ clubDTO.getClubLogo());
-			
+			log.info("clubDTO 로고 이름이 들어가있는지 테스트 : " + clubDTO.getClubLogo());
+
 			ClubEntity clubEntity = clubRepository.getById(clubDTO.getClubNum());
 			log.info("서비스수정할값 :  " + clubEntity);
 			if (clubEntity != null) {
-				clubEntity.changeLogo(
-						clubDTO.getClubPlace(), 
-						clubDTO.getClubName(), 
-						clubDTO.getClubContent(),
-						clubDTO.getClubCategory(),
-						clubDTO.getClubLogo(), 
-						clubDTO.getClubLogoUuid(),
-						clubDTO.getClubLogoUrl(),
-						clubDTO.getClubHeadCount()
-						);
+				clubEntity.changeLogo(clubDTO.getClubPlace(), clubDTO.getClubName(), clubDTO.getClubContent(),
+						clubDTO.getClubCategory(), clubDTO.getClubLogo(), clubDTO.getClubLogoUuid(),
+						clubDTO.getClubLogoUrl(), clubDTO.getClubHeadCount());
 			}
 			log.info("수정된 clubEntity : " + clubEntity);
 			clubRepository.save(clubEntity);
-		}else {
-			
-		
-		ClubEntity clubEntity = clubRepository.getById(clubDTO.getClubNum());
-		log.info("서비스수정할값 :  " + clubEntity);
-		if (clubEntity != null) {
-			clubEntity.change(
-					clubDTO.getClubPlace(), 
-					clubDTO.getClubName(), 
-					clubDTO.getClubContent(),
-					clubDTO.getClubCategory(),
-					clubDTO.getClubHeadCount()
-					);
+		} else {
+
+			ClubEntity clubEntity = clubRepository.getById(clubDTO.getClubNum());
+			log.info("서비스수정할값 :  " + clubEntity);
+			if (clubEntity != null) {
+				clubEntity.change(clubDTO.getClubPlace(), clubDTO.getClubName(), clubDTO.getClubContent(),
+						clubDTO.getClubCategory(), clubDTO.getClubHeadCount());
+			}
+			log.info("수정된 clubEntity : " + clubEntity);
+			clubRepository.save(clubEntity);
+
 		}
-		log.info("수정된 clubEntity : " + clubEntity);
-		clubRepository.save(clubEntity);
-		
-	}		
-		
 
 	}
 

@@ -51,10 +51,18 @@ public class CalendarServiceImpl implements CalendarService {
 		List<Object[]> list=calendarRepository.getClubNum(clubNum);
 		List<CalendarDTO> entList= new ArrayList<>(); 
 		log.info("......calendar list : "+list);
+		
+		try {
+			
 		for(Object[]arr : list) {
 			log.info("배열 1"+arr[0]);
 			log.info("배열 2"+arr[1]);
 			entList.add(entityToDTO((CalendarEntity)arr[1]));
+		}
+		} catch (Exception e) {
+			log.info("일정이 없습니다 등록해주세요");
+			e.printStackTrace();
+			// TODO: handle exception
 		}
 		log.info("calendarEntity list 값 : "+entList);
 		
@@ -73,19 +81,27 @@ public class CalendarServiceImpl implements CalendarService {
 		log.info("받아온 모임 정보 : " + clubDTO);
 		log.info("받아온 모임 일정 정보 : " + calendarDTO);
 		
-		List<Object[]> calendarEntity=calendarRepository.getClubCalendarNum(clubDTO.getClubNum(),calendarDTO.getClubCalendarNum());
+		List<Object[]> calendarEntitys=calendarRepository.getClubCalendarNum(clubDTO.getClubNum(),calendarDTO.getClubCalendarNum());
 		//List<CalendarDTO> entList =new ArrayList<>();
-		log.info("일정 1개를 받아온 값   : "+calendarEntity);
+		log.info("일정 1개를 받아온 값   : "+calendarEntitys);
 		
-		for(Object[] arr : calendarEntity) {
+		for(Object[] arr : calendarEntitys) {
 			log.info("모임정보 : "+ arr[0]);
 			log.info("모임일정정보 : "+ arr[1]);
-			
+			CalendarEntity calndarEntity= (CalendarEntity)arr[1];
+			if(calndarEntity !=null) {
+				calndarEntity.change(calendarDTO.getClubCalendarTitle(),
+						calendarDTO.getClubCalendarContent(), 
+						calendarDTO.getClubCalendarDate(),
+						calendarDTO.getClubCalendarTime(),
+						calendarDTO.getClubCalendarPlace(),
+						calendarDTO.getClubCalendarHeadCount(),
+						calendarDTO.getClubCalendarPrice());
+				
+			};
+			log.info("수정된 일정 정보"+calndarEntity);
+			calendarRepository.save(calndarEntity);
 		}
-		//if(arr[1] !=null) {
-			//change
-		//
-		//}
 		
 		
 		log.info("........ /일정 modify() .........");

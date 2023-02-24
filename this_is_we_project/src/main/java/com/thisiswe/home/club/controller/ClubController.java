@@ -1,20 +1,24 @@
 package com.thisiswe.home.club.controller;
 
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.thisiswe.home.chat.service.ChatService;
 import com.thisiswe.home.club.calendar.repository.CalendarRepository;
 import com.thisiswe.home.club.calendar.service.CalendarService;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
-import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.club.member.ClubMemberDTO;
 import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.club.service.ClubService;
 import com.thisiswe.home.user.security.UserDetailsImpl;
@@ -61,7 +65,7 @@ public class ClubController {
 	public String club_register(Model model,@AuthenticationPrincipal UserDetailsImpl userDetails) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_register.html 연결 =======");
-		model.addAttribute("user");
+		model.addAttribute("user",userDetails.getUsername());
 		
 		log.info("=========================================================");
 		return "/club/club_register";
@@ -79,6 +83,10 @@ public class ClubController {
 		model.addAttribute("result", clubService.getPageList(pageRequestDTO).getDtoList());//페이지 1~??? 정보를 가져온다
 		model.addAttribute("resultPage", clubService.getPageList(pageRequestDTO).getPageList());
 		model.addAttribute("Page", clubService.getPageList(pageRequestDTO));
+		log.info(clubDTO.getUserId());
+		log.info(clubDTO.getClubNum());
+		ClubMemberDTO.builder().clubNum(clubDTO.getClubNum()).userID(clubDTO.getUserId()).build();
+		
 		log.info("=============== /post club_register ============================");
 		return "/club/club_list";
 		
@@ -100,16 +108,20 @@ public class ClubController {
 		model.addAttribute("user",userDetails.getUsername());
 		log.info("사용자 아이디 : "+model.addAttribute("user",userDetails.getUsername()));
 		
+		//모임 구성원 리스트 출력코드
+		model.addAttribute("clubMember");
+		
+		
 		log.info("======== /club_read() end =========");
 		return "/club/club_read";
 	}
 	
 	//수정 페이지 불러오는 연결링크
 	@GetMapping({"/modify"})
-	public String club_modify(Long Num,Model model) {
+	public String club_modify(Long num,Model model) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_modify.html 연결 =======");
-		ClubDTO clubDTO = clubService.get(Num);
+		ClubDTO clubDTO = clubService.get(num);
 		model.addAttribute("modifyDTO", clubDTO);
 		log.info("========= /ClubController.java => club_modify.html 연결 ======");
 		return "/club/club_modify";//포워드
@@ -127,19 +139,20 @@ public class ClubController {
 		
 		
 		log.info("========/ post 타입 club_modify ======================");
-		return "redirect:/thisiswe/club/?Num="+clubDTO.getClubNum();
+		return "redirect:/thisiswe/club/?num="+clubDTO.getClubNum();
 	}
 	
 	
 	//삭제버튼 클릭시 삭제됨
-	@PostMapping({"/remove"})
-	public String clubRemove(ClubDTO clubDTO) {
+	@DeleteMapping({"/remove/{clubNum}"})
+	public ResponseEntity<String> clubRemove(@PathVariable("clubNum") Long clubNum) {
 		
-		log.info("========ClubController ==> clubRemove 매서드 =====");
-		log.info("======== 모임 "+clubDTO+"번호 =====");
-		clubRepository.deleteById(clubDTO.getClubNum());
-		log.info(clubDTO.getClubNum()+"번 "+clubDTO.getClubName()+"모임이 삭제되었습니다.");
-		return "redirect:/club/list";
+		log.info("======== ClubController ==> clubRemove 매서드 =====");
+		log.info("======== 모임 "+clubNum+"번호 =====");
+		clubRepository.deleteById(clubNum);
+		log.info(clubNum+"번 "+clubNum+"모임이 삭제되었습니다.");
+		log.info("======== /ClubController ==> clubRemove 매서드 =====");
+		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 	
 	

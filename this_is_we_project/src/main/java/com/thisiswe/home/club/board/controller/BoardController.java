@@ -46,7 +46,7 @@ public class BoardController {
 
 		log.info("====== boardService.getList를 호출 ");
 		model.addAttribute("result", boardService.getList(pageRequestDTO, num));
-		log.info(" board result :  "+model.addAttribute(boardService.getList(pageRequestDTO, num)));
+		log.info(" board result : "+model.addAttribute(boardService.getList(pageRequestDTO, num)));
 		model.addAttribute("clubNum",num);
 		log.info("====== /BoardController.java => board_list.html 연결 ======");
 

@@ -19,12 +19,17 @@
 			<div class="top-inner-ul">
   				<ul class="top-inner-menu top-inner-eff">
      				<li class="ta-li">
-     					<a th:href="@{/thisiswe/club/board}">
+						<a th:href="@{/thisiswe/club/(num=${clubNum})}">
+							<span>INFO</span>
+						</a>
+					</li>
+     				<li class="ta-li">
+     					<a th:href="@{/thisiswe/club/board/(num=${clubNum})}">
      						<span>BOARD</span>
      					</a>
      				</li>
      				<li class="ta-li">
-     					<a th:href="@{/thisiswe/club/photo/register}">
+     					<a th:href="@{/thisiswe/club/photo/(num=${clubNum})}">
      						<span>PHOTO</span>
      					</a>
      				</li>

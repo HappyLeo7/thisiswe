@@ -50,6 +50,8 @@ public class UserDetailsImpl implements UserDetails, Serializable {
 		return userEntity.getUserId();
 	}
 
+	public String getUserNickname() { return userEntity.getUserNickname();}
+
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
