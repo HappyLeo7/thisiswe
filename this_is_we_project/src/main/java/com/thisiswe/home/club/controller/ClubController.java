@@ -18,6 +18,7 @@ import com.thisiswe.home.club.calendar.repository.CalendarRepository;
 import com.thisiswe.home.club.calendar.service.CalendarService;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
+import com.thisiswe.home.club.member.ClubMemberDTO;
 import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.club.service.ClubService;
 import com.thisiswe.home.user.security.UserDetailsImpl;
@@ -82,6 +83,10 @@ public class ClubController {
 		model.addAttribute("result", clubService.getPageList(pageRequestDTO).getDtoList());//페이지 1~??? 정보를 가져온다
 		model.addAttribute("resultPage", clubService.getPageList(pageRequestDTO).getPageList());
 		model.addAttribute("Page", clubService.getPageList(pageRequestDTO));
+		log.info(clubDTO.getUserId());
+		log.info(clubDTO.getClubNum());
+		ClubMemberDTO.builder().clubNum(clubDTO.getClubNum()).userID(clubDTO.getUserId()).build();
+		
 		log.info("=============== /post club_register ============================");
 		return "/club/club_list";
 		
@@ -102,6 +107,10 @@ public class ClubController {
 		log.info(num+"번 모임 일정 List : "+model.addAttribute("calendarDTOList"));
 		model.addAttribute("user",userDetails.getUsername());
 		log.info("사용자 아이디 : "+model.addAttribute("user",userDetails.getUsername()));
+		
+		//모임 구성원 리스트 출력코드
+		model.addAttribute("clubMember");
+		
 		
 		log.info("======== /club_read() end =========");
 		return "/club/club_read";
@@ -138,10 +147,11 @@ public class ClubController {
 	@DeleteMapping({"/remove/{clubNum}"})
 	public ResponseEntity<String> clubRemove(@PathVariable("clubNum") Long clubNum) {
 		
-		log.info("========ClubController ==> clubRemove 매서드 =====");
+		log.info("======== ClubController ==> clubRemove 매서드 =====");
 		log.info("======== 모임 "+clubNum+"번호 =====");
 		clubRepository.deleteById(clubNum);
 		log.info(clubNum+"번 "+clubNum+"모임이 삭제되었습니다.");
+		log.info("======== /ClubController ==> clubRemove 매서드 =====");
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 	

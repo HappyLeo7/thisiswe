@@ -38,17 +38,38 @@
 		<hr>
 		<div th:each="photoDTO : ${photoDTOList}">
 			<!-- 사진등록버튼 -->
-			모임번호 : <input th:value="${photoDTO.clubNum.clubNum}"> <br>
-			사진번호 : <input th:value="${photoDTO.photoNum}"><br> 등록유저
+			모임번호 : <input class="clubNum" th:value="${photoDTO.clubNum.clubNum}"> <br>
+			사진번호 : <input class="photoNum" th:value="${photoDTO.photoNum}"><br> 등록유저
 			: <input th:value="${photoDTO.userId.userId}"><br> <img
 				th:src="|/display?fileName=${photoDTO.photoPath}|">
-
+			<button type="button" onclick="photoRemove()">사진삭제</button>
 			[[${photoDTO.photoPath}]]
 			<hr>
 		</div>
 
 		<!-- /내용 -->
 
+<script>
+	function photoRemove(){
+		let photoNum = $(".photoNum").val();
+		let clubNum = $(".clubNum").val();
+		alert("사진 번호 : "+photoNum);
+		$.ajax({
+			url:"/thisiswe/club/photo/remove/"+photoNum,
+			method:"delete",
+			success : function(result){
+				console.log("삭제결과 : "+result)
+				if(result=="success"){
+					alert("사진이 삭제 되었습니다.")
+					let url ="/thisiswe/club/photo/?num="+clubNum;
+					location.replace(url)
+				}
+			}
+			
+		})
+		
+	}
+</script>
 
 
 	</th:block>

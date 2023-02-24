@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thisiswe.home.club.calendar.dto.CalendarDTO;
+import com.thisiswe.home.club.calendar.repository.CalendarRepository;
 import com.thisiswe.home.club.dto.ClubDTO;
 
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,8 @@ public class CalendarController {
 	
 	@Autowired
 	private CalendarService calendarService;
-	
+	@Autowired
+	private CalendarRepository calendarRepository;
 	
 	
 	//일정 등록페이지 연결
@@ -116,7 +118,13 @@ public class CalendarController {
 	//일정 삭제 처리
 	@DeleteMapping({"/calendar/remove/{calendarNum}"})
 	public ResponseEntity<String> calnedarRemove(@PathVariable("calendarNum") Long calendarNum){
+		log.info("=== delete controller calnedar remove ===");
 		
+		log.info("=== calendarNum : "+calendarNum);
+		
+		calendarRepository.deleteById(calendarNum);
+		
+		log.info("=== /delete controller calnedar remove ===");
 		return new ResponseEntity<String>("success",HttpStatus.OK);
 	}
 	
