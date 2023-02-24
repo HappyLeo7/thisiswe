@@ -138,4 +138,80 @@ div>h2 {
 	padding: 10px;
 	background-color: #f0f0f0;
 }
+/*[START][read] club의 네비 리스트 */
+.top-inner{
+	height: 80px;
+}
+.top-inner-ul{
+    padding: 30px;
+    text-align: center;
+}
+.ta-li{
+	padding: 8px 10px 8px 10px;
+	font-size: 20px;
+	font-weight: normal;
+}
+.ta-li a {
+	color: #2b2b2b;
+    font-size: 20pt;
+    margin: 0px 20px 0 20px;
+    padding: 0px 5px 0px 5px;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.top-inner-eff a:before, .top-inner-eff a:after {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: #BB2649;
+    content: "";
+    opacity: 0.8;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    pointer-events: none;
+    }
+
+.top-inner-eff a:before {
+    top: 0;
+    left: 0;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+    }
+
+.top-inner-eff a:after {
+    right: 0;
+    bottom: 0;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+   	}
+.top-inner-eff a:hover:before,.top-inner-eff a:hover:after,
+.top-inner-eff a:focus:before,.top-inner-eff a:focus:after {
+    opacity: 1;
+    }
+.top-inner-eff a:hover:before,.top-inner-eff a:focus:before {
+    left: 50%;
+    left: 45%;
+    -webkit-transform: rotate(0deg) translateX(-50%);
+    -moz-transform: rotate(0deg) translateX(-50%);
+    transform: rotate(0deg) translateX(-50%);
+    }
+.top-inner-eff a:hover:after,.top-inner-eff a:focus:after {
+    right: 50%;
+    right: 45%;
+    -webkit-transform: rotate(0deg) translateX(50%);
+    -moz-transform: rotate(0deg) translateX(50%);
+    transform: rotate(0deg) translateX(50%);
+	}
+/*[END][read] club의 네비 리스트 */
 /*[END][read] - 부분 */
