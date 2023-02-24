@@ -30,6 +30,7 @@
 		<!-- form -->
 		<form th:action="@{/thisiswe/club/calendar/modify(num=${calendarDTO.clubCalendarNum})}" th:method="get">
 			<button type="submit">일정수정</button>
+			<button type="button" onclick="calendarRemove()">일정삭제</button>
 			<!-- 내용 -->
 			<table border="1" th:each="calendarDTO : ${calendarDTO}">
 				<tr>
@@ -37,11 +38,11 @@
 				</tr>
 				<tr>
 					<td>
-						모임 번호 : <input name="" th:value="${calendarDTO.clubNum.clubNum}"> <br> 
+						모임 번호 : <input class="clubNum" name="" th:value="${calendarDTO.clubNum.clubNum}"> <br> 
 					</td>
 				</tr>
 				<tr>
-					<td>일정 번호 : <input name="num" th:value="${calendarDTO.clubCalendarNum}"> <br>
+					<td>일정 번호 : <input class="calendarNum" name="num" th:value="${calendarDTO.clubCalendarNum}"> <br>
 					</td>
 				</tr>
 				<tr>
@@ -82,6 +83,26 @@
 		</form>
 		<!-- /form -->
 
+<script>
+	function calendarRemove(){
+		var calendarNum = $(".calendarNum").val();
+		var clubNum = $(".clubNum").val();
+		
+		$.ajax({
+			url:"/thisiswe/club/calendar/remove/"+calendarNum,
+			method : "delete",
+			success: function(result){
+				console.log("삭제결과값 : "+result)
+				if(result=="success"){
+					alert("일정이 삭제되었습니다.")
+					let url="/thisiswe/club/?num="+clubNum;
+					location.replace(url);
+				}
+			}
+			
+		})
+	}
+</script>
 
 
 	</th:block>

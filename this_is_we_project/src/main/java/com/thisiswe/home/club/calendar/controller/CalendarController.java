@@ -4,9 +4,13 @@ import com.thisiswe.home.club.calendar.service.CalendarService;
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.service.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -107,6 +111,13 @@ public class CalendarController {
 		log.info("==== / post calendar modify Contorller ====");
 		
 		return "/club/calendar/calendar_read";
+	}
+	
+	//일정 삭제 처리
+	@DeleteMapping({"/calendar/remove/{calendarNum}"})
+	public ResponseEntity<String> calnedarRemove(@PathVariable("calendarNum") Long calendarNum){
+		
+		return new ResponseEntity<String>("success",HttpStatus.OK);
 	}
 	
 	

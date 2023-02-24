@@ -105,8 +105,13 @@ public class ClubTests {
 	//TODO [테스트] 모임 삭제
 	@Test
 	public void testClubRemove() {
-		clubRepository.deleteById(88L);
+		
+		
+		//clubRepository.clubRemove(3L);
+		clubRepository.deleteById(3L);
 	}
+	
+	
 	
 	//TODO [테스트] 모임에 회원 가입 하는 테스트
 	@Test
@@ -123,6 +128,7 @@ public class ClubTests {
 		//});
 	}
 
+	
 	
 	@Test
 	public void testPageList() {
