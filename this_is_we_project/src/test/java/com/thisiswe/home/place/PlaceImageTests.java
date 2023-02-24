@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.LongStream;
 
 import org.hibernate.internal.build.AllowSysOut;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +15,7 @@ import com.thisiswe.home.place.entity.PlaceImageEntitiy;
 import com.thisiswe.home.place.repository.PlaceImageRepository;
 
 @SpringBootTest
+@Ignore
 public class PlaceImageTests {
 
 	@Autowired

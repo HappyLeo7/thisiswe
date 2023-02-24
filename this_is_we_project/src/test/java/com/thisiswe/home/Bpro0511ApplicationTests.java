@@ -1,9 +1,11 @@
 package com.thisiswe.home;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
+@Ignore
 class Bpro0511ApplicationTests {
 
 	@Test

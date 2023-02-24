@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.LongStream;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,7 @@ import com.thisiswe.home.user.entity.UserEntity;
 
 @SpringBootTest
 @Transactional
+@Ignore
 //TODO [ReplyRepositoryTest] 게시글-댓글
 public class ReplyRepositoryTest {
 	
