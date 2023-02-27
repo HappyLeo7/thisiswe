@@ -1,6 +1,7 @@
 package com.thisiswe.home.club.controller;
 
 
+import com.thisiswe.home.chat.repository.ChatRoomRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -37,6 +38,7 @@ public class ClubController {
 	private final ClubRepository clubRepository;
 	private final CalendarRepository calendarRepository;
 	private final CalendarService calendarService;
+	private final ChatRoomRepository chatRoomRepository;
 	
 	//목록 연결링크
 	@GetMapping({"/club"})
@@ -150,6 +152,7 @@ public class ClubController {
 		log.info("======== ClubController ==> clubRemove 매서드 =====");
 		log.info("======== 모임 "+clubNum+"번호 =====");
 		clubRepository.deleteById(clubNum);
+		chatRoomRepository.deleteById(Math.toIntExact(clubNum));
 		log.info(clubNum+"번 "+clubNum+"모임이 삭제되었습니다.");
 		log.info("======== /ClubController ==> clubRemove 매서드 =====");
 		return new ResponseEntity<String>("success", HttpStatus.OK);
