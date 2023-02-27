@@ -152,7 +152,7 @@ public class ClubController {
 		log.info("======== ClubController ==> clubRemove 매서드 =====");
 		log.info("======== 모임 "+clubNum+"번호 =====");
 		clubRepository.deleteById(clubNum);
-		chatRoomRepository.deleteById(clubNum);
+		chatRoomRepository.deleteById(Math.toIntExact(clubNum));
 		log.info(clubNum+"번 "+clubNum+"모임이 삭제되었습니다.");
 		log.info("======== /ClubController ==> clubRemove 매서드 =====");
 		return new ResponseEntity<String>("success", HttpStatus.OK);
