@@ -19,7 +19,7 @@ public interface CalendarService {
 	Object getCalendarList(Long clubNum);
 	
 	//일정 수정매서드
-	void modify(CalendarDTO calendarDTO, ClubDTO clubDTO);
+	CalendarDTO modify(CalendarDTO calendarDTO);
 
 	
 	//dto -> entity
@@ -53,6 +53,8 @@ public interface CalendarService {
 				.clubCalendarContent(calendarEntity.getClubCalendarContent())
 				.clubCalendarDate(calendarEntity.getClubCalendarDate())
 				.clubCalendarTime(calendarEntity.getClubCalendarTime())
+				.clubCalendarTimeH(calendarEntity.getClubCalendarTime().substring(0,2))
+				.clubCalendarTimeM(calendarEntity.getClubCalendarTime().substring(3,5))
 				.clubCalendarPlace(calendarEntity.getClubCalendarPlace())
 				.clubCalendarHeadCount(calendarEntity.getClubCalendarHeadCount())
 				.clubCalendarPrice(calendarEntity.getClubCalendarPrice())

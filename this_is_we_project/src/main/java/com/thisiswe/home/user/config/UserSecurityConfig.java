@@ -46,6 +46,7 @@ public class UserSecurityConfig {
 		.antMatchers("/place/**").permitAll()
 		.antMatchers("/notice/**").permitAll()
 		.antMatchers("/thisiswe/**").permitAll()
+		.antMatchers("/display/**").permitAll()
 //		.antMatchers("/**").permitAll()
 
 		

@@ -26,6 +26,10 @@
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 <!-- /css 파일 경로 -->
 
+<!-- 공통 club.css 연결 -->
+<link rel="stylesheet" th:href="@{/css/club.css}" />
+<!-- /공통 club.css 연결 -->
+
 <!-- Link Swiper's CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -40,24 +44,19 @@
 		<!-- [상단 메뉴바] -->
 		<div id="top-menu">
 			<div class="top-container">
-				<span id="container-logo"> 
-					<img class="container-logo-l" src="/image/thisiswe-logo01.svg">
+				<span id="container-logo"> <img class="container-logo-l"
+					src="/image/thisiswe-logo01.svg">
 				</span>
 				<div class="container-p">
 					<ul class="container-p-ul">
-						<li class="container-p-li">
-							<a href="#">마이페이지</a>
+						<li class="container-p-li"><a href="#">마이페이지</a></li>
+						<li class="container-p-li"><a th:href="@{/thisiswe/login}">로그인</a>
 						</li>
-						<li class="container-p-li">
-							<a th:href="@{/thisiswe/login}">로그인</a>
-						</li>
-						<li class="container-p-li">
-							<a th:href="@{/thisiswe/signup}">회원가입</a>
+						<li class="container-p-li"><a th:href="@{/thisiswe/signup}">회원가입</a>
 						</li>
 					</ul>
 				</div>
-				<span id="menu">
-					<span class="ion-navicon-round"></span>
+				<span id="menu"> <span class="ion-navicon-round"></span>
 				</span>
 			</div>
 			<!-- -->
@@ -67,13 +66,11 @@
 		<!-- [햄버거 버튼] - menu -->
 		<menu>
 			<div class="logo">
-				<a href=""> 
-					<img class="logo-img" src="/image/thisiswe-icon01.svg" />
-					<!-- <span class="icon-camera"></span> -->
+				<a href=""> <img class="logo-img"
+					src="/image/thisiswe-icon01.svg" /> <!-- <span class="icon-camera"></span> -->
 				</a>
 			</div>
-			<span id="close-menu">
-				<span class="ion-close-round"></span>
+			<span id="close-menu"> <span class="ion-close-round"></span>
 			</span>
 			<div class="container">
 				<div class="box">
@@ -83,30 +80,16 @@
 							| <a th:href="@{/thisiswe/signup}">회원가입</a></li>
 					</ul>
 					<ul>
-						<li>
-							<a th:href="@{/login/index}">오늘의 추천모임</a></li>
-						<li>
-							<a href="#">모임 등록</a>
-						</li>
-						<li>
-							<a href="#">장소 대여</a>
-						</li>
-						<li>
-							<a href="#">공지 사항</a>
-						</li>
-						<li>
-							<a href="#">자유 게시판</a>
-						</li>
-						<li>
-							<a href="#">실시간 예약</a>
-						</li>
-						<li>
-							<a href="#">실시간 상담</a>
-						</li>
+						<li><a th:href="@{/login/index}">오늘의 추천모임</a></li>
+						<li><a href="#">모임 등록</a></li>
+						<li><a href="#">장소 대여</a></li>
+						<li><a href="#">공지 사항</a></li>
+						<li><a href="#">자유 게시판</a></li>
+						<li><a href="#">실시간 예약</a></li>
+						<li><a href="#">실시간 상담</a></li>
 					</ul>
 					<ul>
-						<li>
-						<a class="ion-social-facebook" href="#" target="_blank"></a></li>
+						<li><a class="ion-social-facebook" href="#" target="_blank"></a></li>
 						<li><a class="ion-social-twitter" href="#" target="_blank"></a></li>
 						<li><a class="ion-social-googleplus" href="#" target="_blank"></a></li>
 						<li><a class="ion-social-pinterest" href="#" target="_blank"></a></li>
@@ -142,31 +125,29 @@
 				<div class="swiper mySwiper">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
-					        <a th:href="@{/thisiswe/club}">
-					            <figure class="weSwiper">
-					                <img src="/image/club/club02.png" />
-					                <figcaption>
-					                    <h3>THIS IS WE,
-					                    	 GETHERING</h3>
-					                    <P>Any day spent with you is my favorite day</P>
-					                </figcaption>
-					            </figure>
-					        </a> 
-					        <a th:href="@{/thisiswe/place}"> 
-					            <figure class="weSwiper">
-					                <img src="/image/place/place01.jpg" />
-					                <figcaption>
-					                    <h3>THIS IS WE, <span>PLACE</span></h3>
-					                    <P>Every adventure requires a first step</P>
-					                </figcaption>
-					            </figure>
-					        </a> 
-					    </div>
+							<a th:href="@{/thisiswe/club}">
+								<figure class="weSwiper">
+									<img src="/image/club/club02.png" />
+									<figcaption>
+										<h3>THIS IS WE, GETHERING</h3>
+										<P>Any day spent with you is my favorite day</P>
+									</figcaption>
+								</figure>
+							</a> <a th:href="@{/thisiswe/place}">
+								<figure class="weSwiper">
+									<img src="/image/place/place01.jpg" />
+									<figcaption>
+										<h3>
+											THIS IS WE, <span>PLACE</span>
+										</h3>
+										<P>Every adventure requires a first step</P>
+									</figcaption>
+								</figure>
+							</a>
+						</div>
 					</div>
-					
-					<div class="swiper-wrapper">
-						
-					</div>
+
+					<div class="swiper-wrapper"></div>
 					<!-- <div class="swiper-button-next"></div>
 					<div class="swiper-button-prev"></div> -->
 					<div class="swiper-pagination"></div>
@@ -220,7 +201,7 @@
 					<div id="ft-bottom">
 						<div id="ft-bottom-left">
 							<!-- [수정] image로고 경로 부트에 맞게 변경 -->
-							<img src="/image/thisiswe-logo01.svg" />					
+							<img src="/image/thisiswe-logo01.svg" />
 							<!-- /[수정] image로고 경로 부트에 맞게 변경 -->
 						</div>
 
@@ -245,25 +226,14 @@
 						<div id="ft-bottom-right">
 							<table>
 								<tr>
-									<td>
-										<a href="#">
-											<img src="/image/icon_insta_com.png" />
-										</a>
-									</td>
-									<td>
-										<a href="#">
-											<img src="/image/icon_face_com.png" />
-										</a>
-									<td>
-										<a href="#">
-											<img src="/image/icon_youtu_com.png" />
-										</a>
-									</td>
-									<td>
-										<a href="#">
-											<img src="/image/icon_twi_com.png" />
-										</a>
-									</td>
+									<td><a href="#"> <img src="/image/icon_insta_com.png" />
+									</a></td>
+									<td><a href="#"> <img src="/image/icon_face_com.png" />
+									</a>
+									<td><a href="#"> <img src="/image/icon_youtu_com.png" />
+									</a></td>
+									<td><a href="#"> <img src="/image/icon_twi_com.png" />
+									</a></td>
 								</tr>
 							</table>
 						</div>

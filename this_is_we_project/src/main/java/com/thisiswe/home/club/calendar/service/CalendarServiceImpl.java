@@ -76,12 +76,12 @@ public class CalendarServiceImpl implements CalendarService {
 
 	//일정 수정하기
 	@Override
-	public void modify(CalendarDTO calendarDTO, ClubDTO clubDTO) {
+	public CalendarDTO modify(CalendarDTO calendarDTO) {
 		log.info("........ 일정 modify() .........");
-		log.info("받아온 모임 정보 : " + clubDTO);
+		log.info("받아온 모임 정보 : " + calendarDTO.getClubNum().getClubNum());
 		log.info("받아온 모임 일정 정보 : " + calendarDTO);
 		
-		List<Object[]> calendarEntitys=calendarRepository.getClubCalendarNum(clubDTO.getClubNum(),calendarDTO.getClubCalendarNum());
+		List<Object[]> calendarEntitys=calendarRepository.getClubCalendarNum(calendarDTO.getClubNum().getClubNum(),calendarDTO.getClubCalendarNum());
 		//List<CalendarDTO> entList =new ArrayList<>();
 		log.info("일정 1개를 받아온 값   : "+calendarEntitys);
 		
@@ -105,6 +105,7 @@ public class CalendarServiceImpl implements CalendarService {
 		
 		
 		log.info("........ /일정 modify() .........");
+		return calendarDTO;
 		
 		// TODO Auto-generated method stub
 		
