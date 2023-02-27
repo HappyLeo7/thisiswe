@@ -308,6 +308,19 @@ hr{
     line-height: 160%;
     font-weight: 700;	
 }
+.cl-re-input-fi-headcount{
+		margin: 3px 0px 15px;
+	height: 50px;
+	text-align: center;
+    width: 85%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 160%;
+    font-weight: 700;
+	
+}
 .cl-re-input{
 	margin: 3px 0px 15px;
 	height: 50px;

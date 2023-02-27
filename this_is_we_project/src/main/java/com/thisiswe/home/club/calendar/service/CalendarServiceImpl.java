@@ -48,6 +48,7 @@ public class CalendarServiceImpl implements CalendarService {
 	@Override
 	public List<CalendarDTO> getCalendarList(Long clubNum) {
 		log.info("......getCalendarList()......");
+		log.info("...... 모임번호 : "+clubNum);
 		List<Object[]> list=calendarRepository.getClubNum(clubNum);
 		List<CalendarDTO> entList= new ArrayList<>(); 
 		log.info("......calendar list : "+list);
@@ -55,8 +56,8 @@ public class CalendarServiceImpl implements CalendarService {
 		try {
 			
 		for(Object[]arr : list) {
-			log.info("배열 1"+arr[0]);
-			log.info("배열 2"+arr[1]);
+			log.info("배열 1"+arr[0].toString());
+			log.info("배열 2"+arr[1]); //일정 list정보
 			entList.add(entityToDTO((CalendarEntity)arr[1]));
 		}
 		} catch (Exception e) {
