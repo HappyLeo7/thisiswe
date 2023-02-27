@@ -86,11 +86,15 @@ public class ClubController {
 		log.info(clubDTO.getUserId());
 		log.info(clubDTO.getClubNum());
 		ClubMemberDTO.builder().clubNum(clubDTO.getClubNum()).userID(clubDTO.getUserId()).build();
+		ClubMemberDTO clubMemberDTO=new ClubMemberDTO();
+		log.info("모임 등록시 모임장 등록된 멤버 정보 : "+clubMemberDTO);
 		
 		log.info("=============== /post club_register ============================");
 		return "/club/club_list";
 		
 	}
+	
+	@PostMapping({"/clubNumCheck"})
 	
 	//상세페이지 연결링크
 	@GetMapping({"/club/"})
