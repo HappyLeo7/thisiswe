@@ -45,7 +45,7 @@ public class CalendarController {
 		log.info("clubDTO"+clubDTO); 
 		model.addAttribute("readDTO", clubDTO); //받아온 데이터를 web으로 보내주는 역할
 		log.info("==== /getMapping calendar register() Contorller ====");
-		return "/club/calendar/calendar_register";
+		return "club/calendar/calendar_register";
 	}
 	
 	//[일정등록] 
@@ -76,7 +76,7 @@ public class CalendarController {
 		model.addAttribute("calendarDTO",calendarDTO);
 		model.addAttribute("calendarNum", calendarDTO.getClubNum().getClubNum());
 		log.info("==== /getMappinig calendarRead() Contorller ====");
-		return "/club/calendar/calendar_read";
+		return "club/calendar/calendar_read";
 	}
 	
 	
@@ -94,7 +94,7 @@ public class CalendarController {
 		
 		log.info("==== /get calendar modify Contorller ====");
 		
-		return "/club/calendar/calendar_modify";
+		return "club/calendar/calendar_modify";
 	}
 	
 	//일정 수정 처리
@@ -113,7 +113,7 @@ public class CalendarController {
 		
 		log.info("==== / post calendar modify Contorller ====");
 		
-		return "/club/calendar/calendar_read";
+		return "club/calendar/calendar_read";
 	}
 	
 	//일정 삭제 처리

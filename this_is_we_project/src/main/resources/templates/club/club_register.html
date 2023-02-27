@@ -11,7 +11,8 @@
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
 
-
+<script	src="../js/club.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 		<title>모임 등록페이지</title>
 
@@ -52,10 +53,12 @@
 							<!-- 모임명 -->
 							<tr>
 								<th class="club-ri-th">모임명</th>
+								<!-- 모임명 중복 체크 -->
+								<td><button class="searchBtn-mi" type="button" onclick="clubNameCheck()">중복체크</button></td>
 							</tr>
 							<tr>
-								<td><input class="cl-re-input-fi"
-									name="clubName">
+								<td><input class="cl-re-input-fi clubName"
+									name="clubName" id="clubName">
 								</td>
 							</tr>
 
