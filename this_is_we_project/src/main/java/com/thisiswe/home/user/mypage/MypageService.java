@@ -1,18 +1,43 @@
 package com.thisiswe.home.user.mypage;
 
-import java.util.List;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.club.dto.ClubDTO;
-import com.thisiswe.home.club.photo.dto.PhotoDTO;
+import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
 public interface MypageService {
 	
+	// 내가 가입한 모임 목록 불러오기
+	public MyPageResultDTO<ClubDTO, ClubEntity> getClubList(PageRequestDTO pageRequestDTO, String userId);
+	
+	// ClubEntity(DB) -> CludDTO(Wed)
+	default ClubDTO entityClubToDTO (ClubEntity clubEntity, UserEntity userEntity) {
+		//지역, 모임명, 내용, 관심 카테고리, 로고이미지, 인원
+		ClubDTO clubDTO = ClubDTO.builder()
+				.clubNum(clubEntity.getClubNum())
+				.userId(userEntity.getUserId())
+				.userNickname(userEntity.getUserNickname())
+				.clubPlace(clubEntity.getClubPlace())
+				.clubName(clubEntity.getClubName())
+				.clubContent(clubEntity.getClubContent())
+				.clubCategory(clubEntity.getClubCategory())
+				.clubLogo(clubEntity.getClubLogo())
+				.clubLogoUuid(clubEntity.getClubLogoUuid())
+				.clubLogoUrl(clubEntity.getClubLogoUrl())
+				.clubHeadCount(clubEntity.getClubHeadCount())
+				.build();
+		
+		System.out.println("서비스 entitToDTO clubDTO :: "+clubDTO);
+		return clubDTO;
+		
+	}
+	
+	// TODO [Service] 게시판 - 페이지 목록(list)
+	public MyPageResultDTO<BoardDTO, Board> getList(PageRequestDTO pageRequestDTO, String userId);
 	
 	//TODO [Service] 게시판 - Entity(DB)에서 DTO(WEB)로
 	default BoardDTO entityToBoardDTO(Board board, UserEntity userEntity, Long replyCount) {
@@ -20,6 +45,7 @@ public interface MypageService {
 	    
 		//게시판 번호, 카테고리, 제목, 내용, 유저아이디, 수정일, 조회수, 댓글수
 		BoardDTO boardDTO = BoardDTO.builder()
+				
 							.boardNum(board.getBoardNum())
 							.boardCategory(board.getBoardCategory())
 							.boardTitle(board.getBoardTitle())
@@ -41,10 +67,8 @@ public interface MypageService {
 	// 회원정보 수정
 	void modifyUserInfo(MultipartFile userImageFile, String userNickname, String userPassword, String userId);
 	
-	// TODO [Service] 게시판 - 페이지 목록(list)
-	public MyPageResultDTO<BoardDTO, Board> getList(PageRequestDTO pageRequestDTO, String userId);
+	
 
-	// 사진을 받는 메서드
 
 
 

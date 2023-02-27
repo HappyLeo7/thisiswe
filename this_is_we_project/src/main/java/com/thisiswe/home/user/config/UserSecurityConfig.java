@@ -8,8 +8,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -17,8 +19,9 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor // final이나 @NonNull인 필드 값만 파라미터로 받는 생성자 만듦
 @EnableWebSecurity // 스프링 Security 지원을 가능하게 한다.
 @EnableGlobalMethodSecurity(securedEnabled = true) // @Secured 어노테이션 활성화
+@RestController
 public class UserSecurityConfig {
-
+	
 	@Bean
 	// 비밀번호를 그대로 저장하지 않고 BCryptPasswordEncoder의 해시 함수를 이용하여 암호화처리
 	public PasswordEncoder passwordEncoder() { 
@@ -28,6 +31,7 @@ public class UserSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
+	
 		
 		http.csrf().disable(); // 테스트중으로 공부가 필요한 부분
 //		http.csrf().ignoringAntMatchers("/user/**"); // 회원 관리 처리 API (POST /user/**) 에 대해 CSRF 무시
@@ -47,7 +51,7 @@ public class UserSecurityConfig {
 		.antMatchers("/notice/**").permitAll()
 		.antMatchers("/thisiswe/**").permitAll()
 //		.antMatchers("/**").permitAll()
-
+	
 		
 		// 그 외 어떤 요청이든 '인증'
 		.anyRequest().authenticated()
@@ -76,7 +80,7 @@ public class UserSecurityConfig {
 		.permitAll()
 		.and()
 		.exceptionHandling()
-		// "접근 불가" 페이지 URL 설정
+		// 인증되지 않은 사용자가 접근할 경우 보여줄 페이지 설정
 		.accessDeniedPage("/forbidden.html");
 		return http.build();
 		}

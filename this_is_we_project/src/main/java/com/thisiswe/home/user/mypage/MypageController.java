@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
+import com.thisiswe.home.club.board.repository.BoardRepository;
 import com.thisiswe.home.user.security.UserDetailsImpl;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ import lombok.extern.log4j.Log4j2;
 public class MypageController {
 	
 	private final MypageService mypageService;
+	private final BoardRepository boardRepository;
 
 	// 마이페이지 메인
 	@GetMapping("/main")
@@ -66,11 +68,18 @@ public class MypageController {
 		log.info("=============== boardService.getList를 호출 ===============");
 		model.addAttribute("result", mypageService.getList(pageRequestDTO, userDetails.getUsername()));		
 		log.info("=========================================================");
+		log.info("리스트 결과값 : "+model.addAttribute("result"));
+
+		log.info("모임정보 : "+model.addAttribute("clubDTO"));
 	return "mypage/myboardlist";
 	}    
 	
-//	// 마이페이지 내가 가입한 모임 불러오기 
-//	@GetMapping("/myclub")
-//	public 
+	// 마이페이지 내가 가입한 모임 불러오기 
+	@GetMapping("/myclub")
+	public String myClubList(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+		model.addAttribute("result", mypageService.getClubList(pageRequestDTO, userDetails.getUsername()));
+		System.out.println("이거냐?" + model);
+		return "mypage/myclublist";
+	}
 	
 }

@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 
@@ -19,6 +21,12 @@ import com.thisiswe.home.club.board.dto.BoardDTO;
 import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.club.board.repository.BoardRepository;
+import com.thisiswe.home.club.dto.ClubDTO;
+import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.club.member.ClubMemberDTO;
+import com.thisiswe.home.club.member.ClubMemberEntity;
+import com.thisiswe.home.club.member.ClubMemberRepository;
+import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.user.entity.UserEntity;
 import com.thisiswe.home.user.repository.UserRepository;
 
@@ -33,7 +41,40 @@ public class MypageServiceImpl implements MypageService {
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 	private final BoardRepository boardRepository;
+	private final ClubRepository clubRepository;
+	private final ClubMemberRepository clubMemberRepository;
 
+	@Override
+	public MyPageResultDTO<ClubDTO, ClubEntity> getClubList(PageRequestDTO pageRequestDTO, String userId) {
+	    UserEntity userEntity = userRepository.findByUserId(userId)
+	            .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+	    Page<ClubEntity> result = clubRepository.findClubsByUserId(userEntity, pageRequestDTO.getPageable(Sort.by("clubNum").descending()));
+
+	    Function<ClubEntity, ClubDTO> func = clubEntity -> entityClubToDTO(clubEntity, userEntity);
+	    return new MyPageResultDTO<>(result, func);
+	}
+	
+//	@Override
+//	public MyPageResultDTO<ClubDTO, ClubEntity> getClubList(PageRequestDTO pageRequestDTO, String userId) {
+//		
+//
+//        UserEntity userEntity = userRepository.findByUserId(userId)
+//                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+//
+//        // 로그인한 사용자의 아이디로 ClubMemberEntity를 조회합니다.
+//        Page<ClubMemberEntity> result = clubMemberRepository.findAllByUserId(userEntity, pageRequestDTO.getPageable(Sort.by("clubNum").descending()));
+//        
+//        // 조회된 ClubMemberEntity에서 가입한 모임의 번호(ClubEntity의 clubNum)를 추출합니다.
+//        List<Long> clubNumList = result.stream().map(ClubMemberEntity::getClubNum).collect(Collectors.toList());
+//        
+//        // 추출된 가입한 모임의 번호를 사용하여 ClubEntity를 조회합니다.
+//        Page<ClubEntity> result2 = clubRepository.findAllByClubNumIn(clubNumList, pageRequestDTO.getPageable(Sort.by("clubNum").descending()));
+//
+//        // 조회된 ClubEntity를 화면에 표시합니다.
+//        Function<ClubEntity, ClubDTO> func = clubEntity -> entityClubToDTO(clubEntity, userEntity);
+//        return new MyPageResultDTO<>(result2, func);
+//	}
 
 	
 //	 게시글 페이지 목록(list)
@@ -46,7 +87,7 @@ public class MypageServiceImpl implements MypageService {
 	    Function<Board, BoardDTO> func = board -> entityToBoardDTO(board, userEntity, board.getReplyCount());
 
 	    Page<Board> result2 = boardRepository.findAllByUserId(userEntity, pageRequestDTO.getPageable(Sort.by("boardNum").descending()));
-
+	    log.info("결과값2 : "+ result2);
 	    return new MyPageResultDTO<>(result2, func);
 	}
 	
@@ -117,6 +158,8 @@ public class MypageServiceImpl implements MypageService {
             throw new RuntimeException("Failed to upload image");
         }
     }
+
+
 
 
 
