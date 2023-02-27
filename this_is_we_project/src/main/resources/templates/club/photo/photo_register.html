@@ -4,10 +4,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
-<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
-	
+<th:block
+	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
+<<<<<<< HEAD
 	
 			<!-- 네비창 (정보, 게시판, 사진첩) -->
 		모임번호 :	<input class="clubNum" name="clubNum"
@@ -43,13 +45,90 @@
 				
 			<input type="file" name="file" id="" class="">
 			<!-- <lable class="custom-file-label" data-browse="Browse"></lable> -->
+=======
+
+		<!-- 네비창 (정보, 게시판, 사진첩) -->
+
+		<!-- 모임번호 받아오는 input -->
+		<input type="hidden" class="clubNum" name="clubNum"
+			th:value="${clubNum}" readonly="readonly">
+
+		<div class="top-inner">
+			<div class="top-inner-ul">
+				<ul class="top-inner-menu top-inner-eff">
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/(num=${clubNum})}"> <span>INFO</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/board/(num=${clubNum})}"> <span>BOARD</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/photo/(num=${clubNum})}"> <span>PHOTO</span>
+					</a></li>
+					<li class="ta-li"><a th:href="@{/room}"> <span>CHAT</span>
+					</a></li>
+				</ul>
+			</div>
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 		</div>
-	</div>
-	
-	<!-- 박스 
+		<!-- /네비창 (정보, 게시판, 사진첩) -->
+
+
+
+		<!-- 내용 -->
+		<title>사진첩 등록페이지</title>
+
+		<div class="inner">
+			<h2>사진첩 등록 페이지</h2>
+
+
+			<!-- 이미지 등록처리 -->
+			<form action="/thisiswe/club/photo/register" method="post"
+				enctype="multipart/form-data">
+				<div class="club-table">
+					<div class="club-table-read">
+						<table class="club-re-ca">
+
+							<tr>
+								<th class="club-ri-th">모임번호</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input-fi" type="text"
+									name="clubNum" th:value="${clubNum}" readonly="readonly"></td>
+							</tr>
+
+							<tr>
+								<th class="club-ri-th">등록ID</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input-fi" type="text" name="userId"
+									th:value="${user}" readonly="readonly"></td>
+							</tr>
+
+							<tr>
+								<th class="club-ri-th">사진내용</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input-fi" type="text"
+									name="photoContent"></td>
+							</tr>
+
+							<tr>
+								<th class="club-ri-th">이미지등록</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input-fi" type="file" name="file"
+									id=""> <!-- <lable class="custom-file-label" data-browse="Browse"></lable> -->
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<!-- 박스 
 		<div class="box"></div>
 	-->
-	
+
 				<!-- 이미지 업로드 값  
 				
 	<div class="uploadResult">
@@ -57,13 +136,18 @@
 				</ul>
 			</div>
 				-->
-	
-	<button type="submit" >등록</button>
-	</form>
-	<!-- /내용 -->
-	
-	
-	<script type="text/javascript">
+				
+				<!-- 등록버튼 -->
+				<div class="club-re-Btn">
+					<button type="submit" class="searchBtn-mi">등록</button>
+				</div>
+				<!-- /등록버튼 -->
+			</form>
+		</div>
+		<!-- /내용 -->
+
+
+		<script type="text/javascript">
 	
 	$(document).ready(function(e){
 		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
@@ -197,8 +281,8 @@
 	})
 		
 </script>
-	
-	
+
+
 	</th:block>
 
 </th:block>

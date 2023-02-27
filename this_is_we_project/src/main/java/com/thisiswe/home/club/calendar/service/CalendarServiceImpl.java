@@ -48,6 +48,7 @@ public class CalendarServiceImpl implements CalendarService {
 	@Override
 	public List<CalendarDTO> getCalendarList(Long clubNum) {
 		log.info("......getCalendarList()......");
+		log.info("...... 모임번호 : "+clubNum);
 		List<Object[]> list=calendarRepository.getClubNum(clubNum);
 		List<CalendarDTO> entList= new ArrayList<>(); 
 		log.info("......calendar list : "+list);
@@ -55,8 +56,8 @@ public class CalendarServiceImpl implements CalendarService {
 		try {
 			
 		for(Object[]arr : list) {
-			log.info("배열 1"+arr[0]);
-			log.info("배열 2"+arr[1]);
+			log.info("배열 1"+arr[0].toString());
+			log.info("배열 2"+arr[1]); //일정 list정보
 			entList.add(entityToDTO((CalendarEntity)arr[1]));
 		}
 		} catch (Exception e) {
@@ -76,12 +77,13 @@ public class CalendarServiceImpl implements CalendarService {
 
 	//일정 수정하기
 	@Override
-	public void modify(CalendarDTO calendarDTO, ClubDTO clubDTO) {
+	public CalendarDTO modify(CalendarDTO calendarDTO) {
 		log.info("........ 일정 modify() .........");
-		log.info("받아온 모임 정보 : " + clubDTO);
+		log.info("받아온 모임 정보 : " + calendarDTO.getClubNum().getClubNum());
 		log.info("받아온 모임 일정 정보 : " + calendarDTO);
 		
-		List<Object[]> calendarEntitys=calendarRepository.getClubCalendarNum(clubDTO.getClubNum(),calendarDTO.getClubCalendarNum());
+
+		List<Object[]> calendarEntitys=calendarRepository.getClubCalendarNum(calendarDTO.getClubNum().getClubNum(),calendarDTO.getClubCalendarNum());
 		//List<CalendarDTO> entList =new ArrayList<>();
 		log.info("일정 1개를 받아온 값   : "+calendarEntitys);
 		
@@ -105,6 +107,7 @@ public class CalendarServiceImpl implements CalendarService {
 		
 		
 		log.info("........ /일정 modify() .........");
+		return calendarDTO;
 		
 		// TODO Auto-generated method stub
 		

@@ -13,6 +13,7 @@
 
 
 		<!-- 네비창 (정보, 게시판, 사진첩) -->
+<<<<<<< HEAD
 		모임번호 :	<input class="clubNum" name="clubNum"
 			th:value="${clubNum}" readonly="readonly">
 		<table border="1">
@@ -70,6 +71,119 @@
 		
 	}
 </script>
+=======
+
+		<!-- 모임번호 받아오는 input -->
+		<input type="hidden" class="clubNum" name="clubNum"
+			th:value="${clubNum}" readonly="readonly">
+
+		<div class="top-inner">
+			<div class="top-inner-ul">
+				<ul class="top-inner-menu top-inner-eff">
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/(num=${clubNum})}"> <span>INFO</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/board/(num=${clubNum})}"> <span>BOARD</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/photo/(num=${clubNum})}"> <span>PHOTO</span>
+					</a></li>
+					<li class="ta-li"><a th:href="@{/room}"> <span>CHAT</span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /네비창 (정보, 게시판, 사진첩) -->
+
+		<!-- 내용 -->
+		<div class="inner">
+			<h2>사진첩 목록</h2>
+			<!-- 사진등록버튼 -->
+			<div class="club-re-Btn">
+				<a th:href="@{/thisiswe/club/photo/register(num=${clubNum})}">
+					<button type="button" class="searchBtn-mi">사진등록</button>
+				</a>
+			</div>
+			<!-- 사진등록버튼 -->
+
+			<hr>
+
+			<div class="inner">
+				<div class="club-table">
+					<div class="club-table-read">
+						<div th:each="photoDTO : ${photoDTOList}">
+							<table class="club-re-ca">
+								<tr>
+								<th class="club-ri-th">
+								모임번호
+								</th>
+								</tr>
+								<tr>
+									<td class="cl-re-contain"><input class="cl-re-input-fi clubNum"
+										th:value="${photoDTO.clubNum.clubNum}">
+									</td>
+								</tr>
+								
+								<tr>
+								<th class="club-ri-th">
+								사진번호
+								</th>
+								</tr>
+								<tr>
+									<td class="cl-re-contain"><input class="cl-re-input-fi photoNum"
+										th:value="${photoDTO.photoNum}">
+									</td>
+								</tr>
+								
+								<tr>
+								<th class="club-ri-th">
+								등록유저
+								</th>
+								</tr>
+								<tr>
+									<td class="cl-re-contain"><input class="cl-re-input-fi" th:value="${photoDTO.userId.userId}"><br>
+										<img th:src="|/display?fileName=${photoDTO.photoPath}|">
+									</td>
+								</tr>
+								<tr>
+									<td>
+									<div class="club-re-Btn">
+										<button type="button" class="searchBtn-mi" onclick="photoRemove()">사진삭제</button>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- /내용 -->
+
+		<script>
+			function photoRemove() {
+				let photoNum = $(".photoNum").val();
+				let clubNum = $(".clubNum").val();
+				alert("사진 번호 : " + photoNum);
+				$.ajax({
+					url : "/thisiswe/club/photo/remove/" + photoNum,
+					method : "delete",
+					success : function(result) {
+						console.log("삭제결과 : " + result)
+						if (result == "success") {
+							alert("사진이 삭제 되었습니다.")
+							let url = "/thisiswe/club/photo/?num=" + clubNum;
+							location.replace(url)
+						}
+					}
+
+				})
+
+			}
+		</script>
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 
 
 	</th:block>

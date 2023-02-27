@@ -17,6 +17,7 @@
 div>h2 {
 	text-align: center;
 }
+<<<<<<< HEAD
 /* [END][club] - 공통으로 들어가는 부분 */
 /* [START][list] - 모임 등록 버튼 */
 .club-regi{
@@ -324,4 +325,357 @@ div>h2 {
 
 /*[END][read] - catalog부분 */
 
+=======
+hr{
+	 margin-bottom: 30px; 
+	 width: 60%;
+	 border: 0px;
+	 height: 1px;
+	 background: linear-gradient(to left, transparent, rgba(192,192,192,1), transparent)
+	 ;
+}
+/* [END][club] - 공통으로 들어가는 부분 */
+/* [START][list] - 모임 등록 버튼 */
+.club-regi{
+	overflow: hidden;
+	position: relative;
+	font-size: 1.6rem;    
+    display: inline-block;
+    height: 50px;
+    margin: 5px 0 5px 0;
+    position: relative;
+	float: right;
+}
+.searchBtn-regi{
+	height: 45px;
+	border: 1px solid #ffffff;
+    border-radius: 5px;
+	background-color: white;
+	width: 100px;
+    margin: 0 1px 0 1px;
+	cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}  
+.searchBtn-regi:hover{
+    box-shadow: 0 2px 3px rgba(0,0,0,0.25), 0 2px 3px rgba(0,0,0,0.22);
+}
+/* [END][list] - 모임 등록 버튼 */
+/* [START][list] - 검색창 */
+.club-search {
+    overflow: hidden;
+    height: 100px;
+    margin: 5px 0 5px 0;
+    text-align: center;
+}
+.club-search_sub{
+    margin-top: 15px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    font-size: 1.6rem;
+    text-align: right;
+}
+#searchForm {
+	margin-top: 12px;
+    margin-bottom: 12px;
+}
+#searchColumn {
+	height: 45px;
+	border: 1px solid #e0e0e0;
+	padding: 0 0 0 10px;
+	background-size: 23px;
+	cursor: pointer;
+}
+#searchWord {
+	height: 45px;
+	border: 1px solid #e0e0e0;
+	width: 250px;
+	padding: 0 0 0 10px;
+	background-size: 23px;
+	cursor: pointer;
+}
+.searchBtn {
+	height: 45px;
+	border: 1px solid #e0e0e0;
+	background-color: white;
+	width: 60px;
+	padding: 10px;
+	cursor: pointer;
+}
+.searchBtn:focus{
+	outline: none;
+    border: 2px solid;
+    border-radius: 4px;
+    border-color: #232323;
+}
+/* [END][list] - 검색창 */
+/* [START][list] - 페이지 처리 부분 */
+.paginate{
+	width: 100%;
+    margin: 50px 0 20px;
+    text-align: center;
+}
+.paginate-link{
+	display: inline-block;
+    width: 38px;
+    height: 36px;
+    margin-right: 5px;
+    border: 1px solid #d9d9d9;
+    color: #666;
+    line-height: 34px;
+    vertical-align: middle;
+}
+/* [END][list] - 페이지 처리 부분 */
+/*[START][list] - 목록 list 부분 */
+.club-table {
+	margin: 20px 0 0 0;
+	width: 100%;
+	border-spacing: 0;
+	word-break: break-all;
+	text-indent: initial;
+}
+
+.club-table-li{
+	margin: 10px;
+	padding: 10px;
+	background-color: #f0f0f0;
+}
+.club-table-li img{
+	width: 300px;
+  	height: 200px;
+  	object-fit: fill;
+}
+/* [END][list] - 목록 list 부분 */
+/* ------------------------------------------- */
+/*[START][read] - 부분 */
+.club-table-read{
+	margin: 10px;
+	padding: 10px;
+/* 	background-color: #f0f0f0; */
+}
+/*[START][read] club의 네비 리스트 */
+.top-inner{
+	height: 80px;
+}
+.top-inner-ul{
+    padding: 30px;
+    text-align: center;
+}
+.ta-li{
+	padding: 8px 10px 8px 10px;
+	font-size: 20px;
+	font-weight: normal;
+}
+.ta-li a {
+	color: #2b2b2b;
+    font-size: 20pt;
+    margin: 0px 20px 0 20px;
+    padding: 0px 5px 0px 5px;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.top-inner-eff a:before, .top-inner-eff a:after {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: #BB2649;
+    content: "";
+    opacity: 0.8;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    pointer-events: none;
+    }
+.top-inner-eff a:before {
+    top: 0;
+    left: 0;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+    }
+.top-inner-eff a:after {
+    right: 0;
+    bottom: 0;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+   	}
+.top-inner-eff a:hover:before,.top-inner-eff a:hover:after,
+.top-inner-eff a:focus:before,.top-inner-eff a:focus:after {
+    opacity: 1;
+    }
+.top-inner-eff a:hover:before,.top-inner-eff a:focus:before {
+    left: 50%;
+    left: 45%;
+    -webkit-transform: rotate(0deg) translateX(-50%);
+    -moz-transform: rotate(0deg) translateX(-50%);
+    transform: rotate(0deg) translateX(-50%);
+    }
+.top-inner-eff a:hover:after,.top-inner-eff a:focus:after {
+    right: 50%;
+    right: 45%;
+    -webkit-transform: rotate(0deg) translateX(50%);
+    -moz-transform: rotate(0deg) translateX(50%);
+    transform: rotate(0deg) translateX(50%);
+	}
+/*[END][read] club의 네비 리스트 */
+/*[START][read] 모임 수정 버튼 */
+.club-re-Btn {
+	text-align: center;
+}
+.searchBtn-mi {
+	margin: 0 15px 0 15px;
+	padding: 10px;
+	width: 70px;
+	height: 45px;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+	background-color: white;
+	cursor: pointer;
+}
+.searchBtn-mi:hover{
+	outline: none;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: #BB2649;
+}
+/*[END][read] 모임 수정 버튼 */
+/*[START][read] - catalog부분 */
+.club-LogoImage{
+	position: relative;
+  	margin: 10px;
+ 	min-width: 95%;
+ 	max-width: 100%;
+ 	text-align: center;
+}
+.club-LogoImage * {
+ 	-webkit-box-sizing: border-box;
+  	box-sizing: border-box;
+  	-webkit-transition: all 0.5s ease-in;
+  	transition: all 0.5s ease-in;
+}
+.club-LogoImage img {
+  	position: relative;
+  	margin:  5px 5px 5px 5px;
+ 	max-width: 97%;
+  	vertical-align: top;
+}
+.club-re-ca{
+    margin: 0 auto;
+	padding : 0 auto;
+    width: 40%;
+	border-spacing: 0;
+	text-indent: initial;
+    text-align: center;
+}
+.club-ri-th{	
+	width: 100%;
+	height: 40px;
+    font-size: inherit;
+    vertical-align: middle;
+    -webkit-text-size-adjust: none;
+    list-style: none;
+    line-height: 1;
+    letter-spacing: -1px;
+  /*   border-radius: 1rem;
+	background-color: #f0f0f0; */
+}
+.cl-re-contain{
+	position: relative;
+	/*width: 50%; */
+}
+.cl-re-input-fi{
+	margin: 3px 0px 15px;
+	height: 50px;
+	text-align: center;
+    width: 99%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 160%;
+    font-weight: 700;
+}
+.cl-re-input-fi-ti{
+	margin: 3px 0px 3px;
+	height: 50px;
+	text-align: center;
+    width: 43%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 160%;
+    font-weight: 700;	
+}
+.cl-re-input-fi-headcount{
+		margin: 3px 0px 15px;
+	height: 50px;
+	text-align: center;
+    width: 85%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 160%;
+    font-weight: 700;
+	
+}
+.cl-re-input{
+	margin: 3px 0px 15px;
+	height: 50px;
+	text-align: center;
+    width: 99%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    overflow: auto;
+    font-size: 16px;
+    line-height: 160%;
+    font-weight: 700;
+}
+.cl-re-input-co{
+	margin: 3px 0 15px;
+	padding: 0 5px 0 5px 10px;
+	height: 300px;
+	text-align: center;
+  	width: 99%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    overflow: auto;
+    font-size: 16px;
+    line-height: 160%;
+    font-weight: 700;
+}
+.cl-re-input:focus, .cl-re-input-co:focus{
+    outline: none;
+    border: 2px solid #e7e7e7;
+    border-color: #e7e7e7;
+    cursor: pointer;
+}
+/*[END][read] - catalog부분 */
+/*[START][read] - 모임 스케줄 부분 */
+.club-table-read-cal{
+	margin: 0 auto;
+	padding: 10px;
+	text-align: center;
+	background-color: #dedede;
+}
+/* .club-table-read-cal:after{
+	content: "";
+ 	display: block;
+  	width: 50%;
+    border-top: 1px solid #c4c4c4;
+    margin: 0 auto;
+} */
+/*[END][read] - 모임 스케줄 부분 */
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 /*[END][read] */

@@ -1,13 +1,16 @@
-<<!DOCTYPE html>
+<
+<!DOCTYPE html>
 
 <!-- th를 쓰기위한 thymeleaf.org 선언 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
-<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
-	
+<th:block
+	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
+<<<<<<< HEAD
 	
 	
 	
@@ -91,7 +94,10 @@
 	<td><button type="submit">모임등록(개설)</button></td>
   </tr>
 </table>
+=======
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 
+<<<<<<< HEAD
 	</form>
 	<!-- /form -->
 	
@@ -101,9 +107,134 @@
 	<hr>
 	<!-- /내용 -->
 	
+=======
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 
-	
+
+		<title>모임 등록페이지</title>
+
+		<div class="inner">
+			<h2>모임 등록페이지</h2>
+
+
+			<!-- 등록 내용  -->
+
+			<!-- form -->
+			<form th:action="@{/thisiswe/club}" th:method="post"
+				enctype="multipart/form-data">
+
+				<div class="club-table">
+					<div class="club-table-read">
+						<table class="club-re-ca">
+
+							<!-- userID -->
+							<tr>
+								<th class="club-ri-th">아이디</th>
+							</tr>
+
+							<tr>
+								<td><input class="cl-re-input-fi" name="userId"
+									th:value="${user}" readonly="readonly"></td>
+							</tr>
+							
+							<!-- 지역 -->
+							<tr>
+								<th class="club-ri-th">지역</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input-fi"
+									name="clubPlace">
+								</td>
+							</tr>
+
+							<!-- 모임명 -->
+							<tr>
+								<th class="club-ri-th">모임명</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input-fi"
+									name="clubName">
+								</td>
+							</tr>
+
+							<!-- 모임설명 -->
+							<tr>
+								<th class="club-ri-th">모임설명</th>
+							</tr>
+							<tr>
+								<td><textarea class="cl-re-input-fi"
+										name="clubContent"></textarea>
+								</td>
+							</tr>
+
+							<!-- 카테고리 -->
+							<tr>
+								<th class="club-ri-th">관심사 카테고리</th>
+							</tr>
+							<tr>
+								<td><select size="5"
+									name="clubCategory">
+										<option value="아웃도어/여행">아웃도어/여행</option>
+										<option value="운동/스포츠">운동/스포츠</option>
+										<option value="인문학/책/글">인문학/책/글</option>
+										<option value="업종/직무">업종/직무</option>
+										<option value="외국/언어">외국/언어</option>
+										<option value="문화/공연/축제">문화/공연/축제</option>
+										<option value="음악/악기">음악/악기</option>
+										<option value="공예/만들기">공예/만들기</option>
+										<option value="댄스/무용">댄스/무용</option>
+										<option value="봉사활동">봉사활동</option>
+										<option value="사교/인맥">사교/인맥</option>
+										<option value="차/오토바이">차/오토바이</option>
+										<option value="사진/영상">사진/영상</option>
+										<option value="야구관람">야구관람</option>
+										<option value="게임/오락">게임/오락</option>
+										<option value="요리/제조">요리/제조</option>
+										<option value="반려동물">반려동물</option>
+										<option value="가족/결혼">가족/결혼</option>
+										<option value="자유주제">자유주제</option>
+								</select>
+								</td>
+							</tr>
+
+								<!-- 로고이미지 -->
+								<tr>
+								<th class="club-ri-th">로고이미지</th>
+							</tr>
+							
+							<tr>
+								<td><input class="cl-re-input-fi" type="file"
+									name="file"></td>
+								<!-- 모임정원 -->
+								<tr>
+								<th class="club-ri-th">모임정원</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input-fi-headcount" name="clubHeadCount"
+									type="number" min="1" max="300">/300
+								</td>
+							</tr>
+
+							<!-- 등록(개설)버튼 -->
+							<tr>
+								<td><button class="searchBtn-mi" type="submit">모임등록</button></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</form>
+			<!-- /form -->
+
+			<!-- /등록 내용  -->
+
+
+			<hr>
+
+		</div>
+		<!-- /내용 -->
+
+
+
 	</th:block>
 
 </th:block>
-

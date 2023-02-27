@@ -79,7 +79,14 @@ public class CalendarTests {
 			
 		System.out.println("");
 		System.out.println("'''''일정수정 테스트''''''");
+		ClubDTO clubDTOa=ClubDTO.builder()
+				.clubNum(9L).build();
+		
 			CalendarDTO calendarDTO = CalendarDTO.builder()
+<<<<<<< HEAD
+=======
+					.clubNum(null)
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 					.clubCalendarNum(14L)
 					.clubCalendarTitle("점심수정")
 					.clubCalendarContent("연어덮밥 수정")
@@ -91,14 +98,17 @@ public class CalendarTests {
 					.clubCalendarPrice(20000L)
 					.build();
 			
+<<<<<<< HEAD
 			ClubDTO clubDTO=ClubDTO.builder()
 					.clubNum(9L).build();
 			
+=======
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 			System.out.println("일정 수정값 : "+calendarDTO);
 			
 			System.out.println("");
 			
-			calendarService.modify(calendarDTO, clubDTO);
+			calendarService.modify(calendarDTO);
 			
 			System.out.println("'''''/일정수정 테스트''''''");
 			System.out.println("");

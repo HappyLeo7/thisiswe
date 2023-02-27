@@ -59,11 +59,9 @@ public interface ClubRepository extends JpaRepository<ClubEntity, Long>, SearchC
 	@Query(value = "delete from club_entity where club_num= 3 " ,nativeQuery = true)
 	Long clubRemove(@Param("clubNum") Long clubNum);
 
-	 
-	// 나만의 모임 정보 불러오기
-//	Page<ClubEntity> findAllByClubNumIn(List<Long> clubNumList, Pageable pageable);
 	@Query("SELECT c FROM ClubEntity c WHERE c.clubNum IN (SELECT cm.clubNum FROM ClubMemberEntity cm WHERE cm.userId = :userId) OR c.userId = :userId")
 	Page<ClubEntity> findClubsByUserId(@Param("userId") UserEntity userId, Pageable pageable);
+
 	
 
 }

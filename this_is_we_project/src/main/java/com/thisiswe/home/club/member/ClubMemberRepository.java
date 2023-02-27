@@ -6,8 +6,6 @@ import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.repository.search.SearchClubRepository;
 import com.thisiswe.home.user.entity.UserEntity;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,9 +18,4 @@ public interface ClubMemberRepository extends JpaRepository<ClubMemberEntity, Lo
     //해당 모임의 구성원 불러오는 코드
     //@Query();
     
-    
-
-	
-	// 나만의 모임 정보 불러오기
-//	Page<ClubMemberEntity> findAllByUserId(UserEntity userEntity, Pageable pageable);
 }

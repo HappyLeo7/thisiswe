@@ -26,6 +26,10 @@
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 <!-- /css 파일 경로 -->
 
+<!-- 공통 club.css 연결 -->
+<link rel="stylesheet" th:href="@{/css/club.css}" />
+<!-- /공통 club.css 연결 -->
+
 <!-- Link Swiper's CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -40,19 +44,33 @@
 		<!-- [상단 메뉴바] -->
 		<div id="top-menu">
 			<div class="top-container">
+<<<<<<< HEAD
 				<span id="container-logo"> 
 					<img class="container-logo-l" src="/image/thisiswe-logo01.svg">
+=======
+				<span id="container-logo"> <img class="container-logo-l"
+					src="/image/thisiswe-logo01.svg">
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 				</span>
 				<div class="container-p">
 					<ul class="container-p-ul">
+<<<<<<< HEAD
 						<li class="container-p-li">
 							<a th:href="@{/thisiswe/mypage/main}">마이페이지</a>
+=======
+						<li class="container-p-li"><a href="#">마이페이지</a></li>
+						<li class="container-p-li"><a th:href="@{/thisiswe/login}">로그인</a>
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 						</li>
+<<<<<<< HEAD
 						<li class="container-p-li">
 							<a th:href="@{/thisiswe/login}">로그인</a>
 						</li>
 						<li class="container-p-li">
 							<a th:href="@{/thisiswe/signup}">회원가입</a>
+=======
+						<li class="container-p-li"><a th:href="@{/thisiswe/signup}">회원가입</a>
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 						</li>
 					</ul>
 				</div>
@@ -67,9 +85,14 @@
 		<!-- [햄버거 버튼] - menu -->
 		<menu>
 			<div class="logo">
+<<<<<<< HEAD
 				<a href=""> 
 					<img class="logo-img" src="/image/thisiswe-icon01.svg" />
 					<!-- <span class="icon-camera"></span> -->
+=======
+				<a href=""> <img class="logo-img"
+					src="/image/thisiswe-icon01.svg" /> <!-- <span class="icon-camera"></span> -->
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 				</a>
 			</div>
 			<span id="close-menu">
@@ -79,7 +102,11 @@
 				<div class="box">
 					<ul>
 						<li><a href="#">Promotions</a></li>
+<<<<<<< HEAD
 						<li><a th:href="@{/thisiswe/mypage/main}">마이페이지</a> | <a th:href="@{/thisiswe/login}">로그인</a>
+=======
+						<li><a href="#">마이페이지</a> | <a th:href="@{/thisiswe/login}">로그인</a>
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 							| <a th:href="@{/thisiswe/signup}">회원가입</a></li>
 					</ul>
 					<ul>
@@ -142,6 +169,7 @@
 				<div class="swiper mySwiper">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
+<<<<<<< HEAD
 					        <a th:href="@{/thisiswe/club}">
 					            <figure class="weSwiper">
 					                <img src="/image/club/club02.png" />
@@ -162,11 +190,31 @@
 					            </figure>
 					        </a> 
 					    </div>
+=======
+							<a th:href="@{/thisiswe/club}">
+								<figure class="weSwiper">
+									<img src="/image/club/club02.png" />
+									<figcaption>
+										<h3>THIS IS WE, GETHERING</h3>
+										<P>Any day spent with you is my favorite day</P>
+									</figcaption>
+								</figure>
+							</a> <a th:href="@{/thisiswe/place}">
+								<figure class="weSwiper">
+									<img src="/image/place/place01.jpg" />
+									<figcaption>
+										<h3>
+											THIS IS WE, <span>PLACE</span>
+										</h3>
+										<P>Every adventure requires a first step</P>
+									</figcaption>
+								</figure>
+							</a>
+						</div>
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 					</div>
-					
-					<div class="swiper-wrapper">
-						
-					</div>
+
+					<div class="swiper-wrapper"></div>
 					<!-- <div class="swiper-button-next"></div>
 					<div class="swiper-button-prev"></div> -->
 					<div class="swiper-pagination"></div>
@@ -220,7 +268,11 @@
 					<div id="ft-bottom">
 						<div id="ft-bottom-left">
 							<!-- [수정] image로고 경로 부트에 맞게 변경 -->
+<<<<<<< HEAD
 							<img src="/image/thisiswe-logo01.svg" />					
+=======
+							<img src="/image/thisiswe-logo01.svg" />
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 							<!-- /[수정] image로고 경로 부트에 맞게 변경 -->
 						</div>
 
@@ -245,6 +297,7 @@
 						<div id="ft-bottom-right">
 							<table>
 								<tr>
+<<<<<<< HEAD
 									<td>
 										<a href="#">
 											<img src="/image/icon_insta_com.png" />
@@ -264,6 +317,16 @@
 											<img src="/image/icon_twi_com.png" />
 										</a>
 									</td>
+=======
+									<td><a href="#"> <img src="/image/icon_insta_com.png" />
+									</a></td>
+									<td><a href="#"> <img src="/image/icon_face_com.png" />
+									</a>
+									<td><a href="#"> <img src="/image/icon_youtu_com.png" />
+									</a></td>
+									<td><a href="#"> <img src="/image/icon_twi_com.png" />
+									</a></td>
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 								</tr>
 							</table>
 						</div>
