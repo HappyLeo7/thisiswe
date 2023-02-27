@@ -34,8 +34,7 @@
 					<li class="ta-li"><a
 						th:href="@{/thisiswe/club/photo/(num=${readDTO.clubNum})}"> <span>PHOTO</span>
 					</a></li>
-					<li class="ta-li"><a th:href="@{/room}"> <span>CHAT</span>
-					</a></li>
+					<li class="ta-li"><a th:onclick="testGoRoom([[${readDTO.clubNum}]], [[${readDTO.clubName}]])">chat</a></li>
 				</ul>
 			</div>
 		</div>
@@ -267,9 +266,11 @@
 		</script>
 		<script>
 			function testGoRoom(number, name) {
+				console.log("채팅 메서드 실행 됨");
 				let openWin = window.open("/moveChating?roomName=" + name + "&"
 						+ "roomNumber=" + number, "팝업 테스트",
 						"width=350, height=700, top=2050, left=2000");
+
 			}
 		</script>
 
