@@ -17,7 +17,7 @@
 		<!-- 내용 -->
 		<title>모임 상세페이지</title>
 		
-			모임번호 : <input class="club-ce clubNum" name="clubNum" th:value="${readDTO.clubNum}" readonly="readonly">
+			<input type="hidden" class="club-ce clubNum" name="clubNum" th:value="${readDTO.clubNum}" readonly="readonly">
 			
 			<!-- 네비창 (정보, 게시판, 사진첩) -->
 			<div class="top-inner">
@@ -44,7 +44,7 @@
 			<h2>모임 상세페이지</h2>
 			
 			<br>				
-			접속중 ID <input class="club-ce userId" th:value="${user}" name="userId">
+			<input type="hidden" class="club-ce userId" th:value="${user}" name="userId">
 			<br>
 						
 			<!-- 모임 수정 버튼 -->
@@ -111,7 +111,7 @@
 					</tr>
 					<tr>
 						<td> 
-							<select size="1" name="clubCategory" required="required">
+							<select class="cl-re-input" size="1" name="clubCategory" required="required">
 								<option th:value="${readDTO.clubCategory}" selected="selected">[[${readDTO.clubCategory}]]</option>
 							</select>
 						</td>
@@ -129,34 +129,37 @@
 					</tr>
 					<!-- /모임정원 -->
 				</table>
-				<hr>
+			</div>
+			<hr>
 				
-				<!-- 모임 일정표 -->
-				<table border="1">
-					<tr>
-						<th>
-							<h3>모임 스케줄표</h3>
-						</th>
-						<td>
+			<!-- 모임 일정표 -->
+			<div class="club-table">
+				<div class="club-table-read">
+					<h2> SCHEDULE</h2>
+						<div class="club-re-Btn">
 							<a th:href="@{/thisiswe/club/calendar/register/(num=${readDTO.clubNum})}">
-								<button type="button">일정등록</button>
+								<button type="button" class="searchBtn-mi">등록</button>
 							</a>
-						</td>
-					<tr>
-					<tr th:each="calendarDTO : ${calendarDTOList}">
-						<td colspan="2">
-							<div>일정 번호 : [[${calendarDTO.clubCalendarNum}]]</div>
-							<div>
-								<a th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">제목
+						</div>
+				<div class="club-table-read-cal">
+					<div class="club-table-li" th:each="calendarDTO : ${calendarDTOList}">
+						<ul>일정</ul>
+						<div>일정 번호 : [[${calendarDTO.clubCalendarNum}]]</div>
+						<div>
+							<a th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">제목
 									: [[${calendarDTO.clubCalendarTitle}]]</a>
-							</div><br>
-							<div>날짜 : [[${calendarDTO.clubCalendarDate}]]</div>
-							<div>시간 : [[${calendarDTO.clubCalendarTime}]]</div><br>
-							<div>장소 : [[${calendarDTO.clubCalendarPlace}]]</div><br>
-							<div>비용 : [[${calendarDTO.clubCalendarPrice}]]원</div><br>
-						</td>
-					</tr>
+						</div>
+						<br>
+						<div>날짜 : [[${calendarDTO.clubCalendarDate}]]</div>
+						<div>시간 : [[${calendarDTO.clubCalendarTime}]]</div><br>
+						<div>장소 : [[${calendarDTO.clubCalendarPlace}]]</div><br>
+						<div>비용 : [[${calendarDTO.clubCalendarPrice}]]원</div><br>
+					</div>
+				</div>
 					
+				</div>
+			</div>
+			<!-- /모임 일정표 -->
 					<!-- 
 					<tr>
 						<td rowspan="3">달력이미지</td>
@@ -174,9 +177,7 @@
 						</td>
 					</tr>
 					 -->
-				</table>
 				<!-- /모임 일정표 -->
-				</div>
 			</div>
 			<!-- /내용 -->
 		</div>
