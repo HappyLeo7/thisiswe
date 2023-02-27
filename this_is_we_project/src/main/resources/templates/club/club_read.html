@@ -16,131 +16,130 @@
 
 		<!-- 내용 -->
 		<title>모임 상세페이지</title>
-		
-			<input type="hidden" class="club-ce clubNum" name="clubNum" th:value="${readDTO.clubNum}" readonly="readonly">
-			
-			<!-- 네비창 (정보, 게시판, 사진첩) -->
-			<div class="top-inner">
-				<div class="top-inner-ul">
-					<ul class="top-inner-menu top-inner-eff">
-						<li class="ta-li"><a
-							th:href="@{/thisiswe/club/(num=${readDTO.clubNum})}"> <span>INFO</span>
-						</a></li>
-						<li class="ta-li"><a
-							th:href="@{/thisiswe/club/board/(num=${readDTO.clubNum})}"> <span>BOARD</span>
-						</a></li>
-						<li class="ta-li"><a
-							th:href="@{/thisiswe/club/photo/(num=${readDTO.clubNum})}"> <span>PHOTO</span>
-						</a></li>
-						<li class="ta-li"><a th:href="@{/room}"> <span>CHAT</span>
-						</a></li>
-					</ul>
-				</div>
+
+		<!-- 모임번호 받아오는 input -->
+		<input type="hidden" class="club-ce clubNum" name="clubNum"
+			th:value="${readDTO.clubNum}" readonly="readonly">
+
+		<!-- 네비창 (정보, 게시판, 사진첩) -->
+		<div class="top-inner">
+			<div class="top-inner-ul">
+				<ul class="top-inner-menu top-inner-eff">
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/(num=${readDTO.clubNum})}"> <span>INFO</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/board/(num=${readDTO.clubNum})}"> <span>BOARD</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/photo/(num=${readDTO.clubNum})}"> <span>PHOTO</span>
+					</a></li>
+					<li class="ta-li"><a th:onclick="testGoRoom([[${readDTO.clubNum}]], [[${readDTO.clubName}]])">chat</a></li>
+				</ul>
 			</div>
-			<!-- /네비창 (정보, 게시판, 사진첩) -->
-			
+		</div>
+		<!-- /네비창 (정보, 게시판, 사진첩) -->
+
 		<!-- 모임 전체 목록 -->
 		<div class="inner">
 			<h2>모임 상세페이지</h2>
-			
-			<br>				
-			<input type="hidden" class="club-ce userId" th:value="${user}" name="userId">
-			<br>
-						
+
+			<br> <input type="hidden" class="club-ce userId"
+				th:value="${user}" name="userId"> <br>
+
 			<!-- 모임 수정 버튼 -->
-				<div class="club-re-Btn">
-					<a th:href="@{/thisiswe/modify(num=${readDTO.clubNum})}">
-						<button type="button" class="searchBtn-mi">수정</button>
-					</a>
-					<button type="button" class="searchBtn-mi" onclick="clubRemove()">삭제</button>
-					<button type="button" class="searchBtn-mi" onclick="memberRegister()">가입</button> 
-				</div>
-				<!-- /모임 수정 버튼 -->
-					
-			<div class="club-table">
-				<div class="club-table-read">
-				
-				<!-- 로고이미지 -->
-				<div>
-					<div class="club-LogoImage">
-							<img th:src="|/display?fileName=${readDTO.clubLogoUrl}|">
-					</div>		
-				</div>
-				
-				<table class="club-re-ca">
-					<!-- userID -->
-					<tr>
-						<th class="club-ri-th">모임장</th>
-					</tr>
-					<tr>
-						<td class="cl-re-contain">
-							<input class="cl-re-input-fi" name="userId" th:value="${readDTO.userId}" readonly="readonly">
-						</td>
-					</tr>		
-					<!-- 모임명 -->
-					<tr>
-						<th class="club-ri-th">모임명</th>
-					</tr>
-					<tr>
-						<td>
-							<input class="cl-re-input" name="clubName" th:value="${readDTO.clubName}" readonly="readonly">
-						</td>
-					</tr>		
-					<!-- 모임설명 -->
-					<tr>
-						<th class="club-ri-th">모임설명<th>
-					</tr>
-					<tr>	
-						<td>
-							<textarea class="cl-re-input-co" name="clubContent" readonly="readonly">[[${readDTO.clubContent}]]</textarea>
-						</td>				
-					</tr>		
-					<!-- 지역 -->
-					<tr>
-						<th class="club-ri-th">지역</th>
-					</tr>
-					<tr>
-						<td>
-							<input class="cl-re-input" name="clubPlace" th:value="${readDTO.clubPlace}" readonly="readonly">
-						</td>						
-					</tr>
-		
-					<!-- 카테고리 -->
-					<tr>
-						<th class="club-ri-th">관심사 카테고리</th>
-					</tr>
-					<tr>
-						<td> 
-							<select class="cl-re-input" size="1" name="clubCategory" required="required">
-								<option th:value="${readDTO.clubCategory}" selected="selected">[[${readDTO.clubCategory}]]</option>
-							</select>
-						</td>
-					</tr>
-		
-					<!-- 모임정원 -->
-					<tr>
-						<th class="club-ri-th">모임 정원</th>
-					</tr>
-					<tr>
-						<td>
-							<input class="cl-re-input" name="clubHeadCount" th:value="${readDTO.clubHeadCount}" 
-									type="number" min="1" max="300"	readonly="readonly">
-						</td>
-					</tr>
-					<!-- /모임정원 -->
-				</table>
+			<div class="club-re-Btn">
+				<a th:href="@{/thisiswe/modify(num=${readDTO.clubNum})}">
+					<button type="button" class="searchBtn-mi">수정</button>
+				</a>
+				<button type="button" class="searchBtn-mi" onclick="clubRemove()">삭제</button>
+				<button type="button" class="searchBtn-mi"
+					onclick="memberRegister()">가입</button>
 			</div>
-			<hr>
-				
-			<!-- 모임 일정표 -->
+			<!-- /모임 수정 버튼 -->
+
 			<div class="club-table">
 				<div class="club-table-read">
-					<h2> SCHEDULE</h2>
+
+					<!-- 로고이미지 -->
+					<div>
+						<div class="club-LogoImage">
+							<img th:src="|/display?fileName=${readDTO.clubLogoUrl}|">
+						</div>
+					</div>
+
+					<table class="club-re-ca">
+						<!-- userID -->
+						<tr>
+							<th class="club-ri-th">모임장</th>
+						</tr>
+						<tr>
+							<td class="cl-re-contain"><input class="cl-re-input-fi"
+								name="userId" th:value="${readDTO.userId}" readonly="readonly">
+							</td>
+						</tr>
+						<!-- 모임명 -->
+						<tr>
+							<th class="club-ri-th">모임명</th>
+						</tr>
+						<tr>
+							<td><input class="cl-re-input" name="clubName"
+								th:value="${readDTO.clubName}" readonly="readonly"></td>
+						</tr>
+						<!-- 모임설명 -->
+						<tr>
+							<th class="club-ri-th">모임설명
+							<th>
+						</tr>
+						<tr>
+							<td><textarea class="cl-re-input-co" name="clubContent"
+									readonly="readonly">[[${readDTO.clubContent}]]</textarea></td>
+						</tr>
+						<!-- 지역 -->
+						<tr>
+							<th class="club-ri-th">지역</th>
+						</tr>
+						<tr>
+							<td><input class="cl-re-input" name="clubPlace"
+								th:value="${readDTO.clubPlace}" readonly="readonly"></td>
+						</tr>
+
+						<!-- 카테고리 -->
+						<tr>
+							<th class="club-ri-th">관심사 카테고리</th>
+						</tr>
+						<tr>
+							<td><select class="cl-re-input" size="1" name="clubCategory"
+								required="required">
+									<option th:value="${readDTO.clubCategory}" selected="selected">[[${readDTO.clubCategory}]]</option>
+							</select></td>
+						</tr>
+
+						<!-- 모임정원 -->
+						<tr>
+							<th class="club-ri-th">모임 정원</th>
+						</tr>
+						<tr>
+							<td><input class="cl-re-input" name="clubHeadCount"
+								th:value="${readDTO.clubHeadCount}" type="number" min="1"
+								max="300" readonly="readonly"></td>
+						</tr>
+						<!-- /모임정원 -->
+					</table>
+				</div>
+				<hr>
+
+				<!-- 모임 일정표 -->
+				<div class="club-table">
+					<div class="club-table-read">
+						<h2>SCHEDULE</h2>
 						<div class="club-re-Btn">
-							<a th:href="@{/thisiswe/club/calendar/register/(num=${readDTO.clubNum})}">
+							<a
+								th:href="@{/thisiswe/club/calendar/register/(num=${readDTO.clubNum})}">
 								<button type="button" class="searchBtn-mi">등록</button>
 							</a>
 						</div>
+						
 					<div class="club-table-read-cal">
 						<div class="club-table-cal-li" th:each="calendarDTO : ${calendarDTOList}">
 							<ul class="club-re-ca-ul">
@@ -158,6 +157,7 @@
 								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarPrice}]]원</li>
 							</ul>
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -194,10 +194,10 @@
 					url : "/thisiswe/remove/" + clubNum,
 					method : "delete",
 					success : function(result) {
-						console.log("삭제결과값 : "+result)
-						if(result=="success"){
-						alert(clubNum+"모임이 삭제되었습니다.")
-							let url="/thisiswe/club";
+						console.log("삭제결과값 : " + result)
+						if (result == "success") {
+							alert(clubNum + "모임이 삭제되었습니다.")
+							let url = "/thisiswe/club";
 							location.replace(url);
 						}
 					}
@@ -263,9 +263,11 @@
 		</script>
 		<script>
 			function testGoRoom(number, name) {
+				console.log("채팅 메서드 실행 됨");
 				let openWin = window.open("/moveChating?roomName=" + name + "&"
 						+ "roomNumber=" + number, "팝업 테스트",
 						"width=350, height=700, top=2050, left=2000");
+
 			}
 		</script>
 

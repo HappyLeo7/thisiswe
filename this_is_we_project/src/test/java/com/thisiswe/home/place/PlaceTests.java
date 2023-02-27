@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.LongStream;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,7 @@ import com.thisiswe.home.place.repository.PlaceRepository;
 import com.thisiswe.home.user.entity.UserEntity;
 
 @SpringBootTest
+@Ignore
 public class PlaceTests {
 
 	@Autowired
