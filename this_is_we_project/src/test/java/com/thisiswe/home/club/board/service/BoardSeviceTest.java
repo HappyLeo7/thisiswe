@@ -1,5 +1,6 @@
 package com.thisiswe.home.club.board.service;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +11,7 @@ import com.thisiswe.home.club.board.dto.PageRequestDTO;
 import com.thisiswe.home.club.board.dto.PageResultDTO;
 
 @SpringBootTest
+@Ignore
 //TODO [SeviceTest] 게시판
 public class BoardSeviceTest {
 

@@ -34,8 +34,7 @@
 					<li class="ta-li"><a
 						th:href="@{/thisiswe/club/photo/(num=${readDTO.clubNum})}"> <span>PHOTO</span>
 					</a></li>
-					<li class="ta-li"><a th:href="@{/room}"> <span>CHAT</span>
-					</a></li>
+					<li class="ta-li"><a th:onclick="testGoRoom([[${readDTO.clubNum}]], [[${readDTO.clubName}]])">chat</a></li>
 				</ul>
 			</div>
 		</div>
@@ -140,33 +139,30 @@
 								<button type="button" class="searchBtn-mi">등록</button>
 							</a>
 						</div>
-						<div class="club-table-read-cal">
-							<div class="club-table-li"
-								th:each="calendarDTO : ${calendarDTOList}">
-								<ul>일정
-								</ul>
-								<div>일정 번호 : [[${calendarDTO.clubCalendarNum}]]</div>
-								<div>
-									<a
-										th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">제목
-										: [[${calendarDTO.clubCalendarTitle}]]</a>
-								</div>
-								<br>
-								<div>날짜 : [[${calendarDTO.clubCalendarDate}]]</div>
-								<div>시간 :
-									[[${calendarDTO.clubCalendarTimeH}]]:[[${calendarDTO.clubCalendarTimeM}]]</div>
-								<br>
-								<div>장소 : [[${calendarDTO.clubCalendarPlace}]]</div>
-								<br>
-								<div>비용 : [[${calendarDTO.clubCalendarPrice}]]원</div>
-								<br>
-							</div>
+						
+					<div class="club-table-read-cal">
+						<div class="club-table-cal-li" th:each="calendarDTO : ${calendarDTOList}">
+							<ul class="club-re-ca-ul">
+								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarNum}]]</li>
+							<br>
+								<li class="club-re-ca-li-title">
+									<a th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">
+										[[${calendarDTO.clubCalendarTitle}]]</a>
+								</li>
+								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarDate}]]</li>
+								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarTime}]]</li>
+								<li class="club-re-ca-li">
+									<img src="/image/icon_location.svg">[[${calendarDTO.clubCalendarPlace}]]
+								</li>
+								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarPrice}]]원</li>
+							</ul>
 						</div>
 
 					</div>
 				</div>
-				<!-- /모임 일정표 -->
-				<!-- 
+			</div>
+			<!-- /모임 일정표 -->
+					<!-- 
 					<tr>
 						<td rowspan="3">달력이미지</td>
 						<td>날짜 : <input type="date"></td>
@@ -267,9 +263,11 @@
 		</script>
 		<script>
 			function testGoRoom(number, name) {
+				console.log("채팅 메서드 실행 됨");
 				let openWin = window.open("/moveChating?roomName=" + name + "&"
 						+ "roomNumber=" + number, "팝업 테스트",
 						"width=350, height=700, top=2050, left=2000");
+
 			}
 		</script>
 

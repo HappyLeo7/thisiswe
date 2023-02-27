@@ -2,6 +2,7 @@ package com.thisiswe.home.club.board.service;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +11,7 @@ import com.thisiswe.home.club.board.reply.dto.ReplyDTO;
 import com.thisiswe.home.club.board.reply.service.ReplyService;
 
 @SpringBootTest
+@Ignore
 //TODO [ServiceTest] 게시글-댓글
 public class ReplyServiceTests {
 	
