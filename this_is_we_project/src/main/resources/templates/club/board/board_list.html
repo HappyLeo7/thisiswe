@@ -18,13 +18,18 @@
 		<div class="top-inner">
 			<div class="top-inner-ul">
   				<ul class="top-inner-menu top-inner-eff">
+  					<li class="ta-li">
+						<a th:href="@{/thisiswe/club/(num=${clubNum})}">
+							<span>INFO</span>
+						</a>
+					</li>
      				<li class="ta-li">
-     					<a th:href="@{/thisiswe/club/board}">
+     					<a th:href="@{/thisiswe/club/board/(num=${clubNum})}">
      						<span>BOARD</span>
      					</a>
      				</li>
      				<li class="ta-li">
-     					<a th:href="@{/thisiswe/club/photo/register}">
+     					<a th:href="@{/thisiswe/club/photo/(num=${clubNum})}">
      						<span>PHOTO</span>
      					</a>
      				</li>
@@ -130,13 +135,14 @@
 				<!-- 페이지 부분 : 이동, 이전, 다음 -->
 				<div class="paginate">
 					<ul class="">
+						<!-- 이전버튼 -->
 						<li class="link-page active" th:if="${result.prev}">
 							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${result.start-1},
                    	     	        											type=${pageRequestDTO.type},
                    	    	        												keyword=${pageRequestDTO.keyword})}"
 							tabindex="-1">이전</a>
 						</li>
-		
+						<!-- 페이지 버튼 -->
 						<li th:class="'page-item '+ ${result.page == page?'active':''}"
 												th:each="page: ${result.pageList}">
 							<a class="paginate-link" th:href="@{/thisiswe/club/board/(num=${clubNum},
@@ -144,7 +150,7 @@
                 		                 								type=${pageRequestDTO.type},
                    	 	        										keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
 						</li>
-		
+						<!-- 다음버튼 -->
 						<li class="link-page-active" th:if="${result.next}">
 							<a class="paginate-link" th:href="@{/thisiswe/club/board/(page=${result.end+1},
             	    	                 								type=${pageRequestDTO.type},

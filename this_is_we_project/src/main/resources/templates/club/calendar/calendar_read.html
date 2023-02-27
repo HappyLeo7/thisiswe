@@ -11,77 +11,183 @@
 	<th:block th:fragment="connection">
 
 
-<!-- 네비창 (정보, 게시판, 사진첩) -->
-		모임번호 :	<input class="clubNum" name="clubNum"
-			th:value="${calendarDTO.clubNum.clubNum}" readonly="readonly">
-		<table border="1">
-			<tr>
-				<td><a th:href="@{/thisiswe/club/(num=${calendarDTO.clubNum.clubNum})}">정보</a></td>
-				<td><a
-					th:href="@{/thisiswe/club/board/(num=${calendarDTO.clubNum.clubNum})}">게시판</a></td>
-				<td><a
-					th:href="@{/thisiswe/club/photo/(num=${calendarDTO.clubNum.clubNum})}">사진첩</a></td>
-				<td><a th:href="@{/room}">채팅방</a></td>
 
-			</tr>
-		</table>
+
+		<!-- 네비창 (정보, 게시판, 사진첩) -->
+
+		<!-- 모임번호 받아오는 input -->
+		<input type="hidden" class="club-ce clubNum" name="clubNum"
+			th:value="${calendarDTO.clubNum.clubNum}" readonly="readonly">
+		<div class="top-inner">
+			<div class="top-inner-ul">
+				<ul class="top-inner-menu top-inner-eff">
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/(num=${calendarDTO.clubNum.clubNum})}">
+							<span>INFO</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/board/(num=${calendarDTO.clubNum.clubNum})}">
+							<span>BOARD</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/photo/(num=${calendarDTO.clubNum.clubNum})}">
+							<span>PHOTO</span>
+					</a></li>
+					<li class="ta-li"><a th:href="@{/room}"> <span>CHAT</span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
 		<!-- /네비창 (정보, 게시판, 사진첩) -->
 
 		<!-- form -->
-		<form th:action="@{/thisiswe/club/calendar/modify(num=${calendarDTO.clubCalendarNum})}" th:method="get">
-			<button type="submit">일정수정</button>
+
+		<form
+			th:action="@{/thisiswe/club/calendar/modify(num=${calendarDTO.clubCalendarNum})}"
+			th:method="get">
+
+			<!-- 일정 수정 삭제 버튼  -->
+			<div class="club-re-Btn">
+				<button type="submit" class="searchBtn-mi">수정</button>
+				<button type="button" class="searchBtn-mi"
+					onclick="calendarRemove()">삭제</button>
+			</div>
+			<!-- /일정 수정 삭제 버튼  -->
+
+
 			<!-- 내용 -->
-			<table border="1" th:each="calendarDTO : ${calendarDTO}">
-				<tr>
-					<th><h3>모임 스케줄표</h3></th>
-				</tr>
-				<tr>
-					<td>
-						모임 번호 : <input name="" th:value="${calendarDTO.clubNum.clubNum}"> <br> 
-					</td>
-				</tr>
-				<tr>
-					<td>일정 번호 : <input name="num" th:value="${calendarDTO.clubCalendarNum}"> <br>
-					</td>
-				</tr>
-				<tr>
 
-					<td>제목 : [[${calendarDTO.clubCalendarTitle}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>내용 : [[${calendarDTO.clubCalendarContent}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>날짜 : [[${calendarDTO.clubCalendarDate}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>시간 : [[${calendarDTO.clubCalendarTime}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>장소 : [[${calendarDTO.clubCalendarPlace}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>인원 : [[${calendarDTO.clubCalendarHeadCount}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>비용 : [[${calendarDTO.clubCalendarPrice}]] <br>
-					</td>
+			<!-- 일정 상세 내용 -->
+			<div class="inner">
+				<div class="club-table">
+					<div class="club-table-read">
+						<table class="club-re-ca" th:each="calendarDTO : ${calendarDTO}">
+							<tr>
+								<th><h1>모임 스케줄표</h1></th>
+							</tr>
 
-				</tr>
-			</table>
+							<!-- 모임번호 -->
+							<tr>
+								<th class="club-ri-th">모임번호</th>
+							</tr>
+							<tr>
+								<td class="cl-re-contain"><input
+									class="cl-re-input-fi clubNum" name=""
+									th:value="${calendarDTO.clubNum.clubNum}" readonly="readonly">
+									<br></td>
+							</tr>
 
+							<!-- 일정번호 -->
+							<tr>
+								<th class="club-ri-th">일정번호</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input calendarNum" name="num"
+									th:value="${calendarDTO.clubCalendarNum}" readonly="readonly">
+									<br></td>
+							</tr>
+
+							<!-- 제목 -->
+							<tr>
+								<th class="club-ri-th">제목</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input"
+									th:value="${calendarDTO.clubCalendarTitle}" readonly="readonly">
+									<br></td>
+							</tr>
+
+							<!-- 내용 -->
+							<tr>
+								<th class="club-ri-th">내용</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input"
+									th:value="${calendarDTO.clubCalendarContent}"
+									readonly="readonly"> <br></td>
+							</tr>
+
+							<!-- 날짜 -->
+							<tr>
+								<th class="club-ri-th">날짜</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input"
+									th:value="${calendarDTO.clubCalendarDate}" readonly="readonly">
+									<br></td>
+							</tr>
+
+							<!-- 시간 -->
+							<tr>
+								<th class="club-ri-th">시간</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input"
+									th:value="${calendarDTO.clubCalendarTime}" readonly="readonly">
+									<br></td>
+							</tr>
+
+							<!-- 장소 -->
+							<tr>
+								<th class="club-ri-th">장소</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input"
+									th:value="${calendarDTO.clubCalendarPlace}" readonly="readonly">
+									<br></td>
+							</tr>
+
+							<!-- 인원 -->
+							<tr>
+								<th class="club-ri-th">인원</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input"
+									th:value="${calendarDTO.clubCalendarHeadCount}"
+									readonly="readonly"> <br></td>
+							</tr>
+
+							<!-- 비용 -->
+							<tr>
+								<th class="club-ri-th">비용</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input"
+									th:value="${calendarDTO.clubCalendarPrice}" readonly="readonly">
+									<br></td>
+
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- 일정 상세 내용 -->
 			<!-- /내용 -->
 
 
 		</form>
 		<!-- /form -->
 
+		<script>
+			function calendarRemove() {
+				var calendarNum = $(".calendarNum").val();
+				var clubNum = $(".clubNum").val();
+
+				$.ajax({
+					url : "/thisiswe/club/calendar/remove/" + calendarNum,
+					method : "delete",
+					success : function(result) {
+						console.log("삭제결과값 : " + result)
+						if (result == "success") {
+							alert("일정이 삭제되었습니다.")
+							let url = "/thisiswe/club/?num=" + clubNum;
+							location.replace(url);
+						}
+					}
+
+				})
+			}
+		</script>
 
 
 	</th:block>

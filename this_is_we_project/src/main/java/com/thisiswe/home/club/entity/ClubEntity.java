@@ -1,5 +1,8 @@
 package com.thisiswe.home.club.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,23 +11,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.calendar.entity.CalendarEntity;
+import com.thisiswe.home.club.member.ClubMemberEntity;
+import com.thisiswe.home.club.photo.entity.PhotoEntity;
 import com.thisiswe.home.enetity.DateEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = "userId")
+//@ToString(exclude = "userId")
 
 //TODO [Entity]Club 테이블 컬럼 (모임번호, 유저ID, 지역, 모임명, 내용, 카테고리, 로고이미지, 인원, 등록일, 수정일)
 public class ClubEntity extends DateEntity{
@@ -34,7 +40,7 @@ public class ClubEntity extends DateEntity{
 	private Long clubNum; //모임번호
 	
 	//유니크 유저 ID
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private UserEntity userId; //유저ID
 	
@@ -61,6 +67,18 @@ public class ClubEntity extends DateEntity{
 	
 	@Column(length=100, name = "club_head_count")
 	private Long clubHeadCount;  //인원
+	
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ClubMemberEntity> clubMemberEntity;
+	@OneToMany(mappedBy = "clubNum", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<PhotoEntity> photoEntity;
+	@OneToMany(mappedBy = "clubNum", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<CalendarEntity> calendarEntitiy;
+	@OneToMany(mappedBy = "clubNum", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Board> boardEntity;
+	
+	
+	
 	
 	public void changeLogo(String clubPlace
 			

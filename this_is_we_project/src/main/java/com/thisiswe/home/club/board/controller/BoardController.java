@@ -76,6 +76,8 @@ public class BoardController {
 
 		log.info("==== post => board_register.html 연결 ====");
 		log.info("==== boardDTO : " + boardDTO);
+		log.info("==== clubNum : " + num);
+		
 		boardDTO.setClubNum(num);
 		// TODO [Controller] 게시판 : 등록 - boardService에 등록
 		Long boardNum = boardService.register(boardDTO);
@@ -84,7 +86,7 @@ public class BoardController {
 		log.info("===========pageRequestDTO===================" + pageRequestDTO);
 		model.addAttribute("result", boardService.getList(pageRequestDTO, num));
 
-		return "/club/board/board_list";
+		return "redirect:/thisiswe/club/board/?num="+num;
 	}
 
 	// TODO [Controller] 게시판 : 상세 조회 - read, 조회수 증가

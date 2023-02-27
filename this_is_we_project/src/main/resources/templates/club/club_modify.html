@@ -113,7 +113,6 @@
 				<tr>
 					<td>
 						<button type="submit">모임수정</button>
-						<button class="removeButton" type="submit">삭제</button>
 					</td>
 				</tr>
 			</table>
@@ -133,15 +132,6 @@
 		<hr>
 		<!-- /내용 -->
 		<script type="text/javascript">
-			// 삭제버튼 form
-			$(".removeButton").click(
-					function() {
-						$("form").attr("action", "/club/remove").attr("method",
-								"post");
-
-						actionForm.submit();
-
-					})
 		</script>
 
 	</th:block>

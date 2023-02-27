@@ -9,6 +9,8 @@
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
 
+
+
 		<div style="text-align: center;">
 			<div>
 
@@ -42,25 +44,81 @@
 				<!-- 리뷰 시작 -->
 				<div class="reviews"></div>
 				<!-- 리뷰 끝 -->
+				
+				
+				
+				<!-- 페이징 블럭 -->
+				<div class="reviewPage"></div>
 
 			</div>
 		</div>
-
-		<script th:inline="javascript">
-	$(document).ready(function(){
-		const placeNum = [[${place.placeNum}]];
 	
+
+<script th:inline="javascript">
 		
-		// 댓글 loadJSONData (댓글 실시간 반영) 시작
-			 function loadJSONData(){
-			$.getJSON('/place/review/' + placeNum, function(arr){
-				var str = "";
-				var button ="";	
+const placeNum = [[${place.placeNum}]];
+		
+		function loadJSONData(page){
+			var reviewPage = {
+				placeNum: placeNum,
+				page: page
+			}
+			var size = 10;
+			var url = '/place/review?' + "placeNum="+placeNum +'&'+"page=" + page + '&' +"size="+ size;
+			
+			var params = {
+					placeNum : placeNum,        
+			        page : page,
+			        size : size
+			    }
+			    
+			    var data = $.param(params);
+
+			$.ajax({
+					url:'/place/review/' + placeNum,
+					method: 'get',
+					data: data,
+					success: function(data){
+
+				// 리뷰 페이징 바
+				var reviewPaginHTML='<ul>';
 				
-					var s = $("#loginID").val();
-					console.log(s);
+				if(data.prev){
+					reviewPaginHTML+='<li>'+
+					'					<a onclick="loadJSONData(' + (data.start-1 ) + ')">'+
+					'						이전'+
+					'					</a>'+
+					'				  </li>';
+				}
+				
+				for(pageNum = data.start; pageNum <= data.pageList.length + data.start - 1; pageNum++){
+					var isActive = data.page == pageNum?'active':''
+					reviewPaginHTML+='<li class="' + isActive + '">'+
+					'						<a onclick="loadJSONData('+ pageNum +')">'+
+												pageNum +
+					'						</a>'+
+					'				  </li> ';
+					
+				}
+
+				if(data.next){
+					reviewPaginHTML+='<li>'+
+					'					<a onclick="loadJSONData(' + data.end  + ')">'+
+					'						다음'+
+					'					</a>'+
+					'				  </li>';
+				}
+				
+				reviewPaginHTML +='</ul>';
+				$(".reviewPage").html(reviewPaginHTML);
+				
+				
+				// 리뷰 
+				var reviewHTML = "";
+				var button ="";	
+				var s = $("#loginID").val();
 				var count = 1;
-				$.each(arr, function(and, review){
+				$.each(data.dtoList, function(and, review){
 					count++;
 					if(s == review.userId){
 						button='<button type="button" class="reviewModifyOn" onclick="reviewModifyOn(this)">수정</button>'+
@@ -68,8 +126,7 @@
 						'		<input  type="hidden" class="placeReviewNum" value="' + review.placeReviewNum + '"></input>'
 					}
 					
-					
-				 	str +=  
+					reviewHTML +=  
 				 	'				<div class="reviewSet">'+	
 					'					<div class="review" style="border: 1px solid;">'+
 					'						작성자 :'+ review.writer + 
@@ -95,20 +152,29 @@
 					'					</div>' +
 					'				</div> '; 
 				});
-				$(".reviews").html(str);
+
+				$(".reviews").html(reviewHTML);
+				$(".active").css('color', 'red');
+				}
+					//
 			});
 		};
+		
+	$(document).ready(function(){
+
+		// 댓글 loadJSONData (댓글 실시간 반영) 시작
+
 		// 댓글 loadJSONData (댓글 실시간 반영) 끝
 		 
 		// 화면 들어갈 때 댓글 넣어줌
-		loadJSONData();
+		loadJSONData(1);
 		
-		// 리뷰 save 버튼 시작		
+		// 리뷰 save 버튼 시작
 		$(".reviewSave").click(function(){
 			var review = {
 					placeNum: placeNum, 
 					placeReviewRate: $('input[name=placeReviewRate]:checked').val(),
-					placeReviewContent: $('textarea[name=placeReviewContent]').val() 
+					placeReviewContent: $('textarea[name=placeReviewContent]').val(),
 	      }
 			
 			$.ajax({
@@ -118,12 +184,16 @@
 				contentType: 'application/json; charset=utf-8',
 				dataType: 'json',
 				success: function(data){
-				loadJSONData();
+			
+			
+				
+				loadJSONData(1);
+
 				$('textarea[name=placeReviewContent]').val('');
 				}
 			});
 		})
-		// 리뷰 save 버튼 끝		
+		// 리뷰 save 버튼 끝
 		
 		
 		
@@ -138,14 +208,15 @@
 		// 리뷰 reviewModifyCancel 버튼 끝
 		
 		
-		// 리뷰 modify 버튼 시작
+		// 리뷰 modify 버튼 시작 수정
 			$(document).on("click", ".reviewModify", function(){
-				const placeReviewNum =  $(this).parents(".reviewModifyInput").children('input[name=ModifyplaceReviewNum]').val();		
+				console.log($(".active").children("a").html().trim(""));
+				const placeReviewNum =  $(this).parents(".reviewModifyInput").children('input[name=ModifyplaceReviewNum]').val();	
 				var review = {
 						placeReviewNum: placeReviewNum,
 						placeNum: placeNum, 
 						placeReviewRate: $(this).parents(".reviewModifyInput").children('input[class=reviewRate]:checked').val(),
-						 placeReviewContent: $(this).parents(".reviewModifyInput").children('textarea[name=ModifyplaceReviewContent]').val() 
+						placeReviewContent: $(this).parents(".reviewModifyInput").children('textarea[name=ModifyplaceReviewContent]').val() 
 	 	      }
 				
 				$.ajax({
@@ -155,28 +226,31 @@
 					contentType: 'application/json; charset=utf-8',
 					dataType: 'json',
 					success: function(data){
-						loadJSONData();
+						alert("수정 성공!");
+						loadJSONData($(".active").children("a").html().trim(""));
 					}
 				});
+				/* loadJSONData(#"{active}"); */
 			}); 
 		// 리뷰 modify 버튼 끝
 		
 		
-		// 리뷰 remove 버튼 시작
+		// 리뷰 삭제 버튼 시작
 			$(document).on("click",".reviewRemove", function(){
+				console.log($(".active").children("a").html().trim(""));
 				var placeReviewNum = $(this).parents(".review").children(".placeReviewNum").val();
-				console.log(placeReviewNum);
 			
 				$.ajax({
 					url: '/place/review/' + placeReviewNum,
 					method: 'delete',
 					success: function(result){
-						loadJSONData();
+						loadJSONData($(".active").children("a").html().trim(""));
 					}
 				});
 			})
-		// 리뷰 remove 버튼 끝
+		// 리뷰 삭제 버튼 끝
 	})
+	
 	// 리뷰 reviewModifyOn 버튼 시작
 function reviewModifyOn(x){
 		$(".review").show();

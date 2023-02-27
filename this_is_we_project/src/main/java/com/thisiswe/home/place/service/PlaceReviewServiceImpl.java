@@ -1,12 +1,20 @@
 package com.thisiswe.home.place.service;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.thisiswe.home.place.dto.PlacePageRequestDTO;
 import com.thisiswe.home.place.dto.PlaceReviewDTO;
+import com.thisiswe.home.place.dto.PlaceReviewPageRequestDTO;
+import com.thisiswe.home.place.dto.PlaceReviewPageResultDTO;
+import com.thisiswe.home.place.entity.PlaceEntity;
 import com.thisiswe.home.place.entity.PlaceReviewEntity;
 import com.thisiswe.home.place.repository.PlaceRepository;
 import com.thisiswe.home.place.repository.PlaceReviewRepository;
@@ -28,9 +36,14 @@ public class PlaceReviewServiceImpl implements PlaceReviewService {
 	}
 
 	@Override
-	public List<PlaceReviewDTO> getList(Long placeNum) {
-		List<PlaceReviewEntity> result = placeReviewRepository.findByPlaceNum(placeRepository.findById(placeNum).get());
-		return result.stream().map(i-> entityToDTO(i)).collect(Collectors.toList());
+	public PlaceReviewPageResultDTO<PlaceReviewDTO, PlaceReviewEntity> getList(PlaceReviewPageRequestDTO placeReviewPageRequestDTO) {
+		Pageable pageable = placeReviewPageRequestDTO.getPagealbe(Sort.by("placeReviewNum").descending());
+		
+		Page<PlaceReviewEntity> result = placeReviewRepository.findByPlaceNum(PlaceEntity.builder().placeNum(placeReviewPageRequestDTO.getPlaceNum()).build(), pageable);
+		
+		
+		Function<PlaceReviewEntity, PlaceReviewDTO>fn = (entity-> entityToDTO(entity));
+		return new PlaceReviewPageResultDTO<>(result, fn);
 	}
 
 	@Override

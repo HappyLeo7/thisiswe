@@ -2,7 +2,6 @@ package com.thisiswe.home.place.dto;
 
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -10,10 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import lombok.Data;
-import lombok.Getter;
 
 @Data
-public class PlacePageResultDTO<DTO, EN> {
+public class PlaceReviewPageResultDTO<DTO, EN> {
 
 	private List<DTO> dtoList;
 
@@ -27,7 +25,7 @@ public class PlacePageResultDTO<DTO, EN> {
 
 	private List<Integer> pageList;
 
-	public PlacePageResultDTO(Page<EN> result, Function<EN, DTO> fn) {
+	public PlaceReviewPageResultDTO(Page<EN> result, Function<EN, DTO> fn) {
 
 		this.dtoList = result.stream().map(fn).collect(Collectors.toList());
 

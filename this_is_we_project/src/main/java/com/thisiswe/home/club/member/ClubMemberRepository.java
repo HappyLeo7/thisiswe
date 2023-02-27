@@ -13,6 +13,10 @@ import org.springframework.data.repository.query.Param;
 
 public interface ClubMemberRepository extends JpaRepository<ClubMemberEntity, Long>, SearchClubRepository {
 
-    //추가
+    //유저가 모임에 가입되어 있는지 여부 판단하는 코드
     boolean existsByClubNumAndUserId(Long clubNum, UserEntity userEntity);
+    
+    //해당 모임의 구성원 불러오는 코드
+    //@Query();
+    
 }
