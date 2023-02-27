@@ -130,4 +130,8 @@ public class ChatController {
 //        return mv;
         return null;
     }
+
+    //방 연결 / 클럽ID, userID
+
+    //상태
 }
