@@ -141,22 +141,24 @@
 								<button type="button" class="searchBtn-mi">등록</button>
 							</a>
 						</div>
-				<div class="club-table-read-cal">
-					<div class="club-table-li" th:each="calendarDTO : ${calendarDTOList}">
-						<ul>일정</ul>
-						<div>일정 번호 : [[${calendarDTO.clubCalendarNum}]]</div>
-						<div>
-							<a th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">제목
-									: [[${calendarDTO.clubCalendarTitle}]]</a>
+					<div class="club-table-read-cal">
+						<div class="club-table-cal-li" th:each="calendarDTO : ${calendarDTOList}">
+							<ul class="club-re-ca-ul">
+								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarNum}]]</li>
+							<br>
+								<li class="club-re-ca-li-title">
+									<a th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">
+										[[${calendarDTO.clubCalendarTitle}]]</a>
+								</li>
+								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarDate}]]</li>
+								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarTime}]]</li>
+								<li class="club-re-ca-li">
+									<img src="/image/icon_location.svg">[[${calendarDTO.clubCalendarPlace}]]
+								</li>
+								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarPrice}]]원</li>
+							</ul>
 						</div>
-						<br>
-						<div>날짜 : [[${calendarDTO.clubCalendarDate}]]</div>
-						<div>시간 : [[${calendarDTO.clubCalendarTime}]]</div><br>
-						<div>장소 : [[${calendarDTO.clubCalendarPlace}]]</div><br>
-						<div>비용 : [[${calendarDTO.clubCalendarPrice}]]원</div><br>
 					</div>
-				</div>
-					
 				</div>
 			</div>
 			<!-- /모임 일정표 -->

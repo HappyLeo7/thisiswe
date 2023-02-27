@@ -126,7 +126,6 @@ hr{
 	word-break: break-all;
 	text-indent: initial;
 }
-
 .club-table-li{
 	margin: 10px;
 	padding: 10px;
@@ -259,6 +258,8 @@ hr{
   	margin:  5px 5px 5px 5px;
  	max-width: 97%;
   	vertical-align: top;
+  	border-radius: 15px;
+ 	box-shadow: 0 4px 4px 0 gray;
 }
 .club-re-ca{
     margin: 0 auto;
@@ -333,14 +334,50 @@ hr{
 	margin: 0 auto;
 	padding: 10px;
 	text-align: center;
-	background-color: #dedede;
 }
-/* .club-table-read-cal:after{
-	content: "";
- 	display: block;
-  	width: 50%;
-    border-top: 1px solid #c4c4c4;
+
+.club-table-cal-li{
+	margin: 10px;
+	padding: 10px;
+	text-align: center;
+}
+.club-re-ca-ul{
     margin: 0 auto;
-} */
+    padding: 0 auto;
+    width: 40%;
+    border-spacing: 0;
+    border: 1px solid #ebebeb;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.club-re-ca-ul:hover {
+	outline: none;
+    border: 2px solid #e7e7e7;
+    border-radius: 25px;
+    border-color: #BB2649;
+}
+.club-re-ca-li{
+    padding: 2px 0 1px 0;
+    height: 40;
+    width: 99%;
+    font-size: 17px;
+    line-height: 160%;
+    font-weight: 600;
+    border-radius: 15px;
+}
+.club-re-ca-li-title{
+	padding: 2px 0 1px 0;
+    height: 40;
+    width: 99%;
+    color: #df6480;
+    font-size: 19px;
+    line-height: 160%;
+    font-weight: 600;
+    border-radius: 15px;
+}
+.club-re-ca-li img{
+	width: 20px;
+	height: 20px;
+}
 /*[END][read] - 모임 스케줄 부분 */
 /*[END][read] */
