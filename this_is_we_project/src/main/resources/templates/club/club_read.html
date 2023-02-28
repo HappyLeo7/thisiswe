@@ -16,8 +16,7 @@
 
 		<!-- 내용 -->
 		<title>모임 상세페이지</title>
-<<<<<<< HEAD
-=======
+
 
 		<!-- 모임번호 받아오는 input -->
 		<input type="hidden" class="club-ce clubNum" name="clubNum"
@@ -172,173 +171,9 @@
 						<td rowspan="3">달력이미지</td>
 						<td>날짜 : <input type="date"></td>
 					</tr>
->>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
+
 		
-<<<<<<< HEAD
-			모임번호 : <input class="club-ce clubNum" name="clubNum" th:value="${readDTO.clubNum}" readonly="readonly">
-			
-			<!-- 네비창 (정보, 게시판, 사진첩) -->
-			<div class="top-inner">
-				<div class="top-inner-ul">
-					<ul class="top-inner-menu top-inner-eff">
-						<li class="ta-li"><a
-							th:href="@{/thisiswe/club/(num=${readDTO.clubNum})}"> <span>INFO</span>
-						</a></li>
-						<li class="ta-li"><a
-							th:href="@{/thisiswe/club/board/(num=${readDTO.clubNum})}"> <span>BOARD</span>
-						</a></li>
-						<li class="ta-li"><a
-							th:href="@{/thisiswe/club/photo/(num=${readDTO.clubNum})}"> <span>PHOTO</span>
-						</a></li>
-						<li class="ta-li"><a th:href="@{/room}"> <span>CHAT</span>
-						</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- /네비창 (정보, 게시판, 사진첩) -->
-			
-		<!-- 모임 전체 목록 -->
-		<div class="inner">
-			<h2>모임 상세페이지</h2>
-			
-			<br>				
-			접속중 ID <input class="club-ce userId" th:value="${user}" name="userId">
-			<br>
-						
-			<!-- 모임 수정 버튼 -->
-				<div class="club-re-Btn">
-					<a th:href="@{/thisiswe/modify(num=${readDTO.clubNum})}">
-						<button type="button" class="searchBtn-mi">수정</button>
-					</a>
-					<button type="button" class="searchBtn-mi" onclick="clubRemove()">삭제</button>
-					<button type="button" class="searchBtn-mi" onclick="memberRegister()">가입</button> 
-				</div>
-				<!-- /모임 수정 버튼 -->
-					
-			<div class="club-table">
-				<div class="club-table-read">
-				
-				<!-- 로고이미지 -->
-				<div>
-					<div class="club-LogoImage">
-							<img th:src="|/display?fileName=${readDTO.clubLogoUrl}|">
-					</div>		
-				</div>
-				
-				<table class="club-re-ca">
-					<!-- userID -->
-					<tr>
-						<th class="club-ri-th">모임장</th>
-					</tr>
-					<tr>
-						<td class="cl-re-contain">
-							<input class="cl-re-input-fi" name="userId" th:value="${readDTO.userId}" readonly="readonly">
-						</td>
-					</tr>		
-					<!-- 모임명 -->
-					<tr>
-						<th class="club-ri-th">모임명</th>
-					</tr>
-					<tr>
-						<td>
-							<input class="cl-re-input" name="clubName" th:value="${readDTO.clubName}" readonly="readonly">
-						</td>
-					</tr>		
-					<!-- 모임설명 -->
-					<tr>
-						<th class="club-ri-th">모임설명<th>
-					</tr>
-					<tr>	
-						<td>
-							<textarea class="cl-re-input-co" name="clubContent" readonly="readonly">[[${readDTO.clubContent}]]</textarea>
-						</td>				
-					</tr>		
-					<!-- 지역 -->
-					<tr>
-						<th class="club-ri-th">지역</th>
-					</tr>
-					<tr>
-						<td>
-							<input class="cl-re-input" name="clubPlace" th:value="${readDTO.clubPlace}" readonly="readonly">
-						</td>						
-					</tr>
-=======
->>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
-		
-<<<<<<< HEAD
-					<!-- 카테고리 -->
-					<tr>
-						<th class="club-ri-th">관심사 카테고리</th>
-					</tr>
-					<tr>
-						<td> 
-							<select size="1" name="clubCategory" required="required">
-								<option th:value="${readDTO.clubCategory}" selected="selected">[[${readDTO.clubCategory}]]</option>
-							</select>
-						</td>
-					</tr>
-		
-					<!-- 모임정원 -->
-					<tr>
-						<th class="club-ri-th">모임 정원</th>
-					</tr>
-					<tr>
-						<td>
-							<input class="cl-re-input" name="clubHeadCount" th:value="${readDTO.clubHeadCount}" 
-									type="number" min="1" max="300"	readonly="readonly">
-						</td>
-					</tr>
-					<!-- /모임정원 -->
-				</table>
-				<hr>
-				
-				<!-- 모임 일정표 -->
-				<table border="1">
-					<tr>
-						<th>
-							<h3>모임 스케줄표</h3>
-						</th>
-						<td>
-							<a th:href="@{/thisiswe/club/calendar/register/(num=${readDTO.clubNum})}">
-								<button type="button">일정등록</button>
-							</a>
-						</td>
-					<tr>
-					<tr th:each="calendarDTO : ${calendarDTOList}">
-						<td colspan="2">
-							<div>일정 번호 : [[${calendarDTO.clubCalendarNum}]]</div>
-							<div>
-								<a th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">제목
-									: [[${calendarDTO.clubCalendarTitle}]]</a>
-							</div><br>
-							<div>날짜 : [[${calendarDTO.clubCalendarDate}]]</div>
-							<div>시간 : [[${calendarDTO.clubCalendarTime}]]</div><br>
-							<div>장소 : [[${calendarDTO.clubCalendarPlace}]]</div><br>
-							<div>비용 : [[${calendarDTO.clubCalendarPrice}]]원</div><br>
-						</td>
-					</tr>
-					
-					<!-- 
-					<tr>
-						<td rowspan="3">달력이미지</td>
-						<td>날짜 : <input type="date"></td>
-					</tr>
-		
-		
-					<tr>
-						<td>장소 : <input type="text">
-						</td>
-					</tr>
-		
-					<tr>
-						<td>모임비 : <input type="text">
-						</td>
-					</tr>
-					 -->
-				</table>
-				<!-- /모임 일정표 -->
-				</div>
-=======
+
 					<tr>
 						<td>장소 : <input type="text">
 						</td>
@@ -350,7 +185,7 @@
 					</tr>
 					 -->
 				<!-- /모임 일정표 -->
->>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
+
 			</div>
 			<!-- /내용 -->
 		</div>
@@ -365,17 +200,12 @@
 					url : "/thisiswe/remove/" + clubNum,
 					method : "delete",
 					success : function(result) {
-<<<<<<< HEAD
-						console.log("삭제결과값 : "+result)
-						if(result=="success"){
-						alert(clubNum+"모임이 삭제되었습니다.")
-							let url="/thisiswe/club";
-=======
+
 						console.log("삭제결과값 : " + result)
 						if (result == "success") {
 							alert(clubNum + "모임이 삭제되었습니다.")
 							let url = "/thisiswe/club";
->>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
+
 							location.replace(url);
 						}
 					}

@@ -92,6 +92,11 @@ header .mail {
 	text-shadow: 1px 1px 0 rgba(255, 255, 0, 0.3);
 }
 
+.list .item .left img {
+	width: 64px;
+	height: 68px;
+}
+
 
 .list .item .right {
 	opacity: 0.5;
@@ -110,45 +115,33 @@ header .mail {
 		<ul class="list">
 			<li class="item mouse-effect stagger-item">
 				<div class="left">
-					<img src="img/icon/bookmark.svg" />
+					<img src="/image/icon_mypage.svg" />
 					<div class="name"
 						onclick="location.href='/thisiswe/mypage/userinfo'">내 정보 수정</div>
 				</div>
-				<button onclick="location.href='/thisiswe/mypage/userinfo'">
-					<img src="img/icon/right_arrow.svg" />
-				</button>
 			</li>
 
 			<li class="item mouse-effect stagger-item">
 				<div class="left">
-					<img src="img/icon/account.svg" />
+					<img src="/image/icon_pencil.svg" />
 					<div class="name"
 						onclick="location.href='/thisiswe/mypage/boardlist'">내가 쓴 글 목록</div>
 				</div>
-				<button onclick="location.href='/thisiswe/mypage/boardlist'">
-					<img src="img/icon/right_arrow.svg" />
-				</button>
 			</li>
 
 			<li class="item mouse-effect stagger-item">
 				<div class="left">
-					<img src="img/icon/business.svg" />
-					<div class="name">Business</div>
-				</div>
-				<div class="right">
-					<img src="img/icon/right_arrow.svg" />
+					<img src="/image/icon_club.svg" />
+					<div class="name"
+						onclick="location.href='/thisiswe/mypage/myclub'">내가 가입한 모임 목록</div>
 				</div>
 			</li>
 
 			<li class="item mouse-effect stagger-item">
 				<div class="left">
-					<img src="img/icon/puzzle.svg" />
-					<div class="name">내 정보 수정</div>
-				</div>
-				<div class="right">
-					<button onclick="location.href='/thisiswe/mypage/userinfo'">
-						<img src="img/icon/right_arrow.svg" />
-					</button>
+					<img src="/image/icon_calendar.svg" />
+					<div class="name"
+						onclick="location.href='/thisiswe/mypage/myclublist'">내가 예약한 장소 목록</div>
 				</div>
 			</li>
 		</ul>

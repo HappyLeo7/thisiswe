@@ -1,5 +1,7 @@
 package com.thisiswe.home.user.config;
 
+import javax.servlet.http.Cookie;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -11,7 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -31,7 +32,9 @@ public class UserSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
-	
+		http
+        .headers()
+            .cacheControl().disable();
 		
 		http.csrf().disable(); // 테스트중으로 공부가 필요한 부분
 //		http.csrf().ignoringAntMatchers("/user/**"); // 회원 관리 처리 API (POST /user/**) 에 대해 CSRF 무시
@@ -56,6 +59,12 @@ public class UserSecurityConfig {
 		
 		// 그 외 어떤 요청이든 '인증'
 		.anyRequest().authenticated()
+//		.and()
+//		.rememberMe() // Remember Me 활성화
+//		.key("uniqueAndSecret") // 쿠키의 암호화를 위한 key 값 설정
+//		.tokenValiditySeconds(60 * 60 * 24 * 7) // Remember Me 쿠키 유효시간 설정 (1주일)
+//		.rememberMeParameter("remember-me") // Remember Me 파라미터명 설정
+//		.rememberMeCookieName("remember-me-cookie") // Remember Me 쿠키명 설정
 		.and()
 		
 		// 로그인 기능 허용
@@ -73,11 +82,29 @@ public class UserSecurityConfig {
 		// 로그인 실패 후 이동 페이지
 		.failureUrl("/thisiswe/login?error")
 		.permitAll()
+		.successHandler((request, response, authentication) -> {
+			Cookie cookie = new Cookie("loggedIn", "true");
+			cookie.setMaxAge(60 * 30); // 30분간 쿠키 유지
+			cookie.setPath("/");
+			response.addCookie(cookie);
+			response.sendRedirect("/thisiswe/home");
+		})
 		.and()
 		// [로그아웃 기능]
 		.logout()
+	      .logoutSuccessHandler((request, response, authentication) -> {
+	          response.addCookie(new Cookie("loggedIn", "true"));
+	          response.sendRedirect("/thisiswe/home");
+	      })
 		// 로그아웃 요청 처리 URL
 		.logoutUrl("/thisiswe/logout")
+		.logoutSuccessHandler((request, response, authentication) -> {
+			Cookie cookie = new Cookie("loggedIn", null);
+			cookie.setMaxAge(0); // 쿠키 삭제
+			cookie.setPath("/");
+			response.addCookie(cookie);
+			response.sendRedirect("/login");
+		})
 		.permitAll()
 		.and()
 		.exceptionHandling()

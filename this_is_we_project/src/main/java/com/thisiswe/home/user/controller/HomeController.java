@@ -14,7 +14,6 @@ import com.thisiswe.home.user.security.UserDetailsImpl;
 @RequestMapping("/thisiswe")
 public class HomeController {
 
-//	@Secured("ROLE_ADMIN")
 	@GetMapping("/home")
 	public String home(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 

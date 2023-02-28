@@ -1,5 +1,8 @@
 package com.thisiswe.home.user.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
@@ -32,9 +35,19 @@ public class UserController {
 
 	// 회원 로그인 페이지
 	@GetMapping("/login")
-	public String login() {
+	public String login(HttpServletRequest request, HttpServletResponse response) {
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loggedIn") && cookie.getValue().equals("true")) {
+					return "redirect:/thisiswe/home";
+				}
+			}
+		}
 		return "login/login";
 	}
+
 	
 	// post login 이동
 	@PostMapping("/login")

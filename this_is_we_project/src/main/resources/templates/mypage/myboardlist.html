@@ -44,7 +44,7 @@
 				<!-- 게시판 목록 head 부분 -->
 				<thead class="board-li-th">
 					<tr>
-						<th scope="col" width="10%">번호</th>
+						<th scope="col" width="10%">모임이름</th>
 						<th scope="col" width="11%">카테고리</th>
 						<th scope="col" width="20%">제목</th>
 						<th scope="col" width="12%">작성자</th>
@@ -55,21 +55,31 @@
 				<!-- /게시판 목록 head 부분 -->	
 
 				<!-- 게시판 목록 body 부분 -->				
-				<tbody class=".board-li-tb">
+				<tbody class="board-li-tb">
 					<tr th:each="boardDTO : ${result.DTOList}">
-						<th class="bd-num" scope="row">[[${boardDTO.boardNum}]]</th>
+						<th class="bd-num" scope="row">[[${boardDTO.clubName}]]</th>
 							<td class="bd-con">
 								<span class="bd-cate-sub">[[${boardDTO.boardCategory}]]</span>
 							</td>
-								
+
+
 							<td class="bd-con">
+								<a th:href="@{/thisiswe/club/board/read(num=${boardDTO.clubNum},
+																		boardNum=${boardDTO.boardNum},
+																		page=${result.page},
+           	                            	       						type=${pageRequestDTO.type},
+            	                    	           						keyword=${pageRequestDTO.keyword})}">
+										[[${boardDTO.boardTitle}]]..[<b th:text="${boardDTO.replyCount}"></b>]
+								</a>
+							</td>								
+<!-- 							<td class="bd-con">
 								<a th:href="@{/thisiswe/club/board/read(boardNum=${boardDTO.boardNum},
 																		page=${result.page},
            	                            	       						type=${pageRequestDTO.type},
             	                    	           						keyword=${pageRequestDTO.keyword})}">
 										[[${boardDTO.boardTitle}]]..[<b th:text="${boardDTO.replyCount}"></b>]
 								</a>
-							</td>
+							</td> -->
 								
 							<td class="bd-con">[[${boardDTO.userId}]]</td>
 							<td class="bd-con">[[${#temporals.format(boardDTO.regDate, 'yyyy-MM-dd')}]]</td>

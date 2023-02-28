@@ -20,7 +20,7 @@ public interface MypageService {
 		ClubDTO clubDTO = ClubDTO.builder()
 				.clubNum(clubEntity.getClubNum())
 				.userId(userEntity.getUserId())
-				.userNickname(userEntity.getUserNickname())
+				.userNickname(clubEntity.getUserId().getUserNickname())
 				.clubPlace(clubEntity.getClubPlace())
 				.clubName(clubEntity.getClubName())
 				.clubContent(clubEntity.getClubContent())
@@ -54,6 +54,8 @@ public interface MypageService {
 							.regDate(board.getRegDate())
 							.updateDate(board.getUpdateDate())
 							.boardView(board.getBoardView())
+							.clubName(board.getClubNum().getClubName())
+							.clubNum(board.getClubNum().getClubNum())
 							.replyCount(replyCount != null ? replyCount.intValue() : 0)		//replyCount는 Long보다는 int 타입을 사용하기!
 							.build();
 												
