@@ -59,18 +59,18 @@ public class ClubController {
 		
 		
 		log.info("=======================Get list end==================================");
-		return "/club/club_list";
+		return "club/club_list";
 	}
 	
 	//등록 연결링크
 	@GetMapping({"/register"})
-	public String club_register(Model model,@AuthenticationPrincipal UserDetailsImpl userDetails) {
+	public String club_register(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_register.html 연결 =======");
 		model.addAttribute("user",userDetails.getUsername());
-		
+		log.info("유저아이디 제발 불러와 : "+model.addAttribute("user"));
 		log.info("=========================================================");
-		return "/club/club_register";
+		return "club/club_register";
 	}
 	
 	//[모임 등록]register.html에서 post타입으로 받아와서  모임 정보를 등록할때 사용됨
@@ -90,7 +90,7 @@ public class ClubController {
 		ClubMemberDTO.builder().clubNum(clubDTO.getClubNum()).userID(clubDTO.getUserId()).build();
 		
 		log.info("=============== /post club_register ============================");
-		return "/club/club_list";
+		return "club/club_list";
 		
 	}
 	
@@ -115,7 +115,7 @@ public class ClubController {
 		
 		
 		log.info("======== /club_read() end =========");
-		return "/club/club_read";
+		return "club/club_read";
 	}
 	
 	//수정 페이지 불러오는 연결링크

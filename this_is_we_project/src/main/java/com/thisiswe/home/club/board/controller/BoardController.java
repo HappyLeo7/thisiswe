@@ -108,9 +108,9 @@ public class BoardController {
 
 		boardService.get(boardNum);
 		boardService.countView(board.getBoardNum(), boardDTO);
-
-		model.addAttribute("boardDTO", board);
 		log.info("pageRequestDTO : " + pageRequestDTO);
+		model.addAttribute("boardDTO", board);
+
 		model.addAttribute("clubNum",num);
 		model.addAttribute("result", boardService.getList(pageRequestDTO, num));
 
