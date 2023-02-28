@@ -17,83 +17,144 @@
 		<title>일정 등록페이지</title>
 
 		<!-- 네비창 (정보, 게시판, 사진첩) -->
-		모임번호 :	<input class="clubNum" name="clubNum"
+
+		<!-- 모임번호 받아오는 input -->
+		<input type="hidden" class="club-ce clubNum" name="clubNum"
 			th:value="${readDTO.clubNum}" readonly="readonly">
-		<table border="1">
-			<tr>
-				<td><a th:href="@{/thisiswe/club/(num=${readDTO.clubNum})}">정보</a></td>
-				<td><a
-					th:href="@{/thisiswe/club/board/(num=${readDTO.clubNum})}">게시판</a></td>
-				<td><a
-					th:href="@{/thisiswe/club/photo/(num=${readDTO.clubNum})}">사진첩</a></td>
-				<td><a th:href="@{/room}">채팅방</a></td>
-
-			</tr>
-		</table>
+		<div class="top-inner">
+			<div class="top-inner-ul">
+				<ul class="top-inner-menu top-inner-eff">
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/(num=${readDTO.clubNum})}"> <span>INFO</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/board/(num=${readDTO.clubNum})}"> <span>BOARD</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/photo/(num=${readDTO.clubNum})}"> <span>PHOTO</span>
+					</a></li>
+					<li class="ta-li"><a th:href="@{/room}"> <span>CHAT</span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
 		<!-- /네비창 (정보, 게시판, 사진첩) -->
-		<!-- from -->
 
-		<h1>일정 등록페이지</h1>
+
+		<!-- from -->
 
 		<form
 			th:action="@{/thisiswe/club/calendar/register/(num=${readDTO.clubNum})}"
 			th:method="post">
 
-			<table border="1">
-				<tr>
-					<td colspan="2">모임번호 : <input name="clubNum"
-						th:value="${readDTO.clubNum}" readonly="readonly"> <br>
-						모임이름 : <input th:value="${readDTO.clubName}" readonly="readonly">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">제목 : <input name="clubCalendarTitle"
-						type="text">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">모임설명 : <textarea name="clubCalendarContent"
-							rows="" cols=""></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>날짜 : <input name="clubCalendarDate" type="date">
+			<div class="inner">
+				<h2>일정 등록페이지</h2>
+				<div class="club-table">
+					<div class="club-table-read">
+						<table class="club-re-ca">
+							<!-- 모임번호 -->
+							<tr>
+								<th class="club-ri-th">모임번호</th>
+							</tr>
+							<tr>
+								<td class="cl-re-contain"><input class="cl-re-input-fi" name="clubNum"
+									th:value="${readDTO.clubNum}" readonly="readonly"> <br>
+								</td>
+							</tr>
 
-					</td>
-					<td rowspan="2">달력 이미지</td>
-				</tr>
-				<tr>
-					<td>시간 : <input name="clubCalendarTimeH" type="number"
-						max="23">시<input type="number" name="clubCalendarTimeM"
-						max="59">분
-					</td>
-				</tr>
+							<!-- 모임이름 -->
+							<tr>
+								<th class="club-ri-th">모임이름</th>
+							</tr>
+							<tr>
+								<td class="cl-re-contain"><input class="cl-re-input-fi" th:value="${readDTO.clubName}"
+									readonly="readonly"></td>
+							</tr>
 
-				<tr>
-					<td colspan="2">장소 : <input name="clubCalendarPlace"
-						type="text">
-					</td>
-				</tr>
+							<!-- 제목 -->
+							<tr>
+								<th class="club-ri-th">제목</th>
+							</tr>
+							<tr>
+								<td class="cl-re-contain"><input class="cl-re-input-fi" name="clubCalendarTitle" type="text">
+								</td>
+							</tr>
 
-				<tr>
-					<td colspan="2">모임정원 : <input name="clubCalendarHeadCount"
-						type="number">
-					</td>
-				</tr>
+							<!-- 모임설명 -->
+							<tr>
+								<th class="club-ri-th">모임설명</th>
+							</tr>
+							<tr>
+							<tr>
+								<td class="cl-re-contain"><textarea class="cl-re-input-fi" name="clubCalendarContent"
+										rows="" cols=""></textarea>
+								</td>
+							</tr>
 
-				<tr>
-					<td colspan="2">모임 비용 : <input name="clubCalendarPrice"
-						type="number">
-					</td>
-				</tr>
+							<!-- 날짜 -->
+							<tr>
+								<th class="club-ri-th">날짜</th>
+							</tr>
+							<tr>
+							<tr>
+								<td class="cl-re-contain"><input class="cl-re-input-fi" name="clubCalendarDate" type="date">
+								</td>
+							</tr>
 
-				<tr>
-					<td>
-						<button type="submit">일정등록</button>
-					</td>
-				</tr>
+							<!-- 시간 -->
+							<tr>
+								<th class="club-ri-th">시간</th>
+							</tr>
+							<tr>
+							<tr>
+								<td class="cl-re-contain"><input class="cl-re-input-fi-ti" name="clubCalendarTimeH" type="number" max="23">&nbsp;&nbsp;시&nbsp;&nbsp;&nbsp; <input
+									class="cl-re-input-fi-ti" type="number" name="clubCalendarTimeM" max="59">&nbsp;&nbsp;분</td>
+							</tr>
 
-			</table>
+							<!-- 장소 -->
+							<tr>
+								<th class="club-ri-th">장소</th>
+							</tr>
+							<tr>
+							<tr>
+								<td class="cl-re-contain"><input class="cl-re-input-fi" name="clubCalendarPlace" type="text">
+								</td>
+							</tr>
+
+							<!-- 모임정원 -->
+							<tr>
+								<th class="club-ri-th">모임정원</th>
+							</tr>
+							<tr>
+							<tr>
+								<td class="cl-re-contain"><input class="cl-re-input-fi" name="clubCalendarHeadCount"
+									type="number"></td>
+							</tr>
+
+							<!-- 모임 비용 -->
+							<tr>
+								<th class="club-ri-th">모임비용</th>
+							</tr>
+							<tr>
+							<tr>
+								<td class="cl-re-contain"><input class="cl-re-input-fi" name="clubCalendarPrice"
+									type="number"></td>
+							</tr>
+
+							<tr>
+								<td>
+								<!-- 일정 등록 버튼 -->
+								<div class="club-re-Btn">
+									<button type="submit" class="searchBtn-mi">일정등록</button>
+									</div>
+								<!-- /일정 등록 버튼 -->
+								</td>
+							</tr>
+
+						</table>
+					</div>
+				</div>
+			</div>
 			<!-- /내용 -->
 		</form>
 		<!-- /from -->

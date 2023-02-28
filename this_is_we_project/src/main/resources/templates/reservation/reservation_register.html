@@ -14,6 +14,100 @@
 	<!-- 내용 -->
 	<title>예약 등록페이지</title>
 	
+	
+	<div>
+		RESERVATION
+	</div>
+	
+	<div>
+	<input type="date">
+	</div>
+	
+	<div>
+		00:00
+	</div>
+	<div>
+		01:00
+	</div>
+	<div>
+		02:00
+	</div>
+	<div>
+		03:00
+	</div>
+	<div>
+		04:00
+	</div>
+	<div>
+		05:00
+	</div>
+	<div>
+		06:00
+	</div>
+	<div>
+		07:00
+	</div>
+	<div>
+		08:00
+	</div>
+	
+	<header>
+				<!-- Swiper -->
+				<div class="swiper mySwiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<a th:href="@{/thisiswe/club}">
+								<figure class="weSwiper">
+									<img src="/image/club/club02.png" />
+									<figcaption>
+										<h3>00:00</h3>
+									</figcaption>
+								</figure>
+							</a> <a th:href="@{/thisiswe/place}">
+								<figure class="weSwiper">
+									<img src="/image/place/place01.jpg" />
+									<figcaption>
+										<h3>
+											THIS IS WE, <span>PLACE</span>
+										</h3>
+										<P>Every adventure requires a first step</P>
+									</figcaption>
+								</figure>
+							</a>
+						</div>
+					</div>
+
+					<div class="swiper-wrapper"></div>
+					<!-- <div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div> -->
+					<div class="swiper-pagination"></div>
+				</div>
+
+				<!-- Swiper JS -->
+				<script
+					src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+				<!-- Initialize Swiper -->
+				<script>
+					var swiper = new Swiper(".mySwiper", {
+						slidesPerView : 1,
+						spaceBetween : 30,
+						loop : true,
+						pagination : {
+							el : ".swiper-pagination",
+							clickable : true,
+						},
+						navigation : {
+							nextEl : ".swiper-button-next",
+							prevEl : ".swiper-button-prev",
+						},
+					});
+				</script>
+			</header>
+	
+	
+	
+	
 	<!-- /내용 -->
 	
 	

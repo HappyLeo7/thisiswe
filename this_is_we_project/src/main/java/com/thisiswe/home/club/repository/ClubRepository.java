@@ -4,6 +4,7 @@ package com.thisiswe.home.club.repository;
 
 import java.util.List;
 
+import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.repository.search.SearchClubRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -54,7 +55,15 @@ public interface ClubRepository extends JpaRepository<ClubEntity, Long>, SearchC
 	//TODO [ClubRepository] 모임 삭제
 	@Query(value = "delete from club_entity where club_num= 3 " ,nativeQuery = true)
 	Long clubRemove(@Param("clubNum") Long clubNum);
-
+	
+	
+	//모임 전체 리스트 불러오기
+	
+	@Query("select c "
+			+ "from ClubEntity c "
+			+ "where c.clubName= :clubName ")
+	List<Object[]> getClubNameList(@Param("clubName") String clubName);
+	
 	 
 	
 }

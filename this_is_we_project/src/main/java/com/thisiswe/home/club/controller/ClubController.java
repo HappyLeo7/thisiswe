@@ -1,6 +1,10 @@
 package com.thisiswe.home.club.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators.Add;
 import com.thisiswe.home.chat.repository.ChatRoomRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +18,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.thisiswe.home.club.calendar.repository.CalendarRepository;
 import com.thisiswe.home.club.calendar.service.CalendarService;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
+import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.member.ClubMemberDTO;
 import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.club.service.ClubService;
@@ -88,10 +94,45 @@ public class ClubController {
 		log.info(clubDTO.getUserId());
 		log.info(clubDTO.getClubNum());
 		ClubMemberDTO.builder().clubNum(clubDTO.getClubNum()).userID(clubDTO.getUserId()).build();
+		ClubMemberDTO clubMemberDTO=new ClubMemberDTO();
+		log.info("모임 등록시 모임장 등록된 멤버 정보 : "+clubMemberDTO);
 		
 		log.info("=============== /post club_register ============================");
 		return "club/club_list";
 		
+	}
+	
+	//모임등록시 모임이름체크
+	@PostMapping({"/club/clubNameCheck"})
+	public ResponseEntity<String> clubNameCheck(@RequestBody ClubDTO clubDTO) {
+		log.info("=== clubNameChecK() ===");
+		String clubNamecheck=clubDTO.getClubName();
+		log.info("=== 중복체크할 모임명 : "+clubNamecheck);
+		
+		try {
+			
+			List<Object[]> list = clubRepository.getClubNameList(clubDTO.getClubName());
+			List<ClubEntity> checkName = new ArrayList<>();
+			for(Object[] arr :list) {
+				log.info("모임이름 체크 할 리스트 : "+arr);
+				checkName.add((ClubEntity) arr[0]);
+				
+			}
+			String clubName=checkName.get(0).getClubName();
+			log.info("=== checkName : "+clubName);
+			if(clubNamecheck.equals(clubName)) {
+				log.info("중복되는 모임 이름이 있습니다.");
+				return new ResponseEntity<String>("success",HttpStatus.OK);
+			}else {
+				return null;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		log.info("=== /clubNameChecK() ===");
+		return new ResponseEntity<String>(clubDTO.getClubName(), HttpStatus.OK);
+		
+				
 	}
 	
 	//상세페이지 연결링크
@@ -126,7 +167,7 @@ public class ClubController {
 		ClubDTO clubDTO = clubService.get(num);
 		model.addAttribute("modifyDTO", clubDTO);
 		log.info("========= /ClubController.java => club_modify.html 연결 ======");
-		return "/club/club_modify";//포워드
+		return "club/club_modify";//포워드
 	}
 	
 	//club데이터 수정매서드
