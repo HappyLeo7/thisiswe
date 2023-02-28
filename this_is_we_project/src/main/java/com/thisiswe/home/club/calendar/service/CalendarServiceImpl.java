@@ -94,7 +94,8 @@ public class CalendarServiceImpl implements CalendarService {
 				calndarEntity.change(calendarDTO.getClubCalendarTitle(),
 						calendarDTO.getClubCalendarContent(), 
 						calendarDTO.getClubCalendarDate(),
-						calendarDTO.getClubCalendarTime(),
+						calendarDTO.getClubCalendarTimeH(),
+						calendarDTO.getClubCalendarTimeM(),
 						calendarDTO.getClubCalendarPlace(),
 						calendarDTO.getClubCalendarHeadCount(),
 						calendarDTO.getClubCalendarPrice());

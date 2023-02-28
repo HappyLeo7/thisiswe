@@ -62,8 +62,7 @@ public class CalendarController {
 		log.info("==== /postMappinig calendar register() Contorller ====");
 		
 		
-		return "redirect:/thisiswe/club/?n"
-				+ "um="+clubNum.getClubNum();
+		return "redirect:/thisiswe/club/?num="+clubNum.getClubNum();
 	}
 	
 	
@@ -103,9 +102,9 @@ public class CalendarController {
 		
 		log.info("==== post calendar modify Contorller ====");
 		
-		log.info("calendarDTO : " + calendarDTO);
 		//log.info("calendarDTO num : " + clubDTO);
-		
+		calendarDTO.setClubCalendarTime(calendarDTO.getClubCalendarTimeH()+":"+calendarDTO.getClubCalendarTimeM());
+		log.info("calendarDTO : " + calendarDTO);
 		
 		CalendarDTO calendarDtoModify=calendarService.modify(calendarDTO); //1개의 일정 데이터를 가져옴
 		log.info("calendarDTO : " + calendarDtoModify);
