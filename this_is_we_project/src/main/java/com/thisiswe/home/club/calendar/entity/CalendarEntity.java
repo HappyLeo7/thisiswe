@@ -94,14 +94,15 @@ public class CalendarEntity extends DateEntity{
 	public void change(String clubCalendarTitle, 
 			String clubCalendarContent, 
 			String clubCalendarDate, 
-			String clubCalendarTime,
+			String clubCalendarTimeH,
+			String clubCalendarTimeM,
 			String clubCalendarPlace, 
 			Long clubCalendarHeadCount,
 			Long clubCalendarPrice ) {
 		this.clubCalendarTitle=clubCalendarTitle;
 		this.clubCalendarContent=clubCalendarContent;
 		this.clubCalendarDate=clubCalendarDate;
-		this.clubCalendarTime=clubCalendarTime;
+		this.clubCalendarTime=clubCalendarTimeH+":"+clubCalendarTimeM;
 		this.clubCalendarPlace=clubCalendarPlace;
 		this.clubCalendarHeadCount=clubCalendarHeadCount;
 		this.clubCalendarPrice=clubCalendarPrice;

@@ -238,6 +238,22 @@ hr{
     border-radius: 10px;
     border-color: #BB2649;
 }
+.searchBtn-mi-textLength5 {
+	margin: 0 15px 0 15px;
+	padding: 10px;
+	width: 90px;
+	height: 45px;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+	background-color: white;
+	cursor: pointer;
+}
+.searchBtn-mi-textLength5:hover{
+	outline: none;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: #BB2649;
+}
 /*[END][read] 모임 수정 버튼 */
 /*[START][read] - catalog부분 */
 .club-LogoImage{

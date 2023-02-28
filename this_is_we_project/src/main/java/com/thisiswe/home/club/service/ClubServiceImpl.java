@@ -63,8 +63,8 @@ public class ClubServiceImpl implements ClubService {
 		log.info("==== ClubServiceImpl register() clubEntity : " + clubEntity + " ====");
 
 		CalendarEntity calendarEntity = CalendarEntity.builder().clubNum(clubEntity)
-				.clubCalendarTitle("'" + clubEntity.getClubName() + "'의 모임 생일").clubCalendarDate("")
-				.clubCalendarContent("").clubCalendarHeadCount(1L).clubCalendarTime("").clubCalendarPlace("")
+				.clubCalendarTitle("'" + clubEntity.getClubName() + "'의 모임 생일").clubCalendarDate("0")
+				.clubCalendarContent("0").clubCalendarHeadCount(1L).clubCalendarTime("00:00").clubCalendarPlace("0000")
 				.clubCalendarPrice(0L).build();
 
 		calendarRepository.save(calendarEntity);
@@ -128,7 +128,8 @@ public class ClubServiceImpl implements ClubService {
 		Object clubEntityObject = clubRepository.getClubNum(clubNum);
 
 		List<Object[]> arr = (List<Object[]>) clubEntityObject;
-		log.info("........arr  : " + arr);
+		log.info("........arr.get(0)[0]  : " + arr.get(0)[0]);
+		log.info("........arr.get(0)[1]  : " + arr.get(0)[1]);
 
 		return entityToDTO((ClubEntity) arr.get(0)[0], (UserEntity) arr.get(0)[1]);
 	}

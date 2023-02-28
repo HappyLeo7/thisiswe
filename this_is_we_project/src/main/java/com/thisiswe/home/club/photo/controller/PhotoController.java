@@ -46,7 +46,7 @@ public class PhotoController {
 		
 		log.info("===== /photo get register controller =====");
 		
-		return "/club/photo/photo_register";
+		return "club/photo/photo_register";
 	}
 	
 	//사진등록 처리
@@ -82,7 +82,7 @@ public class PhotoController {
 		log.info("====== /photo controller list ======");
 		
 		
-		return "/club/photo/photo_list";
+		return "club/photo/photo_list";
 	}
 	
 	@DeleteMapping({"/remove/{photoNum}"})
