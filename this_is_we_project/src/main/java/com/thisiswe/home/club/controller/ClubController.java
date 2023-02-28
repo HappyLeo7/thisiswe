@@ -70,11 +70,11 @@ public class ClubController {
 	
 	//등록 연결링크
 	@GetMapping({"/register"})
-	public String club_register(Model model,@AuthenticationPrincipal UserDetailsImpl userDetails) {
+	public String club_register(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 		log.info("=========================================================");
 		log.info("======= ClubController.java => club_register.html 연결 =======");
 		model.addAttribute("user",userDetails.getUsername());
-		
+		log.info("유저아이디 제발 불러와 : "+model.addAttribute("user"));
 		log.info("=========================================================");
 		return "club/club_register";
 	}
