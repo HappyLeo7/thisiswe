@@ -26,8 +26,11 @@ import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.member.ClubMemberDTO;
+import com.thisiswe.home.club.member.ClubMemberEntity;
+import com.thisiswe.home.club.member.ClubMemberRepository;
 import com.thisiswe.home.club.repository.ClubRepository;
 import com.thisiswe.home.club.service.ClubService;
+import com.thisiswe.home.user.entity.UserEntity;
 import com.thisiswe.home.user.security.UserDetailsImpl;
 
 import lombok.RequiredArgsConstructor;
@@ -45,6 +48,7 @@ public class ClubController {
 	private final CalendarRepository calendarRepository;
 	private final CalendarService calendarService;
 	private final ChatRoomRepository chatRoomRepository;
+	private final ClubMemberRepository clubMemberRepository;
 	
 	//목록 연결링크
 	@GetMapping({"/club"})
@@ -71,18 +75,17 @@ public class ClubController {
 	//등록 연결링크
 	@GetMapping({"/register"})
 	public String club_register(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-		log.info("=========================================================");
 		log.info("======= ClubController.java => club_register.html 연결 =======");
 		model.addAttribute("user",userDetails.getUsername());
 		log.info("유저아이디 제발 불러와 : "+model.addAttribute("user"));
-		log.info("=========================================================");
+		log.info("======= /ClubController.java => club_register.html 연결 =======");
 		return "club/club_register";
 	}
 	
 	//[모임 등록]register.html에서 post타입으로 받아와서  모임 정보를 등록할때 사용됨
 	@PostMapping("/club")
 	public String club_register(ClubDTO clubDTO,Model model,PageRequestDTO pageRequestDTO,  MultipartFile file) throws Exception{
-		log.info("================= post club_register ========================");
+		log.info("================= post club_register() ========================");
 		log.info("=========== ClubController.java => 데이터를 받은 후 DTO경유중 return : club_list페이지로 ==============");
 		log.info(" 이미지로그 이름 : "+file);
 		log.info("=========== register ClubDTO  : "+clubDTO+" =============");
@@ -91,13 +94,16 @@ public class ClubController {
 		model.addAttribute("result", clubService.getPageList(pageRequestDTO).getDtoList());//페이지 1~??? 정보를 가져온다
 		model.addAttribute("resultPage", clubService.getPageList(pageRequestDTO).getPageList());
 		model.addAttribute("Page", clubService.getPageList(pageRequestDTO));
-		log.info(clubDTO.getUserId());
-		log.info(clubDTO.getClubNum());
-		ClubMemberDTO.builder().clubNum(clubDTO.getClubNum()).userID(clubDTO.getUserId()).build();
-		ClubMemberDTO clubMemberDTO=new ClubMemberDTO();
-		log.info("모임 등록시 모임장 등록된 멤버 정보 : "+clubMemberDTO);
 		
-		log.info("=============== /post club_register ============================");
+		log.info("등록한 모임장ID : "+clubDTO.getUserId());
+		log.info("등록한 모임명 : "+clubDTO.getClubName());
+		
+		//모임명을 가지고 모임 번호 가져오기
+		Long clubNum = clubRepository.clubNametoClubNum(clubDTO.getClubName());
+		ClubMemberEntity clubMemberEntity=ClubMemberEntity.builder().clubMemberRole(1L).clubNum(clubNum).userId(UserEntity.builder().userId(clubDTO.getUserId()).build()).build();
+		clubMemberRepository.save(clubMemberEntity);
+		
+		log.info("=============== /post club_register() ============================");
 		return "club/club_list";
 		
 	}
@@ -109,29 +115,21 @@ public class ClubController {
 		String clubNamecheck=clubDTO.getClubName();
 		log.info("=== 중복체크할 모임명 : "+clubNamecheck);
 		
-		try {
-			
-			List<Object[]> list = clubRepository.getClubNameList(clubDTO.getClubName());
-			List<ClubEntity> checkName = new ArrayList<>();
-			for(Object[] arr :list) {
-				log.info("모임이름 체크 할 리스트 : "+arr);
-				checkName.add((ClubEntity) arr[0]);
-				
-			}
-			String clubName=checkName.get(0).getClubName();
-			log.info("=== checkName : "+clubName);
-			if(clubNamecheck.equals(clubName)) {
-				log.info("중복되는 모임 이름이 있습니다.");
-				return new ResponseEntity<String>("success",HttpStatus.OK);
-			}else {
-				return null;
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		log.info("=== /clubNameChecK() ===");
-		return new ResponseEntity<String>(clubDTO.getClubName(), HttpStatus.OK);
+		boolean check=clubRepository.existsByClubName(clubNamecheck);
+		log.info("모임 이름 비교 결과 : "+check);
 		
+		if(check) {
+			log.info(clubNamecheck+" : 사용 불가능한 모임명 입니다.");
+			return new ResponseEntity<String>("success",HttpStatus.OK);
+			//모임명이 있는지 없는지 체크
+		}else {
+			
+			log.info(clubNamecheck+" : 사용 가능한 모임명 입니다.");
+			
+			log.info("사용하고자하는 모임명 : " +clubDTO.getClubName());
+			String clubName = clubDTO.getClubName();
+		return new ResponseEntity<String>(clubName, HttpStatus.OK);
+		}
 				
 	}
 	

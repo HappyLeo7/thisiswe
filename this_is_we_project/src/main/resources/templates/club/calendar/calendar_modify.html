@@ -65,7 +65,7 @@
 							</tr>
 							<tr>
 								<td class="cl-re-contain"><input class="cl-re-input-fi"
-									name="clubNum" th:value="${calendarDTO.clubNum.clubNum}">
+									name="clubNum" th:value="${calendarDTO.clubNum.clubNum}" readonly="readonly">
 									<br></td>
 							</tr>
 
@@ -76,7 +76,7 @@
 							<tr>
 								<td class="cl-re-contain"><input class="cl-re-input-fi"
 									name="clubCalendarNum"
-									th:value="${calendarDTO.clubCalendarNum}"> <br></td>
+									th:value="${calendarDTO.clubCalendarNum}" readonly="readonly"> <br></td>
 							</tr>
 
 							<!-- 제목 -->
@@ -86,7 +86,7 @@
 							<tr>
 								<td class="cl-re-contain"><input class="cl-re-input-fi"
 									name="clubCalendarTitle"
-									th:value="${calendarDTO.clubCalendarTitle}"> <br>
+									th:value="${calendarDTO.clubCalendarTitle}" required="required"> <br>
 								</td>
 							</tr>
 
@@ -97,7 +97,7 @@
 							<tr>
 								<td class="cl-re-contain"><input class="cl-re-input-fi"
 									name="clubCalendarContent"
-									th:value="${calendarDTO.clubCalendarContent}"> <br>
+									th:value="${calendarDTO.clubCalendarContent}" required="required"> <br>
 								</td>
 							</tr>
 
@@ -108,7 +108,7 @@
 							<tr>
 								<td class="cl-re-contain"><input type="date"
 									class="cl-re-input-fi" name="clubCalendarDate"
-									th:value="${calendarDTO.clubCalendarDate}"> <br></td>
+									th:value="${calendarDTO.clubCalendarDate}" required="required"> <br></td>
 							</tr>
 
 							<!-- 시간 -->
@@ -117,8 +117,8 @@
 							</tr>
 							<tr>
 								<td class="cl-re-contain">
-								<input class="cl-re-input-fi-ti" name="clubCalendarTimeH" type="number" max="23" th:value="${calendarDTO.clubCalendarTimeH}">시
-								<input type="number" class="cl-re-input-fi-ti" name="clubCalendarTimeM" max="59" th:value="${calendarDTO.clubCalendarTimeM}">분
+								<input class="cl-re-input-fi-ti" name="clubCalendarTimeH" type="number" max="23" th:value="${calendarDTO.clubCalendarTimeH}" required="required">시
+								<input type="number" class="cl-re-input-fi-ti" name="clubCalendarTimeM" max="59" th:value="${calendarDTO.clubCalendarTimeM}" required="required">분
 								</td>
 						<!-- 		<td class="cl-re-contain"><input class="cl-re-input-fi"
 									name="clubCalendarTime"
@@ -132,7 +132,7 @@
 							<tr>
 								<td class="cl-re-contain"><input class="cl-re-input-fi"
 									name="clubCalendarPlace"
-									th:value="${calendarDTO.clubCalendarPlace}"> <br>
+									th:value="${calendarDTO.clubCalendarPlace}" required="required"> <br>
 								</td>
 							</tr>
 
@@ -143,7 +143,7 @@
 							<tr>
 								<td class="cl-re-contain"><input class="cl-re-input-fi"
 									name="clubCalendarHeadCount"
-									th:value="${calendarDTO.clubCalendarHeadCount}"> <br>
+									th:value="${calendarDTO.clubCalendarHeadCount}" required="required"> <br>
 								</td>
 							</tr>
 
@@ -154,7 +154,7 @@
 							<tr>
 								<td class="cl-re-contain"><input class="cl-re-input-fi"
 									name="clubCalendarPrice"
-									th:value="${calendarDTO.clubCalendarPrice}"> <br>
+									th:value="${calendarDTO.clubCalendarPrice}" required="required"> <br>
 								</td>
 
 							</tr>

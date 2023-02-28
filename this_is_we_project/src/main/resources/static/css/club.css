@@ -232,6 +232,12 @@ hr{
 	background-color: white;
 	cursor: pointer;
 }
+.searchBtn-mi:hover{
+	outline: none;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: #BB2649;
+}
 .searchBtn-mi-textLength5 {
 	margin: 0 15px 0 15px;
 	padding: 10px;
@@ -242,7 +248,7 @@ hr{
 	background-color: white;
 	cursor: pointer;
 }
-.searchBtn-mi:hover{
+.searchBtn-mi-textLength5:hover{
 	outline: none;
     border: 2px solid;
     border-radius: 10px;

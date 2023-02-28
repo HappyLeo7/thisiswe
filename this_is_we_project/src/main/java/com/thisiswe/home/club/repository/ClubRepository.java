@@ -7,6 +7,8 @@ import java.util.List;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.repository.search.SearchClubRepository;
+import com.thisiswe.home.user.entity.UserEntity;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -57,12 +59,12 @@ public interface ClubRepository extends JpaRepository<ClubEntity, Long>, SearchC
 	Long clubRemove(@Param("clubNum") Long clubNum);
 	
 	
-	//모임 전체 리스트 불러오기
+	//모임명 중복체크
+	boolean existsByClubName(String clubName);
 	
-	@Query("select c "
-			+ "from ClubEntity c "
-			+ "where c.clubName= :clubName ")
-	List<Object[]> getClubNameList(@Param("clubName") String clubName);
+	//모임명을 가지고 모임 번호 가져오기
+	@Query("select c.clubNum from ClubEntity c where c.clubName= :clubName")
+	Long clubNametoClubNum(@Param("clubName") String clubName);
 	
 	 
 	

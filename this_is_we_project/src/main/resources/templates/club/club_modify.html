@@ -12,116 +12,163 @@
 
 
 
-		<!-- 내용 -->
-		<title>모임 수정페이지</title>
-		<h1>모임 수정페이지</h1>
 
 
-			<!-- 네비창 (정보, 게시판, 사진첩) -->
-		모임번호 :	<input class="clubNum" name="clubNum"
+
+		<!-- 네비창 (정보, 게시판, 사진첩) -->
+		<!-- 모임번호 받아오는 input -->
+		<input type="hidden" class="clubNum" name="clubNum"
 			th:value="${modifyDTO.clubNum}" readonly="readonly">
-		<table border="1">
-			<tr>
-				<td><a th:href="@{/thisiswe/club/(num=${modifyDTO.clubNum})}">정보</a></td>
-				<td><a
-					th:href="@{/thisiswe/club/board/(num=${modifyDTO.clubNum})}">게시판</a></td>
-				<td><a
-					th:href="@{/thisiswe/club/photo/(num=${modifyDTO.clubNum})}">사진첩</a></td>
-				<td><a th:href="@{/room}">채팅방</a></td>
 
-			</tr>
-		</table>
+		<div class="top-inner">
+			<div class="top-inner-ul">
+				<ul class="top-inner-menu top-inner-eff">
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/(num=${modifyDTO.clubNum})}"> <span>INFO</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/board/(num=${modifyDTO.clubNum})}">
+							<span>BOARD</span>
+					</a></li>
+					<li class="ta-li"><a
+						th:href="@{/thisiswe/club/photo/(num=${modifyDTO.clubNum})}">
+							<span>PHOTO</span>
+					</a></li>
+					<li class="ta-li"><a th:href="@{/room}"> <span>CHAT</span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+
 		<!-- /네비창 (정보, 게시판, 사진첩) -->
 
-		<!-- form -->
-		<form th:action="@{/thisiswe/read}" th:method="post" enctype="multipart/form-data">
 
-			<table border="1">
-				<tr>
-					<td><input name="clubNum" th:value="${modifyDTO.clubNum}"
-						readonly="readonly"></td>
-				</tr>
-
-				<!-- userID -->
-				<tr>
-					<td colspan="2">아이디 : <input name="userId"
-						th:value="${modifyDTO.userId}" readonly="readonly">
-					</td>
-				</tr>
-				<!-- 지역 -->
-				<tr>
-					<td colspan="2">지역 : <input name="clubPlace"
-						th:value="${modifyDTO.clubPlace}">
-					</td>
-				</tr>
-
-				<!-- 모임명 -->
-				<tr>
-					<td colspan="2">모임명 : <input name="clubName"
-						th:value="${modifyDTO.clubName}">
-					</td>
-				</tr>
-
-				<!-- 모임설명 -->
-				<tr>
-					<td colspan="2">모임설명 : <textarea name="clubContent">[[${modifyDTO.clubContent}]]</textarea>
-					</td>
-				</tr>
-
-				<!-- 카테고리 -->
-				<tr>
-					<td colspan="2">관심사 카테고리 : <select size="1"
-						name="clubCategory">
-							<option th:value="${modifyDTO.clubCategory}" selected="selected">[[${modifyDTO.clubCategory}]]</option>
-							<option value="아웃도어/여행">아웃도어/여행</option>
-							<option value="운동/스포츠">운동/스포츠</option>
-							<option value="인문학/책/글">인문학/책/글</option>
-							<option value="업종/직무">업종/직무</option>
-							<option value="외국/언어">외국/언어</option>
-							<option value="문화/공연/축제">문화/공연/축제</option>
-							<option value="음악/악기">음악/악기</option>
-							<option value="공예/만들기">공예/만들기</option>
-							<option value="댄스/무용">댄스/무용</option>
-							<option value="봉사활동">봉사활동</option>
-							<option value="사교/인맥">사교/인맥</option>
-							<option value="차/오토바이">차/오토바이</option>
-							<option value="사진/영상">사진/영상</option>
-							<option value="야구관람">야구관람</option>
-							<option value="게임/오락">게임/오락</option>
-							<option value="요리/제조">요리/제조</option>
-							<option value="반려동물">반려동물</option>
-							<option value="가족/결혼">가족/결혼</option>
-							<option value="자유주제">자유주제</option>
-					</select>
-					</td>
-				</tr>
+		<!-- 내용 -->
+		<div class="inner">
+			<h2>모임 수정페이지</h2>
+			<!-- form -->
+			<form th:action="@{/thisiswe/read}" th:method="post"
+				enctype="multipart/form-data">
 
 
-				<tr>
-					<!-- 로고이미지 -->
-					<td rowspan="2"><input type="file" name="file">로고 수정</td>
-					<td rowspan="2"><img
-						th:src="|/display?fileName=${modifyDTO.clubLogoUrl}|">
-						 </td>
-					<!-- /로고이미지 -->
-					<!-- 모임정원 -->
-					<td>모임정원<input name="clubHeadCount" type="number" min="1"
-						max="300" th:value="${modifyDTO.clubHeadCount}"></td>
-				</tr>
+				<div class="club-table">
+					<div class="club-table-read">
+						<table class="club-re-ca">
+							<!-- 모임번호 -->
+							<tr>
+								<th class="club-ri-th">모임번호</th>
+							</tr>
+							<tr>
+								<td><input class="cl-re-input-fi" name="clubNum"
+									th:value="${modifyDTO.clubNum}" readonly="readonly"></td>
+							</tr>
+
+							<!-- userID -->
+							<tr><th>
+							</th></tr>
+							<tr>
+								<th class="club-ri-th">아이디</th>
+							</tr>
+							<tr>
+								<td class="cl-re-contain"><input class="cl-re-input-fi"
+									name="userId" th:value="${modifyDTO.userId}"
+									readonly="readonly"></td>
+							</tr>
+							
+							<!-- 지역 -->
+							<tr><th class="club-ri-th">지역
+							</th></tr>
+							<tr>
+								<td class="cl-re-contain"><input class="cl-re-input-fi"
+									name="clubPlace" th:value="${modifyDTO.clubPlace}">
+								</td>
+							</tr>
+
+							<!-- 모임명 -->
+							<tr><th>모임명
+							</th></tr>
+							<tr>
+								<td class="cl-re-contain"><input class="cl-re-input-fi"
+									name="clubName" th:value="${modifyDTO.clubName}">
+								</td>
+							</tr>
+
+							<!-- 모임설명 -->
+							<tr><th>모임설명
+							</th></tr>
+							<tr>
+								<td class="cl-re-contain"><textarea class="cl-re-input-fi"
+										name="clubContent">[[${modifyDTO.clubContent}]]</textarea>
+								</td>
+							</tr>
+
+							<!-- 카테고리 -->
+							<tr><th>관심사 카테고리
+							</th></tr>
+							<tr>
+								<td class="cl-re-contain"><select class="cl-re-input" size="1"
+									name="clubCategory">
+										<option th:value="${modifyDTO.clubCategory}"
+											selected="selected">[[${modifyDTO.clubCategory}]]</option>
+										<option value="아웃도어/여행">아웃도어/여행</option>
+										<option value="운동/스포츠">운동/스포츠</option>
+										<option value="인문학/책/글">인문학/책/글</option>
+										<option value="업종/직무">업종/직무</option>
+										<option value="외국/언어">외국/언어</option>
+										<option value="문화/공연/축제">문화/공연/축제</option>
+										<option value="음악/악기">음악/악기</option>
+										<option value="공예/만들기">공예/만들기</option>
+										<option value="댄스/무용">댄스/무용</option>
+										<option value="봉사활동">봉사활동</option>
+										<option value="사교/인맥">사교/인맥</option>
+										<option value="차/오토바이">차/오토바이</option>
+										<option value="사진/영상">사진/영상</option>
+										<option value="야구관람">야구관람</option>
+										<option value="게임/오락">게임/오락</option>
+										<option value="요리/제조">요리/제조</option>
+										<option value="반려동물">반려동물</option>
+										<option value="가족/결혼">가족/결혼</option>
+										<option value="자유주제">자유주제</option>
+								</select>
+								</td>
+							</tr>
 
 
-				<tr>
-					<td>
-						<button type="submit">모임수정</button>
-					</td>
-				</tr>
-			</table>
-		</form>
+							<tr>
+								<!-- 로고이미지 -->
+								<td class="cl-re-contain"><input class="cl-re-input-fi" type="file"
+									name="file">로고 수정</td>
+									</tr>
+									<tr>
+								<td class="cl-re-contain"><img
+									th:src="|/display?fileName=${modifyDTO.clubLogoUrl}|"></td>
+									</tr>
+								<!-- /로고이미지 -->
+								<!-- 모임정원 -->
+								<tr>
+								<td class="cl-re-contain">모임정원<input class="cl-re-input-fi" name="clubHeadCount"
+									type="number" min="1" max="300"
+									th:value="${modifyDTO.clubHeadCount}"></td>
+							</tr>
+
+
+							<tr>
+								<td>
+									<button class="searchBtn-mi-textLength5" type="submit">모임수정</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</form>
+
+		</div>
 		<!-- /form -->
 
 
 		<!-- /내용 -->
 		<script type="text/javascript">
+			
 		</script>
 
 	</th:block>
