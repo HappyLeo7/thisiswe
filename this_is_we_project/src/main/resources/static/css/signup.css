@@ -34,6 +34,13 @@ body{
     font-weight: 600;
     color: #2f2f2f;
 }
+.singup-sub-view{
+	display: none;
+	margin-left: 5px;
+	font-size: 16px;
+    font-weight: 600;
+    color: #2f2f2f;
+}
 .signup-one{
     margin-left: 30px;
     /* margin-right: 30px; */
@@ -52,6 +59,7 @@ body{
     width: 400px;
 }
 .signup-box-code{
+	display: none;
 	margin: 10px 5px 10px 5px;
     padding: 5px 3px 5px 3px;
     border: 1px white;
@@ -85,6 +93,17 @@ body{
 	border-radius: 12px;
 	cursor: pointer;
 }
+.certification-email-view{
+	display: none;
+	background: #ffffff;
+	color: #363636;
+	height: 30px;
+	width: 90px;
+	font-weight: 600;
+	border: 1px solid #868686;
+	border-radius: 12px;
+	cursor: pointer;
+}
 .certification-email{
 	background: #fff;
 	color: #363636;
@@ -95,7 +114,7 @@ body{
 	border-radius: 12px;
 	cursor: pointer;
 }
-.certification:hover{
+.certification:hover, .certification-email-view:hover{
 	background: #4c4c4c;
 	color: #fff;
 	height: 30px;
@@ -163,9 +182,23 @@ body{
     height: 50px;
     width: 400px;
     background-color: #BB2649;
-    color: white;
+    color: #fff;
     font-size: 16px;
-    border: #BB2649;
+    font-weight: 600;
+	border: 1px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.signup-button-class:hover, .signup-button-class:focus, .signup-button-class:active, .signup-button-class:after {
+	margin: 15px 0 20px 0;
+    pointer-events: none;
+    position: relative;
+    height: 50px;
+    width: 400px;
+    background-color: #BB2649;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
     border-radius: 15px;
     cursor: pointer;
 }
