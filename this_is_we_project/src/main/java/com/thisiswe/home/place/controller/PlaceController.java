@@ -38,7 +38,7 @@ public class PlaceController {
 	public String placeRead(Long num, Model model, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		log.info("================(get)placeReadController==============");
 		model.addAttribute("loginID", userDetailsImpl.getUsername());
-		model.addAttribute("place", placeService.read(num));
+		model.addAttribute("place", placeService.getPlace(num));
 
 		return "place/place_read";
 	}

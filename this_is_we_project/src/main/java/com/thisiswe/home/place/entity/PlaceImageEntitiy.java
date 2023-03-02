@@ -32,6 +32,6 @@ public class PlaceImageEntitiy extends DateEntity {
 	private String placeImageName; // 장소 이미지 이름
 
 	@Column(length = 500, name = "place_image_url", nullable = false)
-	private String place_image_url; // 장소 이미지 경로
+	private String placeImageUrl; // 장소 이미지 경로
 
 }
