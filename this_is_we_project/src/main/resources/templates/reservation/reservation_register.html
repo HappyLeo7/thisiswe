@@ -13,53 +13,131 @@
 
 
 		<!-- 내용 -->
-		<title>예약 등록페이지</title>
+<form th:action="@{/thisiswe/place/reservation}" th:method="post">
 
 
+<button type="submit">예약하기</button>
 		<div>RESERVATION</div>
 
-		<div>
-			<input type="date">
-		</div>
 
 
 
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
-					<a>00:00</a> 
-					<a>01:00</a>
-					<a>03:00</a>
-				<a >04:00</a>
-				<a >05:00</a>
-				<a >06:00</a>
-				<a >07:00</a>
-				<a>08:00</a>
-					<a>09:00</a> 
-					<a>10:00</a>
-					<a>11:00</a>
-				<a >12:00</a>
+				<div>
+					예약자명 : <input type="text" name="place_reservation_name">
 				</div>
-						<div class="swiper-slide">
-				<a >13:00</a>
-				<a >14:00</a>
-				<a >15:00</a>
-				<a>16:00</a>
-				<a >17:00</a>
-				<a >18:00</a>
-				<a >19:00</a>
-				<a >20:00</a>
+				<div>
+					유저 ID : <input type="text" name="userId" th:value="${userId}">
+				</div>
+				<div>
+					유저 닉네임 : <input type="text" name="" th:value="${userNickname}">
+				</div>
+		<div>
+			날짜 : <input type="date" name="placeReservationDate">
+		</div>
 				
-				<a>21:00</a>
-				<a>22:00</a>
-				<a>23:00</a>
+				<div>
+					인원 : <input type="number" name="placeReservationHeadcount">
 				</div>
 				
+				<div>
+					전화번호 : <input type="number" name="place_reservation_tel">
+				</div>
+				
+				
+					<div>
+					<select name="placeReservationTimeStart">
+						<option value="00">00:00</option>
+						<option value="01">01:00</option>
+						<option value="02">02:00</option>
+						<option value="03">03:00</option>
+						<option value="04">04:00</option>
+						<option value="05">05:00</option>
+						<option value="06">06:00</option>
+						<option value="07">07:00</option>
+						<option value="08">08:00</option>
+						<option value="09">09:00</option>
+						<option value="10">10:00</option>
+						<option value="11">11:00</option>
+						<option value="12">12:00</option>
+						<option value="13">13:00</option>
+						<option value="14">14:00</option>
+						<option value="15">15:00</option>
+						<option value="16">16:00</option>
+						<option value="17">17:00</option>
+						<option value="18">18:00</option>
+						<option value="19">19:00</option>
+						<option value="20">20:00</option>
+						<option value="21">21:00</option>
+						<option value="22">22:00</option>
+						<option value="23">23:00</option>
+					</select>
+					<select name="placeReservationTimeEnd">
+						<option value="00">00:00</option>
+						<option value="01">01:00</option>
+						<option value="02">02:00</option>
+						<option value="03">03:00</option>
+						<option value="04">04:00</option>
+						<option value="05">05:00</option>
+						<option value="06">06:00</option>
+						<option value="07">07:00</option>
+						<option value="08">08:00</option>
+						<option value="09">09:00</option>
+						<option value="10">10:00</option>
+						<option value="11">11:00</option>
+						<option value="12">12:00</option>
+						<option value="13">13:00</option>
+						<option value="14">14:00</option>
+						<option value="15">15:00</option>
+						<option value="16">16:00</option>
+						<option value="17">17:00</option>
+						<option value="18">18:00</option>
+						<option value="19">19:00</option>
+						<option value="20">20:00</option>
+						<option value="21">21:00</option>
+						<option value="22">22:00</option>
+						<option value="23">23:00</option>
+					</select>
+					
+					
+					</div>
+					<div>
+						<a>01:00</a> 
+					</div>
+					<div>
+						<a>02:00</a> 
+					</div>
+					<div>
+						<a>03:00</a> 
+					</div>
+					<div>
+						<a>04:00</a> 
+					</div>
+					<div>
+						<a>05:00</a> 
+					</div>
+					<div>
+						<a>06:00</a>
+					</div>
+					<div>
+						<a>07:00</a> 
+					</div>
+						<a>08:00</a> <a>09:00</a> <a>10:00</a> <a>11:00</a> <a>12:00</a>
+				</div>
+				<div class="swiper-slide">
+					<a>13:00</a> <a>14:00</a> <a>15:00</a> <a>16:00</a> <a>17:00</a>
+					<a>18:00</a> <a>19:00</a> <a>20:00</a> <a>21:00</a> <a>22:00</a>
+					<a>23:00</a>
+				</div>
+
 			</div>
 		</div>
 		<script>
 			new Swiper('.swiper-container');
 		</script>
+		
 		<!-- 스크린  -->
 
 
@@ -67,6 +145,7 @@
 
 
 		<!-- /내용 -->
+</form>
 
 
 

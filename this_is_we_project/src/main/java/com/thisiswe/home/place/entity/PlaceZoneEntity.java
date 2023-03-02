@@ -23,7 +23,7 @@ public class PlaceZoneEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "place_num")
-	private UserEntity placeNum; // 장소 번호
+	private PlaceEntity placeNum; // 장소 번호
 
 	@Column(length = 100, name = "place_zone_name", nullable = false)
 	private String place_zone_name; // 장소 구역 이름

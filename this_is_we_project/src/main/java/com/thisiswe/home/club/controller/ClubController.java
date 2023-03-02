@@ -1,10 +1,7 @@
 package com.thisiswe.home.club.controller;
 
 
-import java.util.ArrayList;
-import java.util.List;
 
-import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators.Add;
 import com.thisiswe.home.chat.repository.ChatRoomRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.thisiswe.home.club.calendar.repository.CalendarRepository;
 import com.thisiswe.home.club.calendar.service.CalendarService;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.dto.PageRequestDTO;
-import com.thisiswe.home.club.entity.ClubEntity;
-import com.thisiswe.home.club.member.ClubMemberDTO;
 import com.thisiswe.home.club.member.ClubMemberEntity;
 import com.thisiswe.home.club.member.ClubMemberRepository;
 import com.thisiswe.home.club.repository.ClubRepository;
@@ -45,7 +38,6 @@ public class ClubController {
 
 	private final ClubService clubService;
 	private final ClubRepository clubRepository;
-	private final CalendarRepository calendarRepository;
 	private final CalendarService calendarService;
 	private final ChatRoomRepository chatRoomRepository;
 	private final ClubMemberRepository clubMemberRepository;

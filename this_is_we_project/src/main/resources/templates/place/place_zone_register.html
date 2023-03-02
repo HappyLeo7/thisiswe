@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<!-- th를 쓰기위한 thymeleaf.org 선언 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+	
+	<!-- 지정한 변수로 연결할 위치 -->
+	<th:block th:fragment="connection">
+	
+	
+	
+	<!-- 내용 -->
+
+<h1>zone 등록 페이지</h1>
+<form th:action="@{/thisiswe/place/zone/register}" method="post">
+
+<div>
+		장소번호 : <input type="text" name="placeNum">
+</div>
+<div>
+		추가룸 이름 : <input type="text" name="place_zone_name">
+</div>
+	
+	<button type="submit">zone등록</button>
+</form>
+	<!-- /내용 -->
+	
+	
+	
+	</th:block>
+
+</th:block>
