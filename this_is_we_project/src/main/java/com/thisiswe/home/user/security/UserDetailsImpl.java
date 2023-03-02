@@ -1,5 +1,6 @@
 package com.thisiswe.home.user.security;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -13,7 +14,7 @@ import com.thisiswe.home.user.entity.UserRoleEnum;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class UserDetailsImpl implements UserDetails {
+public class UserDetailsImpl implements UserDetails, Serializable {
 
 	// UserRepository로 부터 받아온 정보
 	private final UserEntity userEntity;

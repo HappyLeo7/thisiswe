@@ -1,0 +1,86 @@
+/* 공통 스타일 */
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+/* 회원정보 수정 폼 스타일 */
+#modify {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+#modify span:first-child {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* 입력 폼 스타일 */
+.signup-classification {
+  display: block;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#previewImage {
+  display: block;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="file"] {
+  display: block;
+  margin-top: 10px;
+}
+
+input[type="password"], input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+input[type="password"]:focus, input[type="text"]:focus {
+  border-color: #333;
+}
+
+/* 버튼 스타일 */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #f57c00;
+}
+
+/* 검증 메시지 스타일 */
+.verification {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 14px;
+  color: #f00;
+}

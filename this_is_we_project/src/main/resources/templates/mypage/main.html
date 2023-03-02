@@ -5,28 +5,156 @@
 	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 
 	<th:block th:fragment="connection">
-	
-	
+
+
 		<h1>마이페이지</h1>
 
-		<a th:href="@{/login/test2}">login/test2 문수찬</a>
-		<hr>
-		<a th:href="@{/login/test3}">login/test3 오세원</a>
-		<a th:href="@{/login/test55}">login/test55 오세원</a>
-		<hr>
-		<a th:href="@{/login/dw_class}">login/dw_class 김동완</a>
-		<hr>
-		<a th:href="@{/login/narong_test2}">login/narong_test2 김나영</a>
-		<hr>
-
-		<button id="login-id-btn" onclick="location.href='/thisiswe/mypage/userinfo'">
-			회원정보</button>
 
 
-<form id="my_form" method="post" action="/user/logout">
-로그아웃
-</form>
+		<style>
+/* 헤더 */
+header {
+	text-align: center;
+	margin-top: 75px;
+}
 
-		
+header .thumb {
+	width: 92px;
+	height: 92px;
+	border-radius: 50%;
+	box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1), 0 12px 24px 0
+		rgba(0, 0, 0, 0.24);
+}
+
+header .thumb-wrapper {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 36px;
+}
+
+header .badge {
+	width: 28px;
+	height: 28px;
+	font-size: 12px;
+	position: absolute;
+	background-color: #ff5500;
+	border-radius: 50%;
+	top: 0;
+	right: -8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* animation */
+	animation: scaleUp 0.5s;
+	animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	animation-fill-mode: both;
+	animation-delay: 0.5s;
+}
+
+header .greeting {
+	margin-bottom: 10px;
+}
+
+header .mail {
+	padding: 8px 22px 10px 22px;
+	background-color: rgba(0, 0, 0, 0.05);
+	display: inline-block;
+	border-radius: 20px;
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+	margin-top: 18px;
+}
+
+/* 리스트 */
+.list {
+	margin-top: 48px;
+}
+
+.list .item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+	font-size: 15px;
+}
+
+.list .item .left {
+	display: flex;
+	align-items: center;
+}
+
+.list .item .left .name {
+	margin-left: 6px;
+}
+
+.list .item .left .name:hover {
+	text-decoration: underline;
+	cursor: pointer;
+	text-shadow: 1px 1px 0 rgba(255, 255, 0, 0.3);
+}
+
+.list .item .left img {
+	width: 64px;
+	height: 68px;
+}
+
+
+.list .item .right {
+	opacity: 0.5;
+}
+
+.list .item img {
+	padding: 20px 22px;
+}
+
+.list .item .right img {
+	padding-right: 14px;
+}
+
+</style>
+
+		<ul class="list">
+			<li class="item mouse-effect stagger-item">
+				<div class="left">
+					<img src="/image/icon_mypage.svg" />
+					<div class="name"
+						onclick="location.href='/thisiswe/mypage/userinfo'">내 정보 수정</div>
+				</div>
+			</li>
+
+			<li class="item mouse-effect stagger-item">
+				<div class="left">
+					<img src="/image/icon_pencil.svg" />
+					<div class="name"
+						onclick="location.href='/thisiswe/mypage/boardlist'">내가 쓴 글 목록</div>
+				</div>
+			</li>
+
+			<li class="item mouse-effect stagger-item">
+				<div class="left">
+					<img src="/image/icon_club.svg" />
+					<div class="name"
+						onclick="location.href='/thisiswe/mypage/myclub'">내가 가입한 모임 목록</div>
+				</div>
+			</li>
+
+			<li class="item mouse-effect stagger-item">
+				<div class="left">
+					<img src="/image/icon_calendar.svg" />
+					<div class="name"
+						onclick="location.href='/thisiswe/mypage/myclublist'">내가 예약한 장소 목록</div>
+				</div>
+			</li>
+			
+			<li class="item mouse-effect stagger-item">
+				<div class="left">
+					<img src="/image/icon_calendar.svg" />
+					<div class="name"
+						onclick="location.href='/thisiswe/user/myclublist'">회원 탈퇴</div>
+				</div>
+			</li>
+			
+		</ul>
+
+
 	</th:block>
 </th:block>

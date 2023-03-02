@@ -9,6 +9,43 @@
 
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
+<<<<<<< HEAD
+	
+			<!-- 네비창 (정보, 게시판, 사진첩) -->
+		모임번호 :	<input class="clubNum" name="clubNum"
+			th:value="${clubNum}" readonly="readonly">
+		<table border="1">
+			<tr>
+				<td><a th:href="@{/thisiswe/club/(num=${clubNum})}">정보</a></td>
+				<td><a
+					th:href="@{/thisiswe/club/board/(num=${clubNumm})}">게시판</a></td>
+				<td><a
+					th:href="@{/thisiswe/club/photo/(num=${clubNum})}">사진첩</a></td>
+				<td><a th:href="@{/room}">채팅방</a></td>
+
+			</tr>
+		</table>
+		<!-- /네비창 (정보, 게시판, 사진첩) -->
+	
+	
+	
+	<!-- 내용 -->
+	<title>사진첩 등록페이지</title>
+	<h1>사진첩 등록 페이지</h1>
+	
+	
+	<!-- 이미지 등록처리 -->
+	<form action="/thisiswe/club/photo/register" method="post" enctype="multipart/form-data" >
+	<div>
+		<label>이미지등록</label>
+		<div>
+			모임번호 : <input type="text" name="clubNum" th:value="${clubNum}"> <br>
+			등록ID : <input type="text" name="userId" th:value="${user}"> <br>
+			사진 내용 : <input type="text" name="photoContent"> <br>
+				
+			<input type="file" name="file" id="" class="">
+			<!-- <lable class="custom-file-label" data-browse="Browse"></lable> -->
+=======
 
 		<!-- 네비창 (정보, 게시판, 사진첩) -->
 
@@ -32,6 +69,7 @@
 					</a></li>
 				</ul>
 			</div>
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 		</div>
 		<!-- /네비창 (정보, 게시판, 사진첩) -->
 

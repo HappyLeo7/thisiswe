@@ -60,5 +60,7 @@ public class PlaceEntity extends DateEntity {
 
 	@Column(length = 200, name = "place_caution", nullable = false)
 	private String placeCaution; // 주의 사항
+	
+	
 
 }
