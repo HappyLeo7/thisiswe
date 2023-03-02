@@ -35,8 +35,9 @@ body{
     color: #2f2f2f;
 }
 .signup-one{
-	margin-left: 60px;
-	margin-right: 30px;
+    margin-left: 30px;
+    /* margin-right: 30px; */
+    padding-left: 40px;
     position: relative;
     border-radius: 20px;
     text-align: left;
@@ -95,21 +96,21 @@ body{
 	cursor: pointer;
 }
 .certification:hover{
-	background: #BB2649;
+	background: #4c4c4c;
 	color: #fff;
 	height: 30px;
 	width: 90px;
 	font-weight: 600;
-	border: 1px solid #BB2649;
+	border: 1px solid #4c4c4c;
 	border-radius: 12px;
 }
 .certification-email:hover{
-	background: #BB2649;
+	background: #4c4c4c;
 	color: #fff;
 	height: 30px;
 	width: 120px;
 	font-weight: 600;
-	border: 1px solid #cf294f;
+	border: 1px solid #4c4c4c;
 	border-radius: 12px;
 }
 /* 회원가입 검증 */
@@ -123,9 +124,7 @@ body{
 }
 /* 동의 */
 .All-agree-box{
-	margin-left: 60px;
-	margin-top: 30px;
-	margin-right: 40px;
+	margin: 30px 80px 15px 80px;
 	padding: 5px 0 5px 30px;
 /* 	border: 1px solid #d8d8d8; */
 	border-radius: 20px;
@@ -167,7 +166,7 @@ body{
     color: white;
     font-size: 16px;
     border: #BB2649;
-    border-radius: 12px;
+    border-radius: 15px;
     cursor: pointer;
 }
 .terms{
