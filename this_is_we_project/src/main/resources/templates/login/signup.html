@@ -33,80 +33,84 @@ function onclickAdmin() {
 
 <body>
   <div id="signup">
-    <span class="signup-title">SIGN UP</span>
+    <span class="signup-title">S I G N U P</span>
 	<form action="/thisiswe/signup" method="post">
-    	<span class="signup-classification">아이디</span><br>
-    	<input type="text" name="userId" class="login-input-box" placeholder="아이디를 입력해 주세요." onfocus="checkId(this)" >
-    	<button type="button" class="useridVerificationCheckBtn">아이디검증 </button><br>
-    	<span class="verification" id="idCheck"></span><br>
+		<div class="signup-one">
+    	  <span class="signup-classification singup-sub">아이디</span><br>
+    	  <input type="text" name="userId" class="login-input-box signup-box" placeholder="아이디를 입력해 주세요." onfocus="checkId(this)" >
+    	  <button type="button" class="useridVerificationCheckBtn certification">아이디 검증 </button><br>
+    	  <span class="verification" id="idCheck"></span><br>
          
-     	<span class="signup-classification">비밀번호</span><br>
-     	<input id="password" name="userPassword" type="password" placeholder="비밀번호를 입력해 주세요." onfocus="checkPassword(this)"><br>
+     	  <span class="signup-classification singup-sub">비밀번호</span><br>
+          <input id="password" class="signup-box" name="userPassword" type="password" placeholder="비밀번호를 입력해 주세요." onfocus="checkPassword(this)"><br>
 	    	<span class="verification" id="passwordCheck"></span><br>
    	  
-   	  	<span class="signup-classification">비밀번호 확인</span><br>
-   	  	<input id="passwordConfirmation" type="password" placeholder="비밀번호를 한번 더 입력해 주세요." onfocus="doubleCheckPassword(this)"><br>
+   	      <span class="signup-classification singup-sub">비밀번호 확인</span><br>
+   	  	  <input id="passwordConfirmation" class="signup-box" type="password" placeholder="비밀번호를 한번 더 입력해 주세요." onfocus="doubleCheckPassword(this)"><br>
     		<span class="verification" id="secondaryPasswordConfirmation"> </span><br>
        
-	     <span class="signup-classification">이름</span>
-	     <br>
-	     <input type="text" name="userName" placeholder="이름을 입력해 주세요." onfocus="checkName(this)"><br>
-	     <span class="verification" id="nameCheck"> </span><br>
+	      <span class="signup-classification singup-sub">이름</span>
+	      <br>
+	      <input type="text" class="signup-box" name="userName" placeholder="이름을 입력해 주세요." onfocus="checkName(this)"><br>
+	      <span class="verification" id="nameCheck"> </span><br>
 	     
-	     <span class="signup-classification">성별</span>
-	     <br><br>
-	     <div>
-	     	<input type="radio" name="userGender" value="남" class="login-input-box">남 &nbsp;
-	     	<input type="radio" name="userGender" value="여" class="login-input-box">여
-	     </div>
-	     <br>
+	      <span class="signup-classification singup-sub">성별</span>
+	      <br><br>
+	      <div>
+	      	 <input type="radio" name="userGender" value="남" class="login-input-box one-box">MALE &nbsp;
+	     	 <input type="radio" name="userGender" value="여" class="login-input-box one-box">FEMALE
+	      </div>
+	      <br><br>
 	      
-	     <span class="signup-classification">닉네임</span>
-	     <br>
-	     <input type="text" name="userNickname" class="login-input-nickname" placeholder="닉네임을 입력해 주세요." onfocus="checkNickname(this)">
-	     <button type="button" class="nicknameVerificationCheckBtn">닉네임검증 </button><br>
-	     <span class="verification" id="nicknameCheck"> </span><br>
+	      <span class="signup-classification singup-sub">닉네임</span>
+	      <br>
+	      <input type="text" name="userNickname" class="login-input-nickname signup-box" placeholder="닉네임을 입력해 주세요." onfocus="checkNickname(this)">
+	      <button type="button" class="nicknameVerificationCheckBtn certification">닉네임 검증 </button><br>
+	      <span class="verification" id="nicknameCheck"> </span><br>
 	      
-	     <span class="signup-classification">이메일</span>
-	     <br>
-	     <input type="text" id="email-input" class="login-input-email" name="userEmail" placeholder="이메일을 입력해 주세요." onfocus="checkEmail(this)">
-	     <button type="button" class="emailCodeVerificationCheckPushBtn">이메일코드 보내기 </button><br>
-	     <span class="verification" id="emailCheck"> </span><br>
-	     <br>
-	     
-	     <span class="signup-classification">이메일 인증코드 확인</span>
-	     <br>
-	     <input type="text" id="emailcode-input" class="login-input-emailCode" name="userEmailCode">
-	     <button type="button" class="emailVerificationCheckBtn">이메일 검증 </button>
-	     <br>
-	        
-	     <span class="signup-classification">휴대전화</span>
-	     <br>
-	     <input type="tel" name="userPhoneNumber" placeholder="휴대전화번호를 입력해 주세요.">
-		 <br>
-		 
-	     <div>
-	     	<input id="admin-check" type="checkbox" name="admin"
-	        		onclick="onclickAdmin()"> 관리자 <br><br>
-	      	<input id="admin-token" type="password" name="adminToken"
-	        		placeholder="관리자 암호" class="login-input-box" style="display: none">
-	     </div>
-	
-	      <span id="All-agree">
-	         <input class="agree" type="checkbox" onclick="allchecked(this)">
-	         <span class="terms">사용자 약관 전체 동의</span>
-	      </span>
+	      <span class="signup-classification singup-sub">이메일</span>
+	      <br>
+	      <input type="text" id="email-input" class="login-input-email signup-box" name="userEmail" placeholder="이메일을 입력해 주세요." onfocus="checkEmail(this)">
+	      <button type="button" class="emailCodeVerificationCheckPushBtn certification-email">이메일 코드 전송</button><br>
+	      <span class="verification" id="emailCheck"> </span>
 	      <br>
 	      
-	      <input class="agree" type="checkbox" onclick="allcollect()">
-	      	<span class="terms">서비스 이용 약관 동의 (필수)</span><br>
-	      <input class="agree" type="checkbox"onclick="allcollect()">
-	      	<span class="terms">개인정보 처리방침 동의 (필수)</span><br>
-	      <input class="agree" type="checkbox"onclick="allcollect()">
-	      	<span class="terms">만 14세 이상 확인 (필수)</span><br>
-	      <input class="agree" type="checkbox"onclick="allcollect()">
-	      	<span class="terms">쿠폰, 이벤트 등 혜택 알림 동의 (선택)</span><br><br>
-	      <input id="signup-button" class="signup-button-class" type="submit" value="회원가입">
+	      <span class="signup-classification singup-sub">이메일 인증코드</span>
+	      <br>
+	      <input type="text" id="emailcode-input" class="login-input-emailCode signup-box-code" name="userEmailCode">
+	      <button type="button" class="emailVerificationCheckBtn certification">이메일 검증 </button>
+	      <br><br>
+	        
+	      <span class="signup-classification singup-sub">전화번호</span>
+	      <br>
+	      <input type="tel" class="signup-box" name="userPhoneNumber" placeholder=" -를 제외한 전화번호를 입력해 주세요.">
+		  <br><br>
+		 
+	      <div>
+	         <input type="checkbox" class="one-box" id="admin-check" name="admin"
+	        		onclick="onclickAdmin()"> 관리자 <br>
+	       	 <input type="password" id="admin-token" name="adminToken"
+	        		placeholder=" 관리자 암호" class="login-input-box signup-box-admin">
+	     </div>
+	     <br>
+		</div>
+		
+		<div class="All-agree-box">
+			<span id="All-agree">
+			<input class="agree" type="checkbox" onclick="allchecked(this)">
+				<span class="terms">사용자 약관 전체 동의</span>
+			</span>
+			<br>		      
+			<input class="agree" type="checkbox" onclick="allcollect()">
+				<span class="terms">서비스 이용 약관 동의 (필수)</span><br>
+			<input class="agree" type="checkbox"onclick="allcollect()">
+				<span class="terms">개인정보 처리방침 동의 (필수)</span><br>
+			<input class="agree" type="checkbox"onclick="allcollect()">
+				<span class="terms">만 14세 이상 확인 (필수)</span><br>
+			<input class="agree" type="checkbox"onclick="allcollect()">
+				<span class="terms">쿠폰, 이벤트 등 혜택 알림 동의 (선택)</span><br>
+			<input id="signup-button" class="signup-button-class" type="submit" value="회 원 가 입">
+    	</div>
     </form>  
   </div>
 <script src="/js/signup.js"></script>
