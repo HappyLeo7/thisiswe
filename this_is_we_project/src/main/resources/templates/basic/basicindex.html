@@ -179,29 +179,39 @@
 				<script
 					src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
-				<!-- Initialize Swiper -->
-				<script>
-					var swiper = new Swiper(".mySwiper", {
-						slidesPerView : 1,
-						spaceBetween : 30,
-						loop : true,
-						pagination : {
-							el : ".swiper-pagination",
-							clickable : true,
-						},
-						navigation : {
-							nextEl : ".swiper-button-next",
-							prevEl : ".swiper-button-prev",
-						},
-					});
-				</script>
-			</header>
-			<!-- [header] - 부분 -->
+            <!-- Initialize Swiper -->
+            <script>
+                var swiper = new Swiper(".mySwiper", {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    loop: true,
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                    },
+                });
+
+                function testGoRoom(number, name) {
+                    console.log("채팅 메서드 실행 됨");
+                    let openWin = window.open("/moveChating?roomName=" + name + "&"
+                        + "roomNumber=" + number, "팝업 테스트",
+                        "width=350, height=700, top=2050, left=2000");
+
+                }
+            </script>
+
+        </header>
+        <!-- [header] - 부분 -->
 
 			<!-- [기본 공용틀-body] - 본문 내용-->
 			<div id="body-container">
 				<!-- [추가]각페이지 html 넣을 연결 코드 -->
 				<th:block th:replace="${connection}"></th:block>
+
 			</div>
 			<!-- /[기본 공용틀-body] - 본문 내용-->
 

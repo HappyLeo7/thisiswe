@@ -113,14 +113,14 @@
 				<div class="club-table">
 					<div class="club-table-read">
 						<div th:each="photoDTO : ${photoDTOList}">
-							<table class="club-re-ca">
+							<table class="club-re-ca" th:each ="int : ${photoDTOList}">
 								<tr>
 								<th class="club-ri-th">
 								모임번호
 								</th>
 								</tr>
 								<tr>
-									<td class="cl-re-contain"><input class="cl-re-input-fi clubNum"
+									<td class="cl-re-contain"><input th:class="cl-re-input-fi clubNum"
 										th:value="${photoDTO.clubNum.clubNum}">
 									</td>
 								</tr>
@@ -131,7 +131,7 @@
 								</th>
 								</tr>
 								<tr>
-									<td class="cl-re-contain"><input class="cl-re-input-fi photoNum"
+									<td class="cl-re-contain"><input class="'cl-re-input-fi photoNum'+${photoDTO.photoNum}"
 										th:value="${photoDTO.photoNum}">
 									</td>
 								</tr>
@@ -149,7 +149,7 @@
 								<tr>
 									<td>
 									<div class="club-re-Btn">
-										<button type="button" class="searchBtn-mi" onclick="photoRemove()">사진삭제</button>
+										<button type="button" th:class="searchBtn-mi photoRemove+${photoDTO.photoNum}" th:value="${photoDTO.photoNum}" th:onclick="photoRemove()">사진삭제</button>
 										</div>
 									</td>
 								</tr>
@@ -163,9 +163,12 @@
 		<!-- /내용 -->
 
 		<script>
+		
+			
 			function photoRemove() {
+				
 				let photoNum = $(".photoNum").val();
-				let clubNum = $(".clubNum").val();
+				let clubNum = $(".clubNum"+photoNum).val();
 				alert("사진 번호 : " + photoNum);
 				$.ajax({
 					url : "/thisiswe/club/photo/remove/" + photoNum,

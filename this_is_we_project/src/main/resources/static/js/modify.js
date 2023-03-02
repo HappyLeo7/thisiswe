@@ -38,18 +38,18 @@ function emailcheck(elem) {
 
 
 function able() {
-  document.getElementById("signup-button").style.backgroundColor = "black";
-  document.getElementById("signup-button").style.color = "white";
-  document.getElementById("signup-button").style.pointerEvents = "auto";
-  document.getElementById("signup-button").style.cursor = "pointer";
+  document.getElementById("modify-button").style.backgroundColor = "black";
+  document.getElementById("modify-button").style.color = "white";
+  document.getElementById("modify-button").style.pointerEvents = "auto";
+  document.getElementById("modify-button").style.cursor = "pointer";
 }
 
 function disable() {
-  document.getElementById("signup-button").style.backgroundColor =
+  document.getElementById("modify-button").style.backgroundColor =
     "rgb(214, 214, 214)";
-  document.getElementById("signup-button").style.color = "grey";
-  document.getElementById("signup-button").style.pointerEvents = "none";
-  document.getElementById("signup-button").style.cursor = "none";
+  document.getElementById("modify-button").style.color = "grey";
+  document.getElementById("modify-button").style.pointerEvents = "none";
+  document.getElementById("modify-button").style.cursor = "none";
 }
 
 

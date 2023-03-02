@@ -55,7 +55,7 @@
       <input type="text" name="userNickname" class="login-input-nickname" placeholder="변경할 닉네임을 입력해 주세요." onfocus="nicknamecheck(this)">
       <span class="verification" id="nicknameCheck"> </span><br>
 
-      <button type="button" class="btn btn-warning modifyBtn">수정하기 </button>
+      <button id="modify-button" type="button" class="btn btn-warning modifyBtn">수정하기 </button>
   </div>
   <script th:inline="javascript">
   var inputImageFile = document.getElementById('userImageFile');
@@ -83,13 +83,10 @@
       
 	  // controller에서 가져온 값을 userId라는 변수에 넣기.
 	  let userId = [[${userId}]];
-	  
 	  var inputImageFile = $('input[name="userImageFile"]');
       var inputNickname = $('input[name="userNickname"]');
       var inputPassword = $('input[name="userPassword"]');
       
-      
-
       
       console.log("변경할 닉네임 중 입력한 것\n" + inputNickname);
 

@@ -15,26 +15,45 @@
 
 <body>
 	<div id="sign-in">
-		<span>로그인</span><br>
-		<br>
+		<span>JOIN US</span>
+		<br><br>
 		<form action="/thisiswe/login" method="post">
-			<input type="text" id="input-target" name="username"
-				class="login-input-box" placeholder="아이디"> <br> 
-				<input type="password" id="input-target" name="password"
-				class="login-input-box" placeholder="비밀번호"> <br> 
-				<input id="login-button" type="submit" value="로그인"
-				style="cursor: pointer;">
-		</form>
-		<a href="/thisiswe/signup" id="signup-button"><span>회원가입</span></a><br>
-		<a href="https://kauth.kakao.com/oauth/authorize?client_id=5bd1dab16ee774baea6d62d812f5b773&redirect_uri=http://localhost:8080/login/oauth2/code/kakao&response_type=code"
-			id="kakao-signin">
+
+			<input type="text" id="input-target" name="username" placeholder="ID">
 			<br>
-			<span>카카오 로그인</span></a>
-			
-			<br><br>
-			<div id="login-failed" style="display:none" class="alert alert-danger" role="alert">로그인에 실패하였습니다.</div>
+			<input type="password" id="input-target" name="password" placeholder="PW">
+			<br>
+			<span id="login-status">
+				<input type="checkbox"> 
+			 	<span>로그인 상태 유지</span>
+			</span>
+			<!--             <span id="찾기"><a href="" id="idfind">아이디 찾기 </a> -->
+			<!--             <span>&nbsp</span><a href="">비밀번호 찾기</a></span> -->
+			<br>
+			<input id="login-button" type="submit" value="로그인">
+		</form>
+
+		<a href="/thisiswe/signup" id="signup-button">
+			<span>회원가입</span>
+		</a>
+		<br>
+		<a href="https://kauth.kakao.com/oauth/authorize?client_id=5bd1dab16ee774baea6d62d812f5b773&redirect_uri=http://localhost:8080/login/oauth2/code/kakao&response_type=code" id="kakao-signin">
+			<span>카카오 로그인</span>
+		</a>
+
 	</div>
 
+	
+	<div id="login-failed" style="display: none" class="alert alert-danger" role="alert">로그인에 실패하였습니다.</div>
+
+	<script>
+		const href = location.href;
+		const queryString = href.substring(href.indexOf("?") + 1)
+		if (queryString === 'error') {
+			const errorDiv = document.getElementById('login-failed');
+			errorDiv.style.display = 'block';
+		}
+	</script>
 </body>
 	
 

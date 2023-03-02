@@ -37,23 +37,28 @@ public class UserSecurityConfig {
             .cacheControl().disable();
 		
 		http.csrf().disable(); // 테스트중으로 공부가 필요한 부분
+
 //		http.csrf().ignoringAntMatchers("/user/**"); // 회원 관리 처리 API (POST /user/**) 에 대해 CSRF 무시
-		
-		http.authorizeRequests() // 권한에 대해
+
+        http.authorizeRequests() // 권한에 대해
+        
+        // 인증 했을 때만 허용
+        .antMatchers("/thisiswe/mypage/userinfo").authenticated() // API 요청은 인증 필요
+        
 //		 image 폴더를 login 없이 허용
-		.antMatchers("/image/**").permitAll()
+                .antMatchers("/image/**").permitAll()
 //		 css 폴더를 login 없이 허용
-		.antMatchers("/css/**").permitAll()
+                .antMatchers("/css/**").permitAll()
 //		 회원 관리 처리 API 전부를 login 없이 허용
-		.antMatchers("/login/user/**").permitAll()
-		.antMatchers("/club/**").permitAll()
-		.antMatchers("/chatroom/**").permitAll()
-		.antMatchers("/basic/**").permitAll()
-		.antMatchers("/reservation/**").permitAll()
-		.antMatchers("/place/**").permitAll()
-		.antMatchers("/notice/**").permitAll()
-		.antMatchers("/thisiswe/**").permitAll()
-		.antMatchers("/display/**").permitAll()
+                .antMatchers("/login/user/**").permitAll()
+                .antMatchers("/club/**").permitAll()
+                .antMatchers("/chatroom/**").permitAll()
+                .antMatchers("/basic/**").permitAll()
+                .antMatchers("/reservation/**").permitAll()
+                .antMatchers("/place/**").permitAll()
+                .antMatchers("/notice/**").permitAll()
+                .antMatchers("/thisiswe/**").permitAll()
+                .antMatchers("/display/**").permitAll()
 //		.antMatchers("/**").permitAll()
 	
 		

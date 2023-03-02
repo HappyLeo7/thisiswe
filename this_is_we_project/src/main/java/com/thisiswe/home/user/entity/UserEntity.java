@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -61,6 +62,7 @@ public class UserEntity {
 
 	@Column(unique = true)
 	private Long kakaoId;
+	
 	
 	public UserEntity(String userId, String password, String userNickname, String userName ,String userGender, String userEmail, String userPhoneNumber, String userImageUrl, UserRoleEnum role) {
 		this.userId = userId;
