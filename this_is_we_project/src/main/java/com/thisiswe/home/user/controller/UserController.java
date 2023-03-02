@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.thisiswe.home.user.dto.SignupRequestDto;
@@ -78,6 +79,7 @@ public class UserController {
 		return "/login/login";
 	}
 
+	// 카카오 로그인
 //	@GetMapping("/user/kakao/callback")
 	@GetMapping("/login/oauth2/code/kakao")
 	public String kakaoLogin(@RequestParam String code) throws JsonProcessingException {
@@ -137,5 +139,12 @@ public class UserController {
 		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmialCode);
 		
 		return new ResponseEntity<>(userService.verifyCode(userEmail, userEmialCode), HttpStatus.OK);
+	}
+	
+	// 회원 탈퇴
+	@PostMapping({"/user/remove"})
+	public String remove(String userId, RedirectAttributes redirectAttributes) {
+		userService.removeUser(userId);
+		return "redirect:/thisiswe/login";
 	}
 }

@@ -1,11 +1,24 @@
 package com.thisiswe.home.user.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.thisiswe.home.club.board.entity.Board;
+import com.thisiswe.home.club.board.reply.entity.Reply;
+import com.thisiswe.home.club.calendar.entity.CalendarEntity;
+import com.thisiswe.home.club.entity.ClubEntity;
+import com.thisiswe.home.club.member.ClubMemberEntity;
+import com.thisiswe.home.club.photo.entity.PhotoEntity;
+import com.thisiswe.home.place.entity.PlaceEntity;
+import com.thisiswe.home.place.entity.PlaceReservationEntity;
+import com.thisiswe.home.place.entity.PlaceReviewEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +30,7 @@ import lombok.ToString;
 @Entity
 @Builder
 @Getter
-@ToString
+//@ToString
 @AllArgsConstructor  // 모든 필드 값을 파라미터로 받는 생성자를 만듦
 @NoArgsConstructor   // 파라미터가 없는 기본 생성자를 생성
 
@@ -100,6 +113,33 @@ public class UserEntity {
 	public void changeImage(String userImageUrl) {
 		this.userImageUrl = userImageUrl; // 이미지 변경
 	}
+	
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<PlaceEntity> places;
+
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<PlaceReservationEntity> placeReservations;
+
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<PlaceReviewEntity> placeReviews;
+
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Board> boards;
+
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Reply> replies;
+
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<CalendarEntity> calendars;
+
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ClubEntity> clubs;
+
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ClubMemberEntity> clubMembers;
+	
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<PhotoEntity> photos;
   
 }
 

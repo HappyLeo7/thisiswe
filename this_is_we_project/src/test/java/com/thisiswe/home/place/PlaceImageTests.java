@@ -29,7 +29,7 @@ public class PlaceImageTests {
 					.placeNum(PlaceEntity.builder().placeNum(i).build())
 					.placeImageUuid(i + "-" + i + "-" + i)
 					.placeImageName("이미지 이름" + i)
-					.place_image_url(i + "/" + i + "/" + i)
+					.placeImageUrl(i + "/" + i + "/" + i)
 					.build();
 			placeImageRepository.save(placeImageEntitiy);
 		});
@@ -40,7 +40,7 @@ public class PlaceImageTests {
 	public void readTest() {
 		Optional<PlaceImageEntitiy> result = placeImageRepository.findById(3L);
 		System.out.println('a');
-		System.out.println(result.get().getPlace_image_url());
+		System.out.println(result.get().getPlaceImageUrl());
 		System.out.println('b');
 		System.out.println(result.get().getPlaceNum().getPlaceNum());
 		System.out.println('c');
@@ -52,7 +52,7 @@ public class PlaceImageTests {
 	  public void readPlaceImagae() {
 		List<PlaceImageEntitiy> result = placeImageRepository.findByPlaceNum(PlaceEntity.builder().placeNum(10L).build());
 		System.out.println(1);
-		System.out.println(result.get(0).getPlace_image_url());
+		System.out.println(result.get(0).getPlaceImageUrl());
 		System.out.println(2);
 	}
 	 
@@ -66,7 +66,7 @@ public class PlaceImageTests {
 			.placeImageNum(i)
 			.placeImageUuid(i + "-" + i + "-" + i)
 			.placeImageName("(수정)이미지 이름" + i)
-			.place_image_url(i + "/" + i + "/" + i)
+			.placeImageUrl(i + "/" + i + "/" + i)
 			.build();
 			placeImageRepository.save(placeImageEntitiy);
 		});

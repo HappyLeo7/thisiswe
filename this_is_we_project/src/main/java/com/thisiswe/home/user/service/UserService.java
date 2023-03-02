@@ -28,6 +28,12 @@ public class UserService {
 	private final Map<String, String> verificationCodes = new HashMap<>();
 	private static final String ADMIN_TOKEN = "WFizAS/xREgejDFIVCsEsfjSDBgfbDasqWE";
 
+	
+	// 회원 삭제
+	public void removeUser(String userId) {
+		userRepository.deleteById(userId);
+	}
+	
     // 회원가입 시 이메일로 전송할 인증코드 생성 메서드
     /**
      * 이메일 인증코드를 생성하는 메서드

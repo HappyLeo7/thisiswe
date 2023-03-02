@@ -1,5 +1,9 @@
 package com.thisiswe.home.place.dto;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,5 +42,16 @@ public class PlaceDTO {
 	private String placeCaution;
 	
 	private String placeCategory;
+	
+	private double placeAvg;
+	
+	private int placeReviewCount;
+	
+	@Builder.Default
+	private List<PlaceImageDTO> placeImageDTOList = new ArrayList<>();
+	
+	private LocalDateTime placeRegDate;
+	
+	private LocalDateTime placeUpdateDate;
 	
 }

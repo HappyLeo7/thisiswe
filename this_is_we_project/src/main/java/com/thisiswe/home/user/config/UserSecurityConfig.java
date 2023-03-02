@@ -43,7 +43,7 @@ public class UserSecurityConfig {
         http.authorizeRequests() // 권한에 대해
         
         // 인증 했을 때만 허용
-        .antMatchers("/thisiswe/mypage/userinfo").authenticated() // API 요청은 인증 필요
+//        .antMatchers("/thisiswe/mypage/userinfo").authenticated() // API 요청은 인증 필요
         
 //		 image 폴더를 login 없이 허용
                 .antMatchers("/image/**").permitAll()
