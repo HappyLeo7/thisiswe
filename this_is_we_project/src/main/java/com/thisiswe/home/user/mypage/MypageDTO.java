@@ -1,5 +1,7 @@
 package com.thisiswe.home.user.mypage;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.AllArgsConstructor;
@@ -29,6 +31,8 @@ public class MypageDTO {
 	
 	private String userPhoneNumber; // 핸드폰번호
 
+	private MultipartFile userImageFile; // 유저 이미지 파일
+	
 	private String userImageUrl; // 유저 이미지 경로
 	
 	public MypageDTO(UserEntity userEntity) {
@@ -41,7 +45,6 @@ public class MypageDTO {
 		this.userPhoneNumber = userEntity.getUserPhoneNumber();
 		this.userImageUrl = userEntity.getUserImageUrl();
 	}
-
 
 //	public void changeNickName(String name) {
 //		this.userNickname = name; // 닉네임 변경

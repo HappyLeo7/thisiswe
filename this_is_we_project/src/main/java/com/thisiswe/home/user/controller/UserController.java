@@ -1,5 +1,10 @@
 package com.thisiswe.home.user.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.thisiswe.home.user.dto.SignupRequestDto;
@@ -30,14 +36,32 @@ public class UserController {
 
 	// 회원 로그인 페이지
 	@GetMapping("/login")
-	public String login() {
+	public String login(HttpServletRequest request, HttpServletResponse response) {
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("loggedIn") && cookie.getValue().equals("true")) {
+					return "redirect:/thisiswe/home";
+				}
+			}
+		}
 		return "login/login";
 	}
+
 	
 	// post login 이동
 	@PostMapping("/login")
-	public String loginsucces() {
-		return "login/login";
+	public String loginsucces(@AuthenticationPrincipal UserDetailsImpl userDetails, HttpSession session) {
+		session.setAttribute("userDetails", userDetails);
+	    return "redirect:/thisiswe/home";
+	}
+	
+	// 회원 로그아웃
+	@PostMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("userDetails");
+		return "redirect:/thisiswe/login";
 	}
 
 	// 회원 가입 페이지
@@ -55,6 +79,7 @@ public class UserController {
 		return "/login/login";
 	}
 
+	// 카카오 로그인
 //	@GetMapping("/user/kakao/callback")
 	@GetMapping("/login/oauth2/code/kakao")
 	public String kakaoLogin(@RequestParam String code) throws JsonProcessingException {
@@ -68,7 +93,7 @@ public class UserController {
 	public String getUserInfo(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 		// 첫번째 방법
 		
-		model.addAttribute("userId", userDetails.getUserEntity().getUserId());
+		model.addAttribute("userId", userDetails.getUsername());
 		model.addAttribute("userNickname", userDetails.getUserEntity().getUserNickname());
 		model.addAttribute("userEmail", userDetails.getUserEntity().getUserEmail());
 
@@ -114,5 +139,12 @@ public class UserController {
 		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmialCode);
 		
 		return new ResponseEntity<>(userService.verifyCode(userEmail, userEmialCode), HttpStatus.OK);
+	}
+	
+	// 회원 탈퇴
+	@PostMapping({"/user/remove"})
+	public String remove(String userId, RedirectAttributes redirectAttributes) {
+		userService.removeUser(userId);
+		return "redirect:/thisiswe/login";
 	}
 }
