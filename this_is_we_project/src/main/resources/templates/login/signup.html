@@ -34,7 +34,7 @@ function onclickAdmin() {
 <body>
   <div id="signup">
     <span class="signup-title">S I G N U P</span>
-	<form action="/thisiswe/signup" method="post">
+	<form action="/thisiswe/signup" method="post" onsubmit="return false">
 		<div class="signup-one">
     	  <span class="signup-classification singup-sub">아이디</span><br>
     	  <input type="text" name="userId" class="login-input-box signup-box" placeholder="아이디를 입력해 주세요." onfocus="checkId(this)" >
@@ -85,7 +85,9 @@ function onclickAdmin() {
 	        
 	      <span class="signup-classification singup-sub">전화번호</span>
 	      <br>
-	      <input type="tel" class="signup-box" name="userPhoneNumber" placeholder=" -를 제외한 전화번호를 입력해 주세요.">
+	      <input type="tel" class="signup-box" name="userPhoneNumber" placeholder=" -를 제외한 전화번호를 입력해 주세요." onfocus="checkPhoneCheck(this)">
+		  <br>
+		  <span class="verification" id="phoneCheck"></span>
 		  <br><br>
 		 
 	      <div>
@@ -220,7 +222,7 @@ function onclickAdmin() {
 	    alert('이메일을 입력해주세요.');
 	    return;
 	  }
-
+	  alert("확인 중 입니다.");
 		// 이메일 검증 버튼, 인증코드 입력란, 이메일 인증코드 확인 부분 보이기
 		const emailVerification = document.querySelector('.email-verification-check');
 	    const emailVerificationCheckBtn = document.querySelector('.emailVerificationCheckBtn');
@@ -233,13 +235,14 @@ function onclickAdmin() {
 
 	  
       console.log("===========emailCheck===== : " + emailCheck);
- 
+	    
 
               $.ajax({
                   url:'/thisiswe/userEmail/' + emailCheck , //Controller에서 요청 받을 주소
                   type:"POST", // post 방식으로 전달
                   success: function(check){ //컨트롤러에서 넘어온 result값을 받는다 
 
+                	  
                 	  if(check=="중복") {
                 		console.log("중복");
                 		alert("중복된 메일입니다.")
@@ -461,6 +464,9 @@ function allcollect() {
     console.log("이부분이 uncheck가 되는 것인가?" + button);
   }
 //이용약관 동의 여부 확인
+
+  checkboxisall();
+  
   for(let b=1;b<document.getElementsByClassName("agree").length-1;b++){
     if(!document.getElementsByClassName("agree")[b].checked){
       button = "uncheck";
@@ -488,19 +494,22 @@ function allcollect() {
   }
   
   button == "uncheck" ? disable() : able();
-  checkboxisall();
+
+
 }
 
 function able() {
-  document.getElementById("signup-button").style.backgroundColor = "black";
+	$("form").attr("onsubmit", "return true");
+  document.getElementById("signup-button").style.backgroundColor = "#BB2649";
   document.getElementById("signup-button").style.color = "white";
   document.getElementById("signup-button").style.pointerEvents = "auto";
   document.getElementById("signup-button").style.cursor = "pointer";
 }
 function disable() {
+	$("form").attr("onsubmit", "return false");
   document.getElementById("signup-button").style.backgroundColor =
-    "rgb(214, 214, 214)";
-  document.getElementById("signup-button").style.color = "grey";
+    "#b5b5b5";
+  document.getElementById("signup-button").style.color = "white";
   document.getElementById("signup-button").style.pointerEvents = "none";
   document.getElementById("signup-button").style.cursor = "none";
 }
