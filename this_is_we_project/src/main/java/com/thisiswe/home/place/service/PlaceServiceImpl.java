@@ -50,38 +50,43 @@ public class PlaceServiceImpl implements PlaceService {
 
 	@Override
 	public PlacePageResultDTO<PlaceDTO, Object[]> getList(PlacePageRequestDTO placePageRequestDTO) {
-		log.info("PlaceServiceImpl클래스 getList 메소드");
-
-		Pageable pageable = placePageRequestDTO.getPagealbe(Sort.by("placeNum").descending());
-
-		// BooleanBuilder booleanBuilder = getSearch(requestDTO);
-
-		Page<Object[]> result = placeRepository.getListPage(pageable);
-
-		result.getContent().forEach(arr->{
-			log.info(Arrays.toString(arr));
-		});
-		
-		Function<Object[], PlaceDTO> fn = (arr -> entitiesToDTO((PlaceEntity)arr[0],(List<PlaceImageEntitiy>)(Arrays.asList((PlaceImageEntitiy)arr[1])),(Double)arr[2],(Long)arr[3]));
-		return new PlacePageResultDTO<>(result, fn);
+		/*
+		 * log.info("PlaceServiceImpl클래스 getList 메소드");
+		 * 
+		 * Pageable pageable =
+		 * placePageRequestDTO.getPagealbe(Sort.by("placeNum").descending());
+		 * 
+		 * // BooleanBuilder booleanBuilder = getSearch(requestDTO);
+		 * 
+		 * Page<Object[]> result = placeRepository.getListPage(pageable);
+		 * 
+		 * result.getContent().forEach(arr->{ log.info(Arrays.toString(arr)); });
+		 * 
+		 * Function<Object[], PlaceDTO> fn = (arr ->
+		 * entitiesToDTO((PlaceEntity)arr[0],(List<PlaceImageEntitiy>)(Arrays.asList((
+		 * PlaceImageEntitiy)arr[1])),(Double)arr[2],(Long)arr[3])); return new
+		 * PlacePageResultDTO<>(result, fn);
+		 */
+		return null;
 	}
 
 	@Override
 	public PlaceDTO getPlace(Long placeNum) {
-		List<Object[]> result = placeRepository.getPlaceWithAll(placeNum);
-		
-		PlaceEntity placeEntity = (PlaceEntity) result.get(0)[0];
-		
-		List<PlaceImageEntitiy> placeImageList = new ArrayList<>();
-		
-		result.forEach(arr->{
-			PlaceImageEntitiy placeImageEntitiy = (PlaceImageEntitiy) arr[1];
-			placeImageList.add(placeImageEntitiy);
-		});
-		
-		Double avg = (Double) result.get(0)[2];
-		Long reviewCount = (Long) result.get(0)[3];
-		return entitiesToDTO(placeEntity, placeImageList, avg, reviewCount);
+		/*
+		 * List<Object[]> result = placeRepository.getPlaceWithAll(placeNum);
+		 * 
+		 * PlaceEntity placeEntity = (PlaceEntity) result.get(0)[0];
+		 * 
+		 * List<PlaceImageEntitiy> placeImageList = new ArrayList<>();
+		 * 
+		 * result.forEach(arr->{ PlaceImageEntitiy placeImageEntitiy =
+		 * (PlaceImageEntitiy) arr[1]; placeImageList.add(placeImageEntitiy); });
+		 * 
+		 * Double avg = (Double) result.get(0)[2]; Long reviewCount = (Long)
+		 * result.get(0)[3]; return entitiesToDTO(placeEntity, placeImageList, avg,
+		 * reviewCount);
+		 */
+		return null;
 	}
 
 	@Override
