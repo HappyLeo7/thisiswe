@@ -166,7 +166,9 @@
             </form>
         </div>
         <!-- /게시판 수정 -->
-<input type="hidden" class="c-num" th:value="${clubNum}">
+
+
+        <input type="hidden" class="c-num" th:value="${clubNum}">
         <script th:inline="javascript">
             /* [START] board_modify.html의 스크립트/
 
@@ -205,15 +207,16 @@
                 // actionForm.append(type);
                 // actionForm.append(keyword);
                 // actionForm.append(clubnum);
-                actionForm.attr("action", "/thisiswe/club/board/?num=" + clubnum )
+                actionForm.attr("action", "/thisiswe/club/board/?num=" + clubnum)
                     .attr("method", "get");
 
                 actionForm.submit();
             })
+
+
             /* [END] board_modify.html : 목록 클릭 시, 게시판 목록으로 이동 */
 
             /* [END] board_modify.html의 스크립트 */
         </script>
-
     </th:block>
 </th:block>		

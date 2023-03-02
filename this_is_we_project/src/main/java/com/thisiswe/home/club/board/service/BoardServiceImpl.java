@@ -101,7 +101,7 @@ public class BoardServiceImpl implements BoardService {
 	public void removeWithReplies(Long boardNum) {
 		
 		boardRepository.deleteById(boardNum);
-		replyRepository.deleteByBoardNum(boardNum);
+//		replyRepository.deleteByBoardNum(boardNum);
 	}
 	
 	//TODO [ServiceImpl] 게시판 - 조회수 증가(중복 제외)
@@ -109,7 +109,7 @@ public class BoardServiceImpl implements BoardService {
 	public void countView(Long boardNum, BoardDTO boardDTO) {
 		Board board = boardRepository.findById(boardNum).orElseThrow((() ->
 									new IllegalStateException("게시글이 존재하지 않습니다.")));
-		
+
 		board.countView(boardDTO.getBoardView());
 		}
 

@@ -24,35 +24,35 @@ public class ReplyRepositoryTest {
 	@Autowired
 	private ReplyRepository replyRepository;
 		
-	@Test
-	//TODO [ReplyRepositoryTest] 게시글-댓글 : boardNum 댓글 생성하기
-	public void insertReply() {
-		
-		System.out.println("[ReplyRepositoryTest][insertReply]=======================");
-		LongStream.range(1, 50).forEach(i -> {
-			
-			UserEntity member = UserEntity.builder().userId("user" + i).build();
-			
-			//TODO [ReplyRepositoryTest] 게시글-댓글 : boardNum 내 댓글 내용 생성하기
-			Reply reply = Reply.builder()
-							   .boardNum(Board.builder().boardNum(i).userId(UserEntity.builder().userId("user" + i).build()).build())
-							   .boardReplyContent("reply" + i)
-							   .userId(member)	
-							   .build();
-		
-		/*LongStream.rangeClosed(1, 50).forEach(i -> {
-				
-			Reply reply = Reply.builder()
-						  	.boardNum(Board.builder().boardNum(i).userId(UserEntity.builder().userId("user" + i).build()).build())
-						  	.userId(UserEntity.builder().userId("user" + i).build())
-						  	.boardReplyContent("content" + i)						  	
-							.build();
-		 */
-			replyRepository.save(reply);
-			
-			System.out.println("/[ReplyRepositoryTest][insertReply]======================");
-		});
-	}
+//	@Test
+//	//TODO [ReplyRepositoryTest] 게시글-댓글 : boardNum 댓글 생성하기
+//	public void insertReply() {
+//
+//		System.out.println("[ReplyRepositoryTest][insertReply]=======================");
+//		LongStream.range(1, 50).forEach(i -> {
+//
+//			UserEntity member = UserEntity.builder().userId("user" + i).build();
+//
+//			//TODO [ReplyRepositoryTest] 게시글-댓글 : boardNum 내 댓글 내용 생성하기
+//			Reply reply = Reply.builder()
+//							   .board(Board.builder().boardNum(i).userId(UserEntity.builder().userId("user" + i).build()).build())
+//							   .boardReplyContent("reply" + i)
+//							   .userId(member)
+//							   .build();
+//
+//		/*LongStream.rangeClosed(1, 50).forEach(i -> {
+//
+//			Reply reply = Reply.builder()
+//						  	.boardNum(Board.builder().boardNum(i).userId(UserEntity.builder().userId("user" + i).build()).build())
+//						  	.userId(UserEntity.builder().userId("user" + i).build())
+//						  	.boardReplyContent("content" + i)
+//							.build();
+//		 */
+//			replyRepository.save(reply);
+//
+//			System.out.println("/[ReplyRepositoryTest][insertReply]======================");
+//		});
+//	}
 	
 	
 	//TODO [ReplyRepositoryTest] 게시글-댓글 : 댓글과 댓글이 속한 게시판 읽어오기
@@ -64,7 +64,7 @@ public class ReplyRepositoryTest {
 		
 		System.out.println("[ReplyRepositoryTest][testReadReply]=====================");
 		System.out.println(reply);
-		System.out.println(reply.getBoard());
+//		System.out.println(reply.getBoard());
 		System.out.println("/[ReplyRepositoryTest][testReadReply]====================");
 				
 		}
@@ -75,10 +75,10 @@ public class ReplyRepositoryTest {
 		
 		System.out.println("[ReplyRepositoryTest][testListByBoard]===================");
 		/* List<Reply> replyList = replyRepository.getRepliesByBoardOrderByBoardReplyNum( */
-		List<Reply> replyList = replyRepository.findByBoardNum(Board.builder().boardNum(41L).build());
+//		List<Reply> replyList = replyRepository.findByBoardNum(Board.builder().boardNum(41L).build());
 		
-		System.out.println("[ReplyRepositoryTest][testListByBoard] replyList ===> " + replyList);
-		replyList.forEach(reply -> System.out.println(reply)); 
+//		System.out.println("[ReplyRepositoryTest][testListByBoard] replyList ===> " + replyList);
+//		replyList.forEach(reply -> System.out.println(reply));
 		
 		System.out.println("/[ReplyRepositoryTest][testListByBoard]==================");
 		

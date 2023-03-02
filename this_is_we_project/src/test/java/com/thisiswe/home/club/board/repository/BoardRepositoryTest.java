@@ -55,7 +55,7 @@ public class BoardRepositoryTest {
 	@Test
 	public void testReadBoard() {
 		
-		Optional<Board> result = boardRepository.findById(23L);
+		Optional<Board> result = boardRepository.findById(1L);
 		
 		Board board = result.get();
 		

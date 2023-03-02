@@ -49,4 +49,6 @@ public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoard
 	 int boardView(Long boardNum);
 	 
 	 Page<Board> findAllByUserId(UserEntity userEntity, Pageable pageable);
+
+
 }

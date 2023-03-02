@@ -4,17 +4,19 @@ import java.util.List;
 
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.club.board.reply.dto.ReplyDTO;
+import com.thisiswe.home.club.board.reply.dto.ReplyRequestDTO;
 import com.thisiswe.home.club.board.reply.entity.Reply;
 import com.thisiswe.home.user.entity.UserEntity;
+import org.springframework.data.domain.Page;
 
 //TODO [Service] 게시판-댓글
 public interface ReplyService {
 
 	//TODO [Service] 게시글-댓글 - 등록(register)
-	Long register(ReplyDTO replyDTO);
+	boolean register(ReplyRequestDTO replyRequestDTO);
 	
 	//TODO [Service] 게시글-댓글 - 게시판 번호 읽기(get)
-	List<ReplyDTO> getList(Long board_num);
+	Page<Reply> getList(Long board_num , int page, int size);
 
 	//TODO [Service] 게시글-댓글 - 수정(modify)
 	void modify(ReplyDTO replyDTO);
@@ -46,8 +48,7 @@ public interface ReplyService {
 									.boardNum(reply.getBoardNum().getBoardNum())
 									.boardReplyContent(reply.getBoardReplyContent())
 									.userId(reply.getUserId().getUserId())
-									.regDate(reply.getRegDate())
-									.updateDate(reply.getUpdateDate())
+
 									.build();
 		return replyDTO;
 	}
