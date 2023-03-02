@@ -123,12 +123,29 @@ public class UserController {
 	// 유저인증코드 보내기
 	@PostMapping("/userEmail/{emailCheck}")
 	@ResponseBody
-	public void pushUserEmailCode(@PathVariable("emailCheck") String userEmail) {
+	public String pushUserEmailCode(@PathVariable("emailCheck") String userEmail) {
 		
-		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmail);
+		if(userService.checkUserEmail(userEmail)) {
+			return "중복";
+		}
+		else {
+			System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmail);
 
-		userService.sendVerificationCode(userEmail);
+			userService.sendVerificationCode(userEmail);
+			
+			return "메일 보냄";
+		}
 	}
+	
+//	// 유저인증코드 보내기
+//	@PostMapping("/userEmail/{emailCheck}")
+//	@ResponseBody
+//	public void pushUserEmailCode(@PathVariable("emailCheck") String userEmail) {
+//		
+//		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmail);
+//
+//		userService.sendVerificationCode(userEmail);
+//	}
 	
 	// 이메일 인증코드 확인
 	@PostMapping("/userEmail/{emailCheck}/{emailCodeCheck}")

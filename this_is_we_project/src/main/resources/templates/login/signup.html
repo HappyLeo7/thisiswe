@@ -227,9 +227,9 @@ function onclickAdmin() {
 	    const emailCodeInput = document.querySelector('#emailcode-input');
 
 
-	    emailVerification.style.display = 'block';
+/* 	    emailVerification.style.display = 'block';
 	    emailVerificationCheckBtn.style.display = 'block';
-	    emailCodeInput.style.display = 'block';
+	    emailCodeInput.style.display = 'block'; */
 
 	  
       console.log("===========emailCheck===== : " + emailCheck);
@@ -238,10 +238,19 @@ function onclickAdmin() {
               $.ajax({
                   url:'/thisiswe/userEmail/' + emailCheck , //Controller에서 요청 받을 주소
                   type:"POST", // post 방식으로 전달
-                  success: function(){ //컨트롤러에서 넘어온 result값을 받는다 
+                  success: function(check){ //컨트롤러에서 넘어온 result값을 받는다 
 
-                      console.log("성공");
-
+                	  if(check=="중복") {
+                		console.log("중복");
+                		alert("중복된 메일입니다.")
+                		
+                	  }
+                	  else {
+                		    emailVerification.style.display = 'block';
+                		    emailVerificationCheckBtn.style.display = 'block';
+                		    emailCodeInput.style.display = 'block';
+                		    console.log("성공");
+                	  }
                   }
               })
           });
