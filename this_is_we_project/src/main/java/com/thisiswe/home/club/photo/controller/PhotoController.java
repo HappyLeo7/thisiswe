@@ -1,10 +1,14 @@
 package com.thisiswe.home.club.photo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.thisiswe.home.club.dto.ClubDTO;
 import com.thisiswe.home.club.photo.dto.PhotoDTO;
 import com.thisiswe.home.club.photo.entity.PhotoEntity;
+import com.thisiswe.home.club.photo.repository.PhotoRepository;
 import com.thisiswe.home.club.photo.service.PhotoService;
 import com.thisiswe.home.user.security.UserDetailsImpl;
 
@@ -27,7 +32,7 @@ public class PhotoController {
 
 	
 	private final PhotoService photoService;
-	
+	private final PhotoRepository photoRepository;
 	
 	//사진 등록 페이지
 	@GetMapping("/register")
@@ -41,7 +46,7 @@ public class PhotoController {
 		
 		log.info("===== /photo get register controller =====");
 		
-		return "/club/photo/photo_register";
+		return "club/photo/photo_register";
 	}
 	
 	//사진등록 처리
@@ -72,24 +77,24 @@ public class PhotoController {
 		
 		
 		//------------------------------------
-		
-		
-		
-		
 		//------------------------------------
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		log.info("====== /photo controller list ======");
 		
 		
-		return "/club/photo/photo_list";
+		return "club/photo/photo_list";
+	}
+	
+	@DeleteMapping({"/remove/{photoNum}"})
+	public ResponseEntity<String> photoRemove(@PathVariable("photoNum") Long photoNum){
+		log.info("=== delete controller photo remove ===");
+		log.info("=== photoNum : "+photoNum);
+		photoRepository.deleteById(photoNum);
+		
+		log.info("=== /delete controller photo remove ===");
+		
+		return new ResponseEntity<String>("success",HttpStatus.OK);
+		
 	}
 	
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,7 @@ import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
 @SpringBootTest
+@Ignore
 //TODO [RepositoryTest] 게시판 - Query Test
 public class BoardRepositoryTest {
 

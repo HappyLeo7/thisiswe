@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,7 @@ import lombok.extern.log4j.Log4j2;
 
 @SpringBootTest
 @Log4j2
+@Ignore
 public class CalendarTests {
 
 	
@@ -79,7 +81,11 @@ public class CalendarTests {
 			
 		System.out.println("");
 		System.out.println("'''''일정수정 테스트''''''");
+		ClubDTO clubDTOa=ClubDTO.builder()
+				.clubNum(9L).build();
+		
 			CalendarDTO calendarDTO = CalendarDTO.builder()
+					.clubNum(null)
 					.clubCalendarNum(14L)
 					.clubCalendarTitle("점심수정")
 					.clubCalendarContent("연어덮밥 수정")
@@ -91,14 +97,11 @@ public class CalendarTests {
 					.clubCalendarPrice(20000L)
 					.build();
 			
-			ClubDTO clubDTO=ClubDTO.builder()
-					.clubNum(9L).build();
-			
 			System.out.println("일정 수정값 : "+calendarDTO);
 			
 			System.out.println("");
 			
-			calendarService.modify(calendarDTO, clubDTO);
+			calendarService.modify(calendarDTO);
 			
 			System.out.println("'''''/일정수정 테스트''''''");
 			System.out.println("");

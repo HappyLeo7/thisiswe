@@ -17,6 +17,14 @@
 div>h2 {
 	text-align: center;
 }
+hr{
+	 margin-bottom: 30px; 
+	 width: 60%;
+	 border: 0px;
+	 height: 1px;
+	 background: linear-gradient(to left, transparent, rgba(192,192,192,1), transparent)
+	 ;
+}
 /* [END][club] - 공통으로 들어가는 부분 */
 /* [START][list] - 모임 등록 버튼 */
 .club-regi{
@@ -117,8 +125,6 @@ div>h2 {
 	border-spacing: 0;
 	word-break: break-all;
 	text-indent: initial;
-	border-top: 1px solid #808080;
-	border-bottom: 1px solid #808080;
 }
 .club-table-li{
 	margin: 10px;
@@ -232,6 +238,22 @@ div>h2 {
     border-radius: 10px;
     border-color: #BB2649;
 }
+.searchBtn-mi-textLength5 {
+	margin: 0 15px 0 15px;
+	padding: 10px;
+	width: 90px;
+	height: 45px;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+	background-color: white;
+	cursor: pointer;
+}
+.searchBtn-mi-textLength5:hover{
+	outline: none;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: #BB2649;
+}
 /*[END][read] 모임 수정 버튼 */
 /*[START][read] - catalog부분 */
 .club-LogoImage{
@@ -252,10 +274,12 @@ div>h2 {
   	margin:  5px 5px 5px 5px;
  	max-width: 97%;
   	vertical-align: top;
+  	border-radius: 15px;
+ 	box-shadow: 0 4px 4px 0 gray;
 }
 .club-re-ca{
-	padding : 0 auto;
     margin: 0 auto;
+	padding : 0 auto;
     width: 40%;
 	border-spacing: 0;
 	text-indent: initial;
@@ -278,7 +302,7 @@ div>h2 {
 	/*width: 50%; */
 }
 .cl-re-input-fi{
-	margin: 3px 0px 3px;
+	margin: 3px 0px 15px;
 	height: 50px;
 	text-align: center;
     width: 99%;
@@ -289,8 +313,33 @@ div>h2 {
     line-height: 160%;
     font-weight: 700;
 }
-.cl-re-input{
+.cl-re-input-fi-ti{
 	margin: 3px 0px 3px;
+	height: 50px;
+	text-align: center;
+    width: 43%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 160%;
+    font-weight: 700;	
+}
+.cl-re-input-fi-headcount{
+		margin: 3px 0px 15px;
+	height: 50px;
+	text-align: center;
+    width: 85%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 160%;
+    font-weight: 700;
+	
+}
+.cl-re-input{
+	margin: 3px 0px 15px;
 	height: 50px;
 	text-align: center;
     width: 99%;
@@ -302,7 +351,7 @@ div>h2 {
     font-weight: 700;
 }
 .cl-re-input-co{
-	margin: 3px 0 3px;
+	margin: 3px 0 15px;
 	padding: 0 5px 0 5px 10px;
 	height: 300px;
 	text-align: center;
@@ -320,8 +369,56 @@ div>h2 {
     border-color: #e7e7e7;
     cursor: pointer;
 }
-
-
 /*[END][read] - catalog부분 */
+/*[START][read] - 모임 스케줄 부분 */
+.club-table-read-cal{
+	margin: 0 auto;
+	padding: 10px;
+	text-align: center;
+}
 
+.club-table-cal-li{
+	margin: 10px;
+	padding: 10px;
+	text-align: center;
+}
+.club-re-ca-ul{
+    margin: 0 auto;
+    padding: 0 auto;
+    width: 40%;
+    border-spacing: 0;
+    border: 1px solid #ebebeb;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.club-re-ca-ul:hover {
+	outline: none;
+    border: 2px solid #e7e7e7;
+    border-radius: 25px;
+    border-color: #BB2649;
+}
+.club-re-ca-li{
+    padding: 2px 0 1px 0;
+    height: 40;
+    width: 99%;
+    font-size: 17px;
+    line-height: 160%;
+    font-weight: 600;
+    border-radius: 15px;
+}
+.club-re-ca-li-title{
+	padding: 2px 0 1px 0;
+    height: 40;
+    width: 99%;
+    color: #df6480;
+    font-size: 19px;
+    line-height: 160%;
+    font-weight: 600;
+    border-radius: 15px;
+}
+.club-re-ca-li img{
+	width: 20px;
+	height: 20px;
+}
+/*[END][read] - 모임 스케줄 부분 */
 /*[END][read] */

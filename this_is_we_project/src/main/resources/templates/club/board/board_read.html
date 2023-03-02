@@ -156,10 +156,21 @@
     	        	        	            	    keyword=${pageRequestDTO.keyword})}">
        			 -->
 					<button type="submit" class="searchBtn-mi">
-						<a th:href="@{/thisiswe/club/board}">목록</a>
+						<a th:href="@{/thisiswe/club/board/(num=${clubNum})}">목록</a>
 					</button>
 				</a>
-			</div>					
+			</div>
+
+			<input class="replyRegister" type="text">
+			<script>
+				function replyRegi (){
+					var content = $(".replyRegister").val();
+					$.ajax({
+
+					})
+				}
+			</script>
+
 			<!-- /게시판 조회 - btn -->
 		</div>	
 		<!-- 게시판 조회 -->		
