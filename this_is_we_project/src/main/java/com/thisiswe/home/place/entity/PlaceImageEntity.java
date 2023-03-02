@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Table(name = "we_place_image")
 
 //TODO [Entity]place_image 테이블 컬럼 (장소 이미지 번호, 장소 번호, uuid, 장소 이미지 이름, 장소 이미지 경로)
-public class PlaceImageEntitiy extends DateEntity {
+public class PlaceImageEntity extends DateEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

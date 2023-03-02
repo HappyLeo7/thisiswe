@@ -24,13 +24,15 @@ import lombok.extern.log4j.Log4j2;
 public class PlaceController {
 
 	private final PlaceService placeService;
-	private final PlaceReviewService placeReviewService;
 
 	@GetMapping("place")
 	public String list(PlacePageRequestDTO placePageRequestDTO, Model model) {
 		log.info("================(get)placeListController==============");
 		log.info(model.addAttribute("placeList", placeService.getList(placePageRequestDTO)));
-		
+		if (!placeService.getList(placePageRequestDTO).getDtoList().isEmpty()) {
+			log.info("PlcaeThumbnailURL" + placeService.getList(placePageRequestDTO).getDtoList().get(0).getPlaceImageDTOList()
+					.get(0).getPlcaeThumbnailURL());
+		}
 		return "place/place_list";
 	}
 
@@ -54,6 +56,7 @@ public class PlaceController {
 	@PostMapping("/place/register")
 	public String placeRegisterPost(PlaceDTO placeDTO, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		log.info("================(get)placeRegisterController==============");
+		log.info(placeDTO);
 		placeDTO.setUserId(userDetailsImpl.getUsername());
 		placeService.register(placeDTO);
 		return "redirect:/thisiswe/place";
