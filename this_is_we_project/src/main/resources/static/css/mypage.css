@@ -1,0 +1,142 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+	;
+
+/* 프로젝트 포인트 색상(임의 01) : #e4481b; - 주황색 */
+/* 프로젝트 포인트 색상(임의 02) : #0d5718; - 초록색 */
+/* 프로젝트 포인트 색상(팬톤 올해의 컬러 2023) : #BB2649; - 비바마젠타 */
+
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* 헤더 */
+header {
+	text-align: center;
+	margin-top: 75px;
+}
+
+header .thumb {
+	width: 92px;
+	height: 92px;
+	border-radius: 50%;
+	box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1), 0 12px 24px 0
+		rgba(0, 0, 0, 0.24);
+}
+
+header .thumb-wrapper {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 36px;
+}
+
+header .badge {
+	width: 28px;
+	height: 28px;
+	font-size: 12px;
+	position: absolute;
+	background-color: #ff5500;
+	border-radius: 50%;
+	top: 0;
+	right: -8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* animation */
+	animation: scaleUp 0.5s;
+	animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	animation-fill-mode: both;
+	animation-delay: 0.5s;
+}
+
+header .greeting {
+	margin-bottom: 10px;
+}
+
+header .mail {
+	padding: 8px 22px 10px 22px;
+	background-color: rgba(0, 0, 0, 0.05);
+	display: inline-block;
+	border-radius: 20px;
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+	margin-top: 18px;
+}
+
+/* 리스트 */
+.list {
+	margin-top: 48px;
+}
+
+.list .item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+	font-size: 15px;
+}
+
+.list .item .left {
+	display: flex;
+	align-items: center;
+}
+
+.list .item .left .name {
+	margin-left: 6px;
+}
+
+.list .item .left .name:hover {
+	text-decoration: underline;
+	cursor: pointer;
+	text-shadow: 1px 1px 0 rgba(255, 255, 0, 0.3);
+}
+
+.list .item .left img {
+	width: 64px;
+	height: 68px;
+}
+
+.list .item .right {
+	opacity: 0.5;
+}
+
+.list .item img {
+	padding: 20px 22px;
+}
+
+.list .item .right img {
+	padding-right: 14px;
+}
+
+#myModal {
+  display: none; /* 처음에는 숨김 처리 */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
