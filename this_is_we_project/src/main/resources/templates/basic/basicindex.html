@@ -58,7 +58,7 @@
 						</li>
 											<!-- 로그아웃 -->
 						<li class="container-p-li" sec:authorize="isAuthenticated()">
-							<a th:href="@{/thisiswe/logout}">로그아웃</a>
+							<a th:href="@{/thisiswe/logout}">LOGOUT</a>
 						</li>											
 <!-- 						<li class="container-p-li" sec:authorize="isAuthenticated()">
 							<form th:action="@{/thisiswe/logout}" method="post">
@@ -67,7 +67,7 @@
 						</li> -->
 						
 						<li class="container-p-li" sec:authorize="isAuthenticated()">
-							<a th:href="@{/thisiswe/mypage/main}">MYPAGE</a>
+							<a th:href="@{/thisiswe/mypage/main}">MY PAGE</a>
 						</li>
 						
 						<li class="container-p-li" sec:authorize="!isAuthenticated()">
@@ -99,7 +99,7 @@
 					<ul>
 						<li><a href="#">Promotions</a></li>
 
-						<li><a th:href="@{/thisiswe/mypage/main}">MYPAGE</a> | <a
+						<li><a th:href="@{/thisiswe/mypage/main}">MY PAGE</a> | <a
 							th:href="@{/thisiswe/login}">로그인</a> | <a
 							th:href="@{/thisiswe/signup}">회원가입</a></li>
 					</ul>
