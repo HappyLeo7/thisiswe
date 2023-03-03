@@ -37,7 +37,7 @@
 			<span>회원가입</span>
 		</a>
 		<br>
-		<a href="https://kauth.kakao.com/oauth/authorize?client_id=5bd1dab16ee774baea6d62d812f5b773&redirect_uri=http://localhost:8080/login/oauth2/code/kakao&response_type=code" id="kakao-signin">
+		<a href="https://kauth.kakao.com/oauth/authorize?client_id=5bd1dab16ee774baea6d62d812f5b773&redirect_uri=http://localhost:8099/thisiswe/login/oauth2/code/kakao&response_type=code" id="kakao-signin">
 			<span>카카오 로그인</span>
 		</a>
 
@@ -55,15 +55,4 @@
 		}
 	</script>
 </body>
-	
-
-
-<script>
-const href = location.href;
-const queryString = href.substring(href.indexOf("?")+1)
-if (queryString === 'error') {
-const errorDiv = document.getElementById('login-failed');
-errorDiv.style.display = 'block';
-}
-</script>
 </html>
