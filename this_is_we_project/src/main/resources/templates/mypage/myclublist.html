@@ -26,17 +26,8 @@
 
 		<!-- 모임 전체 목록 -->
 		<div class="inner">
-			<h2>이런 모임은 어떠세요? 선택했나?</h2>
-
-			<!-- 모임 등록 버튼 -->
-			<div class="club-regi">
-				<a th:href="@{/thisiswe/register}"> <span>
-						<button type="button" class="searchBtn-regi">모임등록</button>
-				</span>
-				</a>
-			</div>
-			<!-- /모임 등록 버튼 -->
-			<br><br>
+			<h2>ㅁㅗㄱㄹㅗㄱ</h2>
+			<br>
 			
 			<!-- list 1 -->
 			<!-- 코드가안됨 -->
@@ -57,24 +48,6 @@
 			</div>
 
 			<br><br>
-
-			<!-- 검색 -->
-			<div class="club-search">
-				<div class="club-search_sub">
-					<form id="searchForm" th:action="@{/thisiswe/club}" th:method="get">
-						<select id="searchColumn" name="type">
-							<option th:selected="${pageRequestDTO.type==null}">------</option>
-							<option th:selected="${pageRequestDTO.type=='N'}" value="N">모임명</option>
-							<!-- <option th:selected="${pageRequestDTO.type=='C'}" value="C">내용</option> -->
-							<option th:selected="${pageRequestDTO.type=='G'}" value="G">카테고리</option>
-							<option th:selected="${pageRequestDTO.type=='P'}" value="P">지역</option>
-						</select> <input type="text" id="searchWord" name="keyword"
-							th:value="${pageRequestDTO.keyword}">
-						<button type="submit" class="searchBtn">검색</button>
-					</form>
-				</div>
-			</div>
-			<!-- /검색 -->
 
 			<!-- 페이지 부분 : 이동, 이전, 다음 -->
 			<div class="paginate">
