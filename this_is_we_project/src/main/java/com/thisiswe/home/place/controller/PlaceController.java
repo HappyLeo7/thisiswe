@@ -12,6 +12,7 @@ import com.thisiswe.home.place.dto.PlacePageRequestDTO;
 import com.thisiswe.home.place.dto.PlaceReviewPageRequestDTO;
 import com.thisiswe.home.place.service.PlaceReviewService;
 import com.thisiswe.home.place.service.PlaceService;
+import com.thisiswe.home.place.zone.service.PlaceZoneService;
 import com.thisiswe.home.user.security.UserDetailsImpl;
 
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import lombok.extern.log4j.Log4j2;
 public class PlaceController {
 
 	private final PlaceService placeService;
+	private final PlaceZoneService placeZoneService;
 
 	@GetMapping("place")
 	public String list(PlacePageRequestDTO placePageRequestDTO, Model model) {
@@ -41,6 +43,7 @@ public class PlaceController {
 		log.info("================(get)placeReadController==============");
 		model.addAttribute("loginID", userDetailsImpl.getUsername());
 		model.addAttribute("place", placeService.getPlace(num));
+		model.addAttribute("zones", placeZoneService.getPlaceZone(num));
 
 		return "place/place_read";
 	}

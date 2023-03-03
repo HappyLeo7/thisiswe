@@ -11,7 +11,7 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class PlasceReservationServiceImpl implements PlasceReservationService {
+public class PlaceReservationServiceImpl implements PlaceReservationService {
 	
 	private final PlaceReservationRepository placeReservationRepository;
 
@@ -23,6 +23,18 @@ public class PlasceReservationServiceImpl implements PlasceReservationService {
 		placeReservationRepository.save(dtoToEntity(placeReservationDTO));
 		
 		log.info("... /Reservation register() ...");
+	}
+
+	@Override
+	public Boolean getCheck(PlaceReservationDTO placeReservationDTO) {
+		log.info("... Reservation getCheck() ...");
+		
+		//날짜를 이용해서 시간 가져오기
+		
+		
+		
+		log.info("... /Reservation getCheck() ...");
+		return null;
 	}
 	
 	
