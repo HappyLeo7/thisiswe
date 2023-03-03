@@ -39,7 +39,7 @@ public interface PlaceService {
 				.placeRefundRegulations(placeEntity.getPlaceRefundRegulations())
 				.placeAddress(placeEntity.getPlaceAddress())
 				.placePhoneNumber(placeEntity.getPlacePhoneNumber())
-				.placeCoordinate(placeEntity.getPlaceCoordinate())
+				.placeCategory(placeEntity.getPlaceCategory())
 				.placeGuide(placeEntity.getPlaceGuide())
 				.placeCaution(placeEntity.getPlaceCaution())
 				.placeRegDate(placeEntity.getRegDate())
@@ -78,7 +78,7 @@ public interface PlaceService {
 				.placeRefundRegulations(placeDTO.getPlaceRefundRegulations())
 				.placeAddress(placeDTO.getPlaceAddress())
 				.placePhoneNumber(placeDTO.getPlacePhoneNumber())
-				.placeCoordinate(placeDTO.getPlaceCoordinate())
+				.placeCategory(placeDTO.getPlaceCategory())
 				.placeGuide(placeDTO.getPlaceGuide())
 				.placeCaution(placeDTO.getPlaceCaution())
 				.build();

@@ -58,7 +58,26 @@ public class PlaceController {
 	// 장소 등록
 	@PostMapping("/place/register")
 	public String placeRegisterPost(PlaceDTO placeDTO, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
-		log.info("================(get)placeRegisterController==============");
+		log.info("================(post)placeRegisterController==============");
+		log.info(placeDTO);
+		placeDTO.setUserId(userDetailsImpl.getUsername());
+		placeService.register(placeDTO);
+		return "redirect:/thisiswe/place";
+	}
+	
+	
+	// 장소 등록
+	@GetMapping("/place/modify")
+	public String placeModifyGet(Long placeNum, Model model) {
+		log.info("================(get)placeModifyController==============");
+		model.addAttribute("place",placeService.getPlace(placeNum));
+		return "place/place_modify";
+	}
+
+	// 장소 등록
+	@PostMapping("/place/modify")
+	public String placeModifyPost(PlaceDTO placeDTO, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
+		log.info("================(post)placeModifyController==============");
 		log.info(placeDTO);
 		placeDTO.setUserId(userDetailsImpl.getUsername());
 		placeService.register(placeDTO);

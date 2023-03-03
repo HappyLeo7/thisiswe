@@ -52,8 +52,8 @@ public class PlaceEntity extends DateEntity {
 	@Column(length = 200, name = "place_phone_number", nullable = false)
 	private String placePhoneNumber; // 전화 번호
 
-	@Column(length = 100, name = "place_coordinate", nullable = false)
-	private String placeCoordinate; // 좌표
+	@Column(length = 100, name = "place_category", nullable = false)
+	private String placeCategory; // 좌표
 
 	@Column(length = 5000, name = "place_guide", nullable = false)
 	private String placeGuide; // 안내 사항

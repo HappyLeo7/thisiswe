@@ -6,10 +6,10 @@
 </head>
 <body>
 
-<form th:action="@{/thisiswe/place/register}" th:method="post">
+<form th:action="@{/thisiswe/place/modify}" th:method="post">
 
 	장소명
-	<input name="placeName">
+	<input name="placeName" th:value="${place.getPlaceName}">
 	<br>
 	
 	<div class="form-group">
@@ -29,61 +29,66 @@
 	</div>
 	
 	한 줄 소개
-	<input name="placeOneLineIntroduction">
+	<input name="placeOneLineIntroduction" th:value="${place.getPlaceOneLineIntroduction}">
 	<br>
 	
 	소개글
-	<input name="placeIntroduction">
+	<input name="placeIntroduction" th:value="${place.getPlaceIntroduction}" >
 	<br>
 	
-	영업 시간
-	<input name="placeBusinessHours">
+	영업 시간											
+	<input name="placeBusinessHours" th:value=${place.getPlaceBusinessHours}>
 	<br>
 	
 	휴무일
-	<input name="placeHoliday">
+	<input name="placeHoliday" th:value="${place.getPlaceHoliday}">
 	<br>
 	
 	환불 규정
-	<input name="placeRefundRegulations">
+	<input name="placeRefundRegulations" th:value="${place.getPlaceRefundRegulations}">
 	<br>
 	
 	주소
-	<input name="placeAddress">
+	<input name="placeAddress" th:value="${place.getPlaceAddress}">
 	<br>
 	
 	전화번호
-	<input name="placePhoneNumber">
+	<input name="placePhoneNumber" th:value=${place.getPlacePhoneNumber}>
 	<br>
 	
 	안내사항
-	<input name="placeGuide">
+	<input name="placeGuide" th:value=${place.getPlaceGuide}>
 	<br>
 	
 	주의사항
-	<input name="placeCaution">
+	<input name="placeCaution" th:value="${place.getPlaceCaution}">
 	<br>
 	
 	카테고리
-	<select name="placeCategory">
-			<option value="">카테고리 선택</option>
+	<select classs="category" name="placeCategory">
 			<option value="파티룸">파티룸</option>
 			<option value="연습실">연습실</option>
 			<option value="스튜디오">스튜디오</option>
 			<option value="공연장">공연장</option>
-			<option value="스터디">스터디 룸</option>
+			<option value="스터디 룸">스터디 룸</option>
 			<option value="회의실">회의실</option>
 			<option value="공유 주방">공유 주방</option>
 			<option value="기타">기타</option>
 		</select>
 	<br>
 	
-	<button type="submit" class="registerButton">등록</button>
+	<button type="submit" class="modifyButton">등록</button>
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>	
 <script>
 		$(document).ready(function(e){
+			
+			// 셀렉트 버튼 첫번째 값
+			var selectValue = [[${place.getPlaceCategory}]]
+			$(".category").val(selectValue);
+			
+			
 			var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
 			var maxSize = 10485760; //10MB
 			
@@ -208,7 +213,7 @@
 			}
 			
 			
-			$(".registerButton").on("click", function(e){
+			$(".modifyButton").on("click", function(e){
 				e.preventDefault();
 				
 				var str = "";
