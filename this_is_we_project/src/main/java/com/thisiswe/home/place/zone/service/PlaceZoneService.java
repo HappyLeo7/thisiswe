@@ -12,7 +12,10 @@ public interface PlaceZoneService {
 	
 	List<PlaceZoneDTO> getPlaceZone(Long placeNum);
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 	
 
 	//dto -> en
@@ -48,6 +51,16 @@ public interface PlaceZoneService {
 		
 	}
 	
-	void get();
+<<<<<<< HEAD
+=======
+	
 
+
+
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
+	void get();
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 }

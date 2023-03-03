@@ -21,9 +21,10 @@ public class PlaceZoneController {
 
 	//장소 zone 등록 페이지 연결
 	@GetMapping({"/register"})
-	public String zone() {
+	public String zone(PlaceZoneDTO placeZoneDTO) {
 		log.info("=== zone() ===");
 		
+		log.info("placeZoneDTO : "+placeZoneDTO);
 		
 		log.info("=== /zone() ===");
 		return "place/place_zone_register";

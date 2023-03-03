@@ -31,7 +31,7 @@ public interface PlaceReservationService {
 			}
 		}
 		System.out.println("요청한시간 : "+time.toString().substring(1,time.toString().length()-1));
-		String ReservationTime=time.toString().substring(1,time.toString().length()-1);
+		String reservationTime=time.toString().substring(1,time.toString().length()-1);
 		
 		
 			PlaceReservationEntity placeReservationEntity = PlaceReservationEntity.builder()
@@ -40,7 +40,7 @@ public interface PlaceReservationService {
 					.userId(placeReservationDTO.getUserId())//유저ID
 					.place_reservation_tel(placeReservationDTO.getPlace_reservation_tel()) //전화번호
 					.placeReservationDate(placeReservationDTO.getPlaceReservationDate())//예약날짜
-					.placeReservationTime(ReservationTime)//예약시간
+					.placeReservationTime(reservationTime)//예약시간
 					.placeReservationHeadcount(placeReservationDTO.getPlaceReservationHeadcount())//인원
 					.build();
 		

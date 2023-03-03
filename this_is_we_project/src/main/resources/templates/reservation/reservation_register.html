@@ -16,7 +16,46 @@
 <form th:action="@{/thisiswe/place/reservation}" th:method="post">
 
 
-<button type="submit">예약하기</button>
+<button type="submit" class="">예약하기</button>
+<button type="button" class="reservationBtn">예약중복확인</button>
+
+<script type="text/javascript">
+
+$(".reservationBtn").on("click",function(){
+	var placeReservationDate=$(".placeReservationDate").val();
+	console.log("예약하고싶은 날짜 :"+placeReservationDate);
+	var placeReservationTimeStart=$(".placeReservationTimeStart").val();
+	console.log("예약하고싶은 시작시간 :"+placeReservationTimeStart);
+	var placeReservationTimeEnd=$(".placeReservationTimeEnd").val();
+	console.log("예약하고싶은 시작시간 :"+placeReservationTimeEnd);
+	
+	alert("예약버튼 클릭되었습니다.")
+	
+	$.ajax({
+	url:"/thisiswe/place/reservationCheck",
+	type:"POST",
+	data: JSON.stringify({
+		placeReservationDate:placeReservationDate,
+		placeReservationTimeStart:placeReservationTimeStart,
+		placeReservationTimeEnd:placeReservationTimeEnd
+	}),
+	contentType:"application/json; charset=UTF-8",
+	dataType:"json",
+	success: function(data){
+		if(data==true){
+		alert("예약이 가능합니다.")
+		console.log(data)
+		}else{
+		alert("예약이 불가능합니다.")
+		console.log(data)
+		}
+	}
+	
+		
+	})
+	
+})
+</script>
 		<div>RESERVATION</div>
 
 
@@ -35,7 +74,7 @@
 					유저 닉네임 : <input type="text" name="" th:value="${userNickname}">
 				</div>
 		<div>
-			날짜 : <input type="date" name="placeReservationDate">
+			날짜 : <input type="date" name="placeReservationDate" class="placeReservationDate">
 		</div>
 				
 				<div>
@@ -48,7 +87,7 @@
 				
 				
 					<div>
-					<select name="placeReservationTimeStart">
+					<select name="placeReservationTimeStart" class="placeReservationTimeStart">
 						<option value="00">00:00</option>
 						<option value="01">01:00</option>
 						<option value="02">02:00</option>
@@ -74,7 +113,7 @@
 						<option value="22">22:00</option>
 						<option value="23">23:00</option>
 					</select>
-					<select name="placeReservationTimeEnd">
+					<select name="placeReservationTimeEnd" class="placeReservationTimeEnd">
 						<option value="00">00:00</option>
 						<option value="01">01:00</option>
 						<option value="02">02:00</option>
