@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thisiswe.home.place.reservation.dto.PlaceReservationDTO;
-import com.thisiswe.home.place.reservation.service.PlasceReservationService;
+import com.thisiswe.home.place.reservation.service.PlaceReservationService;
 import com.thisiswe.home.user.security.UserDetailsImpl;
 
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j2;
 public class ReservationController {
 	
 	@Autowired
-	private PlasceReservationService plasceReservationService;
+	private PlaceReservationService plasceReservationService;
 
 	//예약 페이지 연결
 	@GetMapping({"/reservation"})
@@ -43,8 +43,13 @@ public class ReservationController {
 	@PostMapping({"/reservation"})
 	public String reservationRegister(PlaceReservationDTO placeReservationDTO) {
 		log.info("=== reservationRegister() ===");
-		log.info("예약시 받아온 placeReservationDTO 값 : "+placeReservationDTO);
 		
+		//예약 내용 체크
+		plasceReservationService.getCheck(placeReservationDTO);
+		
+		
+		//등록
+		log.info("예약시 받아온 placeReservationDTO 값 : "+placeReservationDTO);
 		plasceReservationService.register(placeReservationDTO);
 		
 		

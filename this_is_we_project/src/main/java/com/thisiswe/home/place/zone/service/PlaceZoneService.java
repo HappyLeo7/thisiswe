@@ -10,8 +10,11 @@ public interface PlaceZoneService {
 
 	void register(PlaceZoneDTO placeZoneDTO);
 	
+<<<<<<< HEAD
 	List<PlaceZoneDTO> getPlaceZone(Long placeNum);
 	
+=======
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 	
 
 	//dto -> en
@@ -31,6 +34,7 @@ public interface PlaceZoneService {
 		return placeZoneEntity;
 		
 	}
+<<<<<<< HEAD
 	
 	default PlaceZoneDTO entityToDTO(PlaceZoneEntity placeZoneEntity) {
 
@@ -48,4 +52,10 @@ public interface PlaceZoneService {
 	}
 	
 	
+=======
+
+
+
+	void get();
+>>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
 }

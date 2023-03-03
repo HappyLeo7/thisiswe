@@ -7,7 +7,7 @@ import java.util.List;
 import com.thisiswe.home.place.reservation.dto.PlaceReservationDTO;
 import com.thisiswe.home.place.reservation.entity.PlaceReservationEntity;
 
-public interface PlasceReservationService {
+public interface PlaceReservationService {
 
 	void register(PlaceReservationDTO placeReservationDTO);
 
@@ -46,4 +46,7 @@ public interface PlasceReservationService {
 		
 		return placeReservationEntity;
 	}
+
+
+	Boolean getCheck(PlaceReservationDTO placeReservationDTO);
 }

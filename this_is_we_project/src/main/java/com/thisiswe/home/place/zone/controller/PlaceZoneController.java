@@ -29,7 +29,7 @@ public class PlaceZoneController {
 		return "place/place_zone_register";
 		
 	}
-	
+	//zone 등록 처리
 	@PostMapping({"/register"})
 	public String zoneRegister(PlaceZoneDTO placeZoneDTO) {
 		log.info("=== zoneRegister() ===");
@@ -39,5 +39,16 @@ public class PlaceZoneController {
 		log.info("=== /zoneRegister() ===");
 		
 		return "place/place_zone_register";
+	}
+	
+	//zone 상세 페이지 연결
+	@GetMapping({"/read"})
+	public String readPage(PlaceZoneDTO placeZoneDTO) {
+		log.info("=== readPage() ===");
+		log.info(placeZoneDTO);
+		//placeZoneService.get(placeZoneDTO);
+		
+		log.info("=== /readPage() ===");
+		return "place/place_zone_read";
 	}
 }
