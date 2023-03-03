@@ -1,8 +1,11 @@
 package com.thisiswe.home.place.zone.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.thisiswe.home.place.entity.PlaceEntity;
 import com.thisiswe.home.place.zone.dto.PlaceZoneDTO;
 import com.thisiswe.home.place.zone.repository.PlaceZoneRepository;
 
@@ -22,6 +25,11 @@ public class PlaceZoneServiceImpl implements PlaceZoneService {
 		placeZoneRepository.save(dtoToEntity(placeZoneDTO));
 		log.info("... /placeZone serivce register() ...");
 		
+	}
+
+	@Override
+	public List<PlaceZoneDTO> getPlaceZone(Long placeNum) {
+		return placeZoneRepository.findByPlaceNum(PlaceEntity.builder().placeNum(placeNum).build()).stream().map(i-> entityToDTO(i)).toList();
 	}
 
 	

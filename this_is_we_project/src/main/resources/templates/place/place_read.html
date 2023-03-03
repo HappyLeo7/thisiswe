@@ -28,7 +28,16 @@
 					</div>
 				</div>
 				
+				
+				<div th:each="zone : ${zones}" style="border: solid 1px;">
+				[[${zone.getPlaceZoneName}]]
+				[[${zone.getPlaceZoneHeadCount}]]
+				[[${zone.getPlaceZoneNum}]]
+				[[${zone.getPlaceNum}]]
+				
+				</div>
 
+				<input type="hidden" name="placeNum" th:value="${place.placeNum}">
 				<div>
 					<h3>[[${place.getPlaceOneLineIntroduction}]]</h3>
 				</div>
