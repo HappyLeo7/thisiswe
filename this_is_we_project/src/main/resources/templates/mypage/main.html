@@ -6,13 +6,12 @@
 
 	<th:block th:fragment="connection">
 
-		<!-- club.css 연결 -->
+		<!-- mypage.css 연결 -->
 		<link rel="stylesheet" th:href="@{/css/mypage.css}" />
-		<!-- /club.css 연결 -->
+		<!-- /mypage.css 연결 -->
 	
-
-		<h2>MY PAGE</h2>
-
+		<h2 class="myPage-h2">▷  &nbsp;<span>MY PAGE</span>  &nbsp;◁</h2>
+		
 		<ul class="list">
 			<li class="item mouse-effect stagger-item">
 				<div class="left">
@@ -21,31 +20,36 @@
 						onclick="location.href='/thisiswe/mypage/userinfo'">내 정보 수정</div>
 				</div>
 			</li>
+			<br>
+			<hr>
 
 			<li class="item mouse-effect stagger-item">
 				<div class="left">
 					<img src="/image/icon_pencilcase.png" />
 					<div class="name"
-						onclick="location.href='/thisiswe/mypage/boardlist'">내가 쓴 글
-						목록</div>
+						onclick="location.href='/thisiswe/mypage/boardlist'">나의 글 목록</div>
 				</div>
 			</li>
+			<br>
+			<hr>
 
 			<li class="item mouse-effect stagger-item">
 				<div class="left">
 					<img src="/image/icon_friendship.png" />
-					<div class="name" onclick="location.href='/thisiswe/mypage/myclub'">
-						가입한 모임 목록</div>
+					<div class="name" onclick="location.href='/thisiswe/mypage/myclub'">내가 가입한 모임</div>
 				</div>
 			</li>
+			<br>
+			<hr>
 
 			<li class="item mouse-effect stagger-item">
 				<div class="left">
 					<img src="/image/icon_calendar.png" />
-					<div class="name" onclick="location.href='/thisiswe/mypage/myclublist'">
-						예약한 장소 목록</div>
+					<div class="name" onclick="location.href='/thisiswe/mypage/myclublist'">나의 예약 장소 목록</div>
 				</div>
 			</li>
+			<br>
+			<hr>
 
 			<li class="item mouse-effect stagger-item">
 				<div class="left">
@@ -54,20 +58,22 @@
 				</div>
 			</li>
 		</ul>
+		<br>
+		<br>
 
 		<div id="myModal" class="modal">
 			<div class="modal-content">
 				<span class="close">&times;</span>
 				<h2>회원 탈퇴</h2>
-				<p class="modal-content-pass">비밀번호를 입력해주세요.</p>
-				<input type="password" class="modal-content-box" id="password"><br>
+				<p class="modal-content-pass">비밀번호를 입력해주세요!</p>
+				<input type="password" class="modal-content-boxPass" id="password"><br>
 				<div class="searchBtn-mypage">
 					<button type="button" class="btn btn-primary searchBtn-my" id="confirm-button">확인</button>
 					<button type="button" class="btn btn-cancel searchBtn-my" data-dismiss="modal">취소</button>
 				</div>
 			</div>
 		</div>
-
+		
 		<script>
 		var modal = document.getElementById("myModal");
 			function openModal() {

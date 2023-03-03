@@ -61,38 +61,57 @@ header .mail {
 	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 	margin-top: 18px;
 }
-
+.myPage-h2{
+	text-align: center;
+	margin-top: 60px;
+	font-size: 20px;
+	color: #4f4f4f;
+}
+.myPage-h2 span{
+	color: #BB2649;
+	font-size: 28px;
+}
 /* 리스트 */
 .list {
-	margin-top: 48px;
+	margin-top: 45px;
 }
-
 .list .item {
-	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-	font-size: 15px;
-}
-
-.list .item .left {
 	display: flex;
+	margin: 0 auto;
+}
+.list li{
+	margin: 0;
+	padding: 0;
+}
+.list .item .left {
+	width: 100%;
+/* 	display: inline-block; */
 	align-items: center;
 }
 
 .list .item .left .name {
-	margin-left: 6px;
+	padding-bottom: 5px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #393939;
+	cursor: pointer;
+	text-align: center;
 }
 
 .list .item .left .name:hover {
-	text-decoration: underline;
-	cursor: pointer;
-	text-shadow: 1px 1px 0 rgba(255, 255, 0, 0.3);
+	font-size: 20px;
+	font-weight: 600;
+	color: #BB2649;
 }
 
 .list .item .left img {
-	width: 64px;
-	height: 68px;
+	width: 60px;
+	height: 60px;
+	margin: auto;
+	display: block;
+	
 }
 
 .list .item .right {
@@ -106,7 +125,14 @@ header .mail {
 .list .item .right img {
 	padding-right: 14px;
 }
-
+hr{
+	 margin-bottom: 30px; 
+	 width: 60%;
+	 border: 0px;
+	 height: 1px;
+	 background: linear-gradient(to left, transparent, rgba(192,192,192,1), transparent)
+	 ;
+}
 #myModal {
   display: none; /* 처음에는 숨김 처리 */
   position: fixed;
@@ -148,28 +174,34 @@ header .mail {
 }
 .modal-content-pass{
 	margin: 5px 0 5px 0;
-    padding: 10px 0px 10px 0;
+    padding: 8px 0px 8px 0;
     text-align: center;
+    font-size: 15px;
 }
-.modal-content-box{
-	
+.modal-content-boxPass{
+    margin: 3px 76px 3px 76px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    width: 250px;
+    height: 30px;
 }
 .searchBtn-mypage{
 	text-align: center;
-    margin: 10px 5px 10px 5px;
+    margin: 15px 5px 15px 5px;
 }
-.searchBtn-my{
+.searchBtn-my {
 	margin: 0 10px 0 10px;
+	padding: 10px;
 	width: 70px;
 	height: 45px;
-	border: 1px solid #ffffff;
-    border-radius: 5px;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
 	background-color: white;
-	font-size: 15px;
 	cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}  
+}
 .searchBtn-my:hover{
-    box-shadow: 0 2px 3px rgba(0,0,0,0.25), 0 2px 3px rgba(0,0,0,0.22);
+	outline: none;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: #BB2649;
 }
