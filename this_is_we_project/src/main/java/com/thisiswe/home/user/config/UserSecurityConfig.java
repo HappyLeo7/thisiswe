@@ -47,6 +47,8 @@ public class UserSecurityConfig {
         
 //		 image 폴더를 login 없이 허용
                 .antMatchers("/image/**").permitAll()
+//       js 폴더를 login 없이 허용
+                .antMatchers("/js/**").permitAll()
 //		 css 폴더를 login 없이 허용
                 .antMatchers("/css/**").permitAll()
 //		 회원 관리 처리 API 전부를 login 없이 허용
@@ -82,7 +84,7 @@ public class UserSecurityConfig {
 		.loginProcessingUrl("/thisiswe/login")
 		
 		// 정상적으로 인증성공 했을 경우 이동하고자 하는 페이지를 설정합니다. (default는 /)
-		.defaultSuccessUrl("/thisiswe/home")
+		.defaultSuccessUrl("/thisiswe")
 		
 		// 로그인 실패 후 이동 페이지
 		.failureUrl("/thisiswe/login?error")
@@ -92,14 +94,14 @@ public class UserSecurityConfig {
 			cookie.setMaxAge(60 * 30); // 30분간 쿠키 유지
 			cookie.setPath("/");
 			response.addCookie(cookie);
-			response.sendRedirect("/thisiswe/home");
+			response.sendRedirect("/thisiswe");
 		})
 		.and()
 		// [로그아웃 기능]
 		.logout()
 	      .logoutSuccessHandler((request, response, authentication) -> {
 	          response.addCookie(new Cookie("loggedIn", "true"));
-	          response.sendRedirect("/thisiswe/home");
+	          response.sendRedirect("/thisiswe");
 	      })
 		// 로그아웃 요청 처리 URL
 		.logoutUrl("/thisiswe/logout")
@@ -108,7 +110,7 @@ public class UserSecurityConfig {
 			cookie.setMaxAge(0); // 쿠키 삭제
 			cookie.setPath("/");
 			response.addCookie(cookie);
-			response.sendRedirect("/login");
+			response.sendRedirect("/thisiswe");
 		})
 		.permitAll()
 		.and()

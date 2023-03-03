@@ -42,7 +42,7 @@ public class UserController {
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals("loggedIn") && cookie.getValue().equals("true")) {
-					return "redirect:/thisiswe/home";
+					return "redirect:/thisiswe";
 				}
 			}
 		}
@@ -54,14 +54,14 @@ public class UserController {
 	@PostMapping("/login")
 	public String loginsucces(@AuthenticationPrincipal UserDetailsImpl userDetails, HttpSession session) {
 		session.setAttribute("userDetails", userDetails);
-	    return "redirect:/thisiswe/home";
+	    return "redirect:/thisiswe";
 	}
 	
 	// 회원 로그아웃
 	@PostMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("userDetails");
-		return "redirect:/thisiswe/login";
+		return "redirect:/thisiswe";
 	}
 	
 	// 회원 로그아웃 Get방식

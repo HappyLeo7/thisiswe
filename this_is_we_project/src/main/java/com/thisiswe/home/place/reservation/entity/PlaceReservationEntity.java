@@ -1,5 +1,6 @@
-package com.thisiswe.home.place.entity;
+package com.thisiswe.home.place.reservation.entity;
 
+import com.thisiswe.home.place.zone.entity.PlaceZoneEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 import lombok.*;
 

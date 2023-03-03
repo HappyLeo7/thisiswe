@@ -1,4 +1,4 @@
-package com.thisiswe.home.place.entity;
+package com.thisiswe.home.place.zone.entity;
 
 import lombok.*;
 
@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table(name = "we_place_zone_timeprice")
 
 //TODO [Entity]place_image 테이블 컬럼 (시간 별 금액 번호, 시간, 금액 ,장소 구역 번호)
-public class PlaceZoneTimepirceEntity {
+public class PlaceZoneTimepriceEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
