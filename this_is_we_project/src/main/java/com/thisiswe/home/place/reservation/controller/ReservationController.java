@@ -1,12 +1,15 @@
 package com.thisiswe.home.place.reservation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thisiswe.home.place.reservation.dto.PlaceReservationDTO;
@@ -45,15 +48,31 @@ public class ReservationController {
 		log.info("=== reservationRegister() ===");
 		
 		//예약 내용 체크
-		plasceReservationService.getCheck(placeReservationDTO);
+		Boolean result=plasceReservationService.getCheck(placeReservationDTO);
 		
 		
+		if(result) {
 		//등록
 		log.info("예약시 받아온 placeReservationDTO 값 : "+placeReservationDTO);
 		plasceReservationService.register(placeReservationDTO);
-		
+		log.info("=== /reservationRegister() ===");
+		return "redirect:/thisiswe/place/reservation";
+		}else {
+			
 		
 		log.info("=== /reservationRegister() ===");
 		return "redirect:/thisiswe/place/reservation";
+		}
+		
+	}
+	
+	//예약 중복 확인
+	@PostMapping({"/reservationCheck"})
+	public ResponseEntity<Boolean> reservationCheck(@RequestBody PlaceReservationDTO placeReservationDTO){
+		log.info("예약날짜 정보 시간 :"+placeReservationDTO);
+		Boolean result=plasceReservationService.getCheck(placeReservationDTO);
+		log.info("예약 가능 여부 : "+ result);
+		//String check=result.toString();
+		return new ResponseEntity<Boolean>(false,HttpStatus.OK);
 	}
 }
