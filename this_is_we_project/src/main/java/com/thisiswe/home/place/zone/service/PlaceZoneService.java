@@ -7,6 +7,8 @@ import com.thisiswe.home.place.zone.entity.PlaceZoneEntity;
 public interface PlaceZoneService {
 
 	void register(PlaceZoneDTO placeZoneDTO);
+	
+	
 
 	//dto -> en
 	default PlaceZoneEntity dtoToEntity(PlaceZoneDTO placeZoneDTO) {
@@ -25,4 +27,8 @@ public interface PlaceZoneService {
 		return placeZoneEntity;
 		
 	}
+
+
+
+	void get();
 }
