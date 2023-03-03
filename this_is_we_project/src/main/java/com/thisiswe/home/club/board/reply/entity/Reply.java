@@ -27,7 +27,7 @@ import lombok.ToString;
 @ToString(exclude={"userId", "board"})
 
 //TODO [Entity]게시판 Reply table 컬럼(유저ID, 내용)
-public class Reply extends DateEntity{
+public class Reply {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

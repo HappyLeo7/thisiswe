@@ -10,9 +10,10 @@
 	font-family: 'Nanum Gothic', sans-serif;
 }
 /* [START][club] - 공통으로 들어가는 부분 */
-.inner {
+.inner-club {
 	margin: 30px 5px 30px 5px;
-	padding: 5px 5px 5px 5px;
+	padding: 5px 10px 5px 10px;
+	height: 88%;
 }
 div>h2 {
 	text-align: center;
@@ -22,8 +23,7 @@ hr{
 	 width: 60%;
 	 border: 0px;
 	 height: 1px;
-	 background: linear-gradient(to left, transparent, rgba(192,192,192,1), transparent)
-	 ;
+	 background: linear-gradient(to left, transparent, rgba(192,192,192,1), transparent);
 }
 /* [END][club] - 공통으로 들어가는 부분 */
 /* [START][list] - 모임 등록 버튼 */
@@ -52,12 +52,20 @@ hr{
     box-shadow: 0 2px 3px rgba(0,0,0,0.25), 0 2px 3px rgba(0,0,0,0.22);
 }
 /* [END][list] - 모임 등록 버튼 */
+/* [START][list] - 빈박스 */
+.spaceBox{
+	width: 100%;
+	display: inline-block;
+}
+/* [END][list] - 빈박스 */
 /* [START][list] - 검색창 */
 .club-search {
     overflow: hidden;
     height: 100px;
     margin: 5px 0 5px 0;
     text-align: center;
+    display: inline-block;
+    float: right; 	
 }
 .club-search_sub{
     margin-top: 15px;
@@ -103,8 +111,9 @@ hr{
 /* [END][list] - 검색창 */
 /* [START][list] - 페이지 처리 부분 */
 .paginate{
-	width: 100%;
-    margin: 50px 0 20px;
+	display: inline-block;
+    width: 100%;
+    margin: 10px 0 10px;
     text-align: center;
 }
 .paginate-link{
@@ -119,19 +128,28 @@ hr{
 }
 /* [END][list] - 페이지 처리 부분 */
 /*[START][list] - 목록 list 부분 */
-.club-table {
-	margin: 20px 0 0 0;
+.club-tableList{
 	width: 100%;
+	height: 93%;
+}
+.club-table {
+	margin: 20px 90px 0 90px;
+	width: 98%;
 	border-spacing: 0;
 	word-break: break-all;
 	text-indent: initial;
 }
 .club-table-li{
 	margin: 10px;
-	padding: 10px;
-	background-color: #f0f0f0;
+	padding: 15px;
+    width: 27%;
+    height: 380px;
+    background-color: #f0f0f0;
+    position: relative;
+    float: left;
 }
 .club-table-li img{
+	padding: 15px 0 15px 30px;
 	width: 300px;
   	height: 200px;
   	object-fit: fill;

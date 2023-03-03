@@ -31,15 +31,11 @@ public class PlaceZoneServiceImpl implements PlaceZoneService {
 	public List<PlaceZoneDTO> getPlaceZone(Long placeNum) {
 		return placeZoneRepository.findByPlaceNum(PlaceEntity.builder().placeNum(placeNum).build()).stream().map(i-> entityToDTO(i)).toList();
 	}
-
 	
 	//장소 넘버를 통해서 룸정보 1개 가져오기
 	@Override
 	public void get() {
 		//placeZoneRepository.getToRead();
 			
-	}
-
-	
-	
+	}	
 }
