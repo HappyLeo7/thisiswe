@@ -102,6 +102,12 @@ public class UserService {
 		return userRepository.existsByUserNickname(userNickname);
 	}
 	
+	// view단 회원 이메일 중복 확인
+	public boolean checkUserEmail(String userEmail) {
+		System.out.println("Service단에서의 userEmail" + userEmail);
+		return userRepository.existsByUserEmail(userEmail);
+	}
+	
 	
 	public void registerUser(SignupRequestDto requestDto) {
 		// 회원 ID 중복 확인
