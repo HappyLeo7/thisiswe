@@ -27,12 +27,6 @@ public class UserService {
 
 	private final Map<String, String> verificationCodes = new HashMap<>();
 	private static final String ADMIN_TOKEN = "WFizAS/xREgejDFIVCsEsfjSDBgfbDasqWE";
-
-	
-	// 회원 삭제
-	public void removeUser(String userId) {
-		userRepository.deleteById(userId);
-	}
 	
     // 회원가입 시 이메일로 전송할 인증코드 생성 메서드
     /**
@@ -107,6 +101,28 @@ public class UserService {
 		System.out.println("Service단에서의 userEmail" + userEmail);
 		return userRepository.existsByUserEmail(userEmail);
 	}
+	
+	
+	// 비밀번호 일치 여부 확인
+	public boolean checkUserPassword(String userId, String password) {
+		UserEntity userEntity = userRepository.findById(userId).orElse(null);
+        if (userEntity != null && passwordEncoder.matches(password, userEntity.getUserPassword())) {
+            return true;
+        } else {
+            return false;
+        }
+	}
+	
+	// 회원 삭제
+    public boolean deleteUser(String userId) {
+        try {
+            userRepository.deleteById(userId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+	
 	
 	
 	public void registerUser(SignupRequestDto requestDto) {
