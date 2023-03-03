@@ -10,7 +10,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString(exclude="userId")
 public class ReplyRequestDTO {
+    private Long clubNum;
     private String userId;
     private Long boardNum;							// 게시글 번호
     private String boardReplyContent;				// 게시글-댓글 내용
+
+
 }

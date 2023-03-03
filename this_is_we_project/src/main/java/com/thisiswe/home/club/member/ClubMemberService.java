@@ -37,6 +37,8 @@ public class ClubMemberService {
 
 	//멤버 체크 (clubnum , userId) 리턴: boolean
 	public boolean checkMember(Long clubNum, String userId){
+		System.out.println("userId : " + userId);
+		System.out.println("clubNum : " + clubNum);
 		return clubMemberRepository.existsByClubNumAndUserId(clubNum, UserEntity.builder().userId(userId).build());
 	}
 	

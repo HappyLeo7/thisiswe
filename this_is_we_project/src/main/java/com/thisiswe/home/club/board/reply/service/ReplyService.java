@@ -1,10 +1,12 @@
 package com.thisiswe.home.club.board.reply.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.thisiswe.home.club.board.entity.Board;
 import com.thisiswe.home.club.board.reply.dto.ReplyDTO;
 import com.thisiswe.home.club.board.reply.dto.ReplyRequestDTO;
+import com.thisiswe.home.club.board.reply.dto.ReplyResponseDTO;
 import com.thisiswe.home.club.board.reply.entity.Reply;
 import com.thisiswe.home.user.entity.UserEntity;
 import org.springframework.data.domain.Page;
@@ -16,13 +18,13 @@ public interface ReplyService {
 	boolean register(ReplyRequestDTO replyRequestDTO);
 	
 	//TODO [Service] 게시글-댓글 - 게시판 번호 읽기(get)
-	Page<Reply> getList(Long board_num , int page, int size);
+	Page<ReplyResponseDTO> getList(Long board_num , int page, int size);
 
 	//TODO [Service] 게시글-댓글 - 수정(modify)
 	void modify(ReplyDTO replyDTO);
 	
 	//TODO [Service] 게시글-댓글 - 삭제(remove)
-	void remove(Long boardReplyNum);
+	boolean remove(ReplyRequestDTO replyRequestDTO, String userId, Long replyNum);
 	
 	//TODO [Service] 게시글-댓글 - DTO(WEB)에서 Entity(DB)로
 	default Reply replyDTOToEntity(ReplyDTO replyDTO) {

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
 
+</head>
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
 <th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
     <!-- 지정한 변수로 연결할 위치 -->
@@ -166,128 +168,159 @@
                     </button>
                 </a>
             </div>
-            <body>
-            <input type="hidden" class="boardNum1" th:value="${boardDTO.boardNum}">
-            <input type="text" id="contents">
-            <button onclick="postContent()"> 댓글 달기</button>
 
-
-            <div style="border: 1px solid black">
-                <table class="table">
-                    <tr>
-                        <th>아이디</th>
-
-                    </tr>
-                    <tr>
-                        <th>댓글 내용</th>
-                    </tr>
-
-                    <tbody id="table1">
-
-                    <tr>
-                        <td>문수찬</td>
-                    </tr>
-                    <tr>
-                        <td>문수찬 존잘 남 인정? 어인정;</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div id="table-div"></div>
-            </div>
-
-            </body>
-
-
-            <script>
-
-                function postContent() {
-                    var contents = $("#contents").val();
-                    var boardNum = $(".boardNum1").val();
-                    var replyRequestDTO = {
-                        userId : null,
-                        boardNum : boardNum,
-                        boardReplyContent : contents
-                    }
-
-                    $.ajax({
-                        type: 'POST',
-                        url: "/club/board/review",
-                        data: JSON.stringify(replyRequestDTO),
-                        contentType: 'application/json; charset=utf-8',
-                        dataType: 'json',
-                        success: function (response) {
-                            if (response ==true){
-                                alert("댓글 저장 완료");
-                            }else {
-                                alert("댓글 저장 실패")
-                            }
-                        }
-
-
-                    })
-                }
-
-
-                function getCommuteListByName() {
-                    let boardNum = $(".boardNum").val();
-                    console.log("실행되긴함 : " + name);
-
-
-                    $('#table-div').pagination({//pagination 메소드는 파라미터 값으로 (get요청보내는 값, totalElements값,
-                        dataSource: 'club/board/review/boardNum/getReplyList?boardNum=' + boardNum,
-                        locator: 'content',
-                        alias: {
-                            pageNumber: 'page',//1
-                            pageSize: 'size'//10 parameter값으로 들어가더라~
-                        },
-                        totalNumberLocator: (response) => {
-                            console.log("what iS? : " + response.totalElements);
-                            return response.totalElements;
-                        },
-                        pageSize: 10,
-                        showPrevious: true,
-                        showNext: true,
-                        ajax: {
-                            beforeSend: function () {
-                                $('#table1').html('기록 불러오는 중...');
-                            }
-                        },
-                        //돌아와서 이 함수를 실행시켜라.
-                        callback: function (data, pagination) {
-                            console.log("what is? " + JSON.stringify(pagination));
-                            $('#table1').empty();
-                            for (let i = 0; i < data.length; i++) {
-                                let listDetail = data[i];
-                                let tempHtml = addHTML(listDetail, data[i].work);
-                                $('#table1').append(tempHtml);
-                            }
-                        }
-                    });
-                }
-
-                function addHTML(listDetail) {
-                    let html = "";
-                    html += '<tr>';
-                    html += '<td>' + listDetail.userId + '</td>';
-                    html += '</tr>';
-                    html += '<tr>';
-                    html += '<td>' + listDetail.boardReplyContent + '</td>';
-                    html += '</tr>';
-                    return html;
-                }
-            </script>
-            <input class="replyRegister" type="text">
-            <script>
-                function replyRegi() {
-                    var content = $(".replyRegister").val();
-                    $.ajax({})
-                }
-            </script>
 
             <!-- /게시판 조회 - btn -->
         </div>
         <!-- 게시판 조회 -->
 
+        <div>
+        <input type="hidden" class="boardNum1" th:value="${boardDTO.boardNum}">
+        <textarea id="contents" placeholder="댓글을 입력해 주세요.">  </textarea>
+        <button onclick="postContent()"> 댓글 달기</button>
+
+
+        <div style="border: 1px solid black">
+            <table class="table">
+                <tr>
+                    <th>아이디</th>
+                </tr>
+                <tr>
+                    <th>댓글 내용</th>
+                </tr>
+                <tr>
+                    <th></th>
+                </tr>
+                <tbody id="table1">
+                <tr>
+                    <td>문수찬</td>
+                </tr>
+                <tr>
+                    <td>문수찬 존잘 남 인정? 어인정;</td>
+                </tr>
+
+                </tbody>
+
+
+            </table>
+            <div id="table-div"></div>
+        </div>
+
+        </div>
     </th:block>
 </th:block>
-	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+
+<script>
+
+    function postContent() {
+        var contents = $("#contents").val();
+        var boardNum = $(".boardNum1").val();
+        var clubNum = [[${clubNum}]]
+        var replyRequestDTO = {
+            userId: null,
+            boardNum: boardNum,
+            boardReplyContent: contents,
+            clubNum: clubNum
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: "/club/board/review/",
+            data: JSON.stringify(replyRequestDTO),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response) {
+                if (response == true) {
+                    alert("댓글 저장 완료");
+                } else {
+                    alert("댓글 저장 실패")
+                }
+            }
+
+
+        })
+    }
+
+    window.onload = function () {
+        let boardNum = $(".boardNum1").val();
+        console.log("실행되긴함 : " + boardNum);
+
+        $('#table1').empty();
+        $('#table-div').pagination({//pagination 메소드는 파라미터 값으로 (get요청보내는 값, totalElements값,
+            dataSource: '/club/board/review/boardNum/getReplyList?boardNum=' + boardNum,
+            locator: 'content',
+            alias: {
+                pageNumber: 'page',//1
+                pageSize: 'size'//10 parameter값으로 들어가더라~
+            },
+            totalNumberLocator: (response) => {
+                console.log("what iS? : " + response.totalElements);
+                return response.totalElements;
+            },
+            pageSize: 10,
+            showPrevious: true,
+            showNext: true,
+            ajax: {
+                beforeSend: function () {
+                    $('#table1').html('기록 불러오는 중...');
+                }
+            },
+
+            //돌아와서 이 함수를 실행시켜라.
+            callback: function (data, pagination) {
+                console.log("what is? " + JSON.stringify(pagination));
+                $('#table1').empty();
+                for (let i = 0; i < data.length; i++) {
+                    let listDetail = data[i];
+                    let tempHtml = addHTML(listDetail);
+                    $('#table1').append(tempHtml);
+                }
+            }
+        });
+    }
+
+
+
+    function addHTML(listDetail) {
+        let html = "";
+        html += '<tr>';
+        html += '<td>' + listDetail.userId + '<button onclick="deleteComments(' + listDetail.replyNum + ')" type="button"> 삭제 </button>' + '</td>';
+        html += '</tr>';
+        html += '<tr>';
+        html += '<td>' + listDetail.boardReplyContent + '</td>';
+        html += '</tr>';
+        html += '<button onclick="deleteComments(' + listDetail.replyNum + ')" type="button"> 삭제 </button>';
+
+        return html;
+    }
+
+    //미완성
+    function deleteComments(replyNum){
+        var clubNum = [[${clubNum}]]
+        console.log(replyNum + " , " + clubNum);
+        var replyRequestDTO = {
+            userId: null,
+            boardNum: replyNum,
+            boardReplyContent: null,
+            clubNum: clubNum
+        }
+        $.ajax({
+            type: 'POST',
+            url: "/club/board/review/remove/",
+            data: JSON.stringify(replyRequestDTO),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response) {
+                if (response == true) {
+                    alert("댓글 삭제 완료");
+                } else {
+                    alert("댓글 삭제 실패")
+                }
+            }
+        })
+    }
+</script>
