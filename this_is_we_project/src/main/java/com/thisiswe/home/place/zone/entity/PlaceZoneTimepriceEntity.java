@@ -1,4 +1,4 @@
-package com.thisiswe.home.place.entity;
+package com.thisiswe.home.place.zone.entity;
 
 import lombok.*;
 

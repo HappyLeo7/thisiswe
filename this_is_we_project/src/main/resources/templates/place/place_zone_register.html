@@ -16,12 +16,40 @@
 <h1>zone 등록 페이지</h1>
 <form th:action="@{/thisiswe/place/zone/register}" method="post">
 
-<div>
+<table>
+<tr>
+<th>
+장소번호
+</th>
+</tr>
+<tr>
+<th>
 		장소번호 : <input type="text" name="placeNum">
-</div>
-<div>
-		추가룸 이름 : <input type="text" name="place_zone_name">
-</div>
+</th>
+</tr>
+
+<tr>
+<th>
+	룸 이름
+</th>
+</tr>
+<tr>
+<th>
+		추가룸 이름 : <input type="text" name="placeZoneName">
+</th>
+</tr>
+
+<tr>
+<th>
+	수용 가능 인원
+</th>
+</tr>
+<tr>
+<th>
+		수용가능 인원 : <input type="number" name="placeZoneHeadCount">
+</th>
+</tr>
+</table>
 	
 	<button type="submit">zone등록</button>
 </form>

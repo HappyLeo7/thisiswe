@@ -1,5 +1,6 @@
-package com.thisiswe.home.place.entity;
+package com.thisiswe.home.place.zone.entity;
 
+import com.thisiswe.home.place.entity.PlaceEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 import lombok.*;
 
@@ -26,6 +27,8 @@ public class PlaceZoneEntity {
 	private PlaceEntity placeNum; // 장소 번호
 
 	@Column(length = 100, name = "place_zone_name", nullable = false)
-	private String place_zone_name; // 장소 구역 이름
+	private String placeZoneName; // 장소 구역 이름
 
+	@Column(name="place_zone_head_count")
+	private Long placeZoneHeadCount;
 }

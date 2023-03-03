@@ -1,7 +1,7 @@
 package com.thisiswe.home.place.reservation.dto;
 
 
-import com.thisiswe.home.place.entity.PlaceZoneEntity;
+import com.thisiswe.home.place.zone.entity.PlaceZoneEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.AllArgsConstructor;

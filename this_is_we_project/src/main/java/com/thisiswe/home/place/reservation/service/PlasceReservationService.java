@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.thisiswe.home.place.entity.PlaceReservationEntity;
 import com.thisiswe.home.place.reservation.dto.PlaceReservationDTO;
+import com.thisiswe.home.place.reservation.entity.PlaceReservationEntity;
 
 public interface PlasceReservationService {
 

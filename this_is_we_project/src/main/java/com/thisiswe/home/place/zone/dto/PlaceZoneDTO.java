@@ -18,5 +18,10 @@ public class PlaceZoneDTO {
 	private Long placeNum; // 장소 번호
 
 	/** 장소 구역 이름*/
-	private String place_zone_name; // 장소 구역 이름
+	private String placeZoneName; // 장소 구역 이름
+	
+	/** 장소 구역 가용인원*/
+	private Long placeZoneHeadCount;
+	
+	
 }
