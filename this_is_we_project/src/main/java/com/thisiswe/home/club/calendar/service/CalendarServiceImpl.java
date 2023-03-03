@@ -82,6 +82,7 @@ public class CalendarServiceImpl implements CalendarService {
 		log.info("받아온 모임 정보 : " + calendarDTO.getClubNum().getClubNum());
 		log.info("받아온 모임 일정 정보 : " + calendarDTO);
 		
+
 		List<Object[]> calendarEntitys=calendarRepository.getClubCalendarNum(calendarDTO.getClubNum().getClubNum(),calendarDTO.getClubCalendarNum());
 		//List<CalendarDTO> entList =new ArrayList<>();
 		log.info("일정 1개를 받아온 값   : "+calendarEntitys);

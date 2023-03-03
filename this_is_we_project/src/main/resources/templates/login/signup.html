@@ -33,95 +33,104 @@ function onclickAdmin() {
 
 <body>
   <div id="signup">
-    <span class="signup-title">SIGN UP</span>
-	<form action="/thisiswe/signup" method="post">
-    	<span class="signup-classification">아이디</span><br>
-    	<input type="text" name="userId" class="login-input-box" placeholder="아이디를 입력해 주세요." onfocus="checkId(this)" >
-    	<button type="button" class="useridVerificationCheckBtn">아이디검증 </button><br>
-    	<span class="verification" id="idCheck"></span><br>
+    <span class="signup-title">S I G N U P</span>
+	<form action="/thisiswe/signup" method="post" onsubmit="return false">
+		<div class="signup-one">
+    	  <span class="signup-classification singup-sub">아이디</span><br>
+    	  <input type="text" name="userId" class="login-input-box signup-box" placeholder="아이디를 입력해 주세요." onfocus="checkId(this)" >
+    	  <button type="button" class="useridVerificationCheckBtn certification">아이디 검증 </button><br>
+    	  <span class="verification" id="idCheck"></span><br>
          
-     	<span class="signup-classification">비밀번호</span><br>
-     	<input id="password" name="userPassword" type="password" placeholder="비밀번호를 입력해 주세요." onfocus="checkPassword(this)"><br>
+     	  <span class="signup-classification singup-sub">비밀번호</span><br>
+          <input id="password" class="signup-box" name="userPassword" type="password" placeholder="비밀번호를 입력해 주세요." onfocus="checkPassword(this)"><br>
 	    	<span class="verification" id="passwordCheck"></span><br>
    	  
-   	  	<span class="signup-classification">비밀번호 확인</span><br>
-   	  	<input id="passwordConfirmation" type="password" placeholder="비밀번호를 한번 더 입력해 주세요." onfocus="doubleCheckPassword(this)"><br>
+   	      <span class="signup-classification singup-sub">비밀번호 확인</span><br>
+   	  	  <input id="passwordConfirmation" class="signup-box" type="password" placeholder="비밀번호를 한번 더 입력해 주세요." onfocus="doubleCheckPassword(this)"><br>
     		<span class="verification" id="secondaryPasswordConfirmation"> </span><br>
        
-	     <span class="signup-classification">이름</span>
-	     <br>
-	     <input type="text" name="userName" placeholder="이름을 입력해 주세요." onfocus="checkName(this)"><br>
-	     <span class="verification" id="nameCheck"> </span><br>
+	      <span class="signup-classification singup-sub">이름</span>
+	      <br>
+	      <input type="text" class="signup-box" name="userName" placeholder="이름을 입력해 주세요." onfocus="checkName(this)"><br>
+	      <span class="verification" id="nameCheck"> </span><br>
 	     
-	     <span class="signup-classification">성별</span>
-	     <br><br>
-	     <div>
-	     	<input type="radio" name="userGender" value="남" class="login-input-box">남 &nbsp;
-	     	<input type="radio" name="userGender" value="여" class="login-input-box">여
-	     </div>
-	     <br>
+	      <span class="signup-classification singup-sub">성별</span>
+	      <br><br>
+	      <div>
+	      	 <input type="radio" name="userGender" value="남" class="login-input-box one-box">MALE &nbsp;
+	     	 <input type="radio" name="userGender" value="여" class="login-input-box one-box">FEMALE
+	      </div>
+	      <br><br>
 	      
-	     <span class="signup-classification">닉네임</span>
-	     <br>
-	     <input type="text" name="userNickname" class="login-input-nickname" placeholder="닉네임을 입력해 주세요." onfocus="checkNickname(this)">
-	     <button type="button" class="nicknameVerificationCheckBtn">닉네임검증 </button><br>
-	     <span class="verification" id="nicknameCheck"> </span><br>
+	      <span class="signup-classification singup-sub">닉네임</span>
+	      <br>
+	      <input type="text" name="userNickname" class="login-input-nickname signup-box" placeholder="닉네임을 입력해 주세요." onfocus="checkNickname(this)">
+	      <button type="button" class="nicknameVerificationCheckBtn certification">닉네임 검증 </button><br>
+	      <span class="verification" id="nicknameCheck"> </span><br>
 	      
-	     <span class="signup-classification">이메일</span>
-	     <br>
-	     <input type="text" id="email-input" class="login-input-email" name="userEmail" placeholder="이메일을 입력해 주세요." onfocus="checkEmail(this)">
-	     <button type="button" class="emailCodeVerificationCheckPushBtn">이메일코드 보내기 </button><br>
-	     <span class="verification" id="emailCheck"> </span><br>
-	     <br>
-	     
-	     <span class="signup-classification">이메일 인증코드 확인</span>
-	     <br>
-	     <input type="text" id="emailcode-input" class="login-input-emailCode" name="userEmailCode">
-	     <button type="button" class="emailVerificationCheckBtn">이메일 검증 </button>
-	     <br>
-	        
-	     <span class="signup-classification">휴대전화</span>
-	     <br>
-	     <input type="tel" name="userPhoneNumber" placeholder="휴대전화번호를 입력해 주세요.">
-		 <br>
-		 
-	     <div>
-	     	<input id="admin-check" type="checkbox" name="admin"
-	        		onclick="onclickAdmin()"> 관리자 <br><br>
-	      	<input id="admin-token" type="password" name="adminToken"
-	        		placeholder="관리자 암호" class="login-input-box" style="display: none">
-	     </div>
-	
-	      <span id="All-agree">
-	         <input class="agree" type="checkbox" onclick="allchecked(this)">
-	         <span class="terms">사용자 약관 전체 동의</span>
-	      </span>
+
+	      <span class="signup-classification singup-sub">이메일</span>
+	      <br>
+	      <input type="text" id="email-input" class="login-input-email signup-box" name="userEmail" placeholder="이메일을 입력해 주세요." onfocus="checkEmail(this)">
+	      <button type="button" class="emailCodeVerificationCheckPushBtn certification-email">이메일 코드 전송</button><br>
+	      <span class="verification" id="emailCheck"> </span>
+
 	      <br>
 	      
-	      <input class="agree" type="checkbox" onclick="allcollect()">
-	      	<span class="terms">서비스 이용 약관 동의 (필수)</span><br>
-	      <input class="agree" type="checkbox"onclick="allcollect()">
-	      	<span class="terms">개인정보 처리방침 동의 (필수)</span><br>
-	      <input class="agree" type="checkbox"onclick="allcollect()">
-	      	<span class="terms">만 14세 이상 확인 (필수)</span><br>
-	      <input class="agree" type="checkbox"onclick="allcollect()">
-	      	<span class="terms">쿠폰, 이벤트 등 혜택 알림 동의 (선택)</span><br><br>
-	      <input id="signup-button" class="signup-button-class" type="submit" value="회원가입">
+	      <span class="signup-classification email-verification-check singup-sub-view">이메일 인증 코드</span>
+	      <br>
+	      <input type="text" id="emailcode-input" class="login-input-emailCode signup-box-code" name="userEmailCode">
+	      <button type="button" class="emailVerificationCheckBtn certification-email-view">이메일 검증 </button>
+	      <br><br>
+	        
+	      <span class="signup-classification singup-sub">전화번호</span>
+	      <br>
+	      <input type="tel" class="signup-box" name="userPhoneNumber" placeholder=" -를 제외한 전화번호를 입력해 주세요." onfocus="checkPhoneCheck(this)">
+		  <br>
+		  <span class="verification" id="phoneCheck"></span>
+		  <br><br>
+		 
+	      <div>
+	         <input type="checkbox" class="one-box" id="admin-check" name="admin"
+	        		onclick="onclickAdmin()"> ADMIN <br>
+	       	 <input type="password" id="admin-token" name="adminToken"
+	        		placeholder=" 관리자 암호" class="login-input-box signup-box-admin" style="display: none">
+	     </div>
+	     <br>
+		</div>
+		
+		<div class="All-agree-box">
+			<span id="All-agree">
+			<input class="agree" type="checkbox" onclick="allchecked(this)">
+				<span class="terms">사용자 약관 전체 동의</span>
+			</span>
+			<br>		      
+			<input class="agree" type="checkbox" onclick="allcollect()">
+				<span class="terms">서비스 이용 약관 동의 (필수)</span><br>
+			<input class="agree" type="checkbox"onclick="allcollect()">
+				<span class="terms">개인정보 처리방침 동의 (필수)</span><br>
+			<input class="agree" type="checkbox"onclick="allcollect()">
+				<span class="terms">만 14세 이상 확인 (필수)</span><br>
+			<input class="agree" type="checkbox"onclick="allcollect()">
+				<span class="terms">쿠폰, 이벤트 등 혜택 알림 동의 (선택)</span><br>
+			<input id="signup-button" class="signup-button-class" type="submit" value="회 원 가 입">
+    	</div>
     </form>  
   </div>
-<script src="/js/signup.js"></script>
+<!-- <script src="/js/signup.js"></script> -->
   <script>
   var nicknamePass = false; // 초기값을 boolean 타입으로 설정
   var userIdPass = false; // 초기값을 boolean 타입으로 설정
   var emailCodePass = false; // 초기값을 boolean 타입으로 설정
   
+  
   $(document).ready(function() {
 
-     
+	  
   $(".useridVerificationCheckBtn").on("click", function(){
-     
-     var userForm = $("#idCheck").html();
-     var myPageuserid = $(".login-input-box").val();
+	  
+	  var userForm = $("#idCheck").html();
+	  var myPageuserid = $(".login-input-box").val();
 
       console.log("===========userForm===== : " + userForm);
               console.log("===========userid===== : " + myPageuserid);
@@ -134,27 +143,27 @@ function onclickAdmin() {
 
                       console.log("result: " + result);
 
-                     if(result==true) {
-                        alert("이미 존재하는 아이디입니다.");
-                        userIdPass = false;
-                     }
-                     else {
-                        if(userForm == "") {
-                           alert("사용 가능한 아이디입니다.");
-                           userIdPass = true;
-                           console.log("userIdPass의 값 : "+userIdPass);
-                           
-                        }
-                        else{
-                           alert("양식을 지켜주세요.");
-                        nicknamePass = false;
-                        }
-                     }
+                  	if(result==true) {
+                  		alert("중복된 아이디입니다.");
+                  		userIdPass = false;
+                  	}
+                  	else {
+                  		if(userForm == "") {
+                  			alert("사용 할 수 있는 아이디입니다.");
+                  			userIdPass = true;
+                  			console.log("userIdPass의 값 : "+userIdPass);
+                  			
+                  		}
+                  		else{
+                  			alert("양식을 지켜주세요.");
+                  		nicknamePass = false;
+                  		}
+                  	}
                     // 검증 결과에 따라 nicknamePass 변수를 true/false로 설정
-                    // 이 부분이 수정된 부분입니다.
-                 userIdPass = ($("#idCheck").html() == "");
-                console.log("userIdPass의 값 2번째부분: "+userIdPass);
-                   allcollect(); // 검증 결과에 따라 가입 버튼 활성화/비활성화
+        				// 이 부분이 수정된 부분입니다.
+       			 userIdPass = ($("#idCheck").html() == "");
+       			console.log("userIdPass의 값 2번째부분: "+userIdPass);
+                	allcollect(); // 검증 결과에 따라 가입 버튼 활성화/비활성화
                   }
               
               })
@@ -162,9 +171,9 @@ function onclickAdmin() {
   
   
   $(".nicknameVerificationCheckBtn").on("click", function(){
-     
-     var userNicknameForm = $("#nicknameCheck").html();
-     var MyPageuserNickname = $(".login-input-nickname").val();
+	  
+	  var userNicknameForm = $("#nicknameCheck").html();
+	  var MyPageuserNickname = $(".login-input-nickname").val();
 
       console.log("===========userNicknameForm===== : " + userNicknameForm);
               console.log("===========userNickname===== : " + MyPageuserNickname);
@@ -177,53 +186,82 @@ function onclickAdmin() {
 
                       console.log("=====result: " + result);
 
-                     if(result==true) {
-                        alert("이미 존재하는 닉네임입니다.");
-                        nicknamePass = false;
-                     }
-                     else {
-                        if(userNicknameForm == "") {
-                           alert("사용 가능한 닉네임입니다.");
-                           nicknamePass = true; // 검증 통과시 pass 변수를 true로 설정
-                           console.log("nicknamePass의 값 : "+nicknamePass);
+                  	if(result==true) {
+                  		alert("중복된 닉네임입니다.");
+                  		nicknamePass = false;
+                  	}
+                  	else {
+                  		if(userNicknameForm == "") {
+                  			alert("사용할 수 있는 닉네임입니다.");
+                  			nicknamePass = true; // 검증 통과시 pass 변수를 true로 설정
+                  			console.log("nicknamePass의 값 : "+nicknamePass);
 
-                        }
-                        else{
-                           alert("양식을 지켜주세요.");
-                        nicknamePass = false;
-                        }
-                     }
+                  		}
+                  		else{
+                  			alert("양식을 지켜주세요.");
+                  		nicknamePass = false;
+                  		}
+                  	}
                       // 검증 결과에 따라 nicknamePass 변수를 true/false로 설정
-                      // 이 부분이 수정된 부분입니다.
-                   nicknamePass = ($("#nicknameCheck").html() == "");
-                  console.log("nicknamePass의 값 2번째부분: "+nicknamePass);
-                     allcollect(); // 검증 결과에 따라 가입 버튼 활성화/비활성화
+          				// 이 부분이 수정된 부분입니다.
+         			 nicknamePass = ($("#nicknameCheck").html() == "");
+         			console.log("nicknamePass의 값 2번째부분: "+nicknamePass);
+                  	allcollect(); // 검증 결과에 따라 가입 버튼 활성화/비활성화
                   }
               })
           });
   
   $(".emailCodeVerificationCheckPushBtn").on("click", function(){
-     
-     var emailCheck = $(".login-input-email").val();
+	  
+	  var emailCheck = $(".login-input-email").val();
 
+	  
+	  // 이메일 입력란 값 확인
+	  const emailInput = document.querySelector('#email-input').value;
+	  if (!emailInput) {
+	    alert('이메일을 입력해주세요.');
+	    return;
+	  }
+	  alert("확인 중 입니다.");
+		// 이메일 검증 버튼, 인증코드 입력란, 이메일 인증코드 확인 부분 보이기
+		const emailVerification = document.querySelector('.email-verification-check');
+	    const emailVerificationCheckBtn = document.querySelector('.emailVerificationCheckBtn');
+	    const emailCodeInput = document.querySelector('#emailcode-input');
+
+
+/* 	    emailVerification.style.display = 'block';
+	    emailVerificationCheckBtn.style.display = 'block';
+	    emailCodeInput.style.display = 'block'; */
+
+	  
       console.log("===========emailCheck===== : " + emailCheck);
- 
+	    
 
               $.ajax({
                   url:'/thisiswe/userEmail/' + emailCheck , //Controller에서 요청 받을 주소
                   type:"POST", // post 방식으로 전달
-                  success: function(){ //컨트롤러에서 넘어온 result값을 받는다 
+                  success: function(check){ //컨트롤러에서 넘어온 result값을 받는다 
 
-                      console.log("성공");
-
+                	  
+                	  if(check=="중복") {
+                		console.log("중복");
+                		alert("중복된 메일입니다.")
+                		
+                	  }
+                	  else {
+                		    emailVerification.style.display = 'block';
+                		    emailVerificationCheckBtn.style.display = 'block';
+                		    emailCodeInput.style.display = 'block';
+                		    console.log("성공");
+                	  }
                   }
               })
           });
   
   $(".emailVerificationCheckBtn").on("click", function(){
-     
-     var emailCheck = $(".login-input-email").val();
-     var emailCodeCheck = $(".login-input-emailCode").val();
+	  
+	  var emailCheck = $(".login-input-email").val();
+	  var emailCodeCheck = $(".login-input-emailCode").val();
 
       console.log("===========emailCheck===== : " + emailCheck);
             console.log("===========emailCodeCheck===== : " + emailCodeCheck);
@@ -236,19 +274,19 @@ function onclickAdmin() {
 
                       console.log("이메일 result: " + result);
 
-                     if(result==true) {
-                        alert("인증완료 되었습니다.");
-                        emailCodePass = true;
-                     }
-                     else {
-                        alert("인증코드가 일치하지 않습니다.");
-                        emailCodePass = false;
-                     }
-                     
+                  	if(result==true) {
+                  		alert("인증되었습니다.");
+                  		emailCodePass = true;
+                  	}
+                  	else {
+                  		alert("인증 코드가 일치하지 않습니다.");
+                  		emailCodePass = false;
+                  	}
+                  	
                  // 검증 결과에 따라 emailCodePass 변수를 true/false로 설정
-                    $("#emailCheck").html(emailCodePass ? "" : "인증코드가 일치하지 않습니다.");
-                  console.log("emailCodePass의 값 2번째부분: "+emailCodePass);
-                     allcollect(); // 검증 결과에 따라 가입 버튼 활성화/비활성화
+                    $("#emailCheck").html(emailCodePass ? "" : "인증 코드가 일치하지 않습니다.");
+         			console.log("emailCodePass의 값 2번째부분: "+emailCodePass);
+                  	allcollect(); // 검증 결과에 따라 가입 버튼 활성화/비활성화
                   }
               })
           });
@@ -258,28 +296,28 @@ function onclickAdmin() {
   // 아이디 체크
 function checkId(elem) {
   elem.addEventListener("keyup", () => {
-       let idLength = elem.value.length;
-       let idLengthResult = "";
-     
+	    let idLength = elem.value.length;
+	    let idLengthResult = "";
+	  
     const pattern1 = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
 
       if (idLength >= 6 && idLength <= 16 && pattern1.test(elem.value)) {
-         // 유효한 닉네임인 경우
-         idLengthResult = "";
-         $(".useridVerificationCheckBtn").attr("disabled", false);
-       } else if (idLengthResult === 0) {
-         // 아이다가 입력되지 않은 경우
-         idLengthResult = "아이디를 입력해주세요.";
-         $(".useridVerificationCheckBtn").attr("disabled", true);
-         userIdPass = false; // 닉네임이 입력되지 않은 경우 nicknamePass 변수를 false로 설정
-       } else {
-         // 유효하지 않은 아이디인 경우
-         idLengthResult = "6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합";
-         $(".useridVerificationCheckBtn").attr("disabled", true);
-         userIdPass = false; // 닉네임이 입력되지 않은 경우 nicknamePass 변수를 false로 설정
-       }
-       // 결과 출력
-       document.getElementById("idCheck").innerHTML = idLengthResult;
+	      // 유효한 닉네임인 경우
+	      idLengthResult = "";
+	      $(".useridVerificationCheckBtn").attr("disabled", false);
+	    } else if (idLengthResult === 0) {
+	      // 아이다가 입력되지 않은 경우
+	      idLengthResult = "아이디를 입력해주세요.";
+	      $(".useridVerificationCheckBtn").attr("disabled", true);
+	      userIdPass = false; // 닉네임이 입력되지 않은 경우 nicknamePass 변수를 false로 설정
+	    } else {
+	      // 유효하지 않은 아이디인 경우
+	      idLengthResult = "6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합";
+	      $(".useridVerificationCheckBtn").attr("disabled", true);
+	      userIdPass = false; // 닉네임이 입력되지 않은 경우 nicknamePass 변수를 false로 설정
+	    }
+	    // 결과 출력
+	    document.getElementById("idCheck").innerHTML = idLengthResult;
       console.log("아이디 체크하는 부분에서의 userIdPass :" + userIdPass);
     allcollect();
   });
@@ -324,63 +362,78 @@ function checkName(elem) {
 
 // 닉네임 체크
 function checkNickname(elem) {
-     elem.addEventListener("keyup", () => {
-       let nicknameLength = elem.value.length;
-       let nicknameResult = "";
-       
-       if (nicknameLength >= 2 && nicknameLength <= 15) {
-         // 유효한 닉네임인 경우
-         nicknameResult = "";
-         $(".nicknameVerificationCheckBtn").attr("disabled", false);
-       } else if (nicknameLength === 0) {
-         // 닉네임이 입력되지 않은 경우
-         nicknameResult = "닉네임을 입력해주세요.";
-         $(".nicknameVerificationCheckBtn").attr("disabled", true);
-         nicknamePass = false; // 닉네임이 입력되지 않은 경우 nicknamePass 변수를 false로 설정
-       } else {
-         // 유효하지 않은 닉네임인 경우
-         nicknameResult = "2자 이상 15자 이하의 닉네임을 입력해주세요.";
-         $(".nicknameVerificationCheckBtn").attr("disabled", true);
-         nicknamePass = false; // 닉네임이 입력되지 않은 경우 nicknamePass 변수를 false로 설정
-       }
-       
-       // 결과 출력
-       document.getElementById("nicknameCheck").innerHTML = nicknameResult;
-       console.log("닉네임 체크하는 부분에서의 nicknamePass :" + nicknamePass);
-       // 모든 검증 통과 여부 확인
-       allcollect();
-     });
-   }
+	  elem.addEventListener("keyup", () => {
+	    let nicknameLength = elem.value.length;
+	    let nicknameResult = "";
+	    
+	    if (nicknameLength >= 2 && nicknameLength <= 15) {
+	      // 유효한 닉네임인 경우
+	      nicknameResult = "";
+	      $(".nicknameVerificationCheckBtn").attr("disabled", false);
+	    } else if (nicknameLength === 0) {
+	      // 닉네임이 입력되지 않은 경우
+	      nicknameResult = "닉네임을 입력해주세요.";
+	      $(".nicknameVerificationCheckBtn").attr("disabled", true);
+	      nicknamePass = false; // 닉네임이 입력되지 않은 경우 nicknamePass 변수를 false로 설정
+	    } else {
+	      // 유효하지 않은 닉네임인 경우
+	      nicknameResult = "2자 이상 15자 이하의 닉네임을 입력해주세요.";
+	      $(".nicknameVerificationCheckBtn").attr("disabled", true);
+	      nicknamePass = false; // 닉네임이 입력되지 않은 경우 nicknamePass 변수를 false로 설정
+	    }
+	    
+	    // 결과 출력
+	    document.getElementById("nicknameCheck").innerHTML = nicknameResult;
+	    console.log("닉네임 체크하는 부분에서의 nicknamePass :" + nicknamePass);
+	    // 모든 검증 통과 여부 확인
+	    allcollect();
+	  });
+	}
 
 
 // 이메일 체크
 function checkEmail(elem) {
   elem.addEventListener("keyup", () => {
-     let EmailLength = elem.value.length;
-     let EmailResult = "";
+	  let EmailLength = elem.value.length;
+	  let EmailResult = "";
     const pattern3 =
       /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     
     if (pattern3.test(elem.value)) {
-         // 이메일 닉네임인 경우
-         EmailResult = "";
-         $(".emailVerificationCheckBtn").attr("disabled", false);
-       } else if (EmailLength === 0) {
-         // 이메일이 입력되지 않은 경우
-         EmailResult = "이메일을 입력해주세요.";
-         $(".emailVerificationCheckBtn").attr("disabled", true);
-         emailCodePass = false; // 이메일이 입력되지 않은 경우 emailCodePass 변수를 false로 설정
-       } else {
-         // 유효하지 않은 이메일이 경우
-         EmailResult = "이메일 형식에 맞게 입력해주세요.";
-         $(".emailVerificationCheckBtn").attr("disabled", true);
-         emailCodePass = false; // 유효하지 않은 이메일이 입력되지 않은 경우 emailCodePass 변수를 false로 설정
-       }
-    // 결과 출력
+	      // 이메일 닉네임인 경우
+	      EmailResult = "";
+	      $(".emailVerificationCheckBtn").attr("disabled", false);
+	    } else if (EmailLength === 0) {
+	      // 이메일이 입력되지 않은 경우
+	      EmailResult = "이메일을 입력해주세요.";
+	      $(".emailVerificationCheckBtn").attr("disabled", true);
+	      emailCodePass = false; // 이메일이 입력되지 않은 경우 emailCodePass 변수를 false로 설정
+	    } else {
+	      // 유효하지 않은 이메일이 경우
+	      EmailResult = "이메일 형식에 맞게 입력해주세요.";
+	      $(".emailVerificationCheckBtn").attr("disabled", true);
+	      emailCodePass = false; // 유효하지 않은 이메일이 입력되지 않은 경우 emailCodePass 변수를 false로 설정
+	    }
+	 // 결과 출력
     document.getElementById("emailCheck").innerHTML = EmailResult;
     allcollect();
   });
 }
+
+
+//휴대전화 체크
+function checkPhoneCheck(elem) {
+  elem.addEventListener("keyup", () => {
+    const pattern4 = /^(?:(010\d{4})|(01[1|6|7|8|9]\d{3,4}))(\d{4})$/i;
+    document.getElementById("phoneCheck").innerHTML = pattern4.test(
+      elem.value
+    )
+      ? ""
+      : "-를 제외한 휴대폰번호를 입력해주세요";
+    allcollect();
+  });
+}
+
 
 // 전체 체크 및 체크해제
 function allchecked(elem) {
@@ -408,49 +461,53 @@ function allcollect() {
       button = "uncheck";
     }
     
-    console.log("이 부분이 uncheck가 되는 것인가?" + button);
+    console.log("이부분이 uncheck가 되는 것인가?" + button);
   }
 //이용약관 동의 여부 확인
+
+  checkboxisall();
+  
   for(let b=1;b<document.getElementsByClassName("agree").length-1;b++){
     if(!document.getElementsByClassName("agree")[b].checked){
       button = "uncheck";
     }  
-    console.log("이 부분이 이용약관 uncheck가 되는 것인가?" + button);
+    console.log("이부분이 이용약관 uncheck가 되는 것인가?" + button);
   }
   
   
 //아이디 검증 통과 여부 확인
   if (!userIdPass || $("#idCheck").html() != "") {
     button = "uncheck";
-     console.log("이 부분이 아이디 검증통과 여부 부분이 uncheck가 되는 것인가?" + button);
+	  console.log("이부분이 아이디 검증통과 여부 부분이 uncheck가 되는 것인가?" + button);
   }
   
 //닉네임 검증 통과 여부 확인
   if (!nicknamePass || $("#nicknameCheck").html() != "") {
     button = "uncheck";
-     console.log("이 부분이 닉네임 검증통과 여부 부분이 uncheck가 되는 것인가?" + button);
+	  console.log("이부분이 닉네임 검증통과 여부 부분이 uncheck가 되는 것인가?" + button);
   }
   
 //이메일 검증 통과 여부 확인
   if (!emailCodePass || $("#emailCheck").html() != "") {
     button = "uncheck";
-     console.log("이 부분이 이메일 검증통과 여부 부분이 uncheck가 되는 것인가?" + button);
+	  console.log("이부분이 이메일 검증통과 여부 부분이 uncheck가 되는 것인가?" + button);
   }
   
   button == "uncheck" ? disable() : able();
-  checkboxisall();
 }
 
 function able() {
-  document.getElementById("signup-button").style.backgroundColor = "black";
+	$("form").attr("onsubmit", "return true");
+  document.getElementById("signup-button").style.backgroundColor = "#BB2649";
   document.getElementById("signup-button").style.color = "white";
   document.getElementById("signup-button").style.pointerEvents = "auto";
   document.getElementById("signup-button").style.cursor = "pointer";
 }
 function disable() {
+	$("form").attr("onsubmit", "return false");
   document.getElementById("signup-button").style.backgroundColor =
-    "rgb(214, 214, 214)";
-  document.getElementById("signup-button").style.color = "grey";
+    "#b5b5b5";
+  document.getElementById("signup-button").style.color = "white";
   document.getElementById("signup-button").style.pointerEvents = "none";
   document.getElementById("signup-button").style.cursor = "none";
 }

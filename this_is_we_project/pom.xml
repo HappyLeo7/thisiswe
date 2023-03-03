@@ -166,7 +166,12 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 
-
+		<!-- 이미지 등록 썸네일 -->
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>0.4.19</version>
+		</dependency>
 
 
 	</dependencies>

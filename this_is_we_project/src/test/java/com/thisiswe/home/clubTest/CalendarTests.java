@@ -85,7 +85,6 @@ public class CalendarTests {
 				.clubNum(9L).build();
 		
 			CalendarDTO calendarDTO = CalendarDTO.builder()
-					.clubNum(null)
 					.clubCalendarNum(14L)
 					.clubCalendarTitle("점심수정")
 					.clubCalendarContent("연어덮밥 수정")
@@ -96,6 +95,9 @@ public class CalendarTests {
 					.clubCalendarHeadCount(10L)
 					.clubCalendarPrice(20000L)
 					.build();
+			
+			ClubDTO clubDTO=ClubDTO.builder()
+					.clubNum(9L).build();
 			
 			System.out.println("일정 수정값 : "+calendarDTO);
 			

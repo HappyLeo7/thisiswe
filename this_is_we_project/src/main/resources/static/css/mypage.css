@@ -1,0 +1,207 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+	;
+
+/* 프로젝트 포인트 색상(임의 01) : #e4481b; - 주황색 */
+/* 프로젝트 포인트 색상(임의 02) : #0d5718; - 초록색 */
+/* 프로젝트 포인트 색상(팬톤 올해의 컬러 2023) : #BB2649; - 비바마젠타 */
+
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* 헤더 */
+header {
+	text-align: center;
+	margin-top: 75px;
+}
+
+header .thumb {
+	width: 92px;
+	height: 92px;
+	border-radius: 50%;
+	box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1), 0 12px 24px 0
+		rgba(0, 0, 0, 0.24);
+}
+
+header .thumb-wrapper {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 36px;
+}
+
+header .badge {
+	width: 28px;
+	height: 28px;
+	font-size: 12px;
+	position: absolute;
+	background-color: #ff5500;
+	border-radius: 50%;
+	top: 0;
+	right: -8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* animation */
+	animation: scaleUp 0.5s;
+	animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	animation-fill-mode: both;
+	animation-delay: 0.5s;
+}
+
+header .greeting {
+	margin-bottom: 10px;
+}
+
+header .mail {
+	padding: 8px 22px 10px 22px;
+	background-color: rgba(0, 0, 0, 0.05);
+	display: inline-block;
+	border-radius: 20px;
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+	margin-top: 18px;
+}
+.myPage-h2{
+	text-align: center;
+	margin-top: 60px;
+	font-size: 20px;
+	color: #4f4f4f;
+}
+.myPage-h2 span{
+	color: #BB2649;
+	font-size: 28px;
+}
+/* 리스트 */
+.list {
+	margin-top: 45px;
+}
+.list .item {
+	justify-content: space-between;
+	align-items: center;
+	display: flex;
+	margin: 0 auto;
+}
+.list li{
+	margin: 0;
+	padding: 0;
+}
+.list .item .left {
+	width: 100%;
+/* 	display: inline-block; */
+	align-items: center;
+}
+
+.list .item .left .name {
+	padding-bottom: 5px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #393939;
+	cursor: pointer;
+	text-align: center;
+}
+
+.list .item .left .name:hover {
+	font-size: 20px;
+	font-weight: 600;
+	color: #BB2649;
+}
+
+.list .item .left img {
+	width: 60px;
+	height: 60px;
+	margin: auto;
+	display: block;
+	
+}
+
+.list .item .right {
+	opacity: 0.5;
+}
+
+.list .item img {
+	padding: 20px 22px;
+}
+
+.list .item .right img {
+	padding-right: 14px;
+}
+hr{
+	 margin-bottom: 30px; 
+	 width: 60%;
+	 border: 0px;
+	 height: 1px;
+	 background: linear-gradient(to left, transparent, rgba(192,192,192,1), transparent)
+	 ;
+}
+#myModal {
+  display: none; /* 처음에는 숨김 처리 */
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  top:0; 
+  left: 0; 
+  bottom: 0; 
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  position: absolute;
+  top: calc(50vh - 100px); 
+  left: calc(50vw - 200px);
+  background-color: white;
+  display: inline-block; 
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: 400px;
+  height: 220px;
+}
+.close {
+	color: #BB2649;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 10px 0 -30px; 
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-content-pass{
+	margin: 5px 0 5px 0;
+    padding: 8px 0px 8px 0;
+    text-align: center;
+    font-size: 15px;
+}
+.modal-content-boxPass{
+    margin: 3px 76px 3px 76px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    width: 250px;
+    height: 30px;
+}
+.searchBtn-mypage{
+	text-align: center;
+    margin: 15px 5px 15px 5px;
+}
+.searchBtn-my {
+	margin: 0 10px 0 10px;
+	padding: 10px;
+	width: 70px;
+	height: 45px;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+	background-color: white;
+	cursor: pointer;
+}
+.searchBtn-my:hover{
+	outline: none;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: #BB2649;
+}

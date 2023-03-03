@@ -80,7 +80,6 @@ public class CalendarController {
 	
 	
 	
-	
 	//일정 수정 페이지로 이동
 	@GetMapping({"/calendar/modify"})
 	public String calendarModify(Long num, Model model) {
@@ -95,17 +94,24 @@ public class CalendarController {
 		
 		return "club/calendar/calendar_modify";
 	}
-	
+
+
+
+
 	//일정 수정 처리
 	@PostMapping({"/calendar/modify"})
 	public String calendarModifyIng(CalendarDTO calendarDTO, Model model) {
-		
+
 		log.info("==== post calendar modify Contorller ====");
+
 		
+
 		//log.info("calendarDTO num : " + clubDTO);
+
 		calendarDTO.setClubCalendarTime(calendarDTO.getClubCalendarTimeH()+":"+calendarDTO.getClubCalendarTimeM());
 		log.info("calendarDTO : " + calendarDTO);
 		
+
 		CalendarDTO calendarDtoModify=calendarService.modify(calendarDTO); //1개의 일정 데이터를 가져옴
 		log.info("calendarDTO : " + calendarDtoModify);
 		model.addAttribute("calendarDTO",calendarDtoModify);

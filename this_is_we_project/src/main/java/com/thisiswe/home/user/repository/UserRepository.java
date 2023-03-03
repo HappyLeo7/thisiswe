@@ -10,6 +10,7 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 
 	boolean existsByUserId(String userId);
 	boolean existsByUserNickname(String userNickname);
+	boolean existsByUserEmail(String userEmail);
 	
 	// 인자로 넘어오는 userId를 db에서 찾아서 UserEntity에 넣겠다.
 	// 변수명은 항상 Entity와 일치시켜야한다.

@@ -22,6 +22,8 @@ public class BoardDTO {
 	
 	/** 모임번호*/
 	private Long clubNum;
+	/** 모임이름*/
+	private String clubName;
 	private Long boardNum;							// 게시글 번호	
 	private String boardCategory;					// 게시판 카테고리
 	private String boardTitle;						// 게시판 제목

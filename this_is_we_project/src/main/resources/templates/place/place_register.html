@@ -12,9 +12,21 @@
 	<input name="placeName">
 	<br>
 	
-	이미지
-	<input name="">
-	<br>
+	<div class="form-group">
+		<label>이미지</label>
+		<div class="custom-file">
+			<input type="file" class="custom-file-input files" id="fileInput" multiple> 
+			<label class="custom-file-label" data-browse="Browse"></label>
+		</div>
+	</div>
+	<div class="box"></div>
+
+
+	<div class="uploadResult">
+		<ul>
+
+		</ul>
+	</div>
 	
 	한 줄 소개
 	<input name="placeOneLineIntroduction">
@@ -70,7 +82,170 @@
 		</select>
 	<br>
 	
-	<input type="submit" value="등록">	
+	<button type="submit" class="registerButton">등록</button>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>	
+<script>
+		$(document).ready(function(e){
+			var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
+			var maxSize = 10485760; //10MB
+			
+			function checkExtension(fileName, fileSize){
+				if(fileSize >= maxSize){
+					alert("파일 사이즈 초과");
+					return false;
+				}
+				if(regex.test(fileName)){
+					alert("해당 종류의 파일은 업로드 할 수 없습니다.")
+					return false;
+				}
+				return true;
+			}
+			
+			$(".custom-file-input").on("change", function(){
+				var fileName = $(this).val().split("\\").pop();
+				$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+				
+				var formData = new FormData();
+				
+				var inputFile = $(this);
+
+				var files = inputFile[0].files;
+				
+				var appended = false;
+				
+				for(var i = 0; i < files.length; i++){
+					if(!checkExtension(files[i].name, files[i].size)){
+						return false;
+					}
+					console.log(files[i]);
+					formData.append("uploadFiles", files[i]);
+					appended = true;
+				}
+				if(!appended){
+					return;
+				}
+				for(var value of formData.values()){
+					
+					console.log("굳");
+					console.log(value);
+				}
+				
+				// 실제 업로드 부분
+				// upload ajax
+				$.ajax({
+					url: '/thisiswe/placeImageuploadAjax',
+					processData: false,
+					contentType: false,
+					data: formData,
+					type: 'post',
+					dataType: 'Json',
+					success: function(result){
+						console.log(result);
+						showResult(result);
+					},
+					error: function(jqXHR, textStatus, errorThrown){
+						console.log(1)
+						console.log(textStatus)
+						console.log(2)
+						
+					}
+				});
+			});
+			
+			
+			function showResult(arr) {
+				console.log(arr);
+
+				var divArea = $(".uploadResult ul");
+				var str = "";
+
+				for (var i = 0; i < arr.length; i++) {
+					str += "<li data-name='" + arr[i].fileName 
+					+ "'data-path='"+arr[i].folderPath 
+					+ "' data-uuid='" + arr[i].uuid+"'>";       
+					
+					str += "<div>";
+					str += "<button type='button' data-file=\'" + arr[i].imageURL + "\' "
+					str += "class='btn-warning btn-sm'>X</button><br>";						
+					
+					str += "<img src='/thisiswe/placeImageDisplay?fileName=" + arr[i].thumbnailURL
+							+ "'>";
+				/* 	str += "<button class='removeBtn' data-name='"+arr[i].imageURL+"'>삭제</button>"; */
+					
+					str += "</div>"
+					str += "</li>"
+					
+				}
+				divArea.append(str);
+				
+			$(".uploadResult").on("click", "li button", function(e){
+				console.log("delete")
+				var targetFile = $(this).data("file");
+				var targetLi = $(this).closest("li");
+				
+				/* var fileName = target.data("name");
+				var targetDiv = $(this).closest("div");
+				 
+				console.log(fileName);
+				
+				$.post('/removeFile', {fileName:fileName}, function(result){
+					console.log(result);
+					if(result==true){
+						targetDiv.remove();
+					}
+				}) */
+				
+				$.ajax({
+					url:'/thisiswe/placeImageRemoveFile',
+					data: {fileName: targetFile},
+					dataType: 'text',
+					type: 'post',
+					success: function(result){
+						alert(result);
+						
+						targetLi.remove();
+					}
+				}); //$.ajax
+			});
+			}
+			
+			
+			$(".registerButton").on("click", function(e){
+				e.preventDefault();
+				
+				var str = "";
+				
+				$(".uploadResult li").each(function(i,obj){
+					var target = $(obj);
+					
+					str += "<input type='hidden' name='placeImageDTOList["+i+"].placeImgName' value='"+target.data('name')+"'>";
+					str += "<input type='hidden' name='placeImageDTOList["+i+"].placeImageUrl' value='"+target.data('path')+"'>";
+					str += "<input type='hidden' name='placeImageDTOList["+i+"].placeUuid' value='"+target.data('uuid')+"'>";
+				
+				});
+				
+				$(".box").html(str);
+				$("form").submit();
+				
+			});
+			
+			
+			
+		});
+		
+		
+		
+		
+		
+		
+		
+	</script>
+	
+	
+	
+	
 </form>
 
 </body>

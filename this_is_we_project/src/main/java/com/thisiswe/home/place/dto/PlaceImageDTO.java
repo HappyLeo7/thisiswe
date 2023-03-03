@@ -30,7 +30,7 @@ public class PlaceImageDTO {
 	public String getPlcaeThumbnailURL() {
 
 		try {
-			return URLEncoder.encode(placeImageUrl + "/s_" + placeUuid + "_" + placeImgName, "UTF-8");
+			return URLEncoder.encode(placeImageUrl, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

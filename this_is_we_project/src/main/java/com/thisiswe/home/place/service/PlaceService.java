@@ -10,7 +10,7 @@ import com.thisiswe.home.place.dto.PlaceImageDTO;
 import com.thisiswe.home.place.dto.PlacePageRequestDTO;
 import com.thisiswe.home.place.dto.PlacePageResultDTO;
 import com.thisiswe.home.place.entity.PlaceEntity;
-import com.thisiswe.home.place.entity.PlaceImageEntitiy;
+import com.thisiswe.home.place.entity.PlaceImageEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
 
@@ -28,7 +28,7 @@ public interface PlaceService {
 
 	
 	
-	default PlaceDTO entitiesToDTO(PlaceEntity placeEntity,List<PlaceImageEntitiy> placeImages ,Double placeAvg, Long placeReviewCount) {
+	default PlaceDTO entitiesToDTO(PlaceEntity placeEntity,List<PlaceImageEntity> placeImages ,Double placeAvg, Long placeReviewCount) {
 		PlaceDTO placeDTO = PlaceDTO.builder()
 				.placeNum(placeEntity.getPlaceNum())
 				.placeName(placeEntity.getPlaceName())
@@ -87,8 +87,8 @@ public interface PlaceService {
 		List<PlaceImageDTO> placeImageDTOList= placeDTO.getPlaceImageDTOList();
 		
 		if(placeImageDTOList != null && placeImageDTOList.size() > 0) {
-			List<PlaceImageEntitiy> placeImageList = placeImageDTOList.stream().map(placeImageDTO->{
-				PlaceImageEntitiy placeImage = PlaceImageEntitiy.builder()
+			List<PlaceImageEntity> placeImageList = placeImageDTOList.stream().map(placeImageDTO->{
+				PlaceImageEntity placeImage = PlaceImageEntity.builder()
 						.placeImageUrl(placeImageDTO.getPlaceImageURL())
 						.placeImageName(placeImageDTO.getPlaceImgName())
 						.placeImageUuid(placeImageDTO.getPlaceUuid())

@@ -10,13 +10,34 @@
 	<th:block th:fragment="connection">
 
 
-
 		<div style="text-align: center;">
+			<a th:href="@{/thisiswe/place/reservation}"><button type="button" style="float: right;">예약</button></a>
+			<a th:href="@{/thisiswe/place/zone/register}"><button type="button" style="float: right;">룸 추가</button></a>
+		
+		
 			<div>
 
 				<div>
 					<h1>[[${place.getPlaceName}]]</h1>
 				</div>
+				
+				
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div style="height: 400px; width: 700px;"  th:each="placeImageDTO : ${place.placeImageDTOList}" class="swiper-slide"><img height="100%" th:src ="|/thisiswe/placeImageDisplay?fileName=${placeImageDTO.getPlcaeThumbnailURL()}|"></div>
+					</div>
+				</div>
+				
+				
+				<div th:each="zone : ${zones}" style="border: solid 1px;">
+				[[${zone.getPlaceZoneName}]]
+				[[${zone.getPlaceZoneHeadCount}]]
+				[[${zone.getPlaceZoneNum}]]
+				[[${zone.getPlaceNum}]]
+				
+				</div>
+
+				<input type="hidden" name="placeNum" th:value="${place.placeNum}">
 				<div>
 					<h3>[[${place.getPlaceOneLineIntroduction}]]</h3>
 				</div>
@@ -29,30 +50,33 @@
 
 				<input type="hidden" id="loginID" th:value="@{${loginID}}">
 				<!-- 리뷰 등록 시작 -->
-				
-				<br>별점
-				<input type="radio" name="placeReviewRate" value="1">
-				<input type="radio" name="placeReviewRate" value="2"> 
-				<input type="radio" name="placeReviewRate" value="3"> 
-				<input type="radio" name="placeReviewRate" value="4"> 
-				<input type="radio" name="placeReviewRate" value="5"> 
-				<br>
+
+				<br>별점 <input type="radio" name="placeReviewRate" value="1">
+				<input type="radio" name="placeReviewRate" value="2"> <input
+					type="radio" name="placeReviewRate" value="3"> <input
+					type="radio" name="placeReviewRate" value="4"> <input
+					type="radio" name="placeReviewRate" value="5"> <br>
 				<textarea name="placeReviewContent" cols="120" rows="10"></textarea>
-				<button type="button" class="reviewSave" style="height: 60px; margin-bottom: 30px;">리뷰 등록</button>
+				<button type="button" class="reviewSave"
+					style="height: 60px; margin-bottom: 30px;">리뷰 등록</button>
 				<!-- 리뷰 등록 끝 -->
 
 				<!-- 리뷰 시작 -->
 				<div class="reviews"></div>
 				<!-- 리뷰 끝 -->
-				
-				
-				
+
+
+
 				<!-- 페이징 블럭 -->
 				<div class="reviewPage"></div>
 
 			</div>
 		</div>
-	
+
+
+<script>
+   new Swiper('.swiper-container');
+</script>
 
 <script th:inline="javascript">
 		

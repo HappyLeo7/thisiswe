@@ -5,28 +5,113 @@
 	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 
 	<th:block th:fragment="connection">
+
+		<!-- mypage.css 연결 -->
+		<link rel="stylesheet" th:href="@{/css/mypage.css}" />
+		<!-- /mypage.css 연결 -->
 	
-	
-		<h1>마이페이지</h1>
-
-		<a th:href="@{/login/test2}">login/test2 문수찬</a>
-		<hr>
-		<a th:href="@{/login/test3}">login/test3 오세원</a>
-		<a th:href="@{/login/test55}">login/test55 오세원</a>
-		<hr>
-		<a th:href="@{/login/dw_class}">login/dw_class 김동완</a>
-		<hr>
-		<a th:href="@{/login/narong_test2}">login/narong_test2 김나영</a>
-		<hr>
-
-		<button id="login-id-btn" onclick="location.href='/thisiswe/mypage/userinfo'">
-			회원정보</button>
-
-
-<form id="my_form" method="post" action="/user/logout">
-로그아웃
-</form>
-
+		<h2 class="myPage-h2">▷  &nbsp;<span>MY PAGE</span>  &nbsp;◁</h2>
 		
+		<ul class="list">
+			<li class="item mouse-effect stagger-item">
+				<div class="left">
+					<img src="/image/icon_mypage.png" />
+					<div class="name"
+						onclick="location.href='/thisiswe/mypage/userinfo'">내 정보 수정</div>
+				</div>
+			</li>
+			<br>
+			<hr>
+
+			<li class="item mouse-effect stagger-item">
+				<div class="left">
+					<img src="/image/icon_pencilcase.png" />
+					<div class="name"
+						onclick="location.href='/thisiswe/mypage/boardlist'">나의 글 목록</div>
+				</div>
+			</li>
+			<br>
+			<hr>
+
+			<li class="item mouse-effect stagger-item">
+				<div class="left">
+					<img src="/image/icon_friendship.png" />
+					<div class="name" onclick="location.href='/thisiswe/mypage/myclub'">내가 가입한 모임</div>
+				</div>
+			</li>
+			<br>
+			<hr>
+
+			<li class="item mouse-effect stagger-item">
+				<div class="left">
+					<img src="/image/icon_calendar.png" />
+					<div class="name" onclick="location.href='/thisiswe/mypage/myclublist'">나의 예약 장소 목록</div>
+				</div>
+			</li>
+			<br>
+			<hr>
+
+			<li class="item mouse-effect stagger-item">
+				<div class="left">
+					<img src="/image/icon_warning.png" />
+					<div class="name" onclick="openModal()">회원 탈퇴</div>
+				</div>
+			</li>
+		</ul>
+		<br>
+		<br>
+
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2>회원 탈퇴</h2>
+				<p class="modal-content-pass">비밀번호를 입력해주세요!</p>
+				<input type="password" class="modal-content-boxPass" id="password"><br>
+				<div class="searchBtn-mypage">
+					<button type="button" class="btn btn-primary searchBtn-my" id="confirm-button">확인</button>
+					<button type="button" class="btn btn-cancel searchBtn-my" data-dismiss="modal">취소</button>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+		var modal = document.getElementById("myModal");
+			function openModal() {
+				var modal = document.getElementById("myModal");
+				modal.style.display = "block";
+			}
+			
+			var close = document.getElementsByClassName("close")[0];
+			var cancel = document.getElementsByClassName("btn-cancel")[0];
+			
+			close.onclick = function() {
+			  modal.style.display = "none";
+			}
+			
+			cancel.onclick = function() {
+				  modal.style.display = "none";
+			}
+			
+			
+			$("#confirm-button").click(function() {
+				  var password = $("#password").val(); // 입력한 비밀번호 가져오기
+
+				    // 회원탈퇴 처리
+				    $.ajax({
+				      url: "/thisiswe/user/check/" + password ,
+				      type: "POST",
+				      data: {password: password},
+				      success: function(result) {
+				        if (result == "success") {
+				          alert("회원탈퇴가 완료되었습니다.");
+				          location.href = "/thisiswe"; // 회원탈퇴 완료 후 메인 페이지로 이동
+				        } else {
+				          alert("회원탈퇴에 실패하였습니다.");
+				        }
+				      }
+				    });
+				});
+		</script>
+
 	</th:block>
 </th:block>

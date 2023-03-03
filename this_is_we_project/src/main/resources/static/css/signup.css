@@ -10,17 +10,15 @@ body{
    	height: 100%;
 	font-family: 'Nanum Gothic', sans-serif;
 }
-
 /* 회원가입 */
 #signup {
     margin: auto;
     height: 100%;
     width: 700px;
     text-align: center;
-    background-color: #d8d8d8;
 }
 .signup-title{
-	margin-top: 70px;
+	margin-top: 60px;
 	padding : 30px 0 30px 0;
 	font-size: 30px;
 	font-weight: 700;
@@ -29,97 +27,181 @@ body{
     display: inline-block;
     width: 100%;
     border-bottom: 1px solid black;
-    background-color: #fbfbfb;
 }
-
-div#signup>form {
+.singup-sub{
+	margin-left: 5px;
+	font-size: 16px;
+    font-weight: 600;
+    color: #2f2f2f;
+}
+.singup-sub-view{
+	display: none;
+	margin-left: 5px;
+	font-size: 16px;
+    font-weight: 600;
+    color: #2f2f2f;
+}
+.signup-one{
+    margin-left: 30px;
+    /* margin-right: 30px; */
+    padding-left: 40px;
     position: relative;
+    border-radius: 20px;
     text-align: left;
     top: 30px;
-    background: red;
 }
-
-div#signup>form>span {}
-
-div#signup>form>input {
-    padding-bottom: 10px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+.signup-box{
+	margin: 10px 5px 13px 5px;
+    padding: 5px 3px 5px 3px;
     border: 1px white;
-    border-bottom: solid 1px rgb(198, 195, 195);
+    border-bottom: solid 1px #b2b2b2;
     outline: white;
     width: 400px;
 }
-
-div#signup>form>input#비밀번호확인 {
-    margin-top: 8px;
+.signup-box-code{
+	display: none;
+	margin: 10px 5px 10px 5px;
+    padding: 5px 3px 5px 3px;
+    border: 1px white;
+    border-bottom: solid 1px #b2b2b2;
+    outline: white;
+    width: 400px;
 }
-
-div#signup>form>input::placeholder {
-    color: rgb(198, 195, 195);
+.signup-box-admin{
+	display: none;
+	margin: 10px 5px 10px 5px;
+    padding: 5px 3px 5px 3px;
+    border: 1px white;
+    border-bottom: solid 1px #b2b2b2;
+    outline: white;
+    width: 400px;
 }
-/* 검증 */
+.one-box {
+	accent-color: #BB2649;
+}
+.signup-box::placeholder , .signup-box-admin::placeholder{
+     color: #b1b1b1;
+}
+/* 아이디·닉네임·이메일 인증 */
+.certification{
+	background: #ffffff;
+	color: #363636;
+	height: 30px;
+	width: 90px;
+	font-weight: 600;
+	border: 1px solid #868686;
+	border-radius: 12px;
+	cursor: pointer;
+}
+.certification-email-view{
+	display: none;
+	background: #ffffff;
+	color: #363636;
+	height: 30px;
+	width: 90px;
+	font-weight: 600;
+	border: 1px solid #868686;
+	border-radius: 12px;
+	cursor: pointer;
+}
+.certification-email{
+	background: #fff;
+	color: #363636;
+	height: 30px;
+	width: 120px;
+	font-weight: 600;
+	border: 1px solid #868686;
+	border-radius: 12px;
+	cursor: pointer;
+}
+.certification:hover, .certification-email-view:hover{
+	background: #4c4c4c;
+	color: #fff;
+	height: 30px;
+	width: 90px;
+	font-weight: 600;
+	border: 1px solid #4c4c4c;
+	border-radius: 12px;
+}
+.certification-email:hover{
+	background: #4c4c4c;
+	color: #fff;
+	height: 30px;
+	width: 120px;
+	font-weight: 600;
+	border: 1px solid #4c4c4c;
+	border-radius: 12px;
+}
+/* 회원가입 검증 */
 .verification{
     font-size: 12px;
     font-weight: 500;
-    position: relative;    
-    color: rgb(252, 11, 11);
-    bottom: 20px;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
+    position: relative;
+    color: #BB2649;
+    bottom: 10px;
+    margin-left: 8px;
 }
-
 /* 동의 */
-div#signup>form>span#All-agree {
+.All-agree-box{
+	margin: 30px 80px 15px 80px;
+	padding: 5px 0 5px 30px;
+/* 	border: 1px solid #d8d8d8; */
+	border-radius: 20px;
+	text-align: left;
+}
+#All-agree {
     display: inline-block;
     width: 100%;
-    border-bottom: solid 1px rgb(198, 195, 195);
+    font-size: 16px;
     font-weight: 600;
 }
-
-div#signup>form>span>input.agree {
+#All-agree:after {
+    content: "";
+    display: block;
+    width: 420px;
+    border-bottom: 1px solid #bcbcbc;
+}
+#All-agree .agree {
     position: relative;
     right: 8px;
     width: 20px;
     margin: 10px;
-    accent-color: rgb(139, 139, 139);
+    accent-color: #BB2649;
 }
-
-div#signup>form>input.agree {
+.agree {
     position: relative;
     right: 8px;
     width: 20px;
     margin: 10px;
-    accent-color: rgb(139, 139, 139);
+    accent-color: #BB2649;
 }
-
-
-div#signup>form>input.signup-button-class {
+.signup-button-class {
+	margin: 15px 0 20px 0;
     pointer-events: none;
     position: relative;
-    bottom: 17px;
     height: 50px;
     width: 400px;
-    background-color: rgb(214, 214, 214);
-    color: grey;
-    border: white;
-    border-radius: 3px;
-    padding-top: 9px;
+    background-color: #BB2649;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+	border: 1px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
 }
-
-div#signup>form>.signup-button-class {
+.signup-button-class:hover, .signup-button-class:focus, .signup-button-class:active, .signup-button-class:after {
+	margin: 15px 0 20px 0;
     pointer-events: none;
     position: relative;
-    bottom: 17px;
     height: 50px;
     width: 400px;
-    background-color: rgb(214, 214, 214);
-    color: grey;
-    border: white;
-    border-radius: 3px;
-    padding-top: 9px;
+    background-color: #BB2649;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 15px;
+    cursor: pointer;
 }
-
 .terms{
     position: relative;
     right: 10px;

@@ -17,6 +17,7 @@
 		<!-- 내용 -->
 		<title>모임 상세페이지</title>
 
+
 		<!-- 모임번호 받아오는 input -->
 		<input type="hidden" class="club-ce clubNum" name="clubNum"
 			th:value="${readDTO.clubNum}" readonly="readonly">
@@ -156,8 +157,8 @@
 								</li>
 								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarPrice}]]원</li>
 							</ul>
-						</div>
 
+						</div>
 					</div>
 				</div>
 			</div>
@@ -167,8 +168,9 @@
 						<td rowspan="3">달력이미지</td>
 						<td>날짜 : <input type="date"></td>
 					</tr>
+
 		
-		
+
 					<tr>
 						<td>장소 : <input type="text">
 						</td>
@@ -180,6 +182,7 @@
 					</tr>
 					 -->
 				<!-- /모임 일정표 -->
+
 			</div>
 			<!-- /내용 -->
 		</div>
@@ -194,10 +197,12 @@
 					url : "/thisiswe/remove/" + clubNum,
 					method : "delete",
 					success : function(result) {
+
 						console.log("삭제결과값 : " + result)
 						if (result == "success") {
 							alert(clubNum + "모임이 삭제되었습니다.")
 							let url = "/thisiswe/club";
+
 							location.replace(url);
 						}
 					}
