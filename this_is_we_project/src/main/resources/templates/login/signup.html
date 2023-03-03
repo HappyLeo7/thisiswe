@@ -34,7 +34,7 @@ function onclickAdmin() {
 <body>
   <div id="signup">
     <span class="signup-title">S I G N U P</span>
-	<form action="/thisiswe/signup" method="post">
+	<form action="/thisiswe/signup" method="post" onsubmit="return false">
 		<div class="signup-one">
     	  <span class="signup-classification singup-sub">아이디</span><br>
     	  <input type="text" name="userId" class="login-input-box signup-box" placeholder="아이디를 입력해 주세요." onfocus="checkId(this)" >
@@ -77,20 +77,22 @@ function onclickAdmin() {
 
 	      <br>
 	      
-	      <span class="signup-classification email-verification-check" style="display: none;">이메일 인증코드</span>
+	      <span class="signup-classification email-verification-check singup-sub-view">이메일 인증 코드</span>
 	      <br>
-	      <input type="text" id="emailcode-input" class="login-input-emailCode signup-box-code" name="userEmailCode" style="display: none;">
-	      <button type="button" class="emailVerificationCheckBtn certification" style="display: none;">이메일 검증 </button>
+	      <input type="text" id="emailcode-input" class="login-input-emailCode signup-box-code" name="userEmailCode">
+	      <button type="button" class="emailVerificationCheckBtn certification-email-view">이메일 검증 </button>
 	      <br><br>
 	        
 	      <span class="signup-classification singup-sub">전화번호</span>
 	      <br>
-	      <input type="tel" class="signup-box" name="userPhoneNumber" placeholder=" -를 제외한 전화번호를 입력해 주세요.">
+	      <input type="tel" class="signup-box" name="userPhoneNumber" placeholder=" -를 제외한 전화번호를 입력해 주세요." onfocus="checkPhoneCheck(this)">
+		  <br>
+		  <span class="verification" id="phoneCheck"></span>
 		  <br><br>
 		 
 	      <div>
 	         <input type="checkbox" class="one-box" id="admin-check" name="admin"
-	        		onclick="onclickAdmin()"> 관리자 <br>
+	        		onclick="onclickAdmin()"> ADMIN <br>
 	       	 <input type="password" id="admin-token" name="adminToken"
 	        		placeholder=" 관리자 암호" class="login-input-box signup-box-admin" style="display: none">
 	     </div>
@@ -142,18 +144,18 @@ function onclickAdmin() {
                       console.log("result: " + result);
 
                   	if(result==true) {
-                  		alert("중복이야");
+                  		alert("중복된 아이디입니다.");
                   		userIdPass = false;
                   	}
                   	else {
                   		if(userForm == "") {
-                  			alert("사용해도 된다");
+                  			alert("사용 할 수 있는 아이디입니다.");
                   			userIdPass = true;
                   			console.log("userIdPass의 값 : "+userIdPass);
                   			
                   		}
                   		else{
-                  			alert("양식을 지켜달라에요");
+                  			alert("양식을 지켜주세요.");
                   		nicknamePass = false;
                   		}
                   	}
@@ -185,18 +187,18 @@ function onclickAdmin() {
                       console.log("=====result: " + result);
 
                   	if(result==true) {
-                  		alert("중복이야");
+                  		alert("중복된 닉네임입니다.");
                   		nicknamePass = false;
                   	}
                   	else {
                   		if(userNicknameForm == "") {
-                  			alert("사용해도 된다");
+                  			alert("사용할 수 있는 닉네임입니다.");
                   			nicknamePass = true; // 검증 통과시 pass 변수를 true로 설정
                   			console.log("nicknamePass의 값 : "+nicknamePass);
 
                   		}
                   		else{
-                  			alert("양식을 지켜달라에요");
+                  			alert("양식을 지켜주세요.");
                   		nicknamePass = false;
                   		}
                   	}
@@ -220,28 +222,38 @@ function onclickAdmin() {
 	    alert('이메일을 입력해주세요.');
 	    return;
 	  }
-
+	  alert("확인 중 입니다.");
 		// 이메일 검증 버튼, 인증코드 입력란, 이메일 인증코드 확인 부분 보이기
 		const emailVerification = document.querySelector('.email-verification-check');
 	    const emailVerificationCheckBtn = document.querySelector('.emailVerificationCheckBtn');
 	    const emailCodeInput = document.querySelector('#emailcode-input');
 
 
-	    emailVerification.style.display = 'block';
+/* 	    emailVerification.style.display = 'block';
 	    emailVerificationCheckBtn.style.display = 'block';
-	    emailCodeInput.style.display = 'block';
+	    emailCodeInput.style.display = 'block'; */
 
 	  
       console.log("===========emailCheck===== : " + emailCheck);
- 
+	    
 
               $.ajax({
                   url:'/thisiswe/userEmail/' + emailCheck , //Controller에서 요청 받을 주소
                   type:"POST", // post 방식으로 전달
-                  success: function(){ //컨트롤러에서 넘어온 result값을 받는다 
+                  success: function(check){ //컨트롤러에서 넘어온 result값을 받는다 
 
-                      console.log("성공");
-
+                	  
+                	  if(check=="중복") {
+                		console.log("중복");
+                		alert("중복된 메일입니다.")
+                		
+                	  }
+                	  else {
+                		    emailVerification.style.display = 'block';
+                		    emailVerificationCheckBtn.style.display = 'block';
+                		    emailCodeInput.style.display = 'block';
+                		    console.log("성공");
+                	  }
                   }
               })
           });
@@ -263,16 +275,16 @@ function onclickAdmin() {
                       console.log("이메일 result: " + result);
 
                   	if(result==true) {
-                  		alert("인증된기라");
+                  		alert("인증되었습니다.");
                   		emailCodePass = true;
                   	}
                   	else {
-                  		alert("인증코드가 잘못됫다아이가");
+                  		alert("인증 코드가 일치하지 않습니다.");
                   		emailCodePass = false;
                   	}
                   	
                  // 검증 결과에 따라 emailCodePass 변수를 true/false로 설정
-                    $("#emailCheck").html(emailCodePass ? "" : "인증코드가 일치하지 않습니다.");
+                    $("#emailCheck").html(emailCodePass ? "" : "인증 코드가 일치하지 않습니다.");
          			console.log("emailCodePass의 값 2번째부분: "+emailCodePass);
                   	allcollect(); // 검증 결과에 따라 가입 버튼 활성화/비활성화
                   }
@@ -452,6 +464,9 @@ function allcollect() {
     console.log("이부분이 uncheck가 되는 것인가?" + button);
   }
 //이용약관 동의 여부 확인
+
+  checkboxisall();
+  
   for(let b=1;b<document.getElementsByClassName("agree").length-1;b++){
     if(!document.getElementsByClassName("agree")[b].checked){
       button = "uncheck";
@@ -479,19 +494,20 @@ function allcollect() {
   }
   
   button == "uncheck" ? disable() : able();
-  checkboxisall();
 }
 
 function able() {
-  document.getElementById("signup-button").style.backgroundColor = "black";
+	$("form").attr("onsubmit", "return true");
+  document.getElementById("signup-button").style.backgroundColor = "#BB2649";
   document.getElementById("signup-button").style.color = "white";
   document.getElementById("signup-button").style.pointerEvents = "auto";
   document.getElementById("signup-button").style.cursor = "pointer";
 }
 function disable() {
+	$("form").attr("onsubmit", "return false");
   document.getElementById("signup-button").style.backgroundColor =
-    "rgb(214, 214, 214)";
-  document.getElementById("signup-button").style.color = "grey";
+    "#b5b5b5";
+  document.getElementById("signup-button").style.color = "white";
   document.getElementById("signup-button").style.pointerEvents = "none";
   document.getElementById("signup-button").style.cursor = "none";
 }

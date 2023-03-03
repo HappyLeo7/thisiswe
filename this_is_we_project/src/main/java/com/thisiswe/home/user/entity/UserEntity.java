@@ -17,8 +17,8 @@ import com.thisiswe.home.club.entity.ClubEntity;
 import com.thisiswe.home.club.member.ClubMemberEntity;
 import com.thisiswe.home.club.photo.entity.PhotoEntity;
 import com.thisiswe.home.place.entity.PlaceEntity;
-import com.thisiswe.home.place.entity.PlaceReservationEntity;
 import com.thisiswe.home.place.entity.PlaceReviewEntity;
+import com.thisiswe.home.place.reservation.entity.PlaceReservationEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

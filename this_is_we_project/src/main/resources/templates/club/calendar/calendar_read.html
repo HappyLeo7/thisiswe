@@ -10,105 +10,7 @@
 	<!-- 지정한 변수로 연결할 위치 -->
 	<th:block th:fragment="connection">
 
-
-<<<<<<< HEAD
-<!-- 네비창 (정보, 게시판, 사진첩) -->
-		모임번호 :	<input class="clubNum" name="clubNum"
-			th:value="${calendarDTO.clubNum.clubNum}" readonly="readonly">
-		<table border="1">
-			<tr>
-				<td><a th:href="@{/thisiswe/club/(num=${calendarDTO.clubNum.clubNum})}">정보</a></td>
-				<td><a
-					th:href="@{/thisiswe/club/board/(num=${calendarDTO.clubNum.clubNum})}">게시판</a></td>
-				<td><a
-					th:href="@{/thisiswe/club/photo/(num=${calendarDTO.clubNum.clubNum})}">사진첩</a></td>
-				<td><a th:href="@{/room}">채팅방</a></td>
-
-			</tr>
-		</table>
-		<!-- /네비창 (정보, 게시판, 사진첩) -->
-
-		<!-- form -->
-		<form th:action="@{/thisiswe/club/calendar/modify(num=${calendarDTO.clubCalendarNum})}" th:method="get">
-			<button type="submit">일정수정</button>
-			<button type="button" onclick="calendarRemove()">일정삭제</button>
-			<!-- 내용 -->
-			<table border="1" th:each="calendarDTO : ${calendarDTO}">
-				<tr>
-					<th><h3>모임 스케줄표</h3></th>
-				</tr>
-				<tr>
-					<td>
-						모임 번호 : <input class="clubNum" name="" th:value="${calendarDTO.clubNum.clubNum}"> <br> 
-					</td>
-				</tr>
-				<tr>
-					<td>일정 번호 : <input class="calendarNum" name="num" th:value="${calendarDTO.clubCalendarNum}"> <br>
-					</td>
-				</tr>
-				<tr>
-
-					<td>제목 : [[${calendarDTO.clubCalendarTitle}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>내용 : [[${calendarDTO.clubCalendarContent}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>날짜 : [[${calendarDTO.clubCalendarDate}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>시간 : [[${calendarDTO.clubCalendarTime}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>장소 : [[${calendarDTO.clubCalendarPlace}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>인원 : [[${calendarDTO.clubCalendarHeadCount}]] <br>
-					</td>
-				</tr>
-				<tr>
-					<td>비용 : [[${calendarDTO.clubCalendarPrice}]] <br>
-					</td>
-
-				</tr>
-			</table>
-
-			<!-- /내용 -->
-
-
-		</form>
-		<!-- /form -->
-
-<script>
-	function calendarRemove(){
-		var calendarNum = $(".calendarNum").val();
-		var clubNum = $(".clubNum").val();
-		
-		$.ajax({
-			url:"/thisiswe/club/calendar/remove/"+calendarNum,
-			method : "delete",
-			success: function(result){
-				console.log("삭제결과값 : "+result)
-				if(result=="success"){
-					alert("일정이 삭제되었습니다.")
-					let url="/thisiswe/club/?num="+clubNum;
-					location.replace(url);
-				}
-			}
-			
-		})
-	}
-</script>
-=======
-
-
 		<!-- 네비창 (정보, 게시판, 사진첩) -->
-
 		<!-- 모임번호 받아오는 input -->
 		<input type="hidden" class="club-ce clubNum" name="clubNum"
 			th:value="${calendarDTO.clubNum.clubNum}" readonly="readonly">
@@ -282,9 +184,6 @@
 				})
 			}
 		</script>
->>>>>>> branch 'master(sub)' of https://github.com/HappyLeo7/thisiswe.git
-
 
 	</th:block>
-
 </th:block>

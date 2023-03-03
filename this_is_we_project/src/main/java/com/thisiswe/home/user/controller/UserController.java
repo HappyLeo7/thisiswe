@@ -42,7 +42,7 @@ public class UserController {
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals("loggedIn") && cookie.getValue().equals("true")) {
-					return "redirect:/thisiswe/home";
+					return "redirect:/thisiswe";
 				}
 			}
 		}
@@ -54,12 +54,19 @@ public class UserController {
 	@PostMapping("/login")
 	public String loginsucces(@AuthenticationPrincipal UserDetailsImpl userDetails, HttpSession session) {
 		session.setAttribute("userDetails", userDetails);
-	    return "redirect:/thisiswe/home";
+	    return "redirect:/thisiswe";
 	}
 	
 	// 회원 로그아웃
 	@PostMapping("/logout")
 	public String logout(HttpSession session) {
+		session.removeAttribute("userDetails");
+		return "redirect:/thisiswe";
+	}
+	
+	// 회원 로그아웃 Get방식
+	@GetMapping("/logout")
+	public String logoutGet(HttpSession session) {
 		session.removeAttribute("userDetails");
 		return "redirect:/thisiswe/login";
 	}
@@ -120,15 +127,47 @@ public class UserController {
 		return new ResponseEntity<>(userService.checkUserNickname(userNickname) ,HttpStatus.OK);
 	}
 	
+	// 유저 비밀번호 조회 일치 여부확인 후 탈퇴
+	@PostMapping("/user/check/{password}")
+	@ResponseBody
+	public ResponseEntity<String> checkUserPassword(@PathVariable("password") String password, 
+			@AuthenticationPrincipal UserDetailsImpl userDetails, HttpSession session) {
+		
+        if (userService.checkUserPassword(userDetails.getUsername(), password)) {
+            userService.deleteUser(userDetails.getUsername());
+            session.removeAttribute("userDetails");
+            return new ResponseEntity<>("success", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("fail", HttpStatus.OK);
+        }
+	}
+	
 	// 유저인증코드 보내기
 	@PostMapping("/userEmail/{emailCheck}")
 	@ResponseBody
-	public void pushUserEmailCode(@PathVariable("emailCheck") String userEmail) {
+	public String pushUserEmailCode(@PathVariable("emailCheck") String userEmail) {
 		
-		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmail);
+		if(userService.checkUserEmail(userEmail)) {
+			return "중복";
+		}
+		else {
+			System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmail);
 
-		userService.sendVerificationCode(userEmail);
+			userService.sendVerificationCode(userEmail);
+			
+			return "메일 보냄";
+		}
 	}
+	
+//	// 유저인증코드 보내기
+//	@PostMapping("/userEmail/{emailCheck}")
+//	@ResponseBody
+//	public void pushUserEmailCode(@PathVariable("emailCheck") String userEmail) {
+//		
+//		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmail);
+//
+//		userService.sendVerificationCode(userEmail);
+//	}
 	
 	// 이메일 인증코드 확인
 	@PostMapping("/userEmail/{emailCheck}/{emailCodeCheck}")
@@ -139,12 +178,5 @@ public class UserController {
 		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmialCode);
 		
 		return new ResponseEntity<>(userService.verifyCode(userEmail, userEmialCode), HttpStatus.OK);
-	}
-	
-	// 회원 탈퇴
-	@PostMapping({"/user/remove"})
-	public String remove(String userId, RedirectAttributes redirectAttributes) {
-		userService.removeUser(userId);
-		return "redirect:/thisiswe/login";
 	}
 }
