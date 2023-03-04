@@ -142,12 +142,12 @@
 						
 					<div class="club-table-read-cal">
 						<div class="club-table-cal-li" th:each="calendarDTO : ${calendarDTOList}">
-							<ul class="club-re-ca-ul">
-								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarNum}]]</li>
-							<br>
+							<ul class="club-re-ca-ul calendarRead" th:onclick="'calendarRead'+${calendarDTO.clubCalendarNum}+'()'">
+								<li th:class="'club-re-ca-li clubCalendarNum'+${calendarDTO.clubCalendarNum}">[[${calendarDTO.clubCalendarNum}]]</li>
 								<li class="club-re-ca-li-title">
 									<a th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">
-										[[${calendarDTO.clubCalendarTitle}]]</a>
+										[[${calendarDTO.clubCalendarTitle}]]
+										</a>
 								</li>
 								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarDate}]]</li>
 								<li class="club-re-ca-li">[[${calendarDTO.clubCalendarTime}]]</li>
@@ -187,7 +187,17 @@
 		</div>
 		<!-- /모임 전체 목록 -->
 
-		<script>
+		<script th:inline="javascript">
+		/* ul 클릭시 일정상세정보로 넘기기 */
+		$(".calendarRead").on("click",function(){
+			
+			//var clubCalendarNum= $(".clubCalendarNum").val();
+			
+			console.log(clubCalendarNum);
+			alert("상세 페이지 클릭"+clubCalendarNum);
+			location.href="/thisiswe/club/calendar/read?num="+clubCalendarNum;
+		})
+		
 			function clubRemove() {
 
 				var clubNum = $(".clubNum").val();

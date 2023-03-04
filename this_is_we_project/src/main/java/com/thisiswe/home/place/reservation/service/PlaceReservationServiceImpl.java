@@ -3,6 +3,7 @@ package com.thisiswe.home.place.reservation.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -117,6 +118,45 @@ public class PlaceReservationServiceImpl implements PlaceReservationService {
 	@Override
 	public void getPlaceNumToZoneNumToReservationList() {
 		placeReservationRepository.getPlaceNumToZoneNumToReservationList(null);
+	}
+
+	//예약번호로 예약 상세 1개 정보 불러오기
+	@Override
+	public PlaceReservationDTO getRead(Long reservationNum) {
+		log.info("... get Read () ...");
+		
+	Optional<PlaceReservationEntity> read=placeReservationRepository.findById(reservationNum);
+	
+	//log.info("예약번호 "+reservationNum+"번 정보 :"+read.get());
+	//log.info("예약번호 "+reservationNum+"번 정보 :"+read.get());
+	
+	log.info("... /get Read () ...");
+		return entityToDto(read.get(),reservationNum);
+	}
+
+	//예약 정보 수정 (인원 변경)
+	@Override
+	public PlaceReservationDTO modify(PlaceReservationDTO placeReservationDTO) {
+		log.info("... reservation modify ...");
+		
+		Optional<PlaceReservationEntity> read=placeReservationRepository.findById(placeReservationDTO.getPlaceReservationNum());
+		
+		PlaceReservationEntity placeReservationEntity=read.get();
+		log.info("예약되어있는 정보 확인 : "+placeReservationEntity);
+		if(placeReservationEntity !=null) {
+			placeReservationEntity.change(
+					placeReservationDTO.getPlaceReservationHeadcount(),
+					placeReservationDTO.getPlace_reservation_tel(),
+					placeReservationDTO.getPlace_reservation_name()
+					);
+			
+		}
+		
+		log.info("예약되어있는 수정정보 : "+placeReservationEntity);
+		placeReservationRepository.save(placeReservationEntity);
+		
+		log.info("... /reservation modify ...");
+		return placeReservationDTO;
 	}
 	
 	

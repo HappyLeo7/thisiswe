@@ -1,7 +1,6 @@
 package com.thisiswe.home.place.reservation.dto;
 
 
-import com.thisiswe.home.place.zone.entity.PlaceZoneEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 
 import lombok.AllArgsConstructor;
@@ -21,6 +20,8 @@ public class PlaceReservationDTO {
 
 	/** 장소 구역 번호 */
 	private Long placeZoneNum; // 장소 구역 번호
+	/** 장소 구역 이름 */
+	private String placeZoneName; // 장소 구역 이름
 	
 	/** 예약자 명 */
 	private String place_reservation_name; // 예약자 명

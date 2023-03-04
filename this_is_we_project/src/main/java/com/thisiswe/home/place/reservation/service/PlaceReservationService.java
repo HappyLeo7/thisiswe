@@ -61,13 +61,36 @@ public interface PlaceReservationService {
 	void getPlaceNumToZoneNumToReservationList();
 	
 	//en -> dto
-	default PlaceReservationDTO entityToDto(PlaceReservationEntity placeReservationEntity) {
+	default PlaceReservationDTO entityToDto(PlaceReservationEntity placeReservationEntity, Long reservationNum) {
+		System.out.println("placeReservationEntity : "+placeReservationEntity);
+		
+		String time=placeReservationEntity.getPlaceReservationTime();
+		String timeStrat=time.substring(0,2);
+		String timeEnd=time.substring(time.length()-3,time.length());
+		System.out.println("시작 시간 : "+timeStrat);
+		System.out.println("끝 시간 : "+timeEnd);
+		
 		PlaceReservationDTO placeReservationDTO = PlaceReservationDTO.builder()
-				.placeNum(null)
-				.placeReservationNum(null)
-				.place_reservation_name(null)
+				.placeNum(placeReservationEntity.getPlaceZoneNum().getPlaceNum().getPlaceNum())
+				.placeReservationNum(placeReservationEntity.getPlaceReservationNum())
+				.place_reservation_name(placeReservationEntity.getPlace_reservation_name())
+				.placeZoneNum(placeReservationEntity.getPlaceZoneNum().getPlaceZoneNum())
+				.placeReservationDate(placeReservationEntity.getPlaceReservationDate())
+				.place_reservation_tel(placeReservationEntity.getPlace_reservation_tel())
+				.placeReservationTimeStart(timeStrat)
+				.placeReservationTimeEnd(timeEnd)
+				.userId(placeReservationEntity.getPlaceZoneNum().getPlaceNum().getUserId())
+				.placeReservationHeadcount(placeReservationEntity.getPlaceReservationHeadcount())
+				.placeZoneName(placeReservationEntity.getPlaceZoneNum().getPlaceZoneName())
+				//.place_reservation_name(null)
 				.build();
 		
-		return null;
+		return placeReservationDTO;
 }
+
+
+	PlaceReservationDTO getRead(Long reservationNum);
+
+
+	PlaceReservationDTO modify(PlaceReservationDTO placeReservationDTO);
 }

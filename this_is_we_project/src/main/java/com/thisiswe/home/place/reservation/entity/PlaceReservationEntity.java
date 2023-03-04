@@ -44,4 +44,15 @@ public class PlaceReservationEntity {
 	
 	@Column(length = 30, name = "place_reservation_tel", nullable = false)
 	private String place_reservation_tel; // 전화 번호
+	
+	//수정 메서드
+	public void change(
+			Long placeReservationHeadcount,
+			String place_reservation_tel,
+			String place_reservation_name
+			) {
+		this.placeReservationHeadcount=placeReservationHeadcount;
+		this.place_reservation_tel=place_reservation_tel;
+		this.place_reservation_name=place_reservation_name;
+	}
 }
