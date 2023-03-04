@@ -42,7 +42,7 @@ public class PlaceZoneController {
 		
 		log.info("=== /zoneRegister() ===");
 		
-		return "place/place_zone_register";
+		return "redirect:/thisiswe/place/c?num="+placeZoneDTO.getPlaceNum();
 	}
 	
 	//zone 상세 페이지 연결
