@@ -13,8 +13,10 @@
 		<div style="text-align: center;">
 		
 			<a th:href="@{/thisiswe/place/modify(placeNum=${place.getPlaceNum})}"><button type="button" style="float: right;">수정</button></a>
-			<a th:href="@{/thisiswe/place/reservation}"><button type="button" style="float: right;">삭제</button></a>
 			
+			
+   			<button id="placeDeleteButton" type="submit">삭제</button>
+		
 			
 			<a th:href="@{/thisiswe/place/reservation}"><button type="button" style="float: right;">예약</button></a>
 			<a th:href="@{/thisiswe/place/zone/register(placeNum=${place.getPlaceNum})}"><button type="submit" style="float: right;">룸 추가</button></a>
@@ -190,6 +192,23 @@ const placeNum = [[${place.placeNum}]];
 		};
 		
 	$(document).ready(function(){
+		
+		$("#placeDeleteButton").click(function(){
+			console.log(placeNum)
+			$.ajax({
+				url: '/thisiswe/place/remove/' + placeNum,
+				method : "delete",
+					success : function(result) {
+						let url = "/thisiswe/place";
+						location.replace(url);
+					}
+				
+			})
+			
+		})
+		
+		
+		
 
 		// 댓글 loadJSONData (댓글 실시간 반영) 시작
 

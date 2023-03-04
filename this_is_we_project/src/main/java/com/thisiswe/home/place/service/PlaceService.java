@@ -23,9 +23,8 @@ public interface PlaceService {
 	public PlacePageResultDTO<PlaceDTO, Object[]> getList(PlacePageRequestDTO placePageRequestDTO);
 	
 	void modify(PlaceDTO placeDTO);
-
-	void removeWithReplies(Long bno);
-
+	
+	void remove(Long placeNum);
 	
 	
 	default PlaceDTO entitiesToDTO(PlaceEntity placeEntity,List<PlaceImageEntity> placeImages ,Double placeAvg, Long placeReviewCount) {
