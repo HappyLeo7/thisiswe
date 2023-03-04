@@ -78,4 +78,16 @@ public class ReservationController {
 		log.info("예약 가능 여부 : "+ result);
 		return new ResponseEntity<Boolean>(result,HttpStatus.OK);
 	}
+	
+	//예약 수정
+	@GetMapping({"/reservation/modify"})
+	public String reservationModifyPage() {
+		log.info("=== reservationModifyPage() ===");
+		
+		
+		
+		log.info("=== /reservationModifyPage() ===");
+		
+		return null;
+	}
 }

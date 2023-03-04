@@ -36,7 +36,7 @@ public class PlaceReservationEntity {
 	@Column(length = 30, name = "place_reservation_date", nullable = false)
 	private String placeReservationDate; // 예약 날짜
 	
-	@Column(length = 30, name = "place_reservation_time", nullable = false)
+	@Column(length = 500, name = "place_reservation_time", nullable = false)
 	private String placeReservationTime; // 예약 시간
 	
 	@Column(name = "place_reservation_headcount")

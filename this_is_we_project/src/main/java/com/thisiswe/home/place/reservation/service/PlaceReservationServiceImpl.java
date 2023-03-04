@@ -116,7 +116,7 @@ public class PlaceReservationServiceImpl implements PlaceReservationService {
 	//장소 > zone > 예약 현황 리스트 뽑기
 	@Override
 	public void getPlaceNumToZoneNumToReservationList() {
-		//placeReservationRepository
+		placeReservationRepository.getPlaceNumToZoneNumToReservationList(null);
 	}
 	
 	

@@ -16,9 +16,11 @@ public class PlaceReservationDTO {
 	
 	/** 예약 번호 */
 	private Long placeReservationNum; // 예약 번호
+	/** 장소 번호 */
+	private Long placeNum; // 장소 구역 번호
 
 	/** 장소 구역 번호 */
-	private PlaceZoneEntity placeZoneNum; // 장소 구역 번호
+	private Long placeZoneNum; // 장소 구역 번호
 	
 	/** 예약자 명 */
 	private String place_reservation_name; // 예약자 명

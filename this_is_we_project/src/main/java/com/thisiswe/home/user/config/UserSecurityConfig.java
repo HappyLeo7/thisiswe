@@ -59,19 +59,16 @@ public class UserSecurityConfig {
                 .antMatchers("/reservation/**").permitAll()
                 .antMatchers("/place/**").permitAll()
                 .antMatchers("/notice/**").permitAll()
-                .antMatchers("/thisiswe/**").permitAll()
+                .antMatchers("/thisiswe").permitAll()
+                .antMatchers("/").permitAll()
+                
                 .antMatchers("/display/**").permitAll()
-//		.antMatchers("/**").permitAll()
+		.antMatchers("/**").permitAll()
 	
 		
 		// 그 외 어떤 요청이든 '인증'
 		.anyRequest().authenticated()
-//		.and()
-//		.rememberMe() // Remember Me 활성화
-//		.key("uniqueAndSecret") // 쿠키의 암호화를 위한 key 값 설정
-//		.tokenValiditySeconds(60 * 60 * 24 * 7) // Remember Me 쿠키 유효시간 설정 (1주일)
-//		.rememberMeParameter("remember-me") // Remember Me 파라미터명 설정
-//		.rememberMeCookieName("remember-me-cookie") // Remember Me 쿠키명 설정
+		
 		.and()
 		
 		// 로그인 기능 허용

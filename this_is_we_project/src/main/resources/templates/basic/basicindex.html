@@ -59,11 +59,11 @@
 					<ul class="container-p-ul">
 						<!-- 로그인 하지 않은 경우 -->
 						<li class="container-p-li" sec:authorize="!isAuthenticated()">
-							<a th:href="@{/thisiswe/login}">LOGIN</a>
+							<a id="login-redirect" th:href="@{/thisiswe/login}">LOGIN</a>
 						</li>
 											<!-- 로그아웃 -->
 						<li class="container-p-li" sec:authorize="isAuthenticated()">
-							<a th:href="@{/thisiswe/logout}">LOGOUT</a>
+							<a id="logout-redirect" th:href="@{/thisiswe/logout}">LOGOUT</a>
 						</li>											
 <!-- 						<li class="container-p-li" sec:authorize="isAuthenticated()">
 							<form th:action="@{/thisiswe/logout}" method="post">
@@ -286,5 +286,6 @@
 
 		</div>
 		<!-- [header-div 전체] .wrapper -->
+
 	</body>
 </html>
