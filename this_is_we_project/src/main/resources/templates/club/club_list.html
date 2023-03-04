@@ -99,8 +99,8 @@
                             )}">[[${page}]]</a>
 					</li>
 					<!-- 다음버튼 -->
-					<li class="link-page-active" th:each="page: ${Page.next}">
-						<a class="paginate-link" th:href="@{/thisiswe/club(page=${Page.end+1},
+					<li class="link-page-active" th:if="${Page.next}">
+						<a class="paginate-link" th:href="@{/thisiswe/club(page=${Page.end},
   																		   type=${pageRequestDTO.type},
   																		   keyword=${pageRequestDTO.keyword})}"
 						tabindex="-1">다음 </a>
