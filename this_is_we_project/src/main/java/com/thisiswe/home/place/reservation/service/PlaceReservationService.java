@@ -58,7 +58,7 @@ public interface PlaceReservationService {
 	Boolean getCheck(PlaceReservationDTO placeReservationDTO);
 
 
-	void getPlaceNumToZoneNumToReservationList();
+	Object getPlaceNumToZoneNumToReservationList(Long placeZoneNum);
 	
 	//en -> dto
 	default PlaceReservationDTO entityToDto(PlaceReservationEntity placeReservationEntity, Long reservationNum) {

@@ -40,7 +40,7 @@
 				</tr>
 				<tr>
 				<td class="cl-re-contain">
-					<input class="cl-re-input-fi" th:value="${placeReservationDTO.placeReservationNum}">
+					<input class="cl-re-input-fi placeReservationNum" th:value="${placeReservationDTO.placeReservationNum}">
 				</td>
 				</tr>
 								
@@ -52,7 +52,7 @@
 				</tr>
 				<tr>
 				<td class="cl-re-contain">
-					<input class="cl-re-input-fi" th:value="${placeReservationDTO.placeZoneNum}">
+					<input class="cl-re-input-fi placeZoneNum" th:value="${placeReservationDTO.placeZoneNum}">
 				</td>
 				</tr>
 								
@@ -132,11 +132,34 @@
 				</table>
 				<div class="club-re-Btn">
 	<a  th:href="@{/thisiswe/place/reservation/modify(reservationNum=${placeReservationDTO.placeReservationNum})}"><button class="searchBtn-mi-textLength5">변경페이지</button></a>
+	<button type="button" class="searchBtn-mi-textLength5 reservationRemove">예약취소</button>
+	<a  th:href="@{/thisiswe/place/reservation/(placeZoneNum=${placeReservationDTO.placeZoneNum})}"><button class="searchBtn-mi">목록</button></a>
 	</div>
 	</div>
 	</div>
 	</div>
-	
+	<script type="text/javascript">
+//예약 취소 처리
+$(".reservationRemove").on("click",function(){
+	var placeReservationNum = $(".placeReservationNum").val()
+	var placeZoneNum=$(".placeZoneNum").val()
+	console.log("삭제 버튼 클릭");
+	console.log("예약번호 : "+placeReservationNum);
+	$.ajax({
+		url:"/thisiswe/place/reservation/remove",
+		method:"delete",
+		data:{ reservationNum:placeReservationNum,
+			placeZoneNum:placeZoneNum},
+		success: function(result){
+			var url= "/thisiswe/place/reservation/?placeZoneNum="+placeZoneNum;
+			location.replace(url);
+		}
+		
+		
+		
+	})
+})
+</script>
 	<!-- /내용 -->
 	
 	

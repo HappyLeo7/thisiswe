@@ -19,7 +19,8 @@ public interface PlaceReservationRepository extends JpaRepository<PlaceReservati
 	@Query("select pr "
 			+ " from PlaceZoneEntity pz "
 			+ " join PlaceReservationEntity pr "
-			+ " on pz.placeZoneNum = pr.placeZoneNum "
-			+ " where pr.placeZoneNum = :placeZoneNum")
+		    + " on pz.placeZoneNum = pr.placeZoneNum "
+			+ " where pz.placeZoneNum = :placeZoneNum "
+			+ " order by pr.placeReservationDate asc ")
 	List<PlaceReservationEntity> getPlaceNumToZoneNumToReservationList(@Param("placeZoneNum") Long placeZoneNum); 
 }

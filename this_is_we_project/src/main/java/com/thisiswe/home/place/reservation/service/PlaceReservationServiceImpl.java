@@ -116,8 +116,16 @@ public class PlaceReservationServiceImpl implements PlaceReservationService {
 	
 	//장소 > zone > 예약 현황 리스트 뽑기
 	@Override
-	public void getPlaceNumToZoneNumToReservationList() {
-		placeReservationRepository.getPlaceNumToZoneNumToReservationList(null);
+	public Object getPlaceNumToZoneNumToReservationList(Long placeZoneNum) {
+		List<PlaceReservationEntity> list=placeReservationRepository.getPlaceNumToZoneNumToReservationList(placeZoneNum);
+		List<PlaceReservationDTO> listDTO= new ArrayList<>();
+		for(PlaceReservationEntity arr: list) {
+			listDTO.add(entityToDto(arr, placeZoneNum));
+			log.info(arr);
+		}
+		
+		return listDTO;
+		
 	}
 
 	//예약번호로 예약 상세 1개 정보 불러오기
