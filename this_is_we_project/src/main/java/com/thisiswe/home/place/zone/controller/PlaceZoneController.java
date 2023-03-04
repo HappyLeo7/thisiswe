@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.thisiswe.home.place.reservation.dto.PlaceReservationDTO;
 import com.thisiswe.home.place.zone.dto.PlaceZoneDTO;
+import com.thisiswe.home.place.zone.dto.PlaceZoneTimepriceDTO;
 import com.thisiswe.home.place.zone.service.PlaceZoneService;
 
 import lombok.RequiredArgsConstructor;
@@ -35,9 +37,10 @@ public class PlaceZoneController {
 	}
 	//zone 등록 처리
 	@PostMapping({"/register"})
-	public String zoneRegister(PlaceZoneDTO placeZoneDTO) {
+	public String zoneRegister(PlaceZoneDTO placeZoneDTO, PlaceZoneTimepriceDTO placeZoneTimepriceDTO) {
 		log.info("=== zoneRegister() ===");
 		log.info("placeZoneDTO : "+placeZoneDTO);
+		log.info("placeZoneDTO : "+placeZoneTimepriceDTO);
 		placeZoneService.register(placeZoneDTO);
 		
 		log.info("=== /zoneRegister() ===");
