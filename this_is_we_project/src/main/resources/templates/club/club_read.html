@@ -142,7 +142,8 @@
 						
 					<div class="club-table-read-cal">
 						<div class="club-table-cal-li" th:each="calendarDTO : ${calendarDTOList}">
-							<ul class="club-re-ca-ul calendarRead" th:onclick="'calendarRead'+${calendarDTO.clubCalendarNum}+'()'">
+							<ul class="club-re-ca-ul calendarRead">
+							<input class="read" type="hidden" th:value="${calendarDTO.clubCalendarNum}">
 								<li th:class="'club-re-ca-li clubCalendarNum'+${calendarDTO.clubCalendarNum}">[[${calendarDTO.clubCalendarNum}]]</li>
 								<li class="club-re-ca-li-title">
 									<a th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">
@@ -191,9 +192,9 @@
 		/* ul 클릭시 일정상세정보로 넘기기 */
 		$(".calendarRead").on("click",function(){
 			
-			//var clubCalendarNum= $(".clubCalendarNum").val();
-			
+			var clubCalendarNum= $(this).children(".read").val();
 			console.log(clubCalendarNum);
+			
 			alert("상세 페이지 클릭"+clubCalendarNum);
 			location.href="/thisiswe/club/calendar/read?num="+clubCalendarNum;
 		})
