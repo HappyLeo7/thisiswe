@@ -61,11 +61,13 @@ public interface PlaceReservationService {
 	void getPlaceNumToZoneNumToReservationList();
 	
 	//en -> dto
-//	default PlaceReservationDTO entityToDto(PlaceReservationEntity placeReservationEntity) {
-//		PlaceReservationDTO placeReservationDTO = PlaceReservationDTO.builder()
-//				.
-//				.build();
-//		
-//		return null;
-//}
+	default PlaceReservationDTO entityToDto(PlaceReservationEntity placeReservationEntity) {
+		PlaceReservationDTO placeReservationDTO = PlaceReservationDTO.builder()
+				.placeNum(null)
+				.placeReservationNum(null)
+				.place_reservation_name(null)
+				.build();
+		
+		return null;
+}
 }
