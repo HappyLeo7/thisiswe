@@ -36,13 +36,16 @@
 				</div>
 				
 				
-				<div th:each="zone : ${zones}" style="border: solid 1px;">
-				[[${zone.getPlaceZoneName}]]
-				[[${zone.getPlaceZoneHeadCount}]]
-				[[${zone.getPlaceZoneNum}]]
-				[[${zone.getPlaceNum}]]
-				
-				</div>
+				<form th:action="@{/thisiswe/place/reservation}" action="" method="get">					
+					<div th:each="zone : ${zones}" style="border: solid 1px;">
+						[[${zone.getPlaceZoneName}]]
+						[[${zone.getPlaceZoneHeadCount}]]
+						[[${zone.getPlaceZoneNum}]]
+						[[${zone.getPlaceNum}]]
+						<input type="radio" name="placeZoneNum" th:value="${zone.getPlaceZoneNum}">
+					</div>
+					<button type="submit">예약</button>
+				</form>
 
 				<input type="hidden" name="placeNum" th:value="${place.placeNum}">
 				<div>

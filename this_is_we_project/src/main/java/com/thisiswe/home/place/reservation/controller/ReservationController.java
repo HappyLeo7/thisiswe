@@ -32,9 +32,10 @@ public class ReservationController {
 
 	// 예약 페이지 연결
 	@GetMapping({ "/reservation" })
-	public String reservation(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
+	public String reservation(Long placeZoneNum, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
 		log.info("=== reservation() ===");
-
+		
+		log.info("장소번호 : "  + placeZoneNum);
 		plasceReservationService.getPlaceNumToZoneNumToReservationList();// 예약현황 불러오기
 
 		model.addAttribute("userId", userDetailsImpl.getUsername());// 접속중 유저 ID
