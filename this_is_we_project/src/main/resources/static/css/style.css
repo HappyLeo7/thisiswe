@@ -557,6 +557,11 @@ html.active menu .container {
 .weSwiper.hover figcaption:after {
   	opacity: 0.1;
 }
+.wePoint{
+	color: #BB2649;
+	font-size: 2.0em;
+ 	font-weight: 700;	
+}
 /* /[swiper] - swiper hover 효과부분 */
 /* /[swiper] - swiper 부분 */
 
