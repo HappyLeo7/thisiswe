@@ -26,7 +26,7 @@
 
 		<!-- 모임 전체 목록 -->
 		<div class="inner-club">
-			<h2>이런 모임은 어떠세요? 선택했나?</h2>
+			<h2>이런 모임은 어떠세요? 선택 좀,,, </h2>
 
 			<!-- 모임 등록 버튼 -->
 			<div class="club-regi">
@@ -47,13 +47,13 @@
 						<div class="club-table-liRe">
 							<a th:href="@{/club/read}"></a>
 						</div>
-						<div>
-							<a class="clubNum" th:href="@{/thisiswe/club/(num=${clubDTO.clubNum})}"> [ [[${clubDTO.clubName}]] ]모임명</a>
+						<div class="club-table-liRe">
+							<a class="clubNum club-liData" th:href="@{/thisiswe/club/(num=${clubDTO.clubNum})}"> [[${clubDTO.clubName}]]</a>
 						</div>
-						<div>지역:([[${clubDTO.clubPlace}]])</div>
-						<div>카테고리:([[${clubDTO.clubCategory}]])</div>
-						<div>인원:([[${clubDTO.clubHeadCount}]])</div>
-						<div>모임장:([[${clubDTO.userNickname}]])</div>
+						<div class="club-table-liRe">&nbsp;&nbsp;&nbsp;장소 :&nbsp; <span class="liReData">[[${clubDTO.clubPlace}]]</span></div>
+						<div class="club-table-liRe">카테고리 :&nbsp; <span class="liReData">[[${clubDTO.clubCategory}]]</span></div>
+						<div class="club-table-liRe">&nbsp;인원 :&nbsp; <span class="liReData">[[${clubDTO.clubHeadCount}]]명</span></div>
+						<div class="club-table-liRe">모임장 :&nbsp; <span class="liReData">[[${clubDTO.userNickname}]]</span></div>
 					</div>
 				</div>
 			</div>
