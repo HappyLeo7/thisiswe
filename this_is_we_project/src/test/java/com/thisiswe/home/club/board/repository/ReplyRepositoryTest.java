@@ -73,14 +73,14 @@ public class ReplyRepositoryTest {
 	@Test
 	public void testListByBoard() {
 		
-		System.out.println("[ReplyRepositoryTest][testListByBoard]===================");
-		/* List<Reply> replyList = replyRepository.getRepliesByBoardOrderByBoardReplyNum( */
-		List<Reply> replyList = replyRepository.findByBoardNum(Board.builder().boardNum(41L).build());
-		
-		System.out.println("[ReplyRepositoryTest][testListByBoard] replyList ===> " + replyList);
-		replyList.forEach(reply -> System.out.println(reply)); 
-		
-		System.out.println("/[ReplyRepositoryTest][testListByBoard]==================");
+//		System.out.println("[ReplyRepositoryTest][testListByBoard]===================");
+//		/* List<Reply> replyList = replyRepository.getRepliesByBoardOrderByBoardReplyNum( */
+//		List<Reply> replyList = replyRepository.findByBoardNum(Board.builder().boardNum(41L).build());
+//		
+//		System.out.println("[ReplyRepositoryTest][testListByBoard] replyList ===> " + replyList);
+//		replyList.forEach(reply -> System.out.println(reply)); 
+//		
+//		System.out.println("/[ReplyRepositoryTest][testListByBoard]==================");
 		
 	}
 }

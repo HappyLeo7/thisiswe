@@ -11,8 +11,13 @@
 
 
 		<div style="text-align: center;">
+		
+			<a th:href="@{/thisiswe/place/modify(placeNum=${place.getPlaceNum})}"><button type="button" style="float: right;">수정</button></a>
+			<a th:href="@{/thisiswe/place/reservation}"><button type="button" style="float: right;">삭제</button></a>
+			
+			
 			<a th:href="@{/thisiswe/place/reservation}"><button type="button" style="float: right;">예약</button></a>
-			<a th:href="@{/thisiswe/place/zone/register}"><button type="button" style="float: right;">룸 추가</button></a>
+			<a th:href="@{/thisiswe/place/zone/register}"><button type="submit" style="float: right;">룸 추가</button></a>
 		
 		
 			<div>
@@ -28,7 +33,16 @@
 					</div>
 				</div>
 				
+				
+				<div th:each="zone : ${zones}" style="border: solid 1px;">
+				[[${zone.getPlaceZoneName}]]
+				[[${zone.getPlaceZoneHeadCount}]]
+				[[${zone.getPlaceZoneNum}]]
+				[[${zone.getPlaceNum}]]
+				
+				</div>
 
+				<input type="hidden" name="placeNum" th:value="${place.placeNum}">
 				<div>
 					<h3>[[${place.getPlaceOneLineIntroduction}]]</h3>
 				</div>

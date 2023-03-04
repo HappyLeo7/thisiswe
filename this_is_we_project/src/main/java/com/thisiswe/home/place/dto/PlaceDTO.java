@@ -35,8 +35,6 @@ public class PlaceDTO {
 	
 	private String placePhoneNumber;
 	
-	private String placeCoordinate;
-	
 	private String placeGuide;
 	
 	private String placeCaution;

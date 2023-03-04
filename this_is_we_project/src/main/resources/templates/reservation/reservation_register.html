@@ -13,114 +13,178 @@
 
 
 		<!-- 내용 -->
-		<title>예약 등록페이지</title>
+<form th:action="@{/thisiswe/place/reservation}" th:method="post">
 
 
+<button type="submit" class="">예약하기</button>
+<button type="button" class="reservationBtn">예약중복확인</button>
+
+<script type="text/javascript">
+
+$(".reservationBtn").on("click",function(){
+	var placeReservationDate=$(".placeReservationDate").val();
+	console.log("예약하고싶은 날짜 :"+placeReservationDate);
+	var placeReservationTimeStart=$(".placeReservationTimeStart").val();
+	console.log("예약하고싶은 시작시간 :"+placeReservationTimeStart);
+	var placeReservationTimeEnd=$(".placeReservationTimeEnd").val();
+	console.log("예약하고싶은 시작시간 :"+placeReservationTimeEnd);
+	
+	alert("예약버튼 클릭되었습니다.")
+	
+	$.ajax({
+	url:"/thisiswe/place/reservationCheck",
+	type:"POST",
+	data: JSON.stringify({
+		placeReservationDate:placeReservationDate,
+		placeReservationTimeStart:placeReservationTimeStart,
+		placeReservationTimeEnd:placeReservationTimeEnd
+	}),
+	contentType:"application/json; charset=UTF-8",
+	dataType:"json",
+	success: function(data){
+		if(data==true){
+		alert("예약이 가능합니다.")
+		console.log(data)
+		}else{
+		alert("예약이 불가능합니다.")
+		console.log(data)
+		}
+	}
+	
+		
+	})
+	
+})
+</script>
 		<div>RESERVATION</div>
 
-		<div>
-			<input type="date">
-		</div>
 
 
 
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
-					<a>00:00</a> 
-					<a>01:00</a>
-					<a>03:00</a>
-				<a >04:00</a>
-				<a >05:00</a>
-				<a >06:00</a>
-				<a >07:00</a>
-				<a>08:00</a>
-					<a>09:00</a> 
-					<a>10:00</a>
-					<a>11:00</a>
-				<a >12:00</a>
-				<a >13:00</a>
-				<a >14:00</a>
-				<a >15:00</a>
-				<a>16:00</a>
+				<div>
+					예약자명 : <input type="text" name="place_reservation_name">
 				</div>
-				<div class="swiper-slide">
-					2번 슬라이드입니다.<br> 레이아웃만 제대로 설정되어 있다면 슬라이드에 어떤 것이든 넣을 수 있습니다.
+				<div>
+					유저 ID : <input type="text" name="userId" th:value="${userId}">
 				</div>
-				<div class="swiper-slide">
-					<img
-						src="https://image.flaticon.com/icons/png/128/1933/1933588.png"
-						alt=""><br> 이렇게 이미지도 넣을 수 있습니다.
+				<div>
+					유저 닉네임 : <input type="text" name="" th:value="${userNickname}">
+				</div>
+		<div>
+			날짜 : <input type="date" name="placeReservationDate" class="placeReservationDate">
+		</div>
+				
+				<div>
+					인원 : <input type="number" name="placeReservationHeadcount">
 				</div>
 				
+				<div>
+					전화번호 : <input type="number" name="place_reservation_tel">
+				</div>
+				
+				
+					<div>
+					<select name="placeReservationTimeStart" class="placeReservationTimeStart">
+						<option value="00">00:00</option>
+						<option value="01">01:00</option>
+						<option value="02">02:00</option>
+						<option value="03">03:00</option>
+						<option value="04">04:00</option>
+						<option value="05">05:00</option>
+						<option value="06">06:00</option>
+						<option value="07">07:00</option>
+						<option value="08">08:00</option>
+						<option value="09">09:00</option>
+						<option value="10">10:00</option>
+						<option value="11">11:00</option>
+						<option value="12">12:00</option>
+						<option value="13">13:00</option>
+						<option value="14">14:00</option>
+						<option value="15">15:00</option>
+						<option value="16">16:00</option>
+						<option value="17">17:00</option>
+						<option value="18">18:00</option>
+						<option value="19">19:00</option>
+						<option value="20">20:00</option>
+						<option value="21">21:00</option>
+						<option value="22">22:00</option>
+						<option value="23">23:00</option>
+					</select>
+					<select name="placeReservationTimeEnd" class="placeReservationTimeEnd">
+						<option value="00">00:00</option>
+						<option value="01">01:00</option>
+						<option value="02">02:00</option>
+						<option value="03">03:00</option>
+						<option value="04">04:00</option>
+						<option value="05">05:00</option>
+						<option value="06">06:00</option>
+						<option value="07">07:00</option>
+						<option value="08">08:00</option>
+						<option value="09">09:00</option>
+						<option value="10">10:00</option>
+						<option value="11">11:00</option>
+						<option value="12">12:00</option>
+						<option value="13">13:00</option>
+						<option value="14">14:00</option>
+						<option value="15">15:00</option>
+						<option value="16">16:00</option>
+						<option value="17">17:00</option>
+						<option value="18">18:00</option>
+						<option value="19">19:00</option>
+						<option value="20">20:00</option>
+						<option value="21">21:00</option>
+						<option value="22">22:00</option>
+						<option value="23">23:00</option>
+					</select>
+					
+					
+					</div>
+					<div>
+						<a>01:00</a> 
+					</div>
+					<div>
+						<a>02:00</a> 
+					</div>
+					<div>
+						<a>03:00</a> 
+					</div>
+					<div>
+						<a>04:00</a> 
+					</div>
+					<div>
+						<a>05:00</a> 
+					</div>
+					<div>
+						<a>06:00</a>
+					</div>
+					<div>
+						<a>07:00</a> 
+					</div>
+						<a>08:00</a> <a>09:00</a> <a>10:00</a> <a>11:00</a> <a>12:00</a>
+				</div>
+				<div class="swiper-slide">
+					<a>13:00</a> <a>14:00</a> <a>15:00</a> <a>16:00</a> <a>17:00</a>
+					<a>18:00</a> <a>19:00</a> <a>20:00</a> <a>21:00</a> <a>22:00</a>
+					<a>23:00</a>
+				</div>
+
 			</div>
 		</div>
-		<!-- 스크린  -->
-		<link rel="stylesheet"
-			href="https://unpkg.com/swiper/swiper-bundle.min.css">
-		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 		<script>
 			new Swiper('.swiper-container');
 		</script>
+		
+		<!-- 스크린  -->
 
-		<header>
-			<!-- Swiper -->
-			<div class="swiper mySwiper">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<a th:href="@{/thisiswe/club}">
-							<figure class="weSwiper">
-								<img src="/image/club/club02.png" />
-								<figcaption>
-									<h3>00:00</h3>
-								</figcaption>
-							</figure>
-						</a> <a th:href="@{/thisiswe/place}">
-							<figure class="weSwiper">
-								<img src="/image/place/place01.jpg" />
-								<figcaption>
-									<h3>
-										THIS IS WE, <span>PLACE</span>
-									</h3>
-									<P>Every adventure requires a first step</P>
-								</figcaption>
-							</figure>
-						</a>
-					</div>
-				</div>
-
-				<div class="swiper-wrapper"></div>
-				<!-- <div class="swiper-button-next"></div>
-					<div class="swiper-button-prev"></div> -->
-				<div class="swiper-pagination"></div>
-			</div>
-
-			<!-- Swiper JS -->
-			<script
-				src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
-			<!-- Initialize Swiper -->
-			<script>
-				var swiper = new Swiper(".mySwiper", {
-					slidesPerView : 1,
-					spaceBetween : 30,
-					loop : true,
-					pagination : {
-						el : ".swiper-pagination",
-						clickable : true,
-					},
-					navigation : {
-						nextEl : ".swiper-button-next",
-						prevEl : ".swiper-button-prev",
-					},
-				});
-			</script>
-		</header>
 
 
 
 
 		<!-- /내용 -->
+</form>
 
 
 

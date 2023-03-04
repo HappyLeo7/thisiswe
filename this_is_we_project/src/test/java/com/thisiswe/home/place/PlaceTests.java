@@ -25,13 +25,13 @@ public class PlaceTests {
 	public void insertTest() {
 		LongStream.rangeClosed(1, 100).forEach(i -> {
 
-			PlaceEntity placeEntity = PlaceEntity.builder().userId(UserEntity.builder().userId("user" + i).build())
-					.placeName("유저" + i).placeOneLineIntroduction("한줄 소개" + i).placeIntroduction("소개글" + i)
-					.placeBusinessHours("12시~24시 영업").placeHoliday("공휴일 휴무").placeRefundRegulations("환불 규정은 ~입니다")
-					.placeAddress("관악로" + i + "길").placePhoneNumber("010-1111-1111")
-					.placeCoordinate(i + "." + i + "." + i).placeGuide("찾아오는 길은 ~~입니다").placeCaution("사용 시 ~ 는 주의해주세요.")
-					.build();
-			placeRepository.save(placeEntity);
+//			PlaceEntity placeEntity = PlaceEntity.builder().userId(UserEntity.builder().userId("user" + i).build())
+//					.placeName("유저" + i).placeOneLineIntroduction("한줄 소개" + i).placeIntroduction("소개글" + i)
+//					.placeBusinessHours("12시~24시 영업").placeHoliday("공휴일 휴무").placeRefundRegulations("환불 규정은 ~입니다")
+//					.placeAddress("관악로" + i + "길").placePhoneNumber("010-1111-1111")
+//					.placeCoordinate(i + "." + i + "." + i).placeGuide("찾아오는 길은 ~~입니다").placeCaution("사용 시 ~ 는 주의해주세요.")
+//					.build();
+//			placeRepository.save(placeEntity);
 		});
 	}
 
@@ -75,14 +75,14 @@ public class PlaceTests {
 	public void updateTest() {
 		LongStream.rangeClosed(1, 100).forEach(i -> {
 
-			PlaceEntity placeEntity = PlaceEntity.builder().placeNum(i)
-					.userId(UserEntity.builder().userId("user" + i).build()).placeName("oo플레이스" + i)
-					.placeOneLineIntroduction("(수정)한줄 소개" + i).placeIntroduction("(수정)소개글" + i)
-					.placeBusinessHours("(수정)12시~24시 영업").placeHoliday("(수정)공휴일 휴무")
-					.placeRefundRegulations("(수정)환불 규정은 ~입니다").placeAddress("(수정)관악로" + i + "길")
-					.placePhoneNumber("(수정)010-1111-1111").placeCoordinate("(수정)" + i + "." + i + "." + i)
-					.placeGuide("(수정)찾아오는 길은 ~~입니다").placeCaution("(수정)사용 시 ~ 는 주의해주세요.").build();
-			placeRepository.save(placeEntity);
+//			PlaceEntity placeEntity = PlaceEntity.builder().placeNum(i)
+//					.userId(UserEntity.builder().userId("user" + i).build()).placeName("oo플레이스" + i)
+//					.placeOneLineIntroduction("(수정)한줄 소개" + i).placeIntroduction("(수정)소개글" + i)
+//					.placeBusinessHours("(수정)12시~24시 영업").placeHoliday("(수정)공휴일 휴무")
+//					.placeRefundRegulations("(수정)환불 규정은 ~입니다").placeAddress("(수정)관악로" + i + "길")
+//					.placePhoneNumber("(수정)010-1111-1111").placeCoordinate("(수정)" + i + "." + i + "." + i)
+//					.placeGuide("(수정)찾아오는 길은 ~~입니다").placeCaution("(수정)사용 시 ~ 는 주의해주세요.").build();
+//			placeRepository.save(placeEntity);
 		});
 	}
 

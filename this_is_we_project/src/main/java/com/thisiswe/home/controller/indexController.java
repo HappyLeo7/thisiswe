@@ -28,7 +28,7 @@ public class indexController {
 		log.info("======indexController=======");
 		log.info("****index.html 연결****");
 		log.info("===========================");
-		return "/index";
+		return "index";
 		
 	}
 	
