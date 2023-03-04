@@ -35,7 +35,8 @@ public interface PlaceReservationService {
 		
 		
 			PlaceReservationEntity placeReservationEntity = PlaceReservationEntity.builder()
-					//.placeReservationNum(placeReservationDTO.getPlaceReservationNum())
+					//.placeReservationNum(placeReservationDTO.getPlaceReservationNum()
+					.placeZoneNum(placeReservationDTO.getPlaceZoneNum())
 					.place_reservation_name(placeReservationDTO.getPlace_reservation_name())//예약자명
 					.userId(placeReservationDTO.getUserId())//유저ID
 					.place_reservation_tel(placeReservationDTO.getPlace_reservation_tel()) //전화번호
@@ -49,4 +50,7 @@ public interface PlaceReservationService {
 
 
 	Boolean getCheck(PlaceReservationDTO placeReservationDTO);
+
+
+	void getPlaceNumToZoneNumToReservationList();
 }

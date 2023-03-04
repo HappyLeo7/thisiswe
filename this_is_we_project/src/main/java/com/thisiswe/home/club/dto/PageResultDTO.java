@@ -36,11 +36,11 @@ public class PageResultDTO<DTO, EN> {
 
 	private void makePageList(Pageable pageable) {
 		
-		this.page = pageable.getPageNumber() + 1;
+		this.page = pageable.getPageNumber()+1;
 		this.size = pageable.getPageSize();
-		int tempEnd = (int)(Math.ceil(page/10.0)) * 10;
+		int tempEnd = (int)(Math.ceil(page/12.0)) * 12;
 		
-		this.start = tempEnd - 9;
+		this.start = tempEnd - 11;
 		
 		this.prev = start > 1;
 		this.end = totalPage > tempEnd ? tempEnd : totalPage;

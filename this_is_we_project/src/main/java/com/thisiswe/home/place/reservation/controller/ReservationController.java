@@ -29,10 +29,13 @@ public class ReservationController {
 	@Autowired
 	private PlaceReservationService plasceReservationService;
 
+	
 	//예약 페이지 연결
 	@GetMapping({"/reservation"})
 	public String reservation(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,Model model) {
 		log.info("=== reservation() ===");
+		
+		plasceReservationService.getPlaceNumToZoneNumToReservationList();//예약현황 불러오기
 		
 		model.addAttribute("userId",userDetailsImpl.getUsername());//접속중 유저 ID
 		model.addAttribute("userNickname",userDetailsImpl.getUserNickname());//접속중 유저 닉네임
@@ -46,6 +49,7 @@ public class ReservationController {
 	@PostMapping({"/reservation"})
 	public String reservationRegister(PlaceReservationDTO placeReservationDTO) {
 		log.info("=== reservationRegister() ===");
+		log.info("=== 사용자 입력 정보 placeReservationDTO : "+placeReservationDTO);
 		
 		//예약 내용 체크
 		Boolean result=plasceReservationService.getCheck(placeReservationDTO);
@@ -72,7 +76,6 @@ public class ReservationController {
 		log.info("예약날짜 정보 시간 :"+placeReservationDTO);
 		Boolean result=plasceReservationService.getCheck(placeReservationDTO);
 		log.info("예약 가능 여부 : "+ result);
-		//String check=result.toString();
-		return new ResponseEntity<Boolean>(false,HttpStatus.OK);
+		return new ResponseEntity<Boolean>(result,HttpStatus.OK);
 	}
 }

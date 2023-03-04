@@ -13,6 +13,18 @@
 
 
 		<!-- 내용 -->
+		
+		<!-- 예약 현황 -->
+		
+		<div><h2>예약 현황</h2></div>
+		<div>
+			<input >
+		</div>
+		
+		
+		
+		
+		
 <form th:action="@{/thisiswe/place/reservation}" th:method="post">
 
 
@@ -64,6 +76,13 @@ $(".reservationBtn").on("click",function(){
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
+				<div>
+					장소번호 : <input name="">
+				</div>
+				<div>
+					룸 번호 : <input name="placeZoneNum">
+				</div>
+				
 				<div>
 					예약자명 : <input type="text" name="place_reservation_name">
 				</div>
@@ -139,36 +158,25 @@ $(".reservationBtn").on("click",function(){
 						<option value="22">22:00</option>
 						<option value="23">23:00</option>
 					</select>
+					<div>
+					카드번호 : 
+						<input type="number" max="9999" name="placeReservationCardNumber1">-
+						<input type="number" max="9999" name="placeReservationCardNumber2">-
+						<input type="number" max="9999" name="placeReservationCardNumber3">-
+						<input type="number" max="9999" name="placeReservationCardNumber4">
+					</div>
+					<br>
+					<div>
+					카드 월/년 :<input type="number" min="1" max="12" name="placeReservationCardMonth">/<input type="number" min="01" max="99" name="placeReservationCardYear">
+					</div>
+					<div>
+					카드 사용자 이름 : 	<input type="text" name="placeReservationCardUserName">
+					</div>
+					<div>
+					카드 비밀번호 앞 2자리 :	<input type="password" name="placeReservationCardpassword">**
+					</div>
 					
-					
 					</div>
-					<div>
-						<a>01:00</a> 
-					</div>
-					<div>
-						<a>02:00</a> 
-					</div>
-					<div>
-						<a>03:00</a> 
-					</div>
-					<div>
-						<a>04:00</a> 
-					</div>
-					<div>
-						<a>05:00</a> 
-					</div>
-					<div>
-						<a>06:00</a>
-					</div>
-					<div>
-						<a>07:00</a> 
-					</div>
-						<a>08:00</a> <a>09:00</a> <a>10:00</a> <a>11:00</a> <a>12:00</a>
-				</div>
-				<div class="swiper-slide">
-					<a>13:00</a> <a>14:00</a> <a>15:00</a> <a>16:00</a> <a>17:00</a>
-					<a>18:00</a> <a>19:00</a> <a>20:00</a> <a>21:00</a> <a>22:00</a>
-					<a>23:00</a>
 				</div>
 
 			</div>

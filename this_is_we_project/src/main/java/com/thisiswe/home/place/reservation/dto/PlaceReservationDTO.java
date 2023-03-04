@@ -39,4 +39,23 @@ public class PlaceReservationDTO {
 	
 	/** 전화 번호 */
 	private String place_reservation_tel; // 전화 번호
+	
+	/** 카드 번호1 */
+	private Long placeReservationCardNumber1;
+	/** 카드 번호2 */
+	private Long placeReservationCardNumber2;
+	/** 카드 번호3 */
+	private Long placeReservationCardNumber3;
+	/** 카드 번호4 */
+	private Long placeReservationCardNumber4;
+	/** 카드 유효날짜 년도 */
+	private Long placeReservationCardYear;
+	/** 카드 유효날짜 월 */
+	private Long placeReservationCardMonth;
+	/** 카드 사용자 이름 */
+	private String placeReservationCardUserName;	
+	/** 카드 비밀번호 앞자리2개 */
+	private Long placeReservationCardpassword;	
+	
+
 }

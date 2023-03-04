@@ -10,6 +10,7 @@ import com.thisiswe.home.place.reservation.entity.PlaceReservationEntity;
 
 public interface PlaceReservationRepository extends JpaRepository<PlaceReservationEntity, Long>{
 
+	
 	@Query("select p "
 			+ "from PlaceReservationEntity p "
 			+ "where placeReservationDate = :placeReservationDate")
