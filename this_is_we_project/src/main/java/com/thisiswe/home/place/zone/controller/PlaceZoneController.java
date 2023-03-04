@@ -1,6 +1,7 @@
 package com.thisiswe.home.place.zone.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +22,12 @@ public class PlaceZoneController {
 
 	//장소 zone 등록 페이지 연결
 	@GetMapping({"/register"})
-	public String zone(PlaceZoneDTO placeZoneDTO) {
+	public String zone(Long placeNum, Model model) {
 		log.info("=== zone() ===");
 		
-		log.info("placeZoneDTO : "+placeZoneDTO);
+		log.info("placeNum : "+placeNum);
+	
+		model.addAttribute("placeNum", placeNum);
 		
 		log.info("=== /zone() ===");
 		return "place/place_zone_register";
