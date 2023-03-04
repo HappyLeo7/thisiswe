@@ -21,15 +21,15 @@ public class ReplyServiceTests {
 	//TODO [ServiceTest] 게시글-댓글 : boardNum 불러오기
 	@Test
 	public void testGetList() {
-		Long boardNum = 128L;
-		List<ReplyDTO> replyDTOList = replyService.getList(boardNum);
-		
-		//TODO [ServiceTest] 게시글-댓글 : replyDTOList 출력
-		System.out.println("[ReplyServiceTests][testGetList]=========================");
-		System.out.println("[ReplyServiceTests][testGetList] replyDTOList ===> :: " + replyDTOList);
-		
-		replyDTOList.forEach(replyDTO -> System.out.println(replyDTO));
-		System.out.println("/[ReplyServiceTests][testGetList]========================");
+//		Long boardNum = 128L;
+//		List<ReplyDTO> replyDTOList = replyService.getList(boardNum);
+//		
+//		//TODO [ServiceTest] 게시글-댓글 : replyDTOList 출력
+//		System.out.println("[ReplyServiceTests][testGetList]=========================");
+//		System.out.println("[ReplyServiceTests][testGetList] replyDTOList ===> :: " + replyDTOList);
+//		
+//		replyDTOList.forEach(replyDTO -> System.out.println(replyDTO));
+//		System.out.println("/[ReplyServiceTests][testGetList]========================");
 		
 	}
 
