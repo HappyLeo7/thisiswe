@@ -1,86 +1,142 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+	;
+
+/* 프로젝트 포인트 색상(임의 01) : #e4481b; - 주황색 */
+/* 프로젝트 포인트 색상(임의 02) : #0d5718; - 초록색 */
+/* 프로젝트 포인트 색상(팬톤 올해의 컬러 2023) : #BB2649; - 비바마젠타 */
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
 /* 공통 스타일 */
 body {
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 16px;
-  color: #333;
+	color: #333;
+	text-align: center;
 }
 
 /* 회원정보 수정 폼 스타일 */
 #modify {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	max-width: 500px;
+	margin: 50px auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* 제목 스타일 */
 #modify span:first-child {
-  display: block;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
+	margin: 15px;
+	display: block;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
 }
 
 /* 입력 폼 스타일 */
 .signup-classification {
-  display: block;
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	color : #303030;
+	font-size: 18px;
+	font-weight: bold;
+	color: #303030;
 }
-
+.myPageId {
+	padding: 15px;
+	font-size: 24px;
+	font-weight: 600;
+	color: #BB2649;
+	cursor: pointer;
+}
+.myPagePw{
+	display: block;
+	padding: 10px;
+	width: 100%;
+	height: 40px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-sizing: border-box;
+	font-size: 16px;
+	text-align: center;
+}
+.myPageNick{
+	display: block;
+	padding: 10px;
+	width: 100%;
+	height: 40px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-sizing: border-box;
+	font-size: 16px;
+	text-align: center;
+}
 #previewImage {
-  display: block;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+	display: inline-block;
+	margin: 10px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	font-size: 14px;
+	color: #c0c0c0;
+	text-align: center;
+}
+#userImageFile{
+	display: inline-block;
+	padding-left: 100px;
+	font-size: 14px;
+	color: #c0c0c0;
 }
 
-input[type="file"] {
-  display: block;
-  margin-top: 10px;
+.myPagePw:focus, .myPageNick:focus {
+	border: 2px solid #BB2649;
+	outline: none;	
 }
-
-input[type="password"], input[type="text"] {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 16px;
-}
-
-input[type="password"]:focus, input[type="text"]:focus {
-  border-color: #333;
-}
-
 /* 버튼 스타일 */
 button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ff9800;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+	display: inline-block;
 }
-
-button:hover {
-  background-color: #f57c00;
+.myPageNickBtn{
+	margin-bottom: 10px;
+	background: #ffffff;
+	color: #363636;
+	height: 30px;
+	width: 100px;
+	font-size: 16px;
+	font-weight: 400;
+	border: 1px solid #b3b3b3;
+	border-radius: 12px;
+	cursor: pointer;
+	transition: all 0.3s ease;
 }
-
+.myPageNickBtn:hover{
+	background: #fff;
+	color: #BB2649;
+	width: 100px;
+	font-size: 16px;
+	font-weight: 600;
+	border: 1px solid #868686;
+	border-radius: 12px;
+}
+.modifyBtn{
+	margin: 20px 0 15px 0;
+    position: relative;
+    height: 50px;
+    width: 100px;
+    background-color: #BB2649;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+}
 /* 검증 메시지 스타일 */
 .verification {
-  display: inline-block;
-  margin-left: 10px;
-  font-size: 14px;
-  color: #f00;
+	display: inline-block;
+	margin: 10px;
+	text-align: center;
+	font-size: 14px;
+	color: #BB2649;
 }

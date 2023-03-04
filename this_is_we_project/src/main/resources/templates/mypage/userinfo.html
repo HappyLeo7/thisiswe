@@ -38,22 +38,21 @@
 <body>
   <div id="modify">
     <span>회원정보 수정</span><br>
-      <span class="signup-classification">아이디</span><br>
-      <span class="test" th:text="${userId}"></span> <br>
+      <span class="signup-classification">아이디</span>
+      <span class="test myPageId" th:text="${userId}"></span> <br>
       
-      <span class="signup-classification">이미지</span><br>
-      <img id="previewImage" src="#" alt="미리보기 이미지"> <br>
+      <span class="signup-classification">이미지</span>
+      <img id="previewImage" src="#" alt="이미지를 넣어주세요."> <br>
       <input type="file" id="userImageFile" name="userImageFile" accept="image/*"><br>
-      
-      
+            
       <span class="signup-classification">비밀번호</span><br>
-      <input id="password" name="userPassword" type="password" placeholder="변경할 비밀번호를 입력해 주세요." onfocus="checkPassword(this)">
+      <input class="myPagePw" id="password" name="userPassword" type="password" placeholder="변경할 비밀번호를 입력해 주세요." onfocus="checkPassword(this)">
       <span class="verification" id="passwordCheck"> </span><br>
         
-      <span class="signup-classification">닉네임</span><br>
-      <button type="button" class="nicknameVerificationCheckBtn">닉네임검증 </button>
-      <input type="text" name="userNickname" class="login-input-nickname" placeholder="변경할 닉네임을 입력해 주세요." onfocus="nicknamecheck(this)">
+      <span class="signup-classification">닉네임</span>
+      <input type="text" class="login-input-nickname myPageNick" name="userNickname" placeholder="변경할 닉네임을 입력해 주세요." onfocus="nicknamecheck(this)">
       <span class="verification" id="nicknameCheck"> </span><br>
+      <button type="button" class="nicknameVerificationCheckBtn myPageNickBtn">닉네임검증 </button><br>
 
       <button id="modify-button" type="button" class="btn btn-warning modifyBtn">수정하기 </button>
   </div>
@@ -74,10 +73,7 @@
     } else {
       previewImage.src = "";
     }
-  });
-  
-  
-  
+  });  
   
   $(document).ready(function() {
       
