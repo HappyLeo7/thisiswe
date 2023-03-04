@@ -5,89 +5,93 @@
 
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
 <th:block
-	th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+   th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 
-	<!-- 지정한 변수로 연결할 위치 -->
-	<th:block th:fragment="connection">
+   <!-- 지정한 변수로 연결할 위치 -->
+   <th:block th:fragment="connection">
 
-		<!-- club.css 연결 -->
-		<link rel="stylesheet" th:href="@{/css/club.css}" />
-		<!-- /club.css 연결 -->
+      <!-- club.css 연결 -->
+      <link rel="stylesheet" th:href="@{/css/club.css}" />
+      <!-- /club.css 연결 -->
 
-		<!-- 내용 -->
-		<title>모임 목록페이지</title>
+      <!-- 내용 -->
+      <title>모임 목록페이지</title>
 
-		<tbody>
-			<tr>
-				<!-- "result" 위치 :  clubController GetMapping "/list" ~~~~ .clubLogoList-->
-				<th></th>
-			</tr>
-		</tbody>
+      <tbody>
+         <tr>
+            <!-- "result" 위치 :  clubController GetMapping "/list" ~~~~ .clubLogoList-->
+            <th></th>
+         </tr>
+      </tbody>
 
-		<!-- 모임 전체 목록 -->
-		<div class="inner">
-			<h2>ㅁㅗㄱㄹㅗㄱ</h2>
-			<br>
-			
-			<!-- list 1 -->
-			<!-- 코드가안됨 -->
-			<div class="club-table">
-				<div class="club-table-li" th:each="clubDTO : ${result.DTOList}">
-					<!-- <img th:src="|/display?fileName=${clubDTO.clubLogoUrl}|"> -->
-					<div class="club-table-liRe">
-						<a th:href="@{/club/read}"></a>
-					</div>
-					<div>
-						<a class="clubNum" th:href="@{/thisiswe/club/(num=${clubDTO.clubNum})}"> [ [[${clubDTO.clubName}]] ]모임명</a>
-					</div>
-					<div>지역:([[${clubDTO.clubPlace}]])</div>
-					<div>카테고리:([[${clubDTO.clubCategory}]])</div>
-					<div>인원:([[${clubDTO.clubHeadCount}]])</div>
-					<div>모임장:([[${clubDTO.userNickname}]])</div>
-				</div>
-			</div>
+      <!-- 모임 전체 목록 -->
+      <div class="inner-club">
+         <h2>MY PAGE, 내가 가입한 모임</h2>
+         <br>
+                  
+         <!-- list 1 -->
+         <!-- 코드가안됨 -->
+         <div class="club-tableList"> 
+            <div class="club-table">
+               <div class="club-table-li" th:each="clubDTO : ${result.DTOList}">
+                  <img th:src="|/display?fileName=${clubDTO.clubLogoUrl}|">
+                  <div class="club-table-liRe">
+                     <a th:href="@{/club/read}"></a>
+                  </div>
+                  <div class="club-table-liRe">
+                     <a class="clubNum club-liData" th:href="@{/thisiswe/club/(num=${clubDTO.clubNum})}"> [[${clubDTO.clubName}]]</a>
+                  </div>
+                  <div class="club-table-liRe">&nbsp;&nbsp;&nbsp;장소 :&nbsp; <span class="liReData">[[${clubDTO.clubPlace}]]</span></div>
+                  <div class="club-table-liRe">카테고리 :&nbsp; <span class="liReData">[[${clubDTO.clubCategory}]]</span></div>
+                  <div class="club-table-liRe">&nbsp;인원 :&nbsp; <span class="liReData">[[${clubDTO.clubHeadCount}]]명</span></div>
+                  <div class="club-table-liRe">모임장 :&nbsp; <span class="liReData">[[${clubDTO.userNickname}]]</span></div>
+               </div>
+            </div>
+         </div>
+         
+         <!-- 빈 박스 -->
+         <div class="spaceBox"></div>
+         <!-- /빈 박스 -->
 
-			<br><br>
-
-			<!-- 페이지 부분 : 이동, 이전, 다음 -->
-			<div class="paginate">
-				<ul class="">
-					<!-- 이전버튼 -->
-					<li class="link-page active" th:if="${result.prev}">
-						<a class="paginate-link" th:href="@{/thisiswe/mypage/myclub(page=${Page.start-1},
-																		   type=${pageRequestDTO.type},
-																		   keyword=${pageRequestDTO.keyword})}"
-						tabindex="-1">이전</a>
-					</li>
-					<!-- 페이지 버튼 -->
-					<li th:each="page: ${result.pageList}">
-						<a class="paginate-link" th:href="@{/thisiswe/mypage/myclub(page=${page},
-                                        					  			   type=${pageRequestDTO.type},
-                                      						  			   keyword=${pageRequestDTO.keyword}
+         <!-- 페이지 부분 : 이동, 이전, 다음 -->
+         <div class="paginate">
+            <ul class="">
+               <!-- 이전버튼 -->
+               <li class="link-page active" th:if="${result.prev}">
+                  <a class="paginate-link" th:href="@{/thisiswe/mypage/myclub(page=${Page.start-1},
+                                                         type=${pageRequestDTO.type},
+                                                         keyword=${pageRequestDTO.keyword})}"
+                  tabindex="-1">이전</a>
+               </li>
+               <!-- 페이지 버튼 -->
+               <li th:each="page: ${result.pageList}">
+                  <a class="paginate-link" th:href="@{/thisiswe/mypage/myclub(page=${page},
+                                                                     type=${pageRequestDTO.type},
+                                                                      keyword=${pageRequestDTO.keyword}
   
                             )}">[[${page}]]</a>
-					</li>
-					<!-- 다음버튼 -->
-					<li class="link-page-active" th:each="page: ${result.next}">
-						<a class="paginate-link" th:href="@{/thisiswe/mypage/myclub(page=${result.end},
-  																		   type=${pageRequestDTO.type},
-  																		   keyword=${pageRequestDTO.keyword})}"
-						tabindex="-1">다음 </a>
-					</li>
-				</ul>
-			</div>
-			<!-- /페이지 부분 : 이동, 이전, 다음 -->
-		</div>
-		<!-- /모임 전체 목록 -->
-		<!-- /내용 -->
+               </li>
+               <!-- 다음버튼 -->
+               <li class="link-page-active" th:each="page: ${result.next}">
+                  <a class="paginate-link" th:href="@{/thisiswe/mypage/myclub(page=${result.end},
+                                                           type=${pageRequestDTO.type},
+                                                           keyword=${pageRequestDTO.keyword})}"
+                  tabindex="-1">다음 </a>
+               </li>
+            </ul>
+         </div>
+         <!-- /페이지 부분 : 이동, 이전, 다음 -->
+      </div>
+      <!-- /모임 전체 목록 -->
+      <!-- /내용 -->
 
 
 
-	</th:block>
+   </th:block>
 
 </th:block>
 <script type="text/javascript">
-	$(".clubNum").on("click", function() {
-		console.log("모임 상세 클릭");
-	})
+   $(".clubNum").on("click", function() {
+      console.log("모임 상세 클릭");
+   })
 </script>

@@ -18,7 +18,6 @@
    			<button id="placeDeleteButton" type="submit">삭제</button>
 		
 			
-			<a th:href="@{/thisiswe/place/reservation}"><button type="button" style="float: right;">예약</button></a>
 			<a th:href="@{/thisiswe/place/zone/register(placeNum=${place.getPlaceNum})}"><button type="submit" style="float: right;">룸 추가</button></a>
 		
 		
@@ -36,7 +35,7 @@
 				</div>
 				
 				
-				<form th:action="@{/thisiswe/place/reservation}" action="" method="get">					
+				<form th:action="@{/thisiswe/place/reservation}" method="get">					
 					<div th:each="zone : ${zones}" style="border: solid 1px;">
 						[[${zone.getPlaceZoneName}]]
 						[[${zone.getPlaceZoneHeadCount}]]

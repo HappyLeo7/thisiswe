@@ -7,13 +7,16 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thisiswe.home.place.reservation.dto.PlaceReservationDTO;
+import com.thisiswe.home.place.reservation.repository.PlaceReservationRepository;
 import com.thisiswe.home.place.reservation.service.PlaceReservationService;
+import com.thisiswe.home.place.zone.repository.PlaceZoneRepository;
 import com.thisiswe.home.user.entity.UserEntity;
 import com.thisiswe.home.user.security.UserDetailsImpl;
 
@@ -29,17 +32,24 @@ public class ReservationController {
 
 	@Autowired
 	private PlaceReservationService plasceReservationService;
+	@Autowired
+	private PlaceReservationRepository placeReservationRepository;
+	@Autowired
+	private PlaceZoneRepository placeZoneRepository;
 
 	// 예약 페이지 연결
 	@GetMapping({ "/reservation" })
 	public String reservation(Long placeZoneNum, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
 		log.info("=== reservation() ===");
 		
-		log.info("장소번호 : "  + placeZoneNum);
-		plasceReservationService.getPlaceNumToZoneNumToReservationList();// 예약현황 불러오기
-
+		log.info("룸 번호 : "  + placeZoneNum);
+		Object reservationList=plasceReservationService.getPlaceNumToZoneNumToReservationList(placeZoneNum);// 예약현황 불러오기
+		log.info(placeZoneNum+"번룸 "+"예약현황 리스트 :"+reservationList);
+		model.addAttribute("reservationDTO",reservationList);
+		model.addAttribute("placeReservationHeadcount",placeZoneRepository.findById(placeZoneNum).get().getPlaceZoneHeadCount());
 		model.addAttribute("userId", userDetailsImpl.getUsername());// 접속중 유저 ID
 		model.addAttribute("userNickname", userDetailsImpl.getUserNickname());// 접속중 유저 닉네임
+		model.addAttribute("placeZoneNum", placeZoneNum);// 접속중 유저 닉네임
 
 		log.info("=== /reservation() ===");
 
@@ -60,11 +70,11 @@ public class ReservationController {
 			log.info("예약시 받아온 placeReservationDTO 값 : " + placeReservationDTO);
 			plasceReservationService.register(placeReservationDTO);
 			log.info("=== /reservationRegister() ===");
-			return "redirect:/thisiswe/place/reservation";
+			return "redirect:/thisiswe/place/reservation/?placeZoneNum="+placeReservationDTO.getPlaceZoneNum();
 		} else {
 
 			log.info("=== /reservationRegister() ===");
-			return "redirect:/thisiswe/place/reservation";
+			return "redirect:/thisiswe/place/reservation/?placeZoneNum="+placeReservationDTO.getPlaceZoneNum();
 		}
 
 	}
@@ -116,6 +126,19 @@ public class ReservationController {
 		log.info("예약 수정요청 DTO 내용 : " + placeReservationDTO);
 		plasceReservationService.modify(placeReservationDTO);
 		log.info("=== /post reservationModify ===");
-		return "redirect:/thisiswe/place/reservation";
+		return "redirect:/thisiswe/place/reservation/?placeZoneNum="+placeReservationDTO.getPlaceZoneNum();
 	}
+	
+	@DeleteMapping({"/reservation/remove"})
+	public ResponseEntity<String> reservationRemove(Long reservationNum){
+		log.info("=== delete reservationRemove() ===");
+		log.info("예약 취소 처리중");
+		log.info("예약 취소 번호 : "+reservationNum);
+		
+		placeReservationRepository.deleteById(reservationNum);
+		log.info("=== /delete reservationRemove() ===");
+		return new ResponseEntity<String>("success",HttpStatus.OK);
+	}
+	
+	
 }
