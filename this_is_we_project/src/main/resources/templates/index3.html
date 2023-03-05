@@ -9,14 +9,76 @@
 
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 
-<body>
-	<div id="backgroundVideo">
-			<!-- [배경 영상] -->
-				<video  autoplay="autoplay" loop="loop" muted="muted">
-				<source src="video/background_video.mp4" type="video/mp4">
-				</video>
-			</div>
 
-</body>
+<style>
+*{ padding: 0; margin: 0;}
+div{width: 100%; height: 500px;
+background-size: cover;
+background-position: center;
+}
+.box01{ background-color: pink;}
+.box03{background-color: lightblue;}
+.box05{background-color: orange;}
+
+.box02{
+background-image: url(image/club/club02.png);
+background-attachment: fixed;
+}
+
+.box04{
+background-image: url(image/place/place01.jpg);
+background-attachment: fixed;
+}
+</style>
+
+<div class="box01">
+</div>
+
+<div class="box02">
+</div>
+
+<div class="box03">
+</div>
+
+<div class="box04">
+</div>
+
+<div class="box05">
+</div>
+
+<div class="box06">
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+$(".box02").on("click",function(){
+	alert("클릭하였습니다");
+	location.href="/thisiswe/club";
+})
+$(".box04").on("click",function(){
+	alert("클릭하였습니다");
+	location.href="/thisiswe/place";
+})
+</script>
+
+
+
+
+
+
+
+
+
+				<video class="bg-video-content" autoplay="autoplay" loop="loop" muted="muted" style="z-index:-999;">
+				<source src="video/bcc.mp4" type="video/mp4">
+				</video>
+<div class="info">
+	<div class="bg-video">
+			<!-- [배경 영상] -->
+			</div>
+<a class="a1" th:href="@{/thisiswe/club}"><button   ><img alt="" src="image/club/club02.png"></button></a>
+<a class="a2" th:href="@{/thisiswe/place}"><button  ><img src="/image/place/place01.jpg" /></button></a>
+
+</div>
 
 </html>

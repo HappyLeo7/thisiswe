@@ -37,8 +37,6 @@ public class PhotoDTO extends DateEntity{
 		private String photoPath; //사진 경로
 		/** 사진내용 */
 		private String photoContent; //사진 내용
-		/** 조회수 */
-		private Long photoView; // 조회수
 		
 
 }
