@@ -30,6 +30,7 @@ public interface PlaceService {
 	default PlaceDTO entitiesToDTO(PlaceEntity placeEntity,List<PlaceImageEntity> placeImages ,Double placeAvg, Long placeReviewCount) {
 		PlaceDTO placeDTO = PlaceDTO.builder()
 				.placeNum(placeEntity.getPlaceNum())
+				.userId(placeEntity.getUserId().getUserId())
 				.placeName(placeEntity.getPlaceName())
 				.placeOneLineIntroduction(placeEntity.getPlaceOneLineIntroduction())
 				.placeIntroduction(placeEntity.getPlaceIntroduction())

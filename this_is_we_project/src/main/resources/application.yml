@@ -2,4 +2,4 @@
 spring:
   data:
     mongodb:
-      uri: 
+      uri: mongodb+srv://root:1111@cluster12.ugdqkfn.mongodb.net/yapp.message?retryWrites=true&w=majority
