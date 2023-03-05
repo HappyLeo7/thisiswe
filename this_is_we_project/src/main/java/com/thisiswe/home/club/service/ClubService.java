@@ -45,12 +45,7 @@ public interface ClubService {
 		
 		
 		return clubEntity;
-		
 	}
-	
-	
-	
-	
 	// ClubEntity(DB) -> CludDTO(Wed)
 	default ClubDTO entityToDTO (ClubEntity clubEntity, UserEntity userEntity) {
 		//지역, 모임명, 내용, 관심 카테고리, 로고이미지, 인원
