@@ -46,19 +46,13 @@ public class ClubController {
 	@GetMapping({"/club"})
 	public String club_list(PageRequestDTO pageRequestDTO, Model model ) {
 		log.info("======= ClubController.java => club_list.html 연결 =======");
-		//log.info("======= clubDTO : "+clubDTO);
 		
-		//model.addAttribute("list", clubService.getList(clubDTO)); //그냥 리스트 불러오는 코드
 		model.addAttribute("result", clubService.getPageList(pageRequestDTO).getDtoList());
 		model.addAttribute("resultPage", clubService.getPageList(pageRequestDTO).getPageList());
 		model.addAttribute("Page", clubService.getPageList(pageRequestDTO));
 		log.info("가져와야할 페이지 데이터 : "+model.getAttribute("result"));
 		log.info("가져와야할 페이지 데이터 : "+model.getAttribute("resultPage"));
 		log.info("가져와야할 페이지 데이터 : "+model.getAttribute("Page"));
-		
-		//model.addAttri;bute("list", "model 확인");
-		
-		
 		
 		log.info("=======================Get list end==================================");
 		return "club/club_list";
