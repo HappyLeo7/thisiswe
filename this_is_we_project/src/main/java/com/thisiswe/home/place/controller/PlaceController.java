@@ -40,7 +40,7 @@ public class PlaceController {
 	private final PlaceZoneTimePriceRepository placeZoneTimePriceRepository;
 	private final PlaceZoneTimePriceService placeZoneTimePriceService;
 
-	@GetMapping("place")
+	@GetMapping("/place")
 	public String list(PlacePageRequestDTO placePageRequestDTO, Model model) {
 		log.info("================(get)placeListController==============");
 		log.info(model.addAttribute("placeList", placeService.getList(placePageRequestDTO)));
@@ -56,6 +56,8 @@ public class PlaceController {
 		log.info("================(get)placeReadController==============");
 		model.addAttribute("loginID", userDetailsImpl.getUsername());
 		model.addAttribute("place", placeService.getPlace(num));
+		log.info("1111111111111111111" + userDetailsImpl.getUsername());
+		model.addAttribute("isWriter", userDetailsImpl.getUsername().equals(placeService.getPlace(num).getUserId()));
 		//model.addAttribute("zones", placeZoneService.getPlaceZone(num));
 		
 		//룸별 가격표 1개정보 보여주는 처리

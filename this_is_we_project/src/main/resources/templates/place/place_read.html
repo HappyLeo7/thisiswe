@@ -23,7 +23,7 @@
 			}
 
 			#myform label {
-				font-size: 3em;
+				font-size: 30px;
 				/* 이모지 크기 */
 				color: transparent;
 				text-shadow: 0 0 0 #f0f0f0;
@@ -31,7 +31,6 @@
 
 			#myform label:hover {
 				text-shadow: 0 0 0 #BB2649;
-
 			}
 
 			#myform label:hover~label {
@@ -48,32 +47,43 @@
 				margin: 1em;
 				display: block;
 			}
+			
+			p{
+				text-align: left;
+			}
+			.littleTitle{
+				font-size: 24px;
+				font-weight: bold;
+				color:  #BB2649;
+			}
+			
 		</style>
 
 
-		<div style="text-align: center;">
+		<div style="text-align: center; width: 60%;">
 
-			<a th:href="@{/thisiswe/place/modify(placeNum=${place.getPlaceNum})}"><button type="button"
+			<a th:if="${isWriter}" th:href="@{/thisiswe/place/modify(placeNum=${place.getPlaceNum})}"><button class="searchBtn-mi-textLength5" type="button"
 					style="float: right;">수정</button></a>
 
 
-			<button id="placeDeleteButton" type="submit">삭제</button>
+			<button class="searchBtn-mi-textLength5" style="float: right;" th:if="${isWriter}" id="placeDeleteButton" type="submit">삭제</button>
 
 
-			<a th:href="@{/thisiswe/place/zone/register(placeNum=${place.getPlaceNum})}"><button type="submit"
+			<a  th:href="@{/thisiswe/place/zone/register(placeNum=${place.getPlaceNum})}"><button class="searchBtn-mi-textLength5" type="submit"
 					style="float: right;">룸 추가</button></a>
 
+			<br>
 
 			<div>
 
-				<div>
-					<h1>[[${place.getPlaceName}]]</h1>
+				<div style="float: left;">
+					<p style="font-size: 40px; font-weight: 600;">[[${place.getPlaceName}]]</p>
+					<p style="font-size: 21px; color:  #BB2649;">[[${place.getPlaceOneLineIntroduction}]]</p>
 				</div>
 
-
-				<div class="swiper-container">
+				<div  class="swiper-container">
 					<div class="swiper-wrapper">
-						<div style="height: 400px; width: 700px;" th:each="placeImageDTO : ${place.placeImageDTOList}"
+						<div style="height: 400px; width: 500px;" th:each="placeImageDTO : ${place.placeImageDTOList}"
 							class="swiper-slide"><img height="100%"
 								th:src="|/thisiswe/placeImageDisplay?fileName=${placeImageDTO.getPlcaeThumbnailURL()}|">
 						</div>
@@ -102,7 +112,7 @@
 							</div>
 						</div>
 					</div>
-					<button type="submit">예약</button>
+					<button class="searchBtn-mi-textLength5" type="submit">예약</button>
 				</form>
 				
 				<!-- 룸 시간별 금액 스와이퍼 처리 -->
@@ -111,42 +121,53 @@
 				</script>
 				<!-- /룸 시간별 금액 스와이퍼 처리 -->
 				
+				<div style="text-align: left;">
 				<input type="hidden" name="placeNum" th:value="${place.placeNum}">
-				<div>
-					<h3>[[${place.getPlaceOneLineIntroduction}]]</h3>
-				</div>
 				<br>
-				<h4>소개글</h4>
-				<div>[[${place.getPlaceIntroduction}]]</div>
+				<p class="littleTitle">소개글</p>
 				<br>
-				<h4>영업 시간</h4>
+				<p th:utext="${place.getPlaceIntroduction.replaceAll('\n', '<br/>')}" ></p>
+				<br>
+				<br>
+				<br>
+				<p class="littleTitle">영업 시간</p>
+				<br>
 				<div>[[${place.getPlaceBusinessHours}]]</div>
 				<br>
-				<h4>휴무일</h4>
+				<p class="littleTitle">휴무일</p>
+				<br>
 				<div>[[${place.getPlaceHoliday}]]</div>
 				<br>
-				<h4>환불 규정</h4>
-				<div>[[${place.getPlaceRefundRegulations}]]</div>
+				<p class="littleTitle">주소</p>
 				<br>
-				<h4>주소</h4>
-				<div>[[${place.getPlaceIntroduction}]]</div>
+				<div>[[${place.getPlaceAddress}]]</div>
 				<br>
-				<h4>전화번호</h4>
+				<p class="littleTitle">전화번호</p>
+				<br>
 				<div>[[${place.getPlacePhoneNumber}]]</div>
 				<br>
-				<h4>안내 사항</h4>
-				<div>[[${place.getPlaceGuide}]]</div>
+				<p class="littleTitle">안내 사항</p>
 				<br>
-				<h4>주의 사항</h4>
+				<div>[[${place.getPlaceGuide}]]</div>
+				<p th:utext="${place.getPlaceGuide.replaceAll('\n', '<br/>')}" ></p>
+				<br>
+				<p class="littleTitle">주의 사항</p>
+				<br>
 				<div>[[${place.getPlaceCaution}]]</div>
-
-
+				<p th:utext="${place.getPlaceCaution.replaceAll('\n', '<br/>')}" ></p>
+				<br>
+				<p class="littleTitle">환불 규정</p>
+				<br>
+				<p th:utext="${place.getPlaceRefundRegulations.replaceAll('\n', '<br/>')}" ></p>
+				</div>
+				<br>
 
 
 
 				<input type="hidden" id="loginID" th:value="@{${loginID}}">
 				<!-- 리뷰 등록 시작 -->
-
+				<p class="littleTitle">리뷰</p>
+				<div style="border: solid 1px; border-radius: 13px;">
 				<br>별점
 				<fieldset id="myform">
 					<input type="radio" name="placeReviewRate" value="5" id="rate1"><label for="rate1">⭐</label>
@@ -156,8 +177,11 @@
 					<input type="radio" name="placeReviewRate" value="1" id="rate5"><label for="rate5">⭐</label>
 				</fieldset>
 				<br>
-				<textarea name="placeReviewContent" cols="120" rows="10"></textarea>
-				<button type="button" class="reviewSave" style="height: 60px; margin-bottom: 30px;">리뷰 등록</button>
+				<textarea style="border-radius: 10px;" name="placeReviewContent" cols="100" rows="10"></textarea>
+				<br>
+				<button class="searchBtn-mi-textLength5 reviewSave" type="button" style="height: 40px; margin-bottom: 30px;">리뷰 등록</button>
+				</div>
+				<br>
 				<!-- 리뷰 등록 끝 -->
 
 				<!-- 리뷰 시작 -->
@@ -241,24 +265,29 @@
 						var button = "";
 						var s = $("#loginID").val();
 						var count = 1;
+
 						$.each(data.dtoList, function (and, review) {
+							
+							const isoDate = new Date(review.regDate);
+							const formattedDateStr = isoDate.toLocaleString('en-US', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).replace(',', '');
+							console.log(formattedDateStr);
+							
+							
 							count++;
 							if (s == review.userId) {
-								button = '<button type="button" class="reviewModifyOn" onclick="reviewModifyOn(this)">수정</button>' +
-									'		<button type="button" class="reviewRemove">삭제</button> ' +
+								button = '<button style="float: right;" type="button" class="searchBtn-mi-textLength5 reviewModifyOn " onclick="reviewModifyOn(this)">수정</button>' +
+									'		<button style="float: right;" type="button" class="searchBtn-mi-textLength5 reviewRemove">삭제</button> ' +
 									'		<input  type="hidden" class="placeReviewNum" value="' + review.placeReviewNum + '"></input>'
 							}
 
 							reviewHTML +=
-								'				<div class="reviewSet">' +
-								'					<div class="review" style="border: 1px solid;">' +
-								'						작성자 :' + review.writer +
+								'				<div class="reviewSet" style="text-align: left;">' +
+								'					<div class="review">' +
+								'				<p style="font-weight: 100;" class="littleTitle">	'+ review.writer +'<p>'+
 								button +
 								'						 <br>' +
-								'						리뷰 넘버' + review.placeReviewNum +
-								'						<h2>평점 :' + review.placeReviewRate + '</h2><br> ' +
-								'						<h2>내용 :' + review.placeReviewContent + '</h2><br> ' +
-								'						작성일 :' + review.regDate + '<br>' +
+								'						' + review.placeReviewContent + '<br> ' +
+								'					<p style="color:grey; font-size: 13px;" >' + formattedDateStr + '<br>' +
 								'					</div>' +
 								'					<div class="reviewModifyInput" style="display: none; border: solid 1px; height: 232px;">' +
 								'						별점<input class="reviewRate" type="radio" name="ModifyplaceReviewRate' + count + '" value="1">' +
