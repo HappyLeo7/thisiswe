@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.thisiswe.home.place.dto.PlaceDTO;
+import com.thisiswe.home.place.entity.PlaceEntity;
 import com.thisiswe.home.place.reservation.dto.PlaceReservationDTO;
 import com.thisiswe.home.place.reservation.entity.PlaceReservationEntity;
+import com.thisiswe.home.place.zone.entity.PlaceZoneEntity;
 
 public interface PlaceReservationService {
 
@@ -35,7 +38,10 @@ public interface PlaceReservationService {
 		
 		
 			PlaceReservationEntity placeReservationEntity = PlaceReservationEntity.builder()
-					//.placeReservationNum(placeReservationDTO.getPlaceReservationNum())
+					//.placeReservationNum(placeReservationDTO.getPlaceReservationNum()
+					.placeZoneNum(PlaceZoneEntity.builder()
+							.placeNum(PlaceEntity.builder().placeNum(placeReservationDTO.getPlaceNum()).build())
+							.placeZoneNum(placeReservationDTO.getPlaceZoneNum()).build())
 					.place_reservation_name(placeReservationDTO.getPlace_reservation_name())//예약자명
 					.userId(placeReservationDTO.getUserId())//유저ID
 					.place_reservation_tel(placeReservationDTO.getPlace_reservation_tel()) //전화번호
@@ -43,10 +49,48 @@ public interface PlaceReservationService {
 					.placeReservationTime(reservationTime)//예약시간
 					.placeReservationHeadcount(placeReservationDTO.getPlaceReservationHeadcount())//인원
 					.build();
-		
+		System.out.println("저장하기전 placeReservationEntity 정보 :"+placeReservationEntity);
+			
 		return placeReservationEntity;
 	}
 
 
 	Boolean getCheck(PlaceReservationDTO placeReservationDTO);
+
+
+	Object getPlaceNumToZoneNumToReservationList(Long placeZoneNum);
+	
+	//en -> dto
+	default PlaceReservationDTO entityToDto(PlaceReservationEntity placeReservationEntity, Long reservationNum) {
+		System.out.println("placeReservationEntity : "+placeReservationEntity);
+		
+		String time=placeReservationEntity.getPlaceReservationTime();
+		String timeStrat=time.substring(0,2);
+		String timeEnd=time.substring(time.length()-3,time.length());
+		System.out.println("시작 시간 : "+timeStrat);
+		System.out.println("끝 시간 : "+timeEnd);
+		
+		PlaceReservationDTO placeReservationDTO = PlaceReservationDTO.builder()
+				.placeNum(placeReservationEntity.getPlaceZoneNum().getPlaceNum().getPlaceNum())
+				.placeReservationNum(placeReservationEntity.getPlaceReservationNum())
+				.place_reservation_name(placeReservationEntity.getPlace_reservation_name())
+				.placeZoneNum(placeReservationEntity.getPlaceZoneNum().getPlaceZoneNum())
+				.placeReservationDate(placeReservationEntity.getPlaceReservationDate())
+				.place_reservation_tel(placeReservationEntity.getPlace_reservation_tel())
+				.placeReservationTimeStart(timeStrat)
+				.placeReservationTimeEnd(timeEnd)
+				.userId(placeReservationEntity.getPlaceZoneNum().getPlaceNum().getUserId())
+				.placeReservationHeadcount(placeReservationEntity.getPlaceReservationHeadcount())
+				.placeZoneName(placeReservationEntity.getPlaceZoneNum().getPlaceZoneName())
+				//.place_reservation_name(null)
+				.build();
+		
+		return placeReservationDTO;
+}
+
+
+	PlaceReservationDTO getRead(Long reservationNum);
+
+
+	PlaceReservationDTO modify(PlaceReservationDTO placeReservationDTO);
 }

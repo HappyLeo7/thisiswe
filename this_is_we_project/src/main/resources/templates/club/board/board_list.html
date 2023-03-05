@@ -61,7 +61,7 @@
 			<!-- 검색창 추가 -->
 			<div class="board-search">
 				<div class="board-search_sub">
-					<form id="searchForm" action="/thisiswe/club/board" method="get">
+					<form id="searchForm" th:action="@{/thisiswe/club/board/(num=${clubNum})}" method="get">
 
 						<select id="searchColumn" name="type">
 							<option value="" th:selected="${pageRequestDTO.type==null}">-----</option>
@@ -78,9 +78,9 @@
 
 							<option value="tcw" th:selected="${pageRequestDTO.type=='tcw'}">제목+내용+작성자</option>
 						</select> 
-					
+						<input type="hidden" class="clubNum" name="num" th:value="${clubNum}">
 						<input type="text" id="searchWord" name="keyword" th:value="${pageRequestDTO.keyword}">
-						<button type="button" class="searchBtn btn-search" onclick="">검색</button>
+						<button type="button" class="searchBtn btn-search" >검색</button>
 						<button type="button" class="searchBtn btn-clear">취소</button>
 						<br><br>
 					</form>
@@ -176,15 +176,20 @@
 	     /* [START] board_list.html : 검색 기능 처리 */    
 	         // 61행 id="searchForm"
 	         var searchForm = $("#searchForm");
+	        	 console.log("searchForm 정보 : "+searchForm);
 	         
 	         // 79행 class="btn-search"
-	         $('.btn-search').click(function(e){
+	         $('.btn-search').on("click",function(e){
+	        	 console.log("검색클릭");
 	            searchForm.submit();
 	         });
 	         
 	         // 80행 class="btn-clear"
-	         $('.btn-clear').click(function(e){
-	            searchForm.empty().submit();
+	         $('.btn-clear').on("click",function(e){
+	        	var clubNum=$(".clubNum").val();
+	        	console.log("clubNum: "+clubNum);
+	            //searchForm.empty().submit();
+	           location.href="/thisiswe/club/board/?num="+clubNum;
 	         });
 		/* [END] board_list.html : 검색 기능 처리 */       
 		/* [END] board_list.html의 스크립트 */

@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 
 <!-- th를 쓰기위한 thymeleaf.org 선언 -->
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
 <th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
-   
-   <!-- 지정한 변수로 연결할 위치 -->
-<th:block th:fragment="connection">
-<style>
-	.active {
-	color : orange;
-	}
-	
-</style>
+
+	<!-- 지정한 변수로 연결할 위치 -->
+	<th:block th:fragment="connection">
+		<style>
+			.active {
+				color: #BB2649;
+			}
+
+			.material-symbols-outlined {
+				font-variation-settings:
+					'FILL' 0,
+					'wght' 400,
+					'GRAD' 0,
+					'opsz' 48
+			}
+
+			.material-symbols-outlined {
+				font-variation-settings:
+					'FILL' 0,
+					'wght' 400,
+					'GRAD' 0,
+					'opsz' 48
+			}
+		</style>
 
 
-<div style="text-align: center;">
-<!-- 	<form action="">
+
+		<div style="text-align: center;">
+			<!-- 	<form action="">
 		<select>
 			<option value="">카테고리 선택</option>
 			<option value="">파티룸</option>
@@ -32,57 +50,77 @@
 		<input type="text">
 		<input type="submit" value="검색">
 	</form> -->
-	<div> 이 장소는 어떠세요</div> 
-	 	<a th:href="@{/thisiswe/place/register}"><button type="button" style="float: right;">장소 추가</button></a>
-	<!--<select style="float: left;">
+			<h2> 이런 장소는 어떠신가요?</h2>
+			<a th:href="@{/thisiswe/place/register}"><button class="searchBtn-mi-textLength5" type="button"
+					style="float: right;">장소 추가</button></a>
+			<!--<select style="float: left;">
 			<option value="">최신순</option>
 			<option value="">오래된 순</option>
 			<option value="">별점순</option>
 	</select> -->
-	<br>
-	<br>
-	
-			<div style="display: inline-block;width: 40%" th:each="dto : ${placeList.dtoList}">
-				<div style="border: solid 1px;">
-					<a th:href="@{/thisiswe/place/c(num=${dto.placeNum})}" style="border: solid 1px;">
-						<div><img width="100%" height="100%" th:src ="|/thisiswe/placeImageDisplay?fileName=${dto.placeImageDTOList[0].getPlcaeThumbnailURL()}|"></div>
-						<div style="border: solid 1px;">[[${dto.placeName}]]</div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+
+			<div class="club-table-li" style=" display: inline-block;width: 30%" th:each="dto : ${placeList.dtoList}">
+				<div>
+					<a th:href="@{/thisiswe/place/c(num=${dto.placeNum})}">
+						<div><img width="100%" height="100%"
+								th:src="|/thisiswe/placeImageDisplay?fileName=${dto.placeImageDTOList[0].getPlcaeThumbnailURL()}|">
+						</div>
+						<div style="font-size: 23px; font-weight: bold;">[[${dto.placeName}]]</div>
+						<div style="width: 100%;  display: inline-block;">
+							<h4>[[${dto.placeOneLineIntroduction}]]</h4>
+						</div>
+						<div style="width: 39%;  display: inline-block;">[[${dto.placeAddress}]]</div>
 						<div>
-						<div style="border: solid 1px; width: 39%;  display: inline-block;">[[${dto.placeAddress}]]</div>
-						<div style="border: solid 1px; width: 39%;  display: inline-block;">[[${dto.placePhoneNumber}]]</div>
+							<span class="material-symbols-outlined">
+								chat_bubble
+							</span>[[${dto.placeReviewCount}]]
+							<span class="material-symbols-outlined">
+								star
+							</span>
+							[[${dto.placeAvg}]]
 						</div>
 					</a>
 				</div>
 				<br>
 				<br>
 			</div>
-			
-	<!-- 페이징 블럭 -->
-	<ul>
-	<!-- 이전 버튼 -->
-		<li th:if="${placeList.prev}">
-			<a th:href="@{/thisiswe/place(page=${placeList.start-1}, type=${placePageRequestDTO.type}, keyword=${placePageRequestDTO.keyword})}">
-				이전
-			</a>
-		</li>
-	<!-- 숫자 버튼 -->
-	
-		<li th:class="${placeList.page == page?'active':''}" th:each="page: ${placeList.pageList}">
-			<a th:href="@{/thisiswe/place(page=${page}, type=${placePageRequestDTO.type}, keyword=${placePageRequestDTO.keyword})}">
-				[[${page}]]
-			</a>
-		</li>
-	
-	
-	<!-- 다음 버튼 -->
-		<li th:if="${placeList.next}" >
-			<a th:href="@{/thisiswe/place(page=${placeList.end}, type=${placePageRequestDTO.type}, keyword=${placePageRequestDTO.keyword})}">
-				다음
-			</a>
-		</li>
-	</ul>
-				
-</div>
 
-</th:block>
+			<!-- 페이징 블럭 -->
+			<div style="float: left; width: 100%;">
+				<ul>
+					<!-- 이전 버튼 -->
+					<li th:if="${placeList.prev}">
+						<a
+							th:href="@{/thisiswe/place(page=${placeList.start-1}, type=${placePageRequestDTO.type}, keyword=${placePageRequestDTO.keyword})}">
+							이전
+						</a>
+					</li>
+					<!-- 숫자 버튼 -->
+
+					<li th:class="${placeList.page == page?'active':''}" th:each="page: ${placeList.pageList}">
+						<a
+							th:href="@{/thisiswe/place(page=${page}, type=${placePageRequestDTO.type}, keyword=${placePageRequestDTO.keyword})}">
+							[[${page}]]
+						</a>
+					</li>
+
+
+					<!-- 다음 버튼 -->
+					<li th:if="${placeList.next}">
+						<a
+							th:href="@{/thisiswe/place(page=${placeList.end}, type=${placePageRequestDTO.type}, keyword=${placePageRequestDTO.keyword})}">
+							다음
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</th:block>
 </th:block>

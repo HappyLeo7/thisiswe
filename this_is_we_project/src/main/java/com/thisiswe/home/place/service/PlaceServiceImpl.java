@@ -95,9 +95,11 @@ public class PlaceServiceImpl implements PlaceService {
 	}
 
 	@Override
-	public void removeWithReplies(Long bno) {
-
+	public void remove(Long placeNum) {
+		placeRepository.deleteById(placeNum);
 	}
+
+
 
 //	public BooleanBuilder getSearch(PageRequestDTO requestDTO) {
 //		String type = requestDTO.getType();

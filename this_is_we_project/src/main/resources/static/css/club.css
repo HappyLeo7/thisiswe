@@ -13,7 +13,7 @@
 .inner-club {
 	margin: 30px 5px 30px 5px;
 	padding: 5px 10px 5px 10px;
-	height: 88%;
+	height: 2250px;
 }
 div>h2 {
 	text-align: center;
@@ -129,30 +129,71 @@ hr{
 /* [END][list] - 페이지 처리 부분 */
 /*[START][list] - 목록 list 부분 */
 .club-tableList{
+	margin-top: 20px;
 	width: 100%;
-	height: 93%;
+	height: 1900px;
 }
 .club-table {
-	margin: 20px 90px 0 90px;
 	width: 98%;
 	border-spacing: 0;
 	word-break: break-all;
 	text-indent: initial;
 }
 .club-table-li{
-	margin: 10px;
+	margin: 30px 25px 30px 45px ;
 	padding: 15px;
-    width: 27%;
+/*     width: 27%; */
+    width: 350px;
     height: 380px;
-    background-color: #f0f0f0;
     position: relative;
     float: left;
+    border-radius: 15px;
+    box-shadow: 0 4px 4px 0 grey;
 }
 .club-table-li img{
 	padding: 15px 0 15px 30px;
 	width: 300px;
   	height: 200px;
   	object-fit: fill;
+}
+.club-table-td{
+	margin: 30px 25px 30px 45px ;
+	padding: 15px;
+/*     width: 27%; */
+    width: 300px;
+    height: 500px;
+    position: relative;
+    float: left;
+    border-radius: 15px;
+    box-shadow: 0 4px 4px 0 grey;
+}
+.club-table-td img{
+	padding: 0px 0 0px 0px;
+	width: 300px;
+  	height: 300px;
+  	object-fit: fill;
+}
+.club-table-liRe{
+	margin: 7px 0 7px 0;
+	text-align: center;
+	color: #464646;
+	font-size: 16px;
+}
+.club-liData{
+	color: #BB2649;
+	font-size: 22px;
+	font-weight: 600;
+}
+.club-liData:hover{
+	color: #BB2649;
+	font-size: 24px;
+	font-weight: 600;
+}
+.liReData{
+	color: #3d3d3d;
+	font-size: 18px;
+	font-weight: 600;
+	cursor: grab;
 }
 /* [END][list] - 목록 list 부분 */
 /* ------------------------------------------- */
@@ -259,7 +300,7 @@ hr{
 .searchBtn-mi-textLength5 {
 	margin: 0 15px 0 15px;
 	padding: 10px;
-	width: 90px;
+	width: 100px;
 	height: 45px;
 	border: 1px solid #e0e0e0;
 	border-radius: 10px;
@@ -331,6 +372,18 @@ hr{
     line-height: 160%;
     font-weight: 700;
 }
+.cl-re-input-fi-reservation{
+	margin: 3px 0px 3px;
+	height: 40px;
+	text-align: center;
+    width: 40%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 160%;
+    font-weight: 700;	
+}
 .cl-re-input-fi-ti{
 	margin: 3px 0px 3px;
 	height: 50px;
@@ -343,6 +396,20 @@ hr{
     line-height: 160%;
     font-weight: 700;	
 }
+.cl-re-input-fi-ti-price{
+	margin: 3px 0px 3px;
+	height: 50px;
+	text-align: center;
+    width: 40%;
+    border: 1px solid #e7e7e7;
+    border-radius: 1rem;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 160%;
+    font-weight: 700;	
+}
+
+
 .cl-re-input-fi-headcount{
 		margin: 3px 0px 15px;
 	height: 50px;

@@ -13,179 +13,313 @@
 
 
 		<!-- 내용 -->
-<form th:action="@{/thisiswe/place/reservation}" th:method="post">
 
+		<!-- 예약 현황 -->
 
-<button type="submit" class="">예약하기</button>
-<button type="button" class="reservationBtn">예약중복확인</button>
-
-<script type="text/javascript">
-
-$(".reservationBtn").on("click",function(){
-	var placeReservationDate=$(".placeReservationDate").val();
-	console.log("예약하고싶은 날짜 :"+placeReservationDate);
-	var placeReservationTimeStart=$(".placeReservationTimeStart").val();
-	console.log("예약하고싶은 시작시간 :"+placeReservationTimeStart);
-	var placeReservationTimeEnd=$(".placeReservationTimeEnd").val();
-	console.log("예약하고싶은 시작시간 :"+placeReservationTimeEnd);
-	
-	alert("예약버튼 클릭되었습니다.")
-	
-	$.ajax({
-	url:"/thisiswe/place/reservationCheck",
-	type:"POST",
-	data: JSON.stringify({
-		placeReservationDate:placeReservationDate,
-		placeReservationTimeStart:placeReservationTimeStart,
-		placeReservationTimeEnd:placeReservationTimeEnd
-	}),
-	contentType:"application/json; charset=UTF-8",
-	dataType:"json",
-	success: function(data){
-		if(data==true){
-		alert("예약이 가능합니다.")
-		console.log(data)
-		}else{
-		alert("예약이 불가능합니다.")
-		console.log(data)
-		}
-	}
-	
-		
-	})
-	
-})
-</script>
-		<div>RESERVATION</div>
-
-
-
-
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-				<div>
-					예약자명 : <input type="text" name="place_reservation_name">
-				</div>
-				<div>
-					유저 ID : <input type="text" name="userId" th:value="${userId}">
-				</div>
-				<div>
-					유저 닉네임 : <input type="text" name="" th:value="${userNickname}">
-				</div>
-		<div>
-			날짜 : <input type="date" name="placeReservationDate" class="placeReservationDate">
-		</div>
-				
-				<div>
-					인원 : <input type="number" name="placeReservationHeadcount">
-				</div>
-				
-				<div>
-					전화번호 : <input type="number" name="place_reservation_tel">
-				</div>
-				
-				
-					<div>
-					<select name="placeReservationTimeStart" class="placeReservationTimeStart">
-						<option value="00">00:00</option>
-						<option value="01">01:00</option>
-						<option value="02">02:00</option>
-						<option value="03">03:00</option>
-						<option value="04">04:00</option>
-						<option value="05">05:00</option>
-						<option value="06">06:00</option>
-						<option value="07">07:00</option>
-						<option value="08">08:00</option>
-						<option value="09">09:00</option>
-						<option value="10">10:00</option>
-						<option value="11">11:00</option>
-						<option value="12">12:00</option>
-						<option value="13">13:00</option>
-						<option value="14">14:00</option>
-						<option value="15">15:00</option>
-						<option value="16">16:00</option>
-						<option value="17">17:00</option>
-						<option value="18">18:00</option>
-						<option value="19">19:00</option>
-						<option value="20">20:00</option>
-						<option value="21">21:00</option>
-						<option value="22">22:00</option>
-						<option value="23">23:00</option>
-					</select>
-					<select name="placeReservationTimeEnd" class="placeReservationTimeEnd">
-						<option value="00">00:00</option>
-						<option value="01">01:00</option>
-						<option value="02">02:00</option>
-						<option value="03">03:00</option>
-						<option value="04">04:00</option>
-						<option value="05">05:00</option>
-						<option value="06">06:00</option>
-						<option value="07">07:00</option>
-						<option value="08">08:00</option>
-						<option value="09">09:00</option>
-						<option value="10">10:00</option>
-						<option value="11">11:00</option>
-						<option value="12">12:00</option>
-						<option value="13">13:00</option>
-						<option value="14">14:00</option>
-						<option value="15">15:00</option>
-						<option value="16">16:00</option>
-						<option value="17">17:00</option>
-						<option value="18">18:00</option>
-						<option value="19">19:00</option>
-						<option value="20">20:00</option>
-						<option value="21">21:00</option>
-						<option value="22">22:00</option>
-						<option value="23">23:00</option>
-					</select>
-					
-					
+		<div  class="inner-club">
+			<h2>예약 현황</h2>
+			<div class="">
+					<div class="club-table-li reservationRead" th:each="reservationDTO : ${reservationDTO}">
+						<div class="club-table-liRe">
+						예약번호&nbsp;&nbsp; <input class="cl-re-input-fi-reservation reservationNum" th:value="${reservationDTO.placeReservationNum}">
+						</div>
+						<br>
+						<div class="club-table-liRe">예약자명&nbsp;&nbsp; <input class="cl-re-input-fi-reservation" th:value="${reservationDTO.place_reservation_name}" readonly="readonly"></div>
+						<br>
+						<div class="club-table-liRe">
+						예약날짜&nbsp;&nbsp; <input class="cl-re-input-fi-reservation" type="date"  th:value="${reservationDTO.placeReservationDate}" readonly="readonly">
+						</div>
+						<br>
+						<div class="club-table-liRe">
+						예약시간<br><br> 
+						<input class="cl-re-input-fi-reservation" th:value="${reservationDTO.placeReservationTimeStart}+':00'" readonly="readonly">&nbsp;&nbsp;~&nbsp;&nbsp;<input class="cl-re-input-fi-reservation" th:value="${reservationDTO.placeReservationTimeEnd}+':00'" readonly="readonly">
+						</div>
 					</div>
-					<div>
-						<a>01:00</a> 
-					</div>
-					<div>
-						<a>02:00</a> 
-					</div>
-					<div>
-						<a>03:00</a> 
-					</div>
-					<div>
-						<a>04:00</a> 
-					</div>
-					<div>
-						<a>05:00</a> 
-					</div>
-					<div>
-						<a>06:00</a>
-					</div>
-					<div>
-						<a>07:00</a> 
-					</div>
-						<a>08:00</a> <a>09:00</a> <a>10:00</a> <a>11:00</a> <a>12:00</a>
-				</div>
-				<div class="swiper-slide">
-					<a>13:00</a> <a>14:00</a> <a>15:00</a> <a>16:00</a> <a>17:00</a>
-					<a>18:00</a> <a>19:00</a> <a>20:00</a> <a>21:00</a> <a>22:00</a>
-					<a>23:00</a>
-				</div>
-
 			</div>
+			<script type="text/javascript">
+			/*예약 상세페이지로 연결*/
+			$(".reservationRead").on("click",function(){
+				console.log(this);
+				var reservationNum = $(this).children(".club-table-liRe").children(".reservationNum").val();
+				console.log(reservationNum);
+				location.href="/thisiswe/place/reservation/read?reservationNum="+reservationNum;
+				
+			})
+			
+			</script>
+
+
+
+
+
+			<form th:action="@{/thisiswe/place/reservation}" th:method="post">
+
+
+				
+
+				
+
+
+				<div class="club-table">
+					<div class="club-table-read">
+
+						<div class="swiper-container">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+
+									<table class="club-re-ca">
+									<tr>
+									<th>
+				<div>RESERVATION</div>
+									</th>
+									</tr>
+										<!-- 장소번호 -->
+										<tr>
+											<th class="club-ri-th">장소번호</th>
+										</tr>
+										<tr>
+											<td class="cl-re-contain"><input type="hidden" class="cl-re-input-fi"
+												name="placeNum"></td>
+										</tr>
+
+										<!-- 룸번호 -->
+										<tr>
+											<th class="club-ri-th">룸번호</th>
+										</tr>
+										<tr>
+											<td class="cl-re-contain"><input class="cl-re-input-fi"
+												name="placeZoneNum" th:value="${placeZoneNum}" readonly="readonly"></td>
+										</tr>
+
+										<!-- 예약자명 -->
+										<tr>
+											<th class="club-ri-th">예약자명</th>
+										</tr>
+										<tr>
+											<td class="cl-re-contain"><input class="cl-re-input-fi"
+												type="text" name="place_reservation_name" required="required"></td>
+										</tr>
+
+										<!-- 유저 ID -->
+										<tr>
+											<th class="club-ri-th">유저ID</th>
+										</tr>
+										<tr>
+											<td class="cl-re-contain"><input class="cl-re-input-fi"
+												type="hidden" name="userId" th:value="${userId}" readonly="readonly"></td>
+										</tr>
+
+										<!-- 날짜 -->
+										<tr>
+											<th class="club-ri-th">날짜</th>
+										</tr>
+										<tr>
+											<td class="cl-re-contain"><input type="date"
+												name="placeReservationDate"
+												class="cl-re-input-fi placeReservationDate" required="required"></td>
+										</tr>
+
+										<!-- 이용시간 -->
+										<tr>
+											<th class="club-ri-th">이용시간</th>
+										</tr>
+										<tr>
+											<td><select name="placeReservationTimeStart"
+												class="cl-re-input-fi-ti placeReservationTimeStart" required="required">
+													<option value="00">00:00</option>
+													<option value="01">01:00</option>
+													<option value="02">02:00</option>
+													<option value="03">03:00</option>
+													<option value="04">04:00</option>
+													<option value="05">05:00</option>
+													<option value="06">06:00</option>
+													<option value="07">07:00</option>
+													<option value="08">08:00</option>
+													<option value="09">09:00</option>
+													<option value="10">10:00</option>
+													<option value="11">11:00</option>
+													<option value="12">12:00</option>
+													<option value="13">13:00</option>
+													<option value="14">14:00</option>
+													<option value="15">15:00</option>
+													<option value="16">16:00</option>
+													<option value="17">17:00</option>
+													<option value="18">18:00</option>
+													<option value="19">19:00</option>
+													<option value="20">20:00</option>
+													<option value="21">21:00</option>
+													<option value="22">22:00</option>
+													<option value="23">23:00</option>
+											</select> <select name="placeReservationTimeEnd"
+												class="cl-re-input-fi-ti placeReservationTimeEnd" required="required">
+													<option value="00">00:00</option>
+													<option value="01">01:00</option>
+													<option value="02">02:00</option>
+													<option value="03">03:00</option>
+													<option value="04">04:00</option>
+													<option value="05">05:00</option>
+													<option value="06">06:00</option>
+													<option value="07">07:00</option>
+													<option value="08">08:00</option>
+													<option value="09">09:00</option>
+													<option value="10">10:00</option>
+													<option value="11">11:00</option>
+													<option value="12">12:00</option>
+													<option value="13">13:00</option>
+													<option value="14">14:00</option>
+													<option value="15">15:00</option>
+													<option value="16">16:00</option>
+													<option value="17">17:00</option>
+													<option value="18">18:00</option>
+													<option value="19">19:00</option>
+													<option value="20">20:00</option>
+													<option value="21">21:00</option>
+													<option value="22">22:00</option>
+													<option value="23">23:00</option>
+											</select></td>
+										</tr>
+										<tr>
+										<td>
+										<button type="button" class="searchBtn-mi-textLength5 reservationBtn">예약중복확인</button>
+										</td>
+										</tr>
+										<!-- 인원 -->
+										<tr>
+											<th class="club-ri-th">인원</th>
+										</tr>
+										<tr>
+											<td class="cl-re-contain"><input class="cl-re-input-fi cc"
+												type="number" name="placeReservationHeadcount" th:max="${placeReservationHeadcount}"  required="required"></td>
+										</tr>
+
+										<!-- 전화번호 -->
+										<tr>
+											<th class="club-ri-th">전화번호</th>
+										</tr>
+										<tr>
+											<td class="cl-re-contain"><input class="cl-re-input-fi"
+												type="number" name="place_reservation_tel"></td>
+										</tr>
+
+
+										<!-- 카드번호 -->
+										<tr>
+											<th class="club-ri-th">카드번호</th>
+										</tr>
+										<tr>
+											<td class="cl-re-contain"><input
+												class="cl-re-input-fi-ti" type="number" max="9999"
+												name="placeReservationCardNumber1">- <input
+												class="cl-re-input-fi-ti" type="number" max="9999"
+												name="placeReservationCardNumber2">- <input
+												class="cl-re-input-fi-ti" type="number" max="9999"
+												name="placeReservationCardNumber3">- <input
+												class="cl-re-input-fi-ti" type="number" max="9999"
+												name="placeReservationCardNumber4"></td>
+										</tr>
+
+										<!-- 카드 월/년 -->
+										<tr>
+											<th class="club-ri-th">카드 월/년</th>
+										</tr>
+										<tr>
+											<td class="cl-re-contain"><input
+												class="cl-re-input-fi-ti" type="number" min="1" max="12"
+												name="placeReservationCardMonth">/<input
+												class="cl-re-input-fi-ti" type="number" min="01" max="99"
+												name="placeReservationCardYear"></td>
+										</tr>
+
+										<!-- 카드 사용자 이름 -->
+										<tr>
+											<th class="club-ri-th">카드 사용자 이름</th>
+										</tr>
+										<tr>
+											<td class="cl-re-contain"><input
+												class="cl-re-input-fi-ti" type="text"
+												name="placeReservationCardUserName"></td>
+										</tr>
+
+										<!-- 카드 비밀번호 앞 2자리 -->
+										<tr>
+											<th class="club-ri-th">카드 비밀번호 앞 2자리</th>
+										</tr>
+										<tr>
+											<td class="cl-re-contain"><input
+												class="cl-re-input-fi-ti" type="password"
+												name="placeReservationCardpassword">**</td>
+										</tr>
+
+										<tr>
+											<td><button type="submit" class="searchBtn-mi-textLength5">예약하기</button></td>
+										</tr>
+									</table>
+								</div>
+
+							</div>
+						</div>
+						<script type="text/javascript">
+						
+					$(".reservationBtn")
+							.on(
+									"click",
+									function() {
+										var placeReservationDate = $(
+												".placeReservationDate").val();
+										console.log("예약하고싶은 날짜 :"
+												+ placeReservationDate);
+										var placeReservationTimeStart = $(
+												".placeReservationTimeStart")
+												.val();
+										console.log("예약하고싶은 시작시간 :"
+												+ placeReservationTimeStart);
+										var placeReservationTimeEnd = $(
+												".placeReservationTimeEnd")
+												.val();
+										console.log("예약하고싶은 시작시간 :"
+												+ placeReservationTimeEnd);
+
+
+										$
+												.ajax({
+													url : "/thisiswe/place/reservationCheck",
+													type : "POST",
+													data : JSON
+															.stringify({
+																placeReservationDate : placeReservationDate,
+																placeReservationTimeStart : placeReservationTimeStart,
+																placeReservationTimeEnd : placeReservationTimeEnd
+															}),
+													contentType : "application/json; charset=UTF-8",
+													dataType : "json",
+													success : function(data) {
+														if (data == true) {
+															alert("예약이 가능합니다.")
+															console.log(data)
+														} else {
+															alert("예약이 불가능합니다.")
+															console.log(data)
+														}
+													}
+
+												})
+
+									})
+				</script>
+						<script>
+							new Swiper('.swiper-container');
+						</script>
+
+						<!-- 스크린  -->
+					</div>
+				</div>
+
+
+
+
+				<!-- /내용 -->
+			</form>
 		</div>
-		<script>
-			new Swiper('.swiper-container');
-		</script>
-		
-		<!-- 스크린  -->
-
-
-
-
-
-		<!-- /내용 -->
-</form>
-
 
 
 	</th:block>

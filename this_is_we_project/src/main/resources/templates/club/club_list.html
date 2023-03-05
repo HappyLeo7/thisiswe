@@ -26,7 +26,7 @@
 
 		<!-- 모임 전체 목록 -->
 		<div class="inner-club">
-			<h2>이런 모임은 어떠세요? 선택했나?</h2>
+			<h2>이런 모임은 어떠신가요?</h2>
 
 			<!-- 모임 등록 버튼 -->
 			<div class="club-regi">
@@ -42,18 +42,19 @@
 			<!-- 코드가안됨 -->
 			<div class="club-tableList"> 
 				<div class="club-table">
-					<div class="club-table-li" th:each="clubDTO : ${result}">
+					<div class="club-table-li clubRead" th:each="clubDTO : ${result}">
+							<input type="hidden" class="clubNum" th:value="${clubDTO.clubNum}">
 						<img th:src="|/display?fileName=${clubDTO.clubLogoUrl}|">
 						<div class="club-table-liRe">
 							<a th:href="@{/club/read}"></a>
 						</div>
-						<div>
-							<a class="clubNum" th:href="@{/thisiswe/club/(num=${clubDTO.clubNum})}"> [ [[${clubDTO.clubName}]] ]모임명</a>
+						<div class="club-table-liRe divclub">
+							<a class="clubNum club-liData" th:href="@{/thisiswe/club/(num=${clubDTO.clubNum})}"> [[${clubDTO.clubName}]]</a>
 						</div>
-						<div>지역:([[${clubDTO.clubPlace}]])</div>
-						<div>카테고리:([[${clubDTO.clubCategory}]])</div>
-						<div>인원:([[${clubDTO.clubHeadCount}]])</div>
-						<div>모임장:([[${clubDTO.userNickname}]])</div>
+						<div class="club-table-liRe">&nbsp;&nbsp;&nbsp;장소 :&nbsp; <span class="liReData">[[${clubDTO.clubPlace}]]</span></div>
+						<div class="club-table-liRe">카테고리 :&nbsp; <span class="liReData">[[${clubDTO.clubCategory}]]</span></div>
+						<div class="club-table-liRe">&nbsp;인원 :&nbsp; <span class="liReData">[[${clubDTO.clubHeadCount}]]명</span></div>
+						<div class="club-table-liRe">모임장 :&nbsp; <span class="liReData">[[${clubDTO.userNickname}]]</span></div>
 					</div>
 				</div>
 			</div>
@@ -99,8 +100,8 @@
                             )}">[[${page}]]</a>
 					</li>
 					<!-- 다음버튼 -->
-					<li class="link-page-active" th:each="page: ${Page.next}">
-						<a class="paginate-link" th:href="@{/thisiswe/club(page=${Page.end+1},
+					<li class="link-page-active" th:if="${Page.next}">
+						<a class="paginate-link" th:href="@{/thisiswe/club(page=${Page.end},
   																		   type=${pageRequestDTO.type},
   																		   keyword=${pageRequestDTO.keyword})}"
 						tabindex="-1">다음 </a>
@@ -115,6 +116,13 @@
 	</th:block>
 </th:block>
 <script type="text/javascript">
+	$(".clubRead").on("click", function(){
+		console.log((this));
+		var clubNum=$(this).children(".clubNum").val();
+		console.log(clubNum);
+		location.href="/thisiswe/club/?num="+clubNum;
+	})
+
 	$(".clubNum").on("click", function() {
 		console.log("모임 상세 클릭");
 	})

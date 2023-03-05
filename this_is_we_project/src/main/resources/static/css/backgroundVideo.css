@@ -1,0 +1,37 @@
+body{
+	margin: 0;
+	padding : 0;
+}
+div{
+	margin: 0;
+	padding : 0;
+}
+.bg-video {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.3;
+  object-fit:cover;
+}
+.bg-video-content {
+	position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover; 
+  
+ }
+ .info{
+ z-index:100;
+ color: white;
+  opacity: 0.1;
+ }
+ .a1{ 
+ margin-left: 300px;
+ z-index: 60;
+ }
+.a2{
+ z-index: 60;
+margin-top: -10px;	
+ margin-left: 100px;
+}

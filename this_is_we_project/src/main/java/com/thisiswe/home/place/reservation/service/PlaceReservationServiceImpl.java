@@ -3,6 +3,7 @@ package com.thisiswe.home.place.reservation.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,8 @@ public class PlaceReservationServiceImpl implements PlaceReservationService {
 		log.info("... Reservation register() ...");
 		
 		
-		//placeReservationRepository.save(dtoToEntity(placeReservationDTO));
+		log.info("... 예약 저장하기 전 ...");
+		placeReservationRepository.save(dtoToEntity(placeReservationDTO));
 		
 		log.info("... /Reservation register() ...");
 	}
@@ -34,7 +36,8 @@ public class PlaceReservationServiceImpl implements PlaceReservationService {
 	public Boolean getCheck(PlaceReservationDTO placeReservationDTO) {
 		log.info("... Reservation getCheck() ...");
 		log.info("... placeReservationDTO 입력받은 날짜 : "+placeReservationDTO.getPlaceReservationDate());
-		log.info("... placeReservationDTO 입력받은 시간 : "+placeReservationDTO.getPlaceReservationTime());
+		log.info("... placeReservationDTO 입력받은 시작시간 : "+placeReservationDTO.getPlaceReservationTimeStart());
+		log.info("... placeReservationDTO 입력받은 끝시간 : "+placeReservationDTO.getPlaceReservationTimeEnd());
 		
 		//예약시 사용시간 나열
 		int timeStart=Integer.parseInt(placeReservationDTO.getPlaceReservationTimeStart());
@@ -57,6 +60,9 @@ public class PlaceReservationServiceImpl implements PlaceReservationService {
 		//log.info("요청한 시간 체크 : "+reservationTime.split(", "));//배열화 함
 		
 		//날짜를 이용해서 시간 가져오기
+		try {
+			
+		
 		List<PlaceReservationEntity> list=placeReservationRepository.dateToList(placeReservationDTO.getPlaceReservationDate());
 		String[] checkTime=reservationTime.split(", ");
 		log.info("데이터에 저장되어있는 예약 시간 : "+list);
@@ -90,17 +96,75 @@ public class PlaceReservationServiceImpl implements PlaceReservationService {
 		log.info("확인여부 :"+times);
 		
 		if(times.contains(true)==false) {
-			log.info("예약 가능합니다");
+			log.info("예약 가능합니다 true");
 			log.info("... /Reservation getCheck() ...");
 			return true;
 			
 		}else {
 			
-			log.info("예약 불가능합니다.");
+			log.info("예약 불가능합니다. false");
 		}
 	//	log.info("예약하고자하는 날짜의 사용 불가 시간 : "+time);
 		log.info("... /Reservation getCheck() ...");
 		return false;
+		} catch (Exception e) {
+			log.info("예약 가능 여부 판단 중 null 값 오류 처리");
+		}
+		return null;
+	}
+
+	
+	//장소 > zone > 예약 현황 리스트 뽑기
+	@Override
+	public Object getPlaceNumToZoneNumToReservationList(Long placeZoneNum) {
+		List<PlaceReservationEntity> list=placeReservationRepository.getPlaceNumToZoneNumToReservationList(placeZoneNum);
+		List<PlaceReservationDTO> listDTO= new ArrayList<>();
+		for(PlaceReservationEntity arr: list) {
+			listDTO.add(entityToDto(arr, placeZoneNum));
+			log.info(arr);
+		}
+		
+		return listDTO;
+		
+	}
+
+	//예약번호로 예약 상세 1개 정보 불러오기
+	@Override
+	public PlaceReservationDTO getRead(Long reservationNum) {
+		log.info("... get Read () ...");
+		
+	Optional<PlaceReservationEntity> read=placeReservationRepository.findById(reservationNum);
+	
+	//log.info("예약번호 "+reservationNum+"번 정보 :"+read.get());
+	//log.info("예약번호 "+reservationNum+"번 정보 :"+read.get());
+	
+	log.info("... /get Read () ...");
+		return entityToDto(read.get(),reservationNum);
+	}
+
+	//예약 정보 수정 (인원 변경)
+	@Override
+	public PlaceReservationDTO modify(PlaceReservationDTO placeReservationDTO) {
+		log.info("... reservation modify ...");
+		
+		Optional<PlaceReservationEntity> read=placeReservationRepository.findById(placeReservationDTO.getPlaceReservationNum());
+		
+		PlaceReservationEntity placeReservationEntity=read.get();
+		log.info("예약되어있는 정보 확인 : "+placeReservationEntity);
+		if(placeReservationEntity !=null) {
+			placeReservationEntity.change(
+					placeReservationDTO.getPlaceReservationHeadcount(),
+					placeReservationDTO.getPlace_reservation_tel(),
+					placeReservationDTO.getPlace_reservation_name()
+					);
+			
+		}
+		
+		log.info("예약되어있는 수정정보 : "+placeReservationEntity);
+		placeReservationRepository.save(placeReservationEntity);
+		
+		log.info("... /reservation modify ...");
+		return placeReservationDTO;
 	}
 	
 	

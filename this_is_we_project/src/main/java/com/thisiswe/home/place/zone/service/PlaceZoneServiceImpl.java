@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.thisiswe.home.place.entity.PlaceEntity;
 import com.thisiswe.home.place.zone.dto.PlaceZoneDTO;
+import com.thisiswe.home.place.zone.entity.PlaceZoneEntity;
 import com.thisiswe.home.place.zone.repository.PlaceZoneRepository;
 
 import lombok.extern.log4j.Log4j2;
@@ -29,6 +30,7 @@ public class PlaceZoneServiceImpl implements PlaceZoneService {
 
 	@Override
 	public List<PlaceZoneDTO> getPlaceZone(Long placeNum) {
+		log.info( "요청한 get place zone 정보 :"+placeZoneRepository.findByPlaceNum(PlaceEntity.builder().placeNum(placeNum).build()).stream().map(i-> entityToDTO(i)).toList());
 		return placeZoneRepository.findByPlaceNum(PlaceEntity.builder().placeNum(placeNum).build()).stream().map(i-> entityToDTO(i)).toList();
 	}
 	
@@ -37,5 +39,19 @@ public class PlaceZoneServiceImpl implements PlaceZoneService {
 	public void get() {
 		//placeZoneRepository.getToRead();
 			
+	}
+
+	@Override
+	public PlaceZoneDTO getPlaceZoneNum(String placeZoneName, Long placeNum) {
+		
+		log.info("... getPlaceZoneNum() 구하기위한 서비스 ...");
+		
+		PlaceZoneEntity num = PlaceZoneEntity.builder().placeNum(PlaceEntity.builder().placeNum(placeNum).build()).build();
+		
+		PlaceZoneEntity placeZoneEntity=placeZoneRepository.placeZoneNameToPlaceZoneNum(placeZoneName,num.getPlaceNum());
+		log.info("룸이름으로 받아온 placeZoneEnetity 정보 : " +placeZoneEntity);
+		
+		log.info("... /getPlaceZoneNum() 구하기위한 서비스 ...");
+		return entityToDTO(placeZoneEntity);
 	}	
 }

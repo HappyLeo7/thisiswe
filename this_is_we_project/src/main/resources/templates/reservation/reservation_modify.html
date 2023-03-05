@@ -10,10 +10,132 @@
 	<th:block th:fragment="connection">
 	
 	
-	
 	<!-- 내용 -->
 	<title>예약 변경페이지</title>
+	<form action="/thisiswe/place/reservation/modify" method="post">
 	
+	<div class="inner-club">
+	<h2>예약 변경페이지</h2>
+	
+		<div class="club-table">
+				<div class="club-table-read">
+					<table class="club-re-ca">
+					<!-- 장소번호 -->
+					<tr>
+					<th class="club-ri-th">
+					장소번호
+					</th>
+					</tr>
+					<tr>
+					<td class="cl-re-contain">
+	<input class="cl-re-input-fi" name="placeNum" th:value="${placeReservationDTO.placeNum}" readonly="readonly">
+					</td>
+					</tr>
+					
+					<!-- 예약번호 -->
+					<tr>
+					<th class="club-ri-th">
+					예약번호
+					</th>
+					</tr>
+					<tr>
+					<td class="cl-re-contain">
+	<input class="cl-re-input-fi" name="placeReservationNum" th:value="${placeReservationDTO.placeReservationNum}" readonly="readonly">
+					</td>
+					</tr>
+					
+							<!-- 룸번호 -->
+					<tr>
+					<th class="club-ri-th">
+					룸번호
+					</th>
+					</tr>
+					<tr>
+					<td class="cl-re-contain">
+	<input class="cl-re-input-fi" name="placeZoneNum" th:value="${placeReservationDTO.placeZoneNum}" readonly="readonly">
+					</td>
+					</tr>
+					
+							<!-- 룸이름 -->
+					<tr>
+					<th class="club-ri-th">
+					룸이름
+					</th>
+					</tr>
+					<tr>
+					<td class="cl-re-contain">
+	<input class="cl-re-input-fi" name="placeZoneName" th:value="${placeReservationDTO.placeZoneName}" readonly="readonly">
+					</td>
+					</tr>
+					
+							<!-- 예약자명 -->
+					<tr>
+					<th class="club-ri-th">
+					예약자명
+					</th>
+					</tr>
+					<tr>
+					<td class="cl-re-contain">
+	<input class="cl-re-input-fi" name="place_reservation_name" th:value="${placeReservationDTO.place_reservation_name}">
+					</td>
+					</tr>
+					
+							<!-- 예약날짜 -->
+					<tr>
+					<th class="club-ri-th">
+					예약날짜
+					</th>
+					</tr>
+					<tr>
+					<td class="cl-re-contain">
+<input class="cl-re-input-fi" name="placeReservationDate" th:value="${placeReservationDTO.placeReservationDate}" readonly="readonly">
+					</td>
+					</tr>
+
+							<!-- 예약시간 -->
+					<tr>
+					<th class="club-ri-th">
+					예약시간
+					</th>
+					</tr>
+					<tr>
+					<td class="cl-re-contain">
+	<input class="cl-re-input-fi-ti" name="placeReservationTimeStart" th:value="${placeReservationDTO.placeReservationTimeStart}+':00'" readonly="readonly">~<input class="cl-re-input-fi-ti" name="placeReservationTimeEnd" th:value="${placeReservationDTO.placeReservationTimeEnd}+':00'" readonly="readonly">
+					</td>
+					</tr>
+
+							<!-- 예약인원 -->
+					<tr>
+					<th class="club-ri-th">
+					예약인원
+					</th>
+					</tr>
+					<tr>
+					<td class="cl-re-contain">
+	<input type="number" class="cl-re-input-fi" name="placeReservationHeadcount" th:value="${placeReservationDTO.placeReservationHeadcount}">
+					</td>
+					</tr>
+					
+							<!-- 예약자 전화번호 -->
+					<tr>
+					<th class="club-ri-th">
+					예약자 전화번호
+					</th>
+					</tr>
+					<tr>
+					<td class="cl-re-contain">
+	<input class="cl-re-input-fi" name="place_reservation_tel" th:value="${placeReservationDTO.place_reservation_tel}">
+					</td>
+					</tr>
+					
+					</table>
+	<div class="club-re-Btn">
+	<button class="searchBtn-mi-textLength5" type="submit">변경하기</button>
+	</div>
+	</div>
+	</div>
+	</div>
+	</form>
 	<!-- /내용 -->
 	
 	

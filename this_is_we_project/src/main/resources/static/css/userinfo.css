@@ -1,160 +1,142 @@
-body {
-	margin: 0 auto;
-	width: 100%;
-	height: 100%;
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+	;
+
+/* 프로젝트 포인트 색상(임의 01) : #e4481b; - 주황색 */
+/* 프로젝트 포인트 색상(임의 02) : #0d5718; - 초록색 */
+/* 프로젝트 포인트 색상(팬톤 올해의 컬러 2023) : #BB2649; - 비바마젠타 */
+* {
 	font-family: 'Nanum Gothic', sans-serif;
 }
-
-#modify {
-	margin: auto;
-	height: 100%;
-	width: 700px;
-	text-align: left;
-	/* 추가 */
-}
-
-.userinfo-title {
+/* 공통 스타일 */
+body {
+	color: #333;
 	text-align: center;
-	margin-top: 60px;
-	margin-bottom: 30px;
-	padding: 30px 0 30px 0;
-	font-size: 30px;
-	font-weight: 700;
-	letter-spacing: 10px;
-	text-indent: 12px;
-	display: inline-block;
+}
+
+/* 회원정보 수정 폼 스타일 */
+#modify {
+	max-width: 500px;
+	margin: 50px auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+#modify span:first-child {
+	margin: 15px;
+	display: block;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* 입력 폼 스타일 */
+.signup-classification {
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	color : #303030;
+	font-size: 18px;
+	font-weight: bold;
+	color: #303030;
+}
+.myPageId {
+	padding: 15px;
+	font-size: 24px;
+	font-weight: 600;
+	color: #BB2649;
+	cursor: pointer;
+}
+.myPagePw{
+	display: block;
+	padding: 10px;
 	width: 100%;
-	border-bottom: 1px solid black;
+	height: 40px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-sizing: border-box;
+	font-size: 16px;
+	text-align: center;
+}
+.myPageNick{
+	display: block;
+	padding: 10px;
+	width: 100%;
+	height: 40px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-sizing: border-box;
+	font-size: 16px;
+	text-align: center;
+}
+#previewImage {
+	display: inline-block;
+	margin: 10px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	font-size: 14px;
+	color: #c0c0c0;
+	text-align: center;
+}
+#userImageFile{
+	display: inline-block;
+	padding-left: 100px;
+	font-size: 14px;
+	color: #c0c0c0;
 }
 
-#id-container {
-	margin-bottom: 30px;
+.myPagePw:focus, .myPageNick:focus {
+	border: 2px solid #BB2649;
+	outline: none;	
 }
-
-.modify-sub {
-	margin-top: 60px;
-	margin-left: 50px;
-	font-size: 20px;
-	font-weight: 600;
-	color: #2f2f2f;
+/* 버튼 스타일 */
+button {
+	display: inline-block;
 }
-
-.modify-image-top {
-	margin-top: 60px;
-	margin-left: 50px;
-	font-size: 20px;
-	font-weight: 600;
-	color: #2f2f2f;
-}
-
-.modify-pwd-top {
-	margin-top: 60px;
-	margin-left: 50px;
-	font-size: 20px;
-	font-weight: 600;
-	color: #2f2f2f;
-}
-
-.modify-nickname-top {
-	margin-top: 30px;
-	margin-left: 50px;
-	font-size: 20px;
-	font-weight: 600;
-	color: #2f2f2f;
-}
-
-.back-container {
-	text-align: right;
-}
-
-#cancel-button {
+.myPageNickBtn{
+	margin-bottom: 10px;
+	background: #ffffff;
+	color: #363636;
 	height: 30px;
-	width: 120px;
-	margin-top: 30px;
-	margin-left: 50px;
-	color: #2f2f2f;
+	width: 100px;
+	font-size: 16px;
+	font-weight: 400;
+	border: 1px solid #b3b3b3;
+	border-radius: 12px;
+	cursor: pointer;
+	transition: all 0.3s ease;
 }
-
-.modify-sub-input {
-
-	margin-left: 5px;
-	font-size: 20px;
-	font-weight: 600;
-	color: #2f2f2f;
-}
-
-.image-modify {
-	margin-left: 5px;
+.myPageNickBtn:hover{
+	background: #fff;
+	color: #BB2649;
+	width: 100px;
 	font-size: 16px;
 	font-weight: 600;
-	color: #2f2f2f;
+	border: 1px solid #868686;
+	border-radius: 12px;
 }
-
-
-.change-image-container {
-	position: relative;
+.modifyBtn{
+	margin: 20px 0 15px 0;
+    position: relative;
+    height: 50px;
+    width: 100px;
+    background-color: #BB2649;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #fff;
+    border-radius: 15px;
+    cursor: pointer;
+}
+/* 검증 메시지 스타일 */
+.verification {
 	display: inline-block;
-	margin-top: 20px;
-}
-
-.change-pwd-container {
-	position: relative;
-	display: inline-block;
-	margin-top: 300px;
-}
-
-.change-nickname-container {
-	position: relative;
-	display: inline-block;
-	margin-top: 200px;
-}
-
-
-#nickname-modify-container {
-	position: absolute;
-	margin-bottom: 30px;
-	top: 0;
-	left: 300px;
-	width: 300px;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	padding: 10px;
-}
-
-#pwd-modify-container {
-	position: absolute;
-	margin-bottom: 30px;
-	top: 0;
-	left: 300px;
-	width: 300px;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	padding: 10px;
-}
-
-#image-modify-container {
-	position: absolute;
-	margin-bottom: 30px;
-	top: 0;
-	left: 300px;
-	width: 300px;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	padding: 10px;
-}
-
-
-.imageModifyBox {
-	margin-bottom: 10px;
-	max-width: 100%;
-	height: auto;
-}
-
-.ImagemodifyBtn {
-	margin-top: 10px;
-}
-
-#previewImage {
-	width: 250px;
-	height: 250px;
+	margin: 10px;
+	text-align: center;
+	font-size: 14px;
+	color: #BB2649;
 }

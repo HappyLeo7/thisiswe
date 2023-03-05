@@ -1,5 +1,6 @@
-#mongoDB atlas
+##mongoDB atlas
 #spring:
 #  data:
 #    mongodb:
-#      uri: mongodb+srv://root:1111@cluster0.zaqqq2j.mongodb.net/yapp.message?retryWrites=true&w=majority
+#      uri: mongodb+srv://root:1111@cluster12.ugdqkfn.mongodb.net/yapp.message?retryWrites=true&w=majority
+#

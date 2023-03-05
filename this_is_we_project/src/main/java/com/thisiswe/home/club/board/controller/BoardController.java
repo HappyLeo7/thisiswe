@@ -36,7 +36,7 @@ public class BoardController {
 	private final BoardRepository boardRepository;
 
 	// TODO [Controller] 게시판 : 목록
-	@GetMapping({ "/club/board" })
+	@GetMapping({"/club/board"})
 	public String board_list(PageRequestDTO pageRequestDTO, Model model, Long num) {
 
 		log.info("====== BoardController.java => board_list.html 연결 ======");

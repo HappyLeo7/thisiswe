@@ -1,7 +1,6 @@
 package com.thisiswe.home.user.security;
 
 import com.thisiswe.home.user.entity.UserEntity;
-import com.thisiswe.home.user.entity.UserRole;
 import com.thisiswe.home.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

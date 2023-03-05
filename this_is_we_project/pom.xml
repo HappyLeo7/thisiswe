@@ -159,7 +159,6 @@
 		</dependency>
 		<!-- /[추가] chating -->
 
-
 		<!--mail  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -172,8 +171,7 @@
 			<artifactId>thumbnailator</artifactId>
 			<version>0.4.19</version>
 		</dependency>
-
-
+		
 	</dependencies>
 
 	<build>

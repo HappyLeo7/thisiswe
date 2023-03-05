@@ -1,8 +1,12 @@
 package com.thisiswe.home.place.entity;
 
 import com.thisiswe.home.enetity.DateEntity;
+import com.thisiswe.home.place.zone.entity.PlaceZoneEntity;
 import com.thisiswe.home.user.entity.UserEntity;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -11,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
+@ToString(exclude = {"placeImages", "placeReviews", "placeZones"})
 @Table(name = "we_place")
 
 //TODO [Entity]place 테이블 컬럼 (장소번호, 유저ID, 장소명, 한줄 소개, 소개글, 영업 시간, 휴무일, 환불 규정, 주소, 전화 번호 좌표, 안내 사항,  주의 사항)
@@ -26,7 +30,14 @@ public class PlaceEntity extends DateEntity {
 	@JoinColumn(name = "user_id")
 	private UserEntity userId; // 유저 ID
 
+	@OneToMany(mappedBy = "placeNum", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<PlaceImageEntity> placeImages;
 	
+	@OneToMany(mappedBy = "placeNum", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<PlaceReviewEntity> placeReviews;
+	
+	@OneToMany(mappedBy = "placeNum", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<PlaceZoneEntity> placeZones;
 	
 	@Column(length = 50, name = "place_name", nullable = false)
 	private String placeName; // 장소명
@@ -58,7 +69,7 @@ public class PlaceEntity extends DateEntity {
 	@Column(length = 5000, name = "place_guide", nullable = false)
 	private String placeGuide; // 안내 사항
 
-	@Column(length = 200, name = "place_caution", nullable = false)
+	@Column(length = 5000, name = "place_caution", nullable = false)
 	private String placeCaution; // 주의 사항
 	
 	

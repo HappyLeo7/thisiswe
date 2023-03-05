@@ -3,11 +3,21 @@
 
 <th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
 
-
 	<th:block th:fragment="connection">
-	
+<!-- [배경영상 css] -->
+	<link rel="stylesheet" href="css/backgroundVideo.css"/>
+<!-- /[배경영상 css] -->
+
+	<div id="backgroundVideo">
+			<!-- [배경 영상] -->
+				<video  autoplay="autoplay" loop="loop" muted="muted">
+				<source src="video/bbc.mp4" type="video/mp4">
+				</video>
+			</div>
+
+<!-- 
 <h1>Hi This is we</h1>
-<h2>member 여러분</h2>
+<h2>member 여러분</h2> -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
@@ -34,7 +44,7 @@
 
 
 
-
+<!-- 
 
 <h1>홈화면</h1>
 <h3><a th:href="@{/thisiswe/club}">모임</a></h3>
@@ -68,8 +78,9 @@
 </div>
 <div id="search-area">
 <div>
-<input type="text" id="query">
+<input type="text" id="query"> -->
 <!-- <img src="images/icon-search.png" alt="">-->
+<!-- 
 </div>
 <div id="search-result-box">
 </div>
@@ -79,7 +90,7 @@
 </button>
 </div>
 </div>
-</div>
+</div> -->
 
 </th:block>
 

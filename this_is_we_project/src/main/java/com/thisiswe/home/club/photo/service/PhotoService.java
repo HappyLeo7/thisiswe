@@ -35,7 +35,6 @@ public interface PhotoService {
 					.clubNum(photoEntity.getClubNum())
 					.userId(photoEntity.getUserId())
 					.photoPath(photoEntity.getPhotoPath())
-					.photoView(photoEntity.getPhotoView())
 					.photoImage(photoEntity.getPhotoImage())
 					.photoContent(photoEntity.getPhotoContent())
 					.build();

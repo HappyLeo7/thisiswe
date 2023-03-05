@@ -40,14 +40,9 @@ public class UserSecurityConfig {
         .headers()
             .cacheControl().disable();
 		
-		http.csrf().disable(); // 테스트중으로 공부가 필요한 부분
-
-//		http.csrf().ignoringAntMatchers("/user/**"); // 회원 관리 처리 API (POST /user/**) 에 대해 CSRF 무시
-
+		http.csrf().disable(); 
+		
         http.authorizeRequests() // 권한에 대해
-        
-        // 인증 했을 때만 허용
-//        .antMatchers("/thisiswe/mypage/userinfo").authenticated() // API 요청은 인증 필요
         
 //		 image 폴더를 login 없이 허용
                 .antMatchers("/image/**").permitAll()
@@ -56,6 +51,7 @@ public class UserSecurityConfig {
 //		 css 폴더를 login 없이 허용
                 .antMatchers("/css/**").permitAll()
 //		 회원 관리 처리 API 전부를 login 없이 허용
+                .antMatchers("/video/**").permitAll()
                 .antMatchers("/login/user/**").permitAll()
                 .antMatchers("/club/**").permitAll()
                 .antMatchers("/chatroom/**").permitAll()
@@ -112,13 +108,7 @@ public class UserSecurityConfig {
 			// 이전 페이지로 이동
 			response.sendRedirect(request.getHeader("referer"));
 		})
-//		.logoutSuccessHandler((request, response, authentication) -> {
-//			Cookie cookie = new Cookie("loggedIn", null);
-//			cookie.setMaxAge(0); // 쿠키 삭제
-//			cookie.setPath("/");
-//			response.addCookie(cookie);
-//			response.sendRedirect("/thisiswe/logoutCheck");
-//		})
+
 		.permitAll()
 		.and().exceptionHandling()
 		// 인증되지 않은 사용자가 접근할 경우 보여줄 페이지 설정

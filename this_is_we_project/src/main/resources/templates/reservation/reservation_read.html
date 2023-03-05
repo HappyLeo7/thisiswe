@@ -11,9 +11,155 @@
 	
 	
 	
-	<!-- 내용 -->
 	<title>예약 상세페이지</title>
+	<!-- 내용 -->
 	
+	<div class="inner-club">
+	<h2>예약 상세페이지</h2>
+
+	<div class="club-table">
+				<div class="club-table-read">
+				<table class="club-re-ca">
+				<!-- 장소 번호 -->
+				<tr>
+				<th class="club-ri-th">
+					장소번호
+				</th>
+				</tr>
+				<tr>
+				<td class="cl-re-contain">
+					<input class="cl-re-input-fi" th:value="${placeReservationDTO.placeNum}" readonly="readonly">
+				</td>
+				</tr>
+				
+				<!-- 예약번호 -->
+				<tr>
+				<th class="club-ri-th">
+					예약번호
+				</th>
+				</tr>
+				<tr>
+				<td class="cl-re-contain">
+					<input class="cl-re-input-fi placeReservationNum" th:value="${placeReservationDTO.placeReservationNum}" readonly="readonly">
+				</td>
+				</tr>
+								
+				<!-- 룸번호 -->
+				<tr>
+				<th class="club-ri-th">
+					룸번호
+				</th>
+				</tr>
+				<tr>
+				<td class="cl-re-contain">
+					<input class="cl-re-input-fi placeZoneNum" th:value="${placeReservationDTO.placeZoneNum}" readonly="readonly">
+				</td>
+				</tr>
+								
+				<!-- 룸이름 -->
+				<tr>
+				<th class="club-ri-th">
+				룸이름
+				</th>
+				</tr>
+				<tr>
+				<td class="cl-re-contain">
+					<input class="cl-re-input-fi" th:value="${placeReservationDTO.placeZoneName}" readonly="readonly">
+				</td>
+				</tr>
+								
+				<!-- 예약자명 -->
+				<tr>
+				<th class="club-ri-th">
+					예약자명
+				</th>
+				</tr>
+				<tr>
+				<td class="cl-re-contain">
+					 <input class="cl-re-input-fi" th:value="${placeReservationDTO.place_reservation_name}" readonly="readonly">
+				</td>
+				</tr>
+								
+				<!-- 예약날짜  -->
+				<tr>
+				<th class="club-ri-th">
+					예약날짜 
+				</th>
+				</tr>
+				<tr>
+				<td class="cl-re-contain">
+	<input class="cl-re-input-fi" th:value="${placeReservationDTO.placeReservationDate}" readonly="readonly">
+				</td>
+				</tr>
+								
+				<!-- 예약시간 -->
+				<tr>
+				<th class="club-ri-th">
+					예약시간
+				</th>
+				</tr>
+				<tr>
+				<td class="cl-re-contain">
+					<input class="cl-re-input-fi" th:value="${placeReservationDTO.placeNum}" readonly="readonly">
+	 <input class="cl-re-input-fi-ti" th:value="${placeReservationDTO.placeReservationTimeStart}+':00'" readonly="readonly">&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input class="cl-re-input-fi-ti" th:value="${placeReservationDTO.placeReservationTimeEnd}+':00'" readonly="readonly">
+				</td>
+				</tr>
+								
+				<!-- 예약인원 -->
+				<tr>
+				<th class="club-ri-th">
+					예약인원
+				</th>
+				</tr>
+				<tr>
+				<td class="cl-re-contain">
+	<input class="cl-re-input-fi" th:value="${placeReservationDTO.placeReservationHeadcount}" readonly="readonly">
+				</td>
+				</tr>
+								
+				<!-- 예약자 전화번호 -->
+				<tr>
+				<th class="club-ri-th">
+					예약자 전화번호
+				</th>
+				</tr>
+				<tr>
+				<td class="cl-re-contain">
+	 <input class="cl-re-input-fi" th:value="${placeReservationDTO.place_reservation_tel}" readonly="readonly">
+				</td>
+				</tr>
+				
+				</table>
+				<div class="club-re-Btn">
+	<a  th:href="@{/thisiswe/place/reservation/modify(reservationNum=${placeReservationDTO.placeReservationNum})}"><button class="searchBtn-mi-textLength5">변경페이지</button></a>
+	<button type="button" class="searchBtn-mi-textLength5 reservationRemove">예약취소</button>
+	<a  th:href="@{/thisiswe/place/reservation/(placeZoneNum=${placeReservationDTO.placeZoneNum})}"><button class="searchBtn-mi">목록</button></a>
+	</div>
+	</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+//예약 취소 처리
+$(".reservationRemove").on("click",function(){
+	var placeReservationNum = $(".placeReservationNum").val()
+	var placeZoneNum=$(".placeZoneNum").val()
+	console.log("삭제 버튼 클릭");
+	console.log("예약번호 : "+placeReservationNum);
+	$.ajax({
+		url:"/thisiswe/place/reservation/remove",
+		method:"delete",
+		data:{ reservationNum:placeReservationNum,
+			placeZoneNum:placeZoneNum},
+		success: function(result){
+			var url= "/thisiswe/place/reservation/?placeZoneNum="+placeZoneNum;
+			location.replace(url);
+		}
+		
+		
+		
+	})
+})
+</script>
 	<!-- /내용 -->
 	
 	

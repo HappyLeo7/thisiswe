@@ -1,253 +1,276 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-<form th:action="@{/thisiswe/place/modify}" th:method="post">
+<!-- th를 쓰기위한 thymeleaf.org 선언 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-	장소명
-	<input name="placeName" th:value="${place.getPlaceName}">
-	<br>
-	
-	<div class="form-group">
-		<label>이미지</label>
-		<div class="custom-file">
-			<input type="file" class="custom-file-input files" id="fileInput" multiple> 
-			<label class="custom-file-label" data-browse="Browse"></label>
+<!-- "~{폴더경로/파일이름::setContent(~{this::연결할 내가 지정한 변수})}" -->
+<th:block th:replace="~{basic/basicindex::setContent(~{this::connection})}">
+
+	<!-- 지정한 변수로 연결할 위치 -->
+	<th:block th:fragment="connection">
+		<div class="inner">
+			<h2>장소 수정페이지</h2>
+			<form th:action="@{/thisiswe/place/modify}" th:method="post">
+				<div class="club-table">
+					<div class="club-table-read">
+						<div class="club-re-ca">
+
+							장소명
+							<input class="cl-re-input-fi" name="placeName"
+								th:value="${place.getPlaceName}">
+							<br>
+
+							카테고리
+							<select class="cl-re-input-fi" classs="category" name="placeCategory">
+								<option value="파티룸">파티룸</option>
+								<option value="연습실">연습실</option>
+								<option value="스튜디오">스튜디오</option>
+								<option value="공연장">공연장</option>
+								<option value="스터디 룸">스터디 룸</option>
+								<option value="회의실">회의실</option>
+								<option value="공유 주방">공유 주방</option>
+								<option value="기타">기타</option>
+							</select>
+							<br>
+
+							<div class="form-group">
+								<label>이미지</label>
+								<div class="custom-file">
+									<input type="file" class="custom-file-input files" id="fileInput" multiple>
+									<label class="custom-file-label" data-browse="Browse"></label>
+								</div>
+							</div>
+							<div class="box"></div>
+
+
+							<div class="uploadResult">
+								<ul>
+
+								</ul>
+							</div>
+
+							한 줄 소개
+							<input class="cl-re-input-fi" name="placeOneLineIntroduction"
+								th:value="${place.getPlaceOneLineIntroduction}">
+							<br>
+
+							소개글
+							<textarea class="cl-re-input-fi" name="placeIntroduction"
+								th:value="${place.getPlaceIntroduction}">=[[${place.getPlaceIntroduction}]]</textarea>
+							<br>
+
+							영업 시간
+							<input class="cl-re-input-fi" name="placeBusinessHours"
+								th:value=${place.getPlaceBusinessHours}>
+							<br>
+
+							휴무일
+							<input class="cl-re-input-fi" name="placeHoliday" th:value="${place.getPlaceHoliday}">
+							<br>
+
+							안내사항
+							<textarea class="cl-re-input-fi" name="placeGuide"
+								th:value=${place.getPlaceGuide}>[[${place.getPlaceGuide}]]</textarea>
+							<br>
+
+							주의사항
+							<textarea class="cl-re-input-fi" name="placeCaution"
+								th:value="${place.getPlaceCaution}">[[${place.getPlaceCaution}]]</textarea>
+							<br>
+
+							환불 규정
+							<textarea class="cl-re-input-fi" name="placeRefundRegulations"
+								th:value="${place.getPlaceRefundRegulations}">[[${place.getPlaceRefundRegulations}]]</textarea>
+							<br>
+
+							주소
+							<input class="cl-re-input-fi" name="placeAddress" th:value="${place.getPlaceAddress}">
+							<br>
+
+							전화번호
+							<input class="cl-re-input-fi" name="placePhoneNumber" th:value=${place.getPlacePhoneNumber}>
+							<br>
+
+
+
+
+
+							<button type="submit" class="modifyButton searchBtn-mi-textLength5">등록</button>
+
+						</div>
+					</div>
+				</div>
 		</div>
-	</div>
-	<div class="box"></div>
+		</form>
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<script>
+			$(document).ready(function (e) {
+
+				// 셀렉트 버튼 첫번째 값
+				var selectValue = [[${place.getPlaceCategory}]]
+				$(".category").val(selectValue);
 
 
-	<div class="uploadResult">
-		<ul>
+				var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
+				var maxSize = 10485760; //10MB
 
-		</ul>
-	</div>
-	
-	한 줄 소개
-	<input name="placeOneLineIntroduction" th:value="${place.getPlaceOneLineIntroduction}">
-	<br>
-	
-	소개글
-	<input name="placeIntroduction" th:value="${place.getPlaceIntroduction}" >
-	<br>
-	
-	영업 시간											
-	<input name="placeBusinessHours" th:value=${place.getPlaceBusinessHours}>
-	<br>
-	
-	휴무일
-	<input name="placeHoliday" th:value="${place.getPlaceHoliday}">
-	<br>
-	
-	환불 규정
-	<input name="placeRefundRegulations" th:value="${place.getPlaceRefundRegulations}">
-	<br>
-	
-	주소
-	<input name="placeAddress" th:value="${place.getPlaceAddress}">
-	<br>
-	
-	전화번호
-	<input name="placePhoneNumber" th:value=${place.getPlacePhoneNumber}>
-	<br>
-	
-	안내사항
-	<input name="placeGuide" th:value=${place.getPlaceGuide}>
-	<br>
-	
-	주의사항
-	<input name="placeCaution" th:value="${place.getPlaceCaution}">
-	<br>
-	
-	카테고리
-	<select classs="category" name="placeCategory">
-			<option value="파티룸">파티룸</option>
-			<option value="연습실">연습실</option>
-			<option value="스튜디오">스튜디오</option>
-			<option value="공연장">공연장</option>
-			<option value="스터디 룸">스터디 룸</option>
-			<option value="회의실">회의실</option>
-			<option value="공유 주방">공유 주방</option>
-			<option value="기타">기타</option>
-		</select>
-	<br>
-	
-	<button type="submit" class="modifyButton">등록</button>
-
-
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>	
-<script>
-		$(document).ready(function(e){
-			
-			// 셀렉트 버튼 첫번째 값
-			var selectValue = [[${place.getPlaceCategory}]]
-			$(".category").val(selectValue);
-			
-			
-			var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
-			var maxSize = 10485760; //10MB
-			
-			function checkExtension(fileName, fileSize){
-				if(fileSize >= maxSize){
-					alert("파일 사이즈 초과");
-					return false;
-				}
-				if(regex.test(fileName)){
-					alert("해당 종류의 파일은 업로드 할 수 없습니다.")
-					return false;
-				}
-				return true;
-			}
-			
-			$(".custom-file-input").on("change", function(){
-				var fileName = $(this).val().split("\\").pop();
-				$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-				
-				var formData = new FormData();
-				
-				var inputFile = $(this);
-
-				var files = inputFile[0].files;
-				
-				var appended = false;
-				
-				for(var i = 0; i < files.length; i++){
-					if(!checkExtension(files[i].name, files[i].size)){
+				function checkExtension(fileName, fileSize) {
+					if (fileSize >= maxSize) {
+						alert("파일 사이즈 초과");
 						return false;
 					}
-					console.log(files[i]);
-					formData.append("uploadFiles", files[i]);
-					appended = true;
-				}
-				if(!appended){
-					return;
-				}
-				for(var value of formData.values()){
-					
-					console.log("굳");
-					console.log(value);
-				}
-				
-				// 실제 업로드 부분
-				// upload ajax
-				$.ajax({
-					url: '/thisiswe/placeImageuploadAjax',
-					processData: false,
-					contentType: false,
-					data: formData,
-					type: 'post',
-					dataType: 'Json',
-					success: function(result){
-						console.log(result);
-						showResult(result);
-					},
-					error: function(jqXHR, textStatus, errorThrown){
-						console.log(1)
-						console.log(textStatus)
-						console.log(2)
-						
+					if (regex.test(fileName)) {
+						alert("해당 종류의 파일은 업로드 할 수 없습니다.")
+						return false;
 					}
+					return true;
+				}
+
+				$(".custom-file-input").on("change", function () {
+					console.log(123);
+					var fileName = $(this).val().split("\\").pop();
+					$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+
+					var formData = new FormData();
+
+					var inputFile = $(this);
+
+					var files = inputFile[0].files;
+
+					var appended = false;
+
+					for (var i = 0; i < files.length; i++) {
+						if (!checkExtension(files[i].name, files[i].size)) {
+							return false;
+						}
+						console.log(files[i]);
+						formData.append("uploadFiles", files[i]);
+						appended = true;
+					}
+					if (!appended) {
+						return;
+					}
+					for (var value of formData.values()) {
+
+						console.log("굳");
+						console.log(value);
+					}
+
+					// 실제 업로드 부분
+					// upload ajax
+					$.ajax({
+						url: '/thisiswe/placeImageuploadAjax',
+						processData: false,
+						contentType: false,
+						data: formData,
+						type: 'post',
+						dataType: 'Json',
+						success: function (result) {
+							console.log(result);
+							showResult(result);
+						},
+						error: function (jqXHR, textStatus, errorThrown) {
+							console.log(1)
+							console.log(textStatus)
+							console.log(2)
+
+						}
+					});
 				});
-			});
-			
-			
-			function showResult(arr) {
-				console.log(arr);
 
-				var divArea = $(".uploadResult ul");
-				var str = "";
 
-				for (var i = 0; i < arr.length; i++) {
-					str += "<li data-name='" + arr[i].fileName 
-					+ "'data-path='"+arr[i].folderPath 
-					+ "' data-uuid='" + arr[i].uuid+"'>";       
-					
-					str += "<div>";
-					str += "<button type='button' data-file=\'" + arr[i].imageURL + "\' "
-					str += "class='btn-warning btn-sm'>X</button><br>";						
-					
-					str += "<img src='/thisiswe/placeImageDisplay?fileName=" + arr[i].thumbnailURL
+				function showResult(arr) {
+					console.log(arr);
+
+					var divArea = $(".uploadResult ul");
+					var str = "";
+
+					for (var i = 0; i < arr.length; i++) {
+						str += "<li data-name='" + arr[i].fileName
+							+ "'data-path='" + arr[i].folderPath
+							+ "' data-uuid='" + arr[i].uuid + "'>";
+
+						str += "<div>";
+						str += "<button type='button' data-file=\'" + arr[i].imageURL + "\' "
+						str += "class='btn-warning btn-sm'>X</button><br>";
+
+						str += "<img src='/thisiswe/placeImageDisplay?fileName=" + arr[i].thumbnailURL
 							+ "'>";
-				/* 	str += "<button class='removeBtn' data-name='"+arr[i].imageURL+"'>삭제</button>"; */
-					
-					str += "</div>"
-					str += "</li>"
-					
-				}
-				divArea.append(str);
-				
-			$(".uploadResult").on("click", "li button", function(e){
-				console.log("delete")
-				var targetFile = $(this).data("file");
-				var targetLi = $(this).closest("li");
-				
-				/* var fileName = target.data("name");
-				var targetDiv = $(this).closest("div");
-				 
-				console.log(fileName);
-				
-				$.post('/removeFile', {fileName:fileName}, function(result){
-					console.log(result);
-					if(result==true){
-						targetDiv.remove();
-					}
-				}) */
-				
-				$.ajax({
-					url:'/thisiswe/placeImageRemoveFile',
-					data: {fileName: targetFile},
-					dataType: 'text',
-					type: 'post',
-					success: function(result){
-						alert(result);
-						
-						targetLi.remove();
-					}
-				}); //$.ajax
-			});
-			}
-			
-			
-			$(".modifyButton").on("click", function(e){
-				e.preventDefault();
-				
-				var str = "";
-				
-				$(".uploadResult li").each(function(i,obj){
-					var target = $(obj);
-					
-					str += "<input type='hidden' name='placeImageDTOList["+i+"].placeImgName' value='"+target.data('name')+"'>";
-					str += "<input type='hidden' name='placeImageDTOList["+i+"].placeImageUrl' value='"+target.data('path')+"'>";
-					str += "<input type='hidden' name='placeImageDTOList["+i+"].placeUuid' value='"+target.data('uuid')+"'>";
-				
-				});
-				
-				$(".box").html(str);
-				$("form").submit();
-				
-			});
-			
-			
-			
-		});
-		
-		
-		
-		
-		
-		
-		
-	</script>
-	
-	
-	
-	
-</form>
+						/* 	str += "<button class='removeBtn' data-name='"+arr[i].imageURL+"'>삭제</button>"; */
 
-</body>
+						str += "</div>"
+						str += "</li>"
+
+					}
+					divArea.append(str);
+
+					$(".uploadResult").on("click", "li button", function (e) {
+						console.log("delete")
+						var targetFile = $(this).data("file");
+						var targetLi = $(this).closest("li");
+
+						/* var fileName = target.data("name");
+						var targetDiv = $(this).closest("div");
+						 
+						console.log(fileName);
+						
+						$.post('/removeFile', {fileName:fileName}, function(result){
+							console.log(result);
+							if(result==true){
+								targetDiv.remove();
+							}
+						}) */
+
+						$.ajax({
+							url: '/thisiswe/placeImageRemoveFile',
+							data: {fileName: targetFile},
+							dataType: 'text',
+							type: 'post',
+							success: function (result) {
+								alert(result);
+
+								targetLi.remove();
+							}
+						}); //$.ajax
+					});
+				}
+
+
+				$(".modifyButton").on("click", function (e) {
+					e.preventDefault();
+
+					var str = "";
+
+					$(".uploadResult li").each(function (i, obj) {
+						var target = $(obj);
+
+						str += "<input type='hidden' name='placeImageDTOList[" + i + "].placeImgName' value='" + target.data('name') + "'>";
+						str += "<input type='hidden' name='placeImageDTOList[" + i + "].placeImageUrl' value='" + target.data('path') + "'>";
+						str += "<input type='hidden' name='placeImageDTOList[" + i + "].placeUuid' value='" + target.data('uuid') + "'>";
+
+					});
+
+					$(".box").html(str);
+					$("form").submit();
+
+				});
+
+
+
+			});
+
+
+
+
+
+
+
+		</script>
+
+
+
+
+
+		</body>
+
 </html>

@@ -54,12 +54,12 @@
                 <!-- 게시판 조회 테이블 -->
                 <table class="board-re-table">
                     <tr>
-                        <th class="board-ri-th">모임번호</th>
+                        <!-- <th class="board-ri-th">모임번호</th> -->
                     </tr>
 
                     <tr>
                         <td class="bd-contain">
-                            <input type="text" class="bd-input" name="num" autocomplete="off"
+                            <input type="hidden" class="bd-input" name="num" autocomplete="off"
                                    required="required" th:value="${clubNum}">
                         </td>
                     </tr>
@@ -168,45 +168,46 @@
                     </button>
                 </a>
             </div>
-
-
             <!-- /게시판 조회 - btn -->
-        </div>
+
+	        <br>
+			<hr>
+			<!-- 게시판 내 댓글 -->
+	        <div class="boardReply">
+		        <input type="hidden" class="boardNum1" th:value="${boardDTO.boardNum}">
+		        <div class="reply-contain">
+		        	<input type="text" class="reply-input-co" id="contents" placeholder="댓글을 입력해 주세요.">
+		        	<button class="searchBtn-reply" onclick="postContent()"> 댓글 등록</button>
+		        </div>
+				
+		        <div class="boardReply-co">
+		            <table class="table">
+		            <!--
+		            	 <tr>
+		                    <th>아이디</th>
+		                </tr>
+		                <tr>
+		                    <th>댓글 내용</th>
+		                </tr> 
+		                -->
+		                <tbody id="table1">
+			                <tr>
+			                    <td>문수찬</td>
+			                </tr>
+			                <tr>
+			                    <td>문수찬 존잘 남 인정? 어인정;</td>
+			                </tr>	
+		                </tbody>		
+		
+		            </table>
+		            <div id="table-div" class="table-div-page">
+		            </div>
+		        </div>		
+	        </div>
+	        <!-- /게시판 내 댓글 -->
+         </div>
         <!-- 게시판 조회 -->
-
-        <div>
-        <input type="hidden" class="boardNum1" th:value="${boardDTO.boardNum}">
-        <textarea id="contents" placeholder="댓글을 입력해 주세요.">  </textarea>
-        <button onclick="postContent()"> 댓글 달기</button>
-
-
-        <div style="border: 1px solid black">
-            <table class="table">
-                <tr>
-                    <th>아이디</th>
-                </tr>
-                <tr>
-                    <th>댓글 내용</th>
-                </tr>
-                <tr>
-                    <th></th>
-                </tr>
-                <tbody id="table1">
-                <tr>
-                    <td>문수찬</td>
-                </tr>
-                <tr>
-                    <td>문수찬 존잘 남 인정? 어인정;</td>
-                </tr>
-
-                </tbody>
-
-
-            </table>
-            <div id="table-div"></div>
-        </div>
-
-        </div>
+        
     </th:block>
 </th:block>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -236,16 +237,66 @@
             success: function (response) {
                 if (response == true) {
                     alert("댓글 저장 완료");
+                    console.log(clubNum);
+                    console.log(boardNum);
+                    location.href="/thisiswe/club/board/read?num="+clubNum+"&boardNum="+boardNum;
                 } else {
                     alert("댓글 저장 실패")
                 }
             }
-
-
-        })
+        });
+        readComments();
     }
 
     window.onload = function () {
+        readComments();
+       
+    }
+
+    function addHTML(listDetail) {
+        let html = "";
+        html += '<tr class="replyCont">';
+        html += '<th>' + listDetail.userId + '<span><button onclick="deleteComments(' + listDetail.replyNum + ')" type="button" class="searchBtn-replyDE"> 삭제 </button></span>' + '</th>';
+        html += '</tr>';
+        html += '<tr class="replyCont-co">';
+        html += '<td>' + listDetail.boardReplyContent + '</td>';
+        html += '</tr>';
+        /*         html += '<button onclick="deleteComments(' + listDetail.replyNum + ')" type="button"> 삭제 </button>'; */
+        return html;
+    }
+
+    //미완성
+    function deleteComments(replyNum){
+        var clubNum = [[${clubNum}]]
+        var boardNum = $(".boardNum1").val();
+        console.log(replyNum + " , " + clubNum);
+        var replyRequestDTO = {
+            userId: null,
+            boardNum: replyNum,
+            boardReplyContent: null,
+            clubNum: clubNum
+        }
+        $.ajax({
+            type: 'POST',
+            url: "/club/board/review/remove/",
+            data: JSON.stringify(replyRequestDTO),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (response) {
+                if (response == true) {
+                    alert("댓글 삭제 완료");
+                    console.log(clubNum);
+                    console.log(boardNum);
+                    location.href="/thisiswe/club/board/read?num="+clubNum+"&boardNum="+boardNum;
+                    
+                } else {
+                    alert("댓글 삭제 실패")
+                }
+            }
+        });
+        readComments();
+    }
+    function readComments() {
         let boardNum = $(".boardNum1").val();
         console.log("실행되긴함 : " + boardNum);
 
@@ -281,46 +332,5 @@
                 }
             }
         });
-    }
-
-
-
-    function addHTML(listDetail) {
-        let html = "";
-        html += '<tr>';
-        html += '<td>' + listDetail.userId + '<button onclick="deleteComments(' + listDetail.replyNum + ')" type="button"> 삭제 </button>' + '</td>';
-        html += '</tr>';
-        html += '<tr>';
-        html += '<td>' + listDetail.boardReplyContent + '</td>';
-        html += '</tr>';
-        html += '<button onclick="deleteComments(' + listDetail.replyNum + ')" type="button"> 삭제 </button>';
-
-        return html;
-    }
-
-    //미완성
-    function deleteComments(replyNum){
-        var clubNum = [[${clubNum}]]
-        console.log(replyNum + " , " + clubNum);
-        var replyRequestDTO = {
-            userId: null,
-            boardNum: replyNum,
-            boardReplyContent: null,
-            clubNum: clubNum
-        }
-        $.ajax({
-            type: 'POST',
-            url: "/club/board/review/remove/",
-            data: JSON.stringify(replyRequestDTO),
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            success: function (response) {
-                if (response == true) {
-                    alert("댓글 삭제 완료");
-                } else {
-                    alert("댓글 삭제 실패")
-                }
-            }
-        })
     }
 </script>

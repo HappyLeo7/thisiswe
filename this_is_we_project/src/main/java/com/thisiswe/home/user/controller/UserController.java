@@ -155,7 +155,6 @@ public class UserController {
 		if (userService.checkUserEmail(userEmail)) {
 			return "중복";
 		} else {
-			System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmail);
 
 			userService.sendVerificationCode(userEmail);
 
@@ -168,9 +167,6 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<Boolean> checkUserEmail(@PathVariable("emailCheck") String userEmail,
 			@PathVariable("emailCodeCheck") String userEmialCode) {
-
-		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmail);
-		System.out.println("$%$#%$#%$#%$#%$#%$#%$#%$%$#%	" + userEmialCode);
 
 		return new ResponseEntity<>(userService.verifyCode(userEmail, userEmialCode), HttpStatus.OK);
 	}
