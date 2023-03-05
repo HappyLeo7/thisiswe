@@ -19,7 +19,7 @@ public class PlaceZoneTimePriceDTO {
 	private Long placeZonePriceNum; // 시간 별 금액 번호
 
 	/** 시간*/
-	private Long placeZonePriceTime; // 시간
+	//private Long placeZonePriceTime; // 시간
 
 	/** 금액*/
 	private Long placeZonePriceTime01; // 금액

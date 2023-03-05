@@ -82,10 +82,29 @@
 						[[${zone.getPlaceZoneNum}]]
 						[[${zone.getPlaceNum}]]
 						<input type="radio" name="placeZoneNum" th:value="${zone.getPlaceZoneNum}">
+						
+						<div class="swiper-container" >
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+								00:00~01:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime01}]])
+								01:00~02:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime01}]])
+								02:00~03:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime01}]])
+								</div>
+								<div class="swiper-slide">
+								
+								</div>
+							</div>
+						</div>
 					</div>
 					<button type="submit">예약</button>
 				</form>
-
+				
+				<!-- 룸 시간별 금액 스와이퍼 처리 -->
+				<script>
+					new Swiper('.swiper-container');
+				</script>
+				<!-- /룸 시간별 금액 스와이퍼 처리 -->
+				
 				<input type="hidden" name="placeNum" th:value="${place.placeNum}">
 				<div>
 					<h3>[[${place.getPlaceOneLineIntroduction}]]</h3>

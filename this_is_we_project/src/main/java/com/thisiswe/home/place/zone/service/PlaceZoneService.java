@@ -34,7 +34,7 @@ public interface PlaceZoneService {
 	
 	default PlaceZoneDTO entityToDTO(PlaceZoneEntity placeZoneEntity) {
 
-		System.out.println("장소zone : "+placeZoneEntity);
+		System.out.println("장소zone entityToDTO : "+placeZoneEntity);
 
 		PlaceZoneDTO placeZoneDTO = PlaceZoneDTO.builder()
 				.placeZoneNum(placeZoneEntity.getPlaceZoneNum())

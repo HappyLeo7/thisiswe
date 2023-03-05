@@ -30,6 +30,7 @@ public class PlaceZoneServiceImpl implements PlaceZoneService {
 
 	@Override
 	public List<PlaceZoneDTO> getPlaceZone(Long placeNum) {
+		log.info( "요청한 get place zone 정보 :"+placeZoneRepository.findByPlaceNum(PlaceEntity.builder().placeNum(placeNum).build()).stream().map(i-> entityToDTO(i)).toList());
 		return placeZoneRepository.findByPlaceNum(PlaceEntity.builder().placeNum(placeNum).build()).stream().map(i-> entityToDTO(i)).toList();
 	}
 	
