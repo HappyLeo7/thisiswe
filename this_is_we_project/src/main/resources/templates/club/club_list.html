@@ -42,12 +42,13 @@
 			<!-- 코드가안됨 -->
 			<div class="club-tableList"> 
 				<div class="club-table">
-					<div class="club-table-li" th:each="clubDTO : ${result}">
+					<div class="club-table-li clubRead" th:each="clubDTO : ${result}">
+							<input type="hidden" class="clubNum" th:value="${clubDTO.clubNum}">
 						<img th:src="|/display?fileName=${clubDTO.clubLogoUrl}|">
 						<div class="club-table-liRe">
 							<a th:href="@{/club/read}"></a>
 						</div>
-						<div class="club-table-liRe">
+						<div class="club-table-liRe divclub">
 							<a class="clubNum club-liData" th:href="@{/thisiswe/club/(num=${clubDTO.clubNum})}"> [[${clubDTO.clubName}]]</a>
 						</div>
 						<div class="club-table-liRe">&nbsp;&nbsp;&nbsp;장소 :&nbsp; <span class="liReData">[[${clubDTO.clubPlace}]]</span></div>
@@ -115,6 +116,13 @@
 	</th:block>
 </th:block>
 <script type="text/javascript">
+	$(".clubRead").on("click", function(){
+		console.log((this));
+		var clubNum=$(this).children(".clubNum").val();
+		console.log(clubNum);
+		location.href="/thisiswe/club/?num="+clubNum;
+	})
+
 	$(".clubNum").on("click", function() {
 		console.log("모임 상세 클릭");
 	})

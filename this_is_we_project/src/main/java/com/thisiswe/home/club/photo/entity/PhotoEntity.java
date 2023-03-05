@@ -53,8 +53,6 @@ public class PhotoEntity extends DateEntity{
 	
 	@Column(length = 1000, name = "photo_content")
 	private String photoContent; //사진 내용
-	@Column(name = "photo_view")
-	private Long photoView; // 조회수
 	
 	
 	
