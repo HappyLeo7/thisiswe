@@ -69,7 +69,7 @@ public class PlaceEntity extends DateEntity {
 	@Column(length = 5000, name = "place_guide", nullable = false)
 	private String placeGuide; // 안내 사항
 
-	@Column(length = 200, name = "place_caution", nullable = false)
+	@Column(length = 5000, name = "place_caution", nullable = false)
 	private String placeCaution; // 주의 사항
 	
 	
