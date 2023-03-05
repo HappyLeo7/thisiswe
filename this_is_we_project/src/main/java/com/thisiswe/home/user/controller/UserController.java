@@ -1,5 +1,7 @@
 package com.thisiswe.home.user.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.thisiswe.home.user.dto.SignupRequestDto;
@@ -25,54 +26,56 @@ import com.thisiswe.home.user.service.KakaoUserService;
 import com.thisiswe.home.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @Controller
 @RequestMapping("/thisiswe")
+@Log4j2
 @RequiredArgsConstructor // final이나 @NonNull인 필드 값만 파라미터로 받는 생성자 만듦
 public class UserController {
 
 	private final UserService userService;
 	private final KakaoUserService kakaoUserService;
 
+
 	// 회원 로그인 페이지
 	@GetMapping("/login")
 	public String login(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-
-		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-		Cookie[] cookies = request.getCookies();
-		if (cookies != null && session.	getAttribute("userDetails") != null) {
-			for (Cookie cookie : cookies) {
-				System.out.println("세션이 만료되었는지 확인 : " + session.getAttribute("userDetails"));
-					if (cookie.getName().equals("loggedIn") && cookie.getValue().equals("true")) {
-						/* session. */
-						return "redirect:/thisiswe";
-					}
-				}
-			}
-
-		return "login/login";
+	    Cookie[] cookies = request.getCookies();
+	    log.info("확인");
+	    System.out.println("쿠키 확인 : " + (cookies != null));
+	    System.out.println("userDetail 세션확인 : "+ (session.getAttribute("userDetails") != null));
+	    if (cookies != null && session.getAttribute("userDetails") != null) {
+	        for (Cookie cookie : cookies) {
+	            System.out.println("세션이 만료되었는지 확인 : " + (session.getAttribute("userDetails")));
+	            if (cookie.getName().equals("loggedIn") && cookie.getValue().equals("true")) {
+	                return "redirect:/thisiswe";
+	            }
+	        }
+	    }
+	    String referrer = request.getHeader("Referer");
+	    session.setAttribute("previousPage", referrer);
+	    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	    response.setHeader("Pragma", "no-cache");
+	    response.setHeader("Expires", "0");
+	    return "login/login";
 	}
 
-	// 기존 login버튼이 남겨져 있을 때 
-//	// post login 이동
-//	@PostMapping("/login")
-//	public String loginsucces(@AuthenticationPrincipal UserDetailsImpl userDetails, HttpSession session) {
-//		session.setAttribute("userDetails", userDetails);
-//		return "redirect:/thisiswe";
-//	}
-//
-//	// 회원 로그아웃
-//	@PostMapping("/logout")
-//	public String logout(HttpSession session) {
-//		session.removeAttribute("userDetails");
-//		return "redirect:/thisiswe";
-//	}
+	
+	@GetMapping("/loginCheck")
+	public String loginsucces(HttpServletRequest request, HttpServletResponse response, @AuthenticationPrincipal UserDetailsImpl userDetails, HttpSession session) throws IOException {
+		
+		session.setAttribute("userDetails", userDetails);
+		System.out.println("세션이 저장되는지 확인" + (session.getAttribute("userDetails") != null));
 
-	// 회원 로그아웃 Get방식
-	@GetMapping("/logout")
-	public String logoutGet(HttpSession session) {
-		session.removeAttribute("userDetails");
-		return "redirect:/thisiswe/login";
+	    System.out.println(session);
+	    String previousPage = (String) session.getAttribute("previousPage");
+	    if (previousPage != null) {
+	        session.removeAttribute("previousPage");
+	        return "redirect:" + previousPage;
+	    } else {
+	    	return "redirect:/thisiswe";
+	    }
 	}
 
 	// 회원 가입 페이지

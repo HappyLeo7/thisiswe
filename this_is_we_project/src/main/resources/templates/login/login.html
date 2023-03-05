@@ -23,13 +23,9 @@
 			<br>
 			<input type="password" id="input-target" name="password" placeholder="PW">
 			<br>
-			<span id="login-status">
-				<input type="checkbox"> 
-			 	<span>로그인 상태 유지</span>
-			</span>
-			<!--             <span id="찾기"><a href="" id="idfind">아이디 찾기 </a> -->
-			<!--             <span>&nbsp</span><a href="">비밀번호 찾기</a></span> -->
-			<br>
+<!--			<span id="findInfo"><a onclick="openPopup()">아이디 찾기 </a>
+			<span>&nbsp</span><a href="">비밀번호 찾기</a></span>
+			<br>-->
 			<input id="login-button" type="submit" value="로그인">
 		</form>
 
@@ -53,6 +49,26 @@
 			const errorDiv = document.getElementById('login-failed');
 			errorDiv.style.display = 'block';
 		}
+	</script>
+	
+	<!--아이디 찾기 -->
+	<script>
+		  function openPopup() {
+    // 팝업창의 크기와 위치를 설정합니다.
+    const width = 400;
+    const height = 300;
+    const left = (screen.width - width) / 2;
+    const top = (screen.height - height) / 2;
+
+    // 새로운 윈도우를 엽니다.
+    const popupWindow = window.open('idfind.html', '아이디 찾기', 'width=' + width + ', height=' + height + ', left=' + left + ', top=' + top);
+
+    // 팝업창이 정상적으로 열리지 않은 경우
+    if (!popupWindow || popupWindow.closed || typeof popupWindow.closed == 'undefined') {
+      alert('팝업창이 차단되었습니다. 팝업창 차단 기능을 해제해주세요.');
+    }
+  }
+		
 	</script>
 </body>
 </html>

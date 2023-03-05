@@ -99,6 +99,7 @@ public class KakaoUserService {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		JsonNode jsonNode = objectMapper.readTree(responseBody);
+		
 		Long id = jsonNode.get("id").asLong();
 
 		String nickname = jsonNode.get("properties").get("nickname").asText();
@@ -129,6 +130,11 @@ public class KakaoUserService {
 			
 			// role: 일반 사용자
 			UserRoleEnum role = UserRoleEnum.USER;
+			
+			if(nickname==null) {
+				String[] nickId = email.split("@");
+				nickname = nickId[0] + String.valueOf(kakaoId).substring(0, 3);
+			}
 			
 			kakaoUser = new UserEntity(nickname, encodedPassword, null, null, null, email, null, null, role, kakaoId);
 			

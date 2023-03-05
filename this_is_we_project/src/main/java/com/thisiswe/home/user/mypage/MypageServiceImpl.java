@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -46,15 +47,16 @@ public class MypageServiceImpl implements MypageService {
 
 	@Override
 	public MyPageResultDTO<ClubDTO, ClubEntity> getClubList(PageRequestDTO pageRequestDTO, String userId) {
-	    UserEntity userEntity = userRepository.findByUserId(userId)
-	            .orElseThrow(() -> new IllegalArgumentException("User not found"));
+		UserEntity userEntity = userRepository.findByUserId(userId)
+				.orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-	    Page<ClubEntity> result = clubRepository.findClubsByUserId(userEntity, pageRequestDTO.getPageable(Sort.by("clubNum").descending()));
+		Page<ClubEntity> result = clubRepository.findClubsByUserId(userEntity,
+				pageRequestDTO.getPageable(Sort.by("clubNum").descending()));
 
-	    Function<ClubEntity, ClubDTO> func = clubEntity -> entityClubToDTO(clubEntity, userEntity);
-	    return new MyPageResultDTO<>(result, func);
+		Function<ClubEntity, ClubDTO> func = clubEntity -> entityClubToDTO(clubEntity, userEntity);
+		return new MyPageResultDTO<>(result, func);
 	}
-	
+
 //	@Override
 //	public MyPageResultDTO<ClubDTO, ClubEntity> getClubList(PageRequestDTO pageRequestDTO, String userId) {
 //		
@@ -76,21 +78,21 @@ public class MypageServiceImpl implements MypageService {
 //        return new MyPageResultDTO<>(result2, func);
 //	}
 
-	
 //	 게시글 페이지 목록(list)
 	@Override
 	public MyPageResultDTO<BoardDTO, Board> getList(PageRequestDTO pageRequestDTO, String userId) {
-		
-	    UserEntity userEntity = userRepository.findByUserId(userId)
-	            .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-	    Function<Board, BoardDTO> func = board -> entityToBoardDTO(board, userEntity, board.getReplyCount());
+		UserEntity userEntity = userRepository.findByUserId(userId)
+				.orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-	    Page<Board> result2 = boardRepository.findAllByUserId(userEntity, pageRequestDTO.getPageable(Sort.by("boardNum").descending()));
-	    log.info("결과값2 : "+ result2);
-	    return new MyPageResultDTO<>(result2, func);
+		Function<Board, BoardDTO> func = board -> entityToBoardDTO(board, userEntity, board.getReplyCount());
+
+		Page<Board> result2 = boardRepository.findAllByUserId(userEntity,
+				pageRequestDTO.getPageable(Sort.by("boardNum").descending()));
+		log.info("결과값2 : " + result2);
+		return new MyPageResultDTO<>(result2, func);
 	}
-	
+
 	@Override
 	public void getUserInfo(String username) {
 		// TODO Auto-generated method stub
@@ -100,15 +102,90 @@ public class MypageServiceImpl implements MypageService {
 	// 회원정보 수정 (페이지만들기 해야함)
 	@Override
 	public void modifyUserInfo(MultipartFile userImageFile, String userNickname, String userPassword, String userId) {
-	    Optional<UserEntity> result = userRepository.findByUserId(userId);
+		Optional<UserEntity> result = userRepository.findByUserId(userId);
 
-	    if (result.isPresent()) {
-	        UserEntity userEntity = result.get();
-	        userEntity.changeNickName(userNickname);
+		if (result.isPresent()) {
+			UserEntity userEntity = result.get();
 
-	        String encodedPassword = passwordEncoder.encode(userPassword);
-	        userEntity.changePassword(encodedPassword);
+			if (userNickname != null && !userNickname.isEmpty()) {
+				userEntity.changeNickName(userNickname);
+			}
 
+			if (userPassword != null && !userPassword.isEmpty()) {
+				String encodedPassword = passwordEncoder.encode(userPassword);
+				userEntity.changePassword(encodedPassword);
+			}
+
+			String uploadedImageUrl = null;
+			if (userImageFile != null) {
+				uploadedImageUrl = uploadImage(userImageFile);
+			} else {
+				uploadedImageUrl = userEntity.getUserImageUrl();
+			}
+			userEntity.changeImage(uploadedImageUrl);
+
+			userRepository.save(userEntity);
+		}
+//	    if (result.isPresent()) {
+//	        UserEntity userEntity = result.get();
+//	        userEntity.changeNickName(userNickname);
+//
+//	        String encodedPassword = passwordEncoder.encode(userPassword);
+//	        userEntity.changePassword(encodedPassword);
+//
+//	        // 이미지 업로드
+//	        String uploadedImageUrl = null;
+//	        if (userImageFile != null) {
+//	            uploadedImageUrl = uploadImage(userImageFile);
+//	        } else {
+//	            uploadedImageUrl = userEntity.getUserImageUrl();
+//	        }
+//	        userEntity.changeImage(uploadedImageUrl);
+//
+//	        userRepository.save(userEntity);
+//	    }
+	}
+
+	private String uploadImage(MultipartFile imageFile) {
+		// 업로드한 이미지 파일의 이름을 가져옵니다.
+		String fileName = imageFile.getOriginalFilename();
+
+		// 이미지 파일을 저장할 경로를 지정합니다.
+		// System.getProperty("user.dir")은 현재 프로젝트의 경로를 가져옵니다.
+		// File.separator는 운영체제별로 디렉토리 구분자가 다르기 때문에 이에 맞게 구분자를 사용합니다.
+		String savePath = System.getProperty("user.dir") + File.separator + "uploads";
+		System.out.println("현재 프로젝트의 경로 : " + System.getProperty("user.dir"));
+
+		// 이미지 파일을 저장할 디렉토리가 존재하지 않으면 새로 생성합니다.
+		File saveDir = new File(savePath);
+		if (!saveDir.exists()) {
+			saveDir.mkdirs();
+		}
+
+		try {
+			// 파일 저장
+			byte[] bytes = imageFile.getBytes(); // 이미지 파일을 byte 형식으로 읽어옵니다.
+
+			// 파일을 저장할 경로와 파일 이름을 지정합니다.
+			// Paths.get() 메소드를 이용하여 경로를 지정합니다.
+			Path path = Paths.get(savePath + File.separator + fileName);
+
+			// Files.write() 메소드를 이용하여 byte 형식으로 읽어온 이미지 파일을 지정한 경로에 저장합니다.
+			Files.write(path, bytes);
+
+			// 업로드한 이미지 파일의 경로를 반환합니다.
+			// 이후에 해당 파일 경로를 이용하여 데이터베이스에 저장하거나 이미지를 미리보기 할 수 있습니다.
+			return savePath + File.separator + fileName;
+
+		} catch (IOException e) {
+			log.error("Failed to upload image", e);
+			throw new RuntimeException("Failed to upload image");
+		}
+	}
+
+	@Override
+	public void modifyUserImageInfo(MultipartFile userImageFile, String userId) {
+	    updateUser(userId, userEntity -> {
 	        // 이미지 업로드
 	        String uploadedImageUrl = null;
 	        if (userImageFile != null) {
@@ -117,50 +194,30 @@ public class MypageServiceImpl implements MypageService {
 	            uploadedImageUrl = userEntity.getUserImageUrl();
 	        }
 	        userEntity.changeImage(uploadedImageUrl);
+	    });
+	}
 
+	@Override
+	public void modifyUserPasswordInfo(String userPassword, String userId) {
+	    updateUser(userId, userEntity -> {
+	        String encodedPassword = passwordEncoder.encode(userPassword);
+	        userEntity.changePassword(encodedPassword);
+	    });
+	}
+
+	@Override
+	public void modifyUserNicknameInfo(String userNickname, String userId) {
+	    updateUser(userId, userEntity -> {
+	        userEntity.changeNickName(userNickname);
+	    });
+	}
+
+	public void updateUser(String userId, Consumer<UserEntity> consumer) {
+	    Optional<UserEntity> result = userRepository.findByUserId(userId);
+	    if (result.isPresent()) {
+	        UserEntity userEntity = result.get();
+	        consumer.accept(userEntity); // 해당 부분에서 result.get()한 값의 userEntity가 람다식 표현의 userEntity다. 
 	        userRepository.save(userEntity);
 	    }
 	}
-
-	private String uploadImage(MultipartFile imageFile) {
-		// 업로드한 이미지 파일의 이름을 가져옵니다.
-        String fileName = imageFile.getOriginalFilename();
-        
-        // 이미지 파일을 저장할 경로를 지정합니다. 
-        // System.getProperty("user.dir")은 현재 프로젝트의 경로를 가져옵니다. 
-        // File.separator는 운영체제별로 디렉토리 구분자가 다르기 때문에 이에 맞게 구분자를 사용합니다.
-        String savePath = System.getProperty("user.dir") + File.separator + "uploads";
-        System.out.println("현재 프로젝트의 경로 : " + System.getProperty("user.dir"));
-        
-        // 이미지 파일을 저장할 디렉토리가 존재하지 않으면 새로 생성합니다.
-        File saveDir = new File(savePath);
-        if (!saveDir.exists()) {
-            saveDir.mkdirs();
-        }
-
-        try {
-            // 파일 저장
-            byte[] bytes = imageFile.getBytes(); // 이미지 파일을 byte 형식으로 읽어옵니다.
-            
-            // 파일을 저장할 경로와 파일 이름을 지정합니다.
-            // Paths.get() 메소드를 이용하여 경로를 지정합니다.
-            Path path = Paths.get(savePath + File.separator + fileName);
-            
-            // Files.write() 메소드를 이용하여 byte 형식으로 읽어온 이미지 파일을 지정한 경로에 저장합니다.
-            Files.write(path, bytes);
-
-            // 업로드한 이미지 파일의 경로를 반환합니다. 
-            // 이후에 해당 파일 경로를 이용하여 데이터베이스에 저장하거나 이미지를 미리보기 할 수 있습니다.
-            return savePath + File.separator + fileName;
-            
-        } catch (IOException e) {
-            log.error("Failed to upload image", e);
-            throw new RuntimeException("Failed to upload image");
-        }
-    }
-
-
-
-
-
 }

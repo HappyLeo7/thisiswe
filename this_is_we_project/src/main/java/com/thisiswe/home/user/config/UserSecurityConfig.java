@@ -1,16 +1,20 @@
 package com.thisiswe.home.user.config;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.thisiswe.home.user.security.UserDetailsImpl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -59,11 +63,11 @@ public class UserSecurityConfig {
                 .antMatchers("/reservation/**").permitAll()
                 .antMatchers("/place/**").permitAll()
                 .antMatchers("/notice/**").permitAll()
-                .antMatchers("/thisiswe").permitAll()
+                .antMatchers("/thisiswe/**").permitAll()
                 .antMatchers("/").permitAll()
                 
                 .antMatchers("/display/**").permitAll()
-		.antMatchers("/**").permitAll()
+//		.antMatchers("/**").permitAll()
 	
 		
 		// 그 외 어떤 요청이든 '인증'
@@ -84,34 +88,39 @@ public class UserSecurityConfig {
 		.defaultSuccessUrl("/thisiswe")
 		
 		// 로그인 실패 후 이동 페이지
-		.failureUrl("/thisiswe/login?error")
-		.permitAll()
+		.failureUrl("/thisiswe/login?error").permitAll()
 		.successHandler((request, response, authentication) -> {
+			
 			Cookie cookie = new Cookie("loggedIn", "true");
 			cookie.setMaxAge(60 * 30); // 30분간 쿠키 유지
 			cookie.setPath("/");
 			response.addCookie(cookie);
-			response.sendRedirect("/thisiswe");
+	        response.sendRedirect("/thisiswe/loginCheck");
 		})
 		.and()
 		// [로그아웃 기능]
 		.logout()
-	      .logoutSuccessHandler((request, response, authentication) -> {
-	          response.addCookie(new Cookie("loggedIn", "true"));
-	          response.sendRedirect("/thisiswe");
-	      })
 		// 로그아웃 요청 처리 URL
 		.logoutUrl("/thisiswe/logout")
+		// 로그아웃 요청 처리 핸들러
 		.logoutSuccessHandler((request, response, authentication) -> {
+			// 로그인 정보 삭제
 			Cookie cookie = new Cookie("loggedIn", null);
-			cookie.setMaxAge(0); // 쿠키 삭제
+			cookie.setMaxAge(0); // 즉시 삭제
 			cookie.setPath("/");
 			response.addCookie(cookie);
-			response.sendRedirect("/thisiswe");
+			// 이전 페이지로 이동
+			response.sendRedirect(request.getHeader("referer"));
 		})
+//		.logoutSuccessHandler((request, response, authentication) -> {
+//			Cookie cookie = new Cookie("loggedIn", null);
+//			cookie.setMaxAge(0); // 쿠키 삭제
+//			cookie.setPath("/");
+//			response.addCookie(cookie);
+//			response.sendRedirect("/thisiswe/logoutCheck");
+//		})
 		.permitAll()
-		.and()
-		.exceptionHandling()
+		.and().exceptionHandling()
 		// 인증되지 않은 사용자가 접근할 경우 보여줄 페이지 설정
 		.accessDeniedPage("/forbidden.html");
 		return http.build();

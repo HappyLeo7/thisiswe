@@ -71,15 +71,20 @@ body{
 	bottom: 3px;
 }
 
-#sign-in>form>span#찾기 {
+#sign-in>form>span#findInfo {
 	position: relative;
 	left: 43px;
 }
 
-#sign-in>form>span#찾기>a {
+#sign-in>form>span#findInfo>a {
 	color: gray;
 	font-size: 13px;
 	text-decoration: none;
+}
+
+#sign-in>form>span#findInfo>a:hover {
+	color: darkgray;
+	cursor: pointer;
 }
 
 div#sign-in>form>input#login-button {

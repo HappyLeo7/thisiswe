@@ -222,16 +222,11 @@ function onclickAdmin() {
 	    alert('이메일을 입력해주세요.');
 	    return;
 	  }
-	  alert("확인 중 입니다.");
+	  alert("이메일 확인 중에 있습니다. 확인 후 이메일 인증코드란이 보일테니 잠시만 기다려주세요.");
 		// 이메일 검증 버튼, 인증코드 입력란, 이메일 인증코드 확인 부분 보이기
 		const emailVerification = document.querySelector('.email-verification-check');
 	    const emailVerificationCheckBtn = document.querySelector('.emailVerificationCheckBtn');
 	    const emailCodeInput = document.querySelector('#emailcode-input');
-
-
-/* 	    emailVerification.style.display = 'block';
-	    emailVerificationCheckBtn.style.display = 'block';
-	    emailCodeInput.style.display = 'block'; */
 
 	  
       console.log("===========emailCheck===== : " + emailCheck);
@@ -429,7 +424,7 @@ function checkPhoneCheck(elem) {
       elem.value
     )
       ? ""
-      : "-를 제외한 휴대폰번호를 입력해주세요";
+      : "010으로 시작하고 -를 제외한 휴대폰번호를 입력해주세요";
     allcollect();
   });
 }

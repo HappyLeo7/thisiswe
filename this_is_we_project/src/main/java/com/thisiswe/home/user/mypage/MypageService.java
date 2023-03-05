@@ -69,6 +69,14 @@ public interface MypageService {
 	// 회원정보 수정
 	void modifyUserInfo(MultipartFile userImageFile, String userNickname, String userPassword, String userId);
 	
+	// 회원정보 이미지 수정
+	void modifyUserImageInfo(MultipartFile userImageFile, String userId);
+	
+	// 회원정보 비밀번호 수정
+	void modifyUserPasswordInfo(String userPassword, String userId);
+	
+	// 회원정보 닉네임 수정
+	void modifyUserNicknameInfo(String userNickname, String userId);
 	
 
 

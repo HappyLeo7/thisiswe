@@ -1,122 +1,337 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
-<meta charset="UTF-8">
-<title>마이페이지 회원정보수정</title>
-<script type="text/javascript" th:src="@{/js/modify.js}"></script>
-<link rel="stylesheet" th:href="@{/css/userinfo.css}" />
-<script>
-	function onclickAdmin() {
-		// Get the checkbox
-		var checkBox = document.getElementById("admin-check");
-		// Get the output text
-		var box = document.getElementById("admin-token");
-		// If the checkbox is checked, display the output text
-		if (checkBox.checked == true) {
-			box.style.display = "block";
-		} else {
-			box.style.display = "none";
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+	<meta charset="UTF-8">
+	<title>마이페이지 회원정보수정</title>
+	<script type="text/javascript" th:src="@{/js/modify.js}"></script>
+	<link rel="stylesheet" th:href="@{/css/userinfo.css}" />
+
+	<style>
+		#previewImage {
+			width: 200px;
+			height: 200px;
 		}
-	}
-</script>
-  <style>
-    #previewImage {
-      width: 200px;
-      height: 200px;
-    }
-  </style>
+	</style>
 </head>
 
 <body>
-  <div id="modify">
-    <span>회원정보 수정</span><br>
-      <span class="signup-classification">아이디</span><br>
-      <span class="test" th:text="${userId}"></span> <br>
-      
-      <span class="signup-classification">이미지</span><br>
-      <img id="previewImage" src="#" alt="미리보기 이미지"> <br>
-      <input type="file" id="userImageFile" name="userImageFile" accept="image/*"><br>
-      
-      
-      <span class="signup-classification">비밀번호</span><br>
-      <input id="password" name="userPassword" type="password" placeholder="변경할 비밀번호를 입력해 주세요." onfocus="checkPassword(this)">
-      <span class="verification" id="passwordCheck"> </span><br>
-        
-      <span class="signup-classification">닉네임</span><br>
-      <button type="button" class="nicknameVerificationCheckBtn">닉네임검증 </button>
-      <input type="text" name="userNickname" class="login-input-nickname" placeholder="변경할 닉네임을 입력해 주세요." onfocus="nicknamecheck(this)">
-      <span class="verification" id="nicknameCheck"> </span><br>
+	<div id="modify">
+		<span class="userinfo-title">회원정보 수정</span>
 
-      <button id="modify-button" type="button" class="btn btn-warning modifyBtn">수정하기 </button>
-  </div>
-  <script th:inline="javascript">
-  var inputImageFile = document.getElementById('userImageFile');
-  var previewImage = document.getElementById('previewImage');
+		<div class="back-container">
+			<button id="cancel-button" type="button" class="btn btn-warning modifyBtn">돌아가기</button>
+		</div>
 
-  inputImageFile.addEventListener('change', function() {
-    var file = inputImageFile.files[0];
-    var reader = new FileReader();
+		<div class="id-container">
+			<span class="signup-classification modify-sub">아이디 : </span>
+			<span class="modify-sub-input" th:text="${userId}"></span>
+		</div>
 
-    reader.onloadend = function() {
-      previewImage.src = reader.result;
-    }
+		<div class="change-image-container">
+			<span class="modify-image-top">이미지 변경하기</span>
+			<input type="checkbox" id="image-check" class="signup-classification info-modify image-modify">
 
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-      previewImage.src = "";
-    }
-  });
-  
-  
-  
-  
-  $(document).ready(function() {
-      
-	  // controller에서 가져온 값을 userId라는 변수에 넣기.
-	  let userId = [[${userId}]];
-	  var inputImageFile = $('input[name="userImageFile"]');
-      var inputNickname = $('input[name="userNickname"]');
-      var inputPassword = $('input[name="userPassword"]');
-      
-      
-      console.log("변경할 닉네임 중 입력한 것\n" + inputNickname);
+			<div id="image-modify-container" style="display: none;">
+				<img id="previewImage" class="imageModifyBox" src="#" alt="미리보기 이미지"><br>
+				<input type="file" id="userImageFile" class="imageModifyBox" name="userImageFile" accept="image/*"><br>
+				<button id="modify-button" type="button" class="btn btn-warning ImagemodifyBtn imageModifyBox">수정하기
+				</button>
+			</div>
+		</div>
+		<br>
 
-      
-      $(".modifyBtn").on("click", function(){
+		<div class="change-pwd-container">
+			<span class="modify-pwd-top">비밀번호 변경하기</span>
+			<input type="checkbox" id="pwd-check" class="signup-classification singup-sub pwd-modify">
+			<br>
+			<div id="pwd-modify-container" style="display: none;">
+				<input id="password" class="signup-box pwdModifyBox" name="userPassword" type="password"
+					placeholder="비밀번호를 입력해 주세요." onfocus="checkPassword(this)"><br>
+				<span class="verification pwdModifyBox" id="passwordCheck"></span><br>
 
-    	    var formData = new FormData();
-    	    formData.append("userId", userId);
-    	    formData.append("userImageFile", inputImageFile[0].files[0]);
-    	    formData.append("userNickname", inputNickname.val());
-    	    formData.append("userPassword", inputPassword.val());
+				<span class="signup-classification singup-sub pwdModifyBox">비밀번호 확인</span><br>
+				<input id="passwordConfirmation" class="signup-box pwdModifyBox" type="password"
+					placeholder="비밀번호를 한번 더 입력해 주세요." onfocus="doubleCheckPassword(this)"><br>
+				<span class="verification pwdModifyBox" id="secondaryPasswordConfirmation"> </span><br>
+				<button id="modify-pwd-button" type="button" class="btn btn-warning pwdmodifyBtn pwdModifyBox">수정하기
+				</button>
+			</div>
+		</div>
 
-    	    console.log(formData);
+		<br>
 
-    	    $.ajax({
-    	      url: '/thisiswe/mypage/' + userId ,  
-    	      type: "PUT",
-    	      data: formData,
-    	      // contentType: false 옵션을 사용하면 multipart/form-data 형식으로 데이터를 보내기 때문에 
-    	      // @RequestBody 어노테이션을 사용하여 요청 본문을 객체로 변환할 수 없습니다.
-    	      contentType: false,
-    	      processData: false,
-    	      success: function(){
-    	        alert("수정완료했습니다.")
-    	      }
-          })
-      });
-      
-  });
-  
-  </script>
-</body> 
+		<div class="change-nickname-container">
+			<span class="modify-nickname-top">닉네임 변경하기</span>
+			<input type="checkbox" id="nickname-check" class="signup-classification singup-sub nickname-modify"
+				onclick="toggleNicknameModify()">
+
+			<div id="nickname-modify-container" style="display: none;">
+				<input type="text" name="userNickname" class="login-input-nickname signup-box nicknameModifyBox"
+					placeholder="닉네임을 입력해 주세요." onfocus="checkNickname(this)">
+				<button type="button" class="nicknameVerificationCheckBtn certification nicknameModifyBox">닉네임 검증
+				</button><br>
+				<span class="verification nicknameModifyBox" id="nicknameCheck"> </span><br>
+				<button id="modify-nickname-button" type="button"
+					class="btn btn-warning nickmodifyBtn nicknameModifyBox">수정하기
+				</button>
+			</div>
+			<br>
+		</div>
+
+	</div>
+
+	<script th:inline="javascript">
+		var inputImageFile = document.getElementById('userImageFile');
+		var previewImage = document.getElementById('previewImage');
+
+		inputImageFile.addEventListener('change', function () {
+			var file = inputImageFile.files[0];
+			var reader = new FileReader();
+
+			reader.onloadend = function () {
+				previewImage.src = reader.result;
+			}
+
+			if (file) {
+				reader.readAsDataURL(file);
+			} else {
+				previewImage.src = "";
+			}
+		});
+
+
+		// 비밀번호 수정하기 버튼 활성화
+		function pwdAllcollect() {
+			let password = document.getElementById("password");
+			let passwordCheck = document.getElementById("passwordCheck");
+			let passwordConfirmation = document.getElementById("passwordConfirmation");
+			let secondaryPasswordConfirmation = document.getElementById("secondaryPasswordConfirmation");
+			let updateButton = document.getElementById("modify-pwd-button");
+
+			if (password.value !== "" && passwordCheck.innerHTML === "" && passwordConfirmation.value !== "" && secondaryPasswordConfirmation.innerHTML === "") {
+				updateButton.disabled = false;
+			} else {
+				updateButton.disabled = true;
+			}
+		}
+
+		function checkboxClickHandler() {
+			const pwdModifyContainer = document.getElementById("pwd-modify-container");
+			const updateButton = document.getElementById("modify-pwd-button");
+
+			if (this.checked) {
+				pwdModifyContainer.style.display = "block";
+				updateButton.disabled = true;
+			} else {
+				pwdModifyContainer.style.display = "none";
+				updateButton.disabled = true;
+			}
+		}
+
+		const checkbox = document.getElementById("pwd-check");
+		checkbox.addEventListener("click", checkboxClickHandler);
+
+		// 비밀번호 체크
+		function checkPassword(elem) {
+			elem.addEventListener("keyup", () => {
+				let pattern2 = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
+				let pwLength = elem.value.length;
+				document.getElementById("passwordCheck").innerHTML = pwLength >= 8 && pwLength <= 20 && pattern2.test(elem.value)
+					? ""
+					: "8자 이상 20자 이하의 영문, 숫자, 특수문자를 조합";
+				pwdAllcollect();
+			});
+		}
+
+		// 비밀번호 2차 체크
+		function doubleCheckPassword(elem) {
+			elem.addEventListener("keyup", () => {
+				let pwLength = elem.value.length;
+				document.getElementById("secondaryPasswordConfirmation").innerHTML = elem.value === document.getElementById("password").value
+					? ""
+					: "비밀번호가 일치하지 않습니다.";
+				pwdAllcollect();
+			});
+		}
+
+		function checkboxClickHandlernickname() {
+			const nicknameModifyContainer = document.getElementById("nickname-modify-container");
+			const updateButton = document.getElementById("modify-nickname-button");
+
+			if (this.checked) {
+				nicknameModifyContaine.style.display = "block";
+				updateButton.disabled = true;
+			} else {
+				nicknameModifyContaine.style.display = "none";
+				updateButton.disabled = true;
+			}
+		}
+
+		function toggleNicknameModify() {
+			if ($("#nickname-check").is(":checked")) {
+				$("#nickname-modify-container").show();
+				$(".nicknameModifyBox").attr("disabled", false);
+				$("#modify-nickname-button").attr("disabled", true);
+			} else {
+				$("#nickname-modify-container").hide();
+				$(".nicknameModifyBox").attr("disabled", true);
+			}
+		}
+
+		// 닉네임 체크
+		function checkNickname(elem) {
+			elem.addEventListener("keyup", () => {
+				let nicknameLength = elem.value.length;
+				let nicknameResult = "";
+
+				if (nicknameLength >= 2 && nicknameLength <= 15) {
+					// 유효한 닉네임인 경우
+					nicknameResult = "";
+					$(".nicknameVerificationCheckBtn").attr("disabled", false);
+					$("#modify-nickname-button").attr("disabled", false); // 수정하기 버튼 활성화
+				} else if (nicknameLength === 0) {
+					// 닉네임이 입력되지 않은 경우
+					nicknameResult = "닉네임을 입력해주세요.";
+					$(".nicknameVerificationCheckBtn").attr("disabled", true);
+					$("#modify-nickname-button").attr("disabled", true); // 수정하기 버튼 비활성화
+					nicknamePass = false; // 닉네임이 입력되지 않은 경우 nicknamePass 변수를 false로 설정
+				} else {
+					// 유효하지 않은 닉네임인 경우
+					nicknameResult = "2자 이상 15자 이하의 닉네임을 입력해주세요.";
+					$(".nicknameVerificationCheckBtn").attr("disabled", true);
+					$("#modify-nickname-button").attr("disabled", true); // 수정하기 버튼 비활성화
+					nicknamePass = false; // 닉네임이 입력되지 않은 경우 nicknamePass 변수를 false로 설정
+				}
+
+				// 결과 출력
+				document.getElementById("nicknameCheck").innerHTML = nicknameResult;
+				console.log("닉네임 체크하는 부분에서의 nicknamePass :" + nicknamePass);
+				// 모든 검증 통과 여부 확인
+			});
+		}
+
+
+		$(document).ready(function () {
+
+			// controller에서 가져온 값을 userId라는 변수에 넣기.
+			let userId = [[${userId}]];
+			var inputImageFile = $('input[name="userImageFile"]');
+			var inputNickname = $('input[name="userNickname"]');
+			var inputPassword = $('input[name="userPassword"]');
+
+
+			console.log("변경할 닉네임 중 입력한 것\n" + inputNickname);
+
+			$("#cancel-button").on("click", function () {
+				history.back();
+			});
+
+			$("#image-check").on("click", function () {
+				if ($(this).is(":checked")) {
+					$("#image-modify-container").show();
+				} else {
+					$("#image-modify-container").hide();
+				}
+			});
+
+			$(".ImagemodifyBtn").on("click", function () {
+
+				var formData = new FormData();
+				formData.append("userId", userId);
+				formData.append("userImageFile", inputImageFile[0].files[0]);
+
+
+				console.log(formData);
+
+				$.ajax({
+					url: '/thisiswe/mypage/image/' + userId,
+					type: "PUT",
+					data: formData,
+					// contentType: false 옵션을 사용하면 multipart/form-data 형식으로 데이터를 보내기 때문에 
+					// @RequestBody 어노테이션을 사용하여 요청 본문을 객체로 변환할 수 없습니다.
+					contentType: false,
+					processData: false,
+					success: function () {
+						alert("이미지를 변경하였습니다.")
+
+					}
+				})
+			});
+
+
+			$("#pwd-check").on("click", function () {
+				if ($(this).is(":checked")) {
+					$("#pwd-modify-container").show();
+				} else {
+					$("#pwd-modify-container").hide();
+				}
+			});
+
+			$(".pwdmodifyBtn").on("click", function () {
+
+				var formData = new FormData();
+				formData.append("userId", userId);
+				formData.append("userPassword", inputPassword.val());
+
+				console.log(formData);
+
+				$.ajax({
+					url: '/thisiswe/mypage/pwd/' + userId,
+					type: "PUT",
+					data: formData,
+					// contentType: false 옵션을 사용하면 multipart/form-data 형식으로 데이터를 보내기 때문에 
+					// @RequestBody 어노테이션을 사용하여 요청 본문을 객체로 변환할 수 없습니다.
+					contentType: false,
+					processData: false,
+					success: function () {
+						alert("비밀번호가 변경되었습니다.")
+
+					}
+				})
+			});
+
+
+			$("#nickname-check").on("click", function () {
+				if ($(this).is(":checked")) {
+					$("#nickname-modify-container").show();
+				} else {
+					$("#nickname-modify-container").hide();
+				}
+			});
+
+			$(".nickmodifyBtn").on("click", function () {
+
+				var formData = new FormData();
+				formData.append("userId", userId);
+				formData.append("userNickname", inputNickname.val());
+
+
+				console.log(formData);
+
+				$.ajax({
+					url: '/thisiswe/mypage/nickname/' + userId,
+					type: "PUT",
+					data: formData,
+					// contentType: false 옵션을 사용하면 multipart/form-data 형식으로 데이터를 보내기 때문에 
+					// @RequestBody 어노테이션을 사용하여 요청 본문을 객체로 변환할 수 없습니다.
+					contentType: false,
+					processData: false,
+					success: function () {
+						alert("닉네임 수정이 완료했습니다.")
+					}
+				})
+			});
+		});
+
+	</script>
+</body>
+
 </html>

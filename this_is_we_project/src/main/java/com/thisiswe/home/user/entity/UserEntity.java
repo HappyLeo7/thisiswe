@@ -87,6 +87,7 @@ public class UserEntity {
 		this.userPhoneNumber = userPhoneNumber;
 		this.userImageUrl = userImageUrl;
 		this.role = role;
+		this.kakaoId = null;
 		}
 	
 	public UserEntity(String userId, String password, String userNickname, String userName, String userGender, String userEmail, String userPhoneNumber, String userImageUrl, UserRoleEnum role, Long kakaoId) {
@@ -99,6 +100,7 @@ public class UserEntity {
 		this.userPhoneNumber = userPhoneNumber;
 		this.userImageUrl = userImageUrl;
 		this.role = role;
+		this.kakaoId = kakaoId;
 		}
 
 	public void changeNickName(String name) {

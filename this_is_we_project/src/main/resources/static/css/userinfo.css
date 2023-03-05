@@ -1,86 +1,160 @@
-/* 공통 스타일 */
 body {
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 16px;
-  color: #333;
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
-/* 회원정보 수정 폼 스타일 */
 #modify {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: auto;
+	height: 100%;
+	width: 700px;
+	text-align: left;
+	/* 추가 */
 }
 
-/* 제목 스타일 */
-#modify span:first-child {
-  display: block;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
+.userinfo-title {
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 30px;
+	padding: 30px 0 30px 0;
+	font-size: 30px;
+	font-weight: 700;
+	letter-spacing: 10px;
+	text-indent: 12px;
+	display: inline-block;
+	width: 100%;
+	border-bottom: 1px solid black;
 }
 
-/* 입력 폼 스타일 */
-.signup-classification {
-  display: block;
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
+#id-container {
+	margin-bottom: 30px;
+}
+
+.modify-sub {
+	margin-top: 60px;
+	margin-left: 50px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #2f2f2f;
+}
+
+.modify-image-top {
+	margin-top: 60px;
+	margin-left: 50px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #2f2f2f;
+}
+
+.modify-pwd-top {
+	margin-top: 60px;
+	margin-left: 50px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #2f2f2f;
+}
+
+.modify-nickname-top {
+	margin-top: 30px;
+	margin-left: 50px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #2f2f2f;
+}
+
+.back-container {
+	text-align: right;
+}
+
+#cancel-button {
+	height: 30px;
+	width: 120px;
+	margin-top: 30px;
+	margin-left: 50px;
+	color: #2f2f2f;
+}
+
+.modify-sub-input {
+
+	margin-left: 5px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #2f2f2f;
+}
+
+.image-modify {
+	margin-left: 5px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #2f2f2f;
+}
+
+
+.change-image-container {
+	position: relative;
+	display: inline-block;
+	margin-top: 20px;
+}
+
+.change-pwd-container {
+	position: relative;
+	display: inline-block;
+	margin-top: 300px;
+}
+
+.change-nickname-container {
+	position: relative;
+	display: inline-block;
+	margin-top: 200px;
+}
+
+
+#nickname-modify-container {
+	position: absolute;
+	margin-bottom: 30px;
+	top: 0;
+	left: 300px;
+	width: 300px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+#pwd-modify-container {
+	position: absolute;
+	margin-bottom: 30px;
+	top: 0;
+	left: 300px;
+	width: 300px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+#image-modify-container {
+	position: absolute;
+	margin-bottom: 30px;
+	top: 0;
+	left: 300px;
+	width: 300px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+
+.imageModifyBox {
+	margin-bottom: 10px;
+	max-width: 100%;
+	height: auto;
+}
+
+.ImagemodifyBtn {
+	margin-top: 10px;
 }
 
 #previewImage {
-  display: block;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-input[type="file"] {
-  display: block;
-  margin-top: 10px;
-}
-
-input[type="password"], input[type="text"] {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 16px;
-}
-
-input[type="password"]:focus, input[type="text"]:focus {
-  border-color: #333;
-}
-
-/* 버튼 스타일 */
-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ff9800;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  background-color: #f57c00;
-}
-
-/* 검증 메시지 스타일 */
-.verification {
-  display: inline-block;
-  margin-left: 10px;
-  font-size: 14px;
-  color: #f00;
+	width: 250px;
+	height: 250px;
 }

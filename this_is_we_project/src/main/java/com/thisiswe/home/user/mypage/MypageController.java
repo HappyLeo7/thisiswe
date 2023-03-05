@@ -43,7 +43,7 @@ public class MypageController {
 
 	// 회원정보 수정
 	@PutMapping("/{userId}")
-	public ResponseEntity<Void> modifyUserInfo(
+	public ResponseEntity<Void> putModifyUserInfo(
 		    @PathVariable String userId,
 		    // required = false로 지정하면 해당 파라미터가 누락되어도 에러가 발생하지 않습니다. 
 		    // 따라서, 파일이나 닉네임, 비밀번호 중에서 변경할 정보가 없는 경우에도 정상적으로 처리됩니다.
@@ -61,6 +61,50 @@ public class MypageController {
 		  return ResponseEntity.ok().build();
 	}
 	
+	// 회원정보 이미지 수정
+	@PutMapping("/image/{userId}")
+	public ResponseEntity<Void> putModifyUserImageInfo(
+		    @PathVariable String userId,
+		    // required = false로 지정하면 해당 파라미터가 누락되어도 에러가 발생하지 않습니다. 
+		    // 따라서, 파일이나 닉네임, 비밀번호 중에서 변경할 정보가 없는 경우에도 정상적으로 처리됩니다.
+		    @RequestParam(name = "userImageFile", required = false) MultipartFile userImageFile) {
+		  
+		  log.info("------------유저이미지 수정----------");
+		  log.info("userImageFile: " + userImageFile);
+
+
+		  mypageService.modifyUserImageInfo(userImageFile, userId);
+
+		  return ResponseEntity.ok().build();
+	}
+	
+	// 회원정보 비밀번호 수정
+	@PutMapping("/pwd/{userId}")
+	public ResponseEntity<Void> putModifyUserPasswordInfo(
+		    @PathVariable String userId,
+		    @RequestParam(name = "userPassword", required = false) String userPassword) {
+		  
+		  log.info("------------유저 비밀번호 수정----------");
+		  log.info("userPassword: " + userPassword);
+
+		  mypageService.modifyUserPasswordInfo(userPassword, userId);
+
+		  return ResponseEntity.ok().build();
+	}
+	
+	// 회원정보 닉네임 수정
+	@PutMapping("/nickname/{userId}")
+	public ResponseEntity<Void> modifyUserNicknameInfo(
+		    @PathVariable String userId,
+		    @RequestParam(name = "userNickname", required = false) String userNickname) {
+		  
+		  log.info("------------유저닉네임 수정----------");
+		  log.info("userNickname: " + userNickname);
+
+		  mypageService.modifyUserNicknameInfo(userNickname, userId);
+
+		  return ResponseEntity.ok().build();
+	}
 	
 	// 마이페이지 게시판 읽어오기
 	@GetMapping("/boardlist")
