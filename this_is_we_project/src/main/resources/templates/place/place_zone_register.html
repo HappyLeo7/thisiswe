@@ -12,81 +12,102 @@
 	
 	
 	<!-- 내용 -->
-
-<h1>zone 등록 페이지</h1>
+	<div class="inner">
+<h2>zone 등록 페이지</h2>
 <form th:action="@{/thisiswe/place/zone/register}" method="post">
 
-<table>
-<tr>
-<th>
-장소번호
-</th>
-</tr>
-<tr>
-<td>
-		 <input type="text" name="placeNum" th:value="${placeNum}">
-</td>
-</tr>
-
-<tr>
-<th>
-	룸 이름
-</th>
-</tr>
-<tr>
-<td>
-		 <input type="text" name="placeZoneName">
-</td>
-</tr>
-
-<tr>
-<th>
-	수용 가능 인원
-</th>
-</tr>
-<tr>
-<td>
-		<input type="number" name="placeZoneHeadCount">
-</td>
-</tr>
-<tr>
-<th>
-시간별 금액
-</th>
-</tr>
-<tr>
-<td>
-		00:00 ~ 01:00 <input name="placeZonePriceTime01" type="number"> <br>
-		01:00 ~ 02:00 <input name="placeZonePriceTime02" type="number"> <br>
-		02:00 ~ 03:00 <input name="placeZonePriceTime03" type="number"> <br>
-		03:00 ~ 04:00 <input name="placeZonePriceTime04" type="number"> <br>
-		04:00 ~ 05:00 <input name="placeZonePriceTime05" type="number"> <br>
-		05:00 ~ 06:00 <input name="placeZonePriceTime06" type="number"> <br>
-		06:00 ~ 07:00 <input name="placeZonePriceTime07" type="number"> <br>
-		07:00 ~ 08:00 <input name="placeZonePriceTime08" type="number"> <br>
-		08:00 ~ 09:00 <input name="placeZonePriceTime09" type="number"> <br>
-		09:00 ~ 10:00 <input name="placeZonePriceTime10" type="number"> <br>
-		10:00 ~ 11:00 <input name="placeZonePriceTime11" type="number"> <br>
-		11:00 ~ 12:00 <input name="placeZonePriceTime12" type="number"> <br>
-		12:00 ~ 13:00 <input name="placeZonePriceTime13" type="number"> <br>
-		13:00 ~ 14:00 <input name="placeZonePriceTime14" type="number"> <br>
-		14:00 ~ 15:00 <input name="placeZonePriceTime15" type="number"> <br>
-		15:00 ~ 16:00 <input name="placeZonePriceTime16" type="number"> <br>
-		16:00 ~ 17:00 <input name="placeZonePriceTime17" type="number"> <br>
-		17:00 ~ 18:00 <input name="placeZonePriceTime18" type="number"> <br>
-		18:00 ~ 19:00 <input name="placeZonePriceTime19" type="number"> <br>
-		19:00 ~ 20:00 <input name="placeZonePriceTime20" type="number"> <br>
-		20:00 ~ 21:00 <input name="placeZonePriceTime21" type="number"> <br>
-		21:00 ~ 22:00 <input name="placeZonePriceTime22" type="number"> <br>
-		22:00 ~ 23:00 <input name="placeZonePriceTime23" type="number"> <br>
-		23:00 ~ 24:00 <input name="placeZonePriceTime24" type="number"> <br>
-</td>
-</tr>
-
-</table>
+<div class="club-table">
+	<div class="club-table-read">
+		<table class="club-re-ca">
+		<!-- 장소번호 -->
+			<tr>
+				<th class="club-ri-th" colspan="2">
+					장소번호
+				</th>
+			</tr>
+			<tr>
+				<td colspan="2">
+					 <input  class="cl-re-input-fi" type="text" name="placeNum" th:value="${placeNum}" readonly="readonly">
+				</td>
+			</tr>
+		
+		<!-- 룸이름 -->	
+			<tr>
+				<th class="club-ri-th"  colspan="2">
+					룸 이름
+				</th>
+			</tr>
+			<tr>
+				<td class="cl-re-contain"  colspan="2">
+					 <input  class="cl-re-input-fi" type="text" name="placeZoneName" required="required">
+				</td>
+			</tr>
+		
+		<!-- 수용 가능 인원 -->	
+			<tr>
+				<th class="club-ri-th"  colspan="2">
+					수용 가능 인원
+				</th>
+			</tr>
+			<tr>
+				<td  class="cl-re-contain"  colspan="2">
+					<input class="cl-re-input-fi" type="number" name="placeZoneHeadCount" required="required">
+				</td>
+			</tr>
+			
+		<!-- 시간별 금액 -->	
+			<tr>
+				<th class="club-ri-th"  colspan="2">
+					<br>
+					시간별 금액
+					<br>
+					<br><br>
+				</th>
+			</tr>
+			<tr>
+				<td>
+					00:00 ~ 01:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime01" type="number" required="required"> <br>
+					01:00 ~ 02:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime02" type="number" required="required"> <br>
+					02:00 ~ 03:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime03" type="number" required="required"> <br>
+					03:00 ~ 04:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime04" type="number" required="required"> <br>
+					04:00 ~ 05:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime05" type="number" required="required"> <br>
+					05:00 ~ 06:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime06" type="number" required="required"> <br>
+					06:00 ~ 07:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime07" type="number" required="required"> <br>
+					07:00 ~ 08:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime08" type="number" required="required"> <br>
+					08:00 ~ 09:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime09" type="number" required="required"> <br>
+					09:00 ~ 10:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime10" type="number" required="required"> <br>
+					10:00 ~ 11:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime11" type="number" required="required"> <br>
+					11:00 ~ 12:00 &nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime12" type="number" required="required"> <br>
+				</td>
+				<td>		
+					12:00 ~ 13:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime13" type="number" required="required"> <br>
+					13:00 ~ 14:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime14" type="number" required="required"> <br>
+					14:00 ~ 15:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime15" type="number" required="required"> <br>
+					15:00 ~ 16:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime16" type="number" required="required"> <br>
+					16:00 ~ 17:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime17" type="number" required="required"> <br>
+					17:00 ~ 18:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime18" type="number" required="required"> <br>
+					18:00 ~ 19:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime19" type="number" required="required"> <br>
+					19:00 ~ 20:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime20" type="number" required="required"> <br>
+					20:00 ~ 21:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime21" type="number" required="required"> <br>
+					21:00 ~ 22:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime22" type="number" required="required"> <br>
+					22:00 ~ 23:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime23" type="number" required="required"> <br>
+					23:00 ~ 24:00&nbsp;&nbsp;&nbsp; <input  class="cl-re-input-fi-ti-price" name="placeZonePriceTime24" type="number" required="required"> <br>
+				</td>
+			</tr>
+			<tr>
+				<td  colspan="2">
+				<br>
+				<br>
+				<br>
+					<button class="searchBtn-mi-textLength5" type="submit">룸 등록</button>
+				</td>
+			</tr>
+		</table>
 	
-	<button type="submit">zone등록</button>
+	</div>
+	</div>
 </form>
+</div>
 	<!-- /내용 -->
 	
 	
