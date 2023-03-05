@@ -17,6 +17,7 @@
 		<!-- 모임번호 받아오는 input -->
 		<input type="hidden" class="clubNum" name="clubNum"
 			th:value="${clubNum}" readonly="readonly">
+<div style="height: 100%;">
 
 		<div class="top-inner">
 			<div class="top-inner-ul">
@@ -43,7 +44,7 @@
 			<!-- 사진등록버튼 -->
 			<div class="club-re-Btn">
 				<a th:href="@{/thisiswe/club/photo/register(num=${clubNum})}">
-					<button type="button" class="searchBtn-mi">사진등록</button>
+					<button type="button" class="searchBtn-mi-textLength5">사진등록</button>
 				</a>
 			</div>
 			<!-- 사진등록버튼 -->
@@ -54,44 +55,50 @@
 				<div class="club-table">
 					<div class="club-table-read">
 						<div th:each="photoDTO : ${photoDTOList}" class="imges">
-							<table class="club-re-ca">
-								<tr>
+							<table class="club-table-td">
+								<!-- <tr>
 								<th class="club-ri-th">
-								모임번호
+								모임번호 
+								</th>
+								</tr> -->
+								<tr>
+								<td>
+								<input type="hidden" class="cl-re-input-fi" th:value="${photoDTO.clubNum.clubNum}">
+								</td>
+								</tr>
+								
+								<tr>
+								<th>
+								<!-- 사진번호 -->
 								</th>
 								</tr>
 								<tr>
 								<td class="cl-re-contain">
-								<input class="cl-re-input-fi" th:value="${photoDTO.clubNum.clubNum}">
+									<input type="hidden" class="cl-re-input-fi" th:value="${photoDTO.photoNum}">
 								</td>
 								</tr>
 								
 								<tr>
 								<th class="club-ri-th">
-								사진번호
+								닉네임
 								</th>
 								</tr>
 								<tr>
 								<td class="cl-re-contain">
-									<input class="cl-re-input-fi" th:value="${photoDTO.photoNum}">
+									<input type="hidden" class="cl-re-input-fi" th:value="${photoDTO.userId.userId}">
+									<input class="cl-re-input-fi" th:value="${photoDTO.userId.userNickname}">
+									
 								</td>
 								</tr>
-								
 								<tr>
-								<th class="club-ri-th">
-								등록유저
-								</th>
-								</tr>
-								<tr>
-								<td class="cl-re-contain">
-									<input class="cl-re-input-fi" th:value="${photoDTO.userId.userId}">
+								<td class="">
 									<img th:src="|/display?fileName=${photoDTO.photoPath}|">
 								</td>
 								</tr>
 								<tr>
 									<td>
 									<div class="club-re-Btn">
-										<button type="button" class="searchBtn-mi photoNum" th:value="${photoDTO.photoNum}" onclick="photoRemove(this)">사진삭제</button>
+										<button type="button" class="searchBtn-mi-textLength5 photoNum" th:value="${photoDTO.photoNum}" onclick="photoRemove(this)">사진삭제</button>
 										</div>
 									</td>
 								</tr>
@@ -101,7 +108,7 @@
 				</div>
 			</div>
 		</div>
-
+</div>
 		<!-- /내용 -->
 
 		<script>
@@ -111,15 +118,16 @@
 				console.log($(a).val()); 
 				var photoNum= $(a).val();
 				
-				alert("사진 번호 : " + photoNum);
+				//alert("사진 번호 : " + photoNum);
 				$.ajax({
 					url : "/thisiswe/club/photo/remove/" + photoNum,
 					method : "delete",
 					success : function(result) {
 						console.log("삭제결과 : " + result)
 						if (result == "success") {
-							alert("사진이 삭제 되었습니다.")
+							//alert("사진이 삭제 되었습니다.")
 							$(a).parents(".imges").html("");
+							
 							
 							//let url = "/thisiswe/club/photo/?num=" + clubNum;
 							//location.replace(url)

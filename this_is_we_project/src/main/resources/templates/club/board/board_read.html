@@ -54,12 +54,12 @@
                 <!-- 게시판 조회 테이블 -->
                 <table class="board-re-table">
                     <tr>
-                        <th class="board-ri-th">모임번호</th>
+                        <!-- <th class="board-ri-th">모임번호</th> -->
                     </tr>
 
                     <tr>
                         <td class="bd-contain">
-                            <input type="text" class="bd-input" name="num" autocomplete="off"
+                            <input type="hidden" class="bd-input" name="num" autocomplete="off"
                                    required="required" th:value="${clubNum}">
                         </td>
                     </tr>
@@ -237,6 +237,9 @@
             success: function (response) {
                 if (response == true) {
                     alert("댓글 저장 완료");
+                    console.log(clubNum);
+                    console.log(boardNum);
+                    location.href="/thisiswe/club/board/read?num="+clubNum+"&boardNum="+boardNum;
                 } else {
                     alert("댓글 저장 실패")
                 }
@@ -265,6 +268,7 @@
     //미완성
     function deleteComments(replyNum){
         var clubNum = [[${clubNum}]]
+        var boardNum = $(".boardNum1").val();
         console.log(replyNum + " , " + clubNum);
         var replyRequestDTO = {
             userId: null,
@@ -281,6 +285,10 @@
             success: function (response) {
                 if (response == true) {
                     alert("댓글 삭제 완료");
+                    console.log(clubNum);
+                    console.log(boardNum);
+                    location.href="/thisiswe/club/board/read?num="+clubNum+"&boardNum="+boardNum;
+                    
                 } else {
                     alert("댓글 삭제 실패")
                 }

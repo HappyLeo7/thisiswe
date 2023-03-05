@@ -74,8 +74,11 @@
 							<th class="club-ri-th">모임장</th>
 						</tr>
 						<tr>
-							<td class="cl-re-contain"><input class="cl-re-input-fi"
+							<td class="cl-re-contain">
+							<input type="hidden" class="cl-re-input-fi"
 								name="userId" th:value="${readDTO.userId}" readonly="readonly">
+							<input class="cl-re-input"
+								name="userNuckname" th:value="${readDTO.userNickname}" readonly="readonly">
 							</td>
 						</tr>
 						<!-- 모임명 -->
@@ -144,7 +147,7 @@
 						<div class="club-table-cal-li" th:each="calendarDTO : ${calendarDTOList}">
 							<ul class="club-re-ca-ul calendarRead">
 							<input class="read" type="hidden" th:value="${calendarDTO.clubCalendarNum}">
-								<li th:class="'club-re-ca-li clubCalendarNum'+${calendarDTO.clubCalendarNum}">[[${calendarDTO.clubCalendarNum}]]</li>
+								<li th:class="'club-re-ca-li clubCalendarNum'+${calendarDTO.clubCalendarNum}"></li>
 								<li class="club-re-ca-li-title">
 									<a th:href="@{/thisiswe/club/calendar/read(num=${calendarDTO.clubCalendarNum})}">
 										[[${calendarDTO.clubCalendarTitle}]]
@@ -195,7 +198,6 @@
 			var clubCalendarNum= $(this).children(".read").val();
 			console.log(clubCalendarNum);
 			
-			alert("상세 페이지 클릭"+clubCalendarNum);
 			location.href="/thisiswe/club/calendar/read?num="+clubCalendarNum;
 		})
 		

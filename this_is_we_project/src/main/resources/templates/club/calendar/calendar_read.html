@@ -64,21 +64,21 @@
 
 							<!-- 모임번호 -->
 							<tr>
-								<th class="club-ri-th">모임번호</th>
+								<!-- <th class="club-ri-th">모임번호</th> -->
 							</tr>
 							<tr>
-								<td class="cl-re-contain"><input
-									class="cl-re-input-fi clubNum" name=""
+								<td class="cl-re-contain"><input type="hidden"
+									class="cl-re-input clubNum" name=""
 									th:value="${calendarDTO.clubNum.clubNum}" readonly="readonly">
 									<br></td>
 							</tr>
 
 							<!-- 일정번호 -->
 							<tr>
-								<th class="club-ri-th">일정번호</th>
+								<!-- <th class="club-ri-th">일정번호</th> -->
 							</tr>
 							<tr>
-								<td><input class="cl-re-input calendarNum" name="num"
+								<td><input type="hidden" class="cl-re-input calendarNum" name="num"
 									th:value="${calendarDTO.clubCalendarNum}" readonly="readonly">
 									<br></td>
 							</tr>
