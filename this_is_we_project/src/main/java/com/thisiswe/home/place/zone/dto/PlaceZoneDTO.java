@@ -23,5 +23,6 @@ public class PlaceZoneDTO {
 	/** 장소 구역 가용인원*/
 	private Long placeZoneHeadCount;
 	
+	private PlaceZoneTimePriceDTO placeZoneTimePriceDTO;
 	
 }

@@ -1,12 +1,13 @@
 package com.thisiswe.home.place.zone.service;
 
+import com.thisiswe.home.place.zone.dto.PlaceZoneDTO;
 import com.thisiswe.home.place.zone.dto.PlaceZoneTimePriceDTO;
 import com.thisiswe.home.place.zone.entity.PlaceZoneEntity;
 import com.thisiswe.home.place.zone.entity.PlaceZoneTimePriceEntity;
 
 public interface PlaceZoneTimePriceService {
 
-	
+	PlaceZoneTimePriceDTO placeZoneTimePriceList(PlaceZoneDTO placeZoneDTO);
 	
 
 	//dto -> en
@@ -45,6 +46,45 @@ public interface PlaceZoneTimePriceService {
 		System.out.println("장소zone 시간별 금액 정보 변환 완료 : "+placeZoneTimePriceEntity);
 		
 		return placeZoneTimePriceEntity;
+		
+	}
+	//en -> dto
+	default PlaceZoneTimePriceDTO entityToDto(PlaceZoneTimePriceEntity placeZoneTimePriceEntity) {
+		
+		
+		
+		PlaceZoneTimePriceDTO placeZoneTimePriceDTO = PlaceZoneTimePriceDTO.builder()
+				.placeZonePriceNum(placeZoneTimePriceEntity.getPlaceZonePriceNum())
+				.placeZonePriceTime01(placeZoneTimePriceEntity.getPlaceZonePriceTime01())
+				.placeZonePriceTime02(placeZoneTimePriceEntity.getPlaceZonePriceTime02())
+				.placeZonePriceTime03(placeZoneTimePriceEntity.getPlaceZonePriceTime03())
+				.placeZonePriceTime04(placeZoneTimePriceEntity.getPlaceZonePriceTime04())
+				.placeZonePriceTime05(placeZoneTimePriceEntity.getPlaceZonePriceTime05())
+				.placeZonePriceTime06(placeZoneTimePriceEntity.getPlaceZonePriceTime06())
+				.placeZonePriceTime07(placeZoneTimePriceEntity.getPlaceZonePriceTime07())
+				.placeZonePriceTime08(placeZoneTimePriceEntity.getPlaceZonePriceTime08())
+				.placeZonePriceTime09(placeZoneTimePriceEntity.getPlaceZonePriceTime09())
+				.placeZonePriceTime10(placeZoneTimePriceEntity.getPlaceZonePriceTime10())
+				.placeZonePriceTime11(placeZoneTimePriceEntity.getPlaceZonePriceTime11())
+				.placeZonePriceTime12(placeZoneTimePriceEntity.getPlaceZonePriceTime12())
+				.placeZonePriceTime13(placeZoneTimePriceEntity.getPlaceZonePriceTime13())
+				.placeZonePriceTime14(placeZoneTimePriceEntity.getPlaceZonePriceTime14())
+				.placeZonePriceTime15(placeZoneTimePriceEntity.getPlaceZonePriceTime15())
+				.placeZonePriceTime16(placeZoneTimePriceEntity.getPlaceZonePriceTime16())
+				.placeZonePriceTime17(placeZoneTimePriceEntity.getPlaceZonePriceTime17())
+				.placeZonePriceTime18(placeZoneTimePriceEntity.getPlaceZonePriceTime18())
+				.placeZonePriceTime19(placeZoneTimePriceEntity.getPlaceZonePriceTime19())
+				.placeZonePriceTime20(placeZoneTimePriceEntity.getPlaceZonePriceTime20())
+				.placeZonePriceTime21(placeZoneTimePriceEntity.getPlaceZonePriceTime21())
+				.placeZonePriceTime22(placeZoneTimePriceEntity.getPlaceZonePriceTime22())
+				.placeZonePriceTime23(placeZoneTimePriceEntity.getPlaceZonePriceTime23())
+				.placeZonePriceTime24(placeZoneTimePriceEntity.getPlaceZonePriceTime24())
+				.placeZoneNum(PlaceZoneDTO.builder().placeZoneNum(placeZoneTimePriceEntity.getPlaceZoneNum().getPlaceZoneNum()).build())
+				.build();
+		
+		System.out.println("장소zone 시간별 금액 정보 변환 완료 : "+placeZoneTimePriceDTO);
+		
+		return placeZoneTimePriceDTO;
 		
 	}
 	

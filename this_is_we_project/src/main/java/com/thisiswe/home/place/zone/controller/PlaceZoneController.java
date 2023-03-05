@@ -46,7 +46,7 @@ public class PlaceZoneController {
 		
 		//룸이름으로 룸번호 불러오기
 		PlaceZoneDTO placeZone=placeZoneService.getPlaceZoneNum(placeZoneDTO.getPlaceZoneName(),placeZoneDTO.getPlaceNum());
-		placeZoneTimepriceDTO.setPlaceZoneNum(PlaceZoneDTO.builder().placeZoneNum(placeZone.getPlaceNum()).build());
+		placeZoneTimepriceDTO.setPlaceZoneNum(PlaceZoneDTO.builder().placeZoneNum(placeZone.getPlaceZoneNum()).build());
 		log.info("placeZoneTimepriceDTO : "+placeZoneTimepriceDTO);
 		//시간별 금액 테이블에 저장
 		placeZoneTimePriceService.register(placeZoneTimepriceDTO);
