@@ -92,7 +92,7 @@ public class UserSecurityConfig {
 			cookie.setMaxAge(60 * 30); // 30분간 쿠키 유지
 			cookie.setPath("/");
 			response.addCookie(cookie);
-			response.sendRedirect("/thisiswe");
+			response.sendRedirect("/thisiswe/club");
 		})
 		.and()
 		// [로그아웃 기능]

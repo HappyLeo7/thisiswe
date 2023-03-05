@@ -53,8 +53,8 @@
 		<div id="top-menu">
 			<div class="top-container">
 
-				<span id="container-logo"> <img class="container-logo-l"
-					src="/image/thisiswe-logo01.svg">
+				<span id="container-logo"> <a href="/thisiswe"><img class="container-logo-l"
+					src="/image/thisiswe-logo01.svg"></a>
 
 				</span>
 				<div class="container-p">
@@ -94,7 +94,7 @@
 		<menu>
 			<div class="logo">
 
-				<a href=""> <img class="logo-img"
+				<a href="/thisiswe"> <img class="logo-img"
 					src="/image/thisiswe-icon01.svg" /> <!-- <span class="icon-camera"></span> -->
 
 				</a>
@@ -104,20 +104,20 @@
 			<div class="container">
 				<div class="box">
 					<ul>
-						<li><a href="#">Promotions</a></li>
+						<!-- <li><a href="#">Promotions</a></li> -->
 
 						<li><a th:href="@{/thisiswe/mypage/main}">MY PAGE</a> | <a
 							th:href="@{/thisiswe/login}">로그인</a> | <a
 							th:href="@{/thisiswe/signup}">회원가입</a></li>
 					</ul>
 					<ul>
-						<li><a th:href="@{/login/index}">오늘의 추천모임</a></li>
-						<li><a href="#">모임 등록</a></li>
-						<li><a href="#">장소 대여</a></li>
-						<li><a href="#">공지 사항</a></li>
-						<li><a href="#">자유 게시판</a></li>
-						<li><a href="#">실시간 예약</a></li>
-						<li><a href="#">실시간 상담</a></li>
+						<!-- <li><a th:href="@{/login/index}">오늘의 추천모임</a></li> -->
+						<li><a href="/thisiswe/club">모임 목록</a></li>
+						<li><a href="/thisiswe/register">모임 등록</a></li>
+						<li><a href="/thisiswe/place">장소 대여</a></li>
+						<li><a href="/thisiswe/place/register">장소 등록</a></li>
+						<!-- <li><a href="#">실시간 예약</a></li> -->
+						<!-- <li><a href="#">실시간 상담</a></li> -->
 					</ul>
 					<ul>
 						<li><a class="ion-social-facebook" href="#" target="_blank"></a></li>
@@ -129,7 +129,7 @@
 
 					<div class="sign-up">
 						<!-- <a href="#"> Sign up for Newsletter -->
-						<a href="#"> This Is We, Join Us <span
+						<a href="/thisiswe/club"> This Is We, Join Us <span
 							class="ion-arrow-right-c"></span>
 						</a>
 					</div>
@@ -245,7 +245,7 @@
 						<div id="ft-bottom-left">
 							<!-- [수정] image로고 경로 부트에 맞게 변경 -->
 
-							<img src="/image/thisiswe-logo01.svg" />
+							<a href="/thisiswe"><img src="/image/thisiswe-logo01.svg" /></a>
 							<!-- /[수정] image로고 경로 부트에 맞게 변경 -->
 						</div>
 
@@ -270,13 +270,13 @@
 						<div id="ft-bottom-right">
 							<table>
 								<tr>
-									<td><a href="#"> <img src="/image/icon_insta_com.png" />
+									<td><a href="https://www.instagram.com/"> <img src="/image/icon_insta_com.png" />
 									</a></td>
-									<td><a href="#"> <img src="/image/icon_face_com.png" />
+									<td><a href="https://www.facebook.com/"> <img src="/image/icon_face_com.png" />
 									</a>
-									<td><a href="#"> <img src="/image/icon_youtu_com.png" />
+									<td><a href="https://www.youtube.com/"> <img src="/image/icon_youtu_com.png" />
 									</a></td>
-									<td><a href="#"> <img src="/image/icon_twi_com.png" />
+									<td><a href="https://twitter.com/"> <img src="/image/icon_twi_com.png" />
 									</a></td>
 								</tr>
 							</table>

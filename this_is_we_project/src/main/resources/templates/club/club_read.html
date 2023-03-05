@@ -41,8 +41,8 @@
 		<!-- /네비창 (정보, 게시판, 사진첩) -->
 
 		<!-- 모임 전체 목록 -->
-		<div class="inner-club">
-			<h2>모임 상세페이지</h2>
+		<div class="inner-club" style="margin-left: 1%;">
+			<h2 style="margin-left: -1%">모임 상세페이지</h2>
 
 			<br> <input type="hidden" class="club-ce userId"
 				th:value="${user}" name="userId"> <br>
@@ -212,7 +212,7 @@
 
 						console.log("삭제결과값 : " + result)
 						if (result == "success") {
-							alert(clubNum + "모임이 삭제되었습니다.")
+							//alert(clubNum + "모임이 삭제되었습니다.")
 							let url = "/thisiswe/club";
 
 							location.replace(url);

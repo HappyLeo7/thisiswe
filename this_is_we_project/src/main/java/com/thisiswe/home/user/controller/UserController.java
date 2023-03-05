@@ -45,7 +45,7 @@ public class UserController {
 				System.out.println("세션이 만료되었는지 확인 : " + session.getAttribute("userDetails"));
 					if (cookie.getName().equals("loggedIn") && cookie.getValue().equals("true")) {
 						/* session. */
-						return "redirect:/thisiswe";
+						return "redirect:/thisiswe/club";
 					}
 				}
 			}
