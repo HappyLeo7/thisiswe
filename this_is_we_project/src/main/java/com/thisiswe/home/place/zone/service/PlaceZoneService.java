@@ -12,6 +12,7 @@ public interface PlaceZoneService {
 	
 	List<PlaceZoneDTO> getPlaceZone(Long placeNum);
 	
+	PlaceZoneDTO getPlaceZoneNum(String placeZoneName, Long placeNum);
 
 	//dto -> en
 	default PlaceZoneEntity dtoToEntity(PlaceZoneDTO placeZoneDTO) {
