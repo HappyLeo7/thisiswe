@@ -24,7 +24,76 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 
+<!-- [배경영상 css] -->
+	<link rel="stylesheet" href="css/backgroundVideo.css"/>
+<!-- /[배경영상 css] -->
 
+
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
+<style>
+*{ padding: 0; margin: 0;}
+div{width: 100%; 
+background-size: cover;
+background-position: center;
+}
+.box01{ background-color: #bb2649;height: 900px; opacity: 0.5;}
+.box03{background-color: #bb2649;height: 300px; opacity: 0.3;}
+.box05{background-color: black;height: 900px; opacity: 0.9;}
+
+.box02{height: 1500px;
+background-image: url(image/club/club02.png);
+background-attachment: fixed;
+}
+
+.box04{height: 1500px;
+background-image: url(image/place/place01.jpg);
+background-attachment: fixed;
+}
+</style>
+
+<div class="box01">
+</div>
+
+<div class="box02">
+</div>
+
+<div class="box03">
+</div>
+
+<div class="box04">
+</div>
+
+<div class="box05">
+</div>
+
+<div class="box06">
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+$(".box02").on("click",function(){
+	alert("클릭하였습니다");
+	location.href="/thisiswe/club";
+})
+$(".box04").on("click",function(){
+	alert("클릭하였습니다");
+	location.href="/thisiswe/place";
+})
+</script>
+
+				<!-- <video class="bg-video-content" autoplay="autoplay" loop="loop" muted="muted" style="z-index:1;">
+				<source src="video/bcc.mp4" type="video/mp4">
+				</video> -->
+<div class="info">
+	<div class="bg-video">
+			<!-- [배경 영상] -->
+			</div>
+<!-- <a class="a1" th:href="@{/thisiswe/club}"><button><img alt="" src="image/club/club02.png" style="z-index:99"></button></a>
+<a class="a2" th:href="@{/thisiswe/place}"><button><img src="/image/place/place01.jpg" /></button></a> -->
+
+</div>
 
 
 

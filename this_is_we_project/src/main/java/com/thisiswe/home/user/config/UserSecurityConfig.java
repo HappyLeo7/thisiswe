@@ -92,6 +92,7 @@ public class UserSecurityConfig {
 			cookie.setPath("/");
 			response.addCookie(cookie);
 	        response.sendRedirect("/thisiswe/loginCheck");
+
 		})
 		.and()
 		// [로그아웃 기능]

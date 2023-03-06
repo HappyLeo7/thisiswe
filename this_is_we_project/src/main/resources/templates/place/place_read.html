@@ -60,29 +60,29 @@
 		</style>
 
 
-		<div style="text-align: center; width: 60%;">
-
-			<a th:if="${isWriter}" th:href="@{/thisiswe/place/modify(placeNum=${place.getPlaceNum})}"><button class="searchBtn-mi-textLength5" type="button"
-					style="float: right;">수정</button></a>
-
-
-			<button class="searchBtn-mi-textLength5" style="float: right;" th:if="${isWriter}" id="placeDeleteButton" type="submit">삭제</button>
-
+		<div style="text-align: center; width: 100%;">
 
 			<a  th:href="@{/thisiswe/place/zone/register(placeNum=${place.getPlaceNum})}"><button class="searchBtn-mi-textLength5" type="submit"
-					style="float: right;">룸 추가</button></a>
+					style="">룸 추가</button></a>
+			<a th:if="${isWriter}" th:href="@{/thisiswe/place/modify(placeNum=${place.getPlaceNum})}"><button class="searchBtn-mi-textLength5" type="button"
+					style="">수정</button></a>
+
+
+			<button class="searchBtn-mi-textLength5" style="" th:if="${isWriter}" id="placeDeleteButton" type="submit">삭제</button>
+
+
 
 			<br>
 
-			<div>
+			<div style="width: 100%;">
 
-				<div style="float: left;">
-					<p style="font-size: 40px; font-weight: 600;">[[${place.getPlaceName}]]</p>
-					<p style="font-size: 21px; color:  #BB2649;">[[${place.getPlaceOneLineIntroduction}]]</p>
+				<div style="float: left; width: 100%" >
+					<p style="font-size: 40px; font-weight: 600; text-align: center;" >[[${place.getPlaceName}]]</p>
+					<p style="font-size: 21px; color:  #BB2649; text-align: center;">[[${place.getPlaceOneLineIntroduction}]]</p>
 				</div>
 
-				<div  class="swiper-container">
-					<div class="swiper-wrapper">
+				<div  class="swiper-container" style="width: 100%; ">
+					<div class="swiper-wrapper" style="width: 100%;">
 						<div style="height: 400px; width: 500px;" th:each="placeImageDTO : ${place.placeImageDTOList}"
 							class="swiper-slide"><img height="100%"
 								th:src="|/thisiswe/placeImageDisplay?fileName=${placeImageDTO.getPlcaeThumbnailURL()}|">
@@ -92,26 +92,51 @@
 
 
 				<form th:action="@{/thisiswe/place/reservation}" method="get">
-					<div th:each="zone : ${zones}" style="border: solid 1px;">
-						[[${zone.getPlaceZoneName}]]
-						[[${zone.getPlaceZoneHeadCount}]]
-						[[${zone.getPlaceZoneNum}]]
-						[[${zone.getPlaceNum}]]
+					<div class="" th:each="zone : ${zones}" style="">
+						<p class="littleTitle">[[${zone.getPlaceZoneName}]]</p>
+						<p style="font-size: 25px; font-weight: 600;"> 최대 [[${zone.getPlaceZoneHeadCount}]] 명 제한</p>
+						<!-- [[${zone.getPlaceZoneNum}]] -->
+						<!-- [[${zone.getPlaceNum}]] -->
 						<input type="radio" name="placeZoneNum" th:value="${zone.getPlaceZoneNum}">
 						
-						<div class="swiper-container" >
-							<div class="swiper-wrapper">
-								<div class="swiper-slide">
-								00:00~01:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime01}]])
-								01:00~02:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime01}]])
-								02:00~03:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime01}]])
+						<div class="swiper-container" style="width: 100%;">
+							<div class="swiper-wrapper" style="width: 100%;">
+								<div class="cl-re-input-fi-ti swiper-slide" style="width: 100%; ">
+								00:00~01:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime01}]]) <br>
+								01:00~02:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime02}]]) <br>
+								02:00~03:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime03}]]) <br>
+								03:00~04:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime04}]]) <br>
+								04:00~05:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime05}]]) <br>
+								05:00~06:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime06}]]) <br>
+								06:00~07:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime07}]]) <br>
+								07:00~08:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime08}]]) <br>
 								</div>
-								<div class="swiper-slide">
-								
+								<div class="cl-re-input-fi-ti swiper-slide">
+								08:00~09:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime09}]]) <br>
+								09:00~10:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime10}]]) <br>
+								10:00~11:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime11}]]) <br>
+								11:00~12:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime12}]]) <br>
+								12:00~13:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime13}]]) <br>
+								13:00~14:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime14}]]) <br>
+								14:00~15:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime15}]]) <br>
+								15:00~16:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime16}]]) <br>
+								</div>
+								<div class="cl-re-input-fi-ti swiper-slide">
+								16:00~17:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime17}]]) <br>
+								17:00~18:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime18}]]) <br>
+								18:00~19:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime19}]]) <br>
+								19:00~20:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime20}]]) <br>
+								20:00~21:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime21}]]) <br>
+								21:00~22:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime22}]]) <br>
+								22:00~23:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime23}]]) <br>
+								23:00~24:00 : ([[${zone.placeZoneTimePriceDTO.placeZonePriceTime24}]]) <br>
+								</div>
+								<div style="height: 100px;">
 								</div>
 							</div>
 						</div>
 					</div>
+					<br>
 					<button class="searchBtn-mi-textLength5" type="submit">예약</button>
 				</form>
 				
@@ -120,48 +145,58 @@
 					new Swiper('.swiper-container');
 				</script>
 				<!-- /룸 시간별 금액 스와이퍼 처리 -->
-				
+				<style>
+				p{ text-align: center;
+				}
+				div{text-align: center;
+				}
+
+</style>
 				<div style="text-align: left;">
 				<input type="hidden" name="placeNum" th:value="${place.placeNum}">
+				<div style="height: 50px"></div>
 				<br>
 				<p class="littleTitle">소개글</p>
 				<br>
-				<p th:utext="${place.getPlaceIntroduction.replaceAll('\n', '<br/>')}" ></p>
+				<p class="cl-re-input-fi-ti" style="margin-left: 28.5%" th:utext="${place.getPlaceIntroduction.replaceAll('\n', '<br/>')}" ></p>
 				<br>
 				<br>
 				<br>
 				<p class="littleTitle">영업 시간</p>
 				<br>
-				<div>[[${place.getPlaceBusinessHours}]]</div>
+				<div class="cl-re-input-fi-ti" style="margin-left: 28.5%" >[[${place.getPlaceBusinessHours}]]</div>
 				<br>
 				<p class="littleTitle">휴무일</p>
 				<br>
-				<div>[[${place.getPlaceHoliday}]]</div>
+				<div class="cl-re-input-fi-ti" style="margin-left: 28.5%">[[${place.getPlaceHoliday}]]</div>
 				<br>
 				<p class="littleTitle">주소</p>
 				<br>
-				<div>[[${place.getPlaceAddress}]]</div>
+				<div class="cl-re-input-fi-ti" style="margin-left: 28.5%">[[${place.getPlaceAddress}]]</div>
 				<br>
 				<p class="littleTitle">전화번호</p>
 				<br>
-				<div>[[${place.getPlacePhoneNumber}]]</div>
+				<div class="cl-re-input-fi-ti" style="margin-left: 28.5%">[[${place.getPlacePhoneNumber}]]</div>
 				<br>
 				<p class="littleTitle">안내 사항</p>
 				<br>
-				<div>[[${place.getPlaceGuide}]]</div>
-				<p th:utext="${place.getPlaceGuide.replaceAll('\n', '<br/>')}" ></p>
+				<!-- <div class="cl-re-input-fi-ti" style="margin-left: 28.5%">[[${place.getPlaceGuide}]]</div> -->
+				<p class="cl-re-input-fi-ti" style="margin-left: 28.5%"  th:utext="${place.getPlaceGuide.replaceAll('\n', '<br/>')}" ></p>
 				<br>
 				<p class="littleTitle">주의 사항</p>
 				<br>
-				<div>[[${place.getPlaceCaution}]]</div>
-				<p th:utext="${place.getPlaceCaution.replaceAll('\n', '<br/>')}" ></p>
+				<!-- <div class="cl-re-input-fi-ti" style="margin-left: 28.5%">[[${place.getPlaceCaution}]]</div> -->
+				<p class="cl-re-input-fi-ti" style="margin-left: 28.5%" th:utext="${place.getPlaceCaution.replaceAll('\n', '<br/>')}" ></p>
 				<br>
 				<p class="littleTitle">환불 규정</p>
 				<br>
-				<p th:utext="${place.getPlaceRefundRegulations.replaceAll('\n', '<br/>')}" ></p>
+				<p class="cl-re-input-fi-ti" style="margin-left: 28.5%" th:utext="${place.getPlaceRefundRegulations.replaceAll('\n', '<br/>')}" ></p>
 				</div>
 				<br>
 
+<br>
+<br>
+<br>
 
 
 				<input type="hidden" id="loginID" th:value="@{${loginID}}">
