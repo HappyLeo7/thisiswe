@@ -51,7 +51,7 @@
 		<div id="top-menu">
 			<div class="top-container">
 
-				<span id="container-logo"> <img class="container-logo-l" src="/image/thisiswe-logo01.svg">
+				<span id="container-logo"> <img class="container-logo-l" src="/image/thisiswe-logo01.svg" th:href="@{/thisiswe}">
 
 				</span>
 				<div class="container-p">
@@ -64,11 +64,6 @@
 						<li class="container-p-li" sec:authorize="isAuthenticated()">
 							<a id="logout-redirect" th:href="@{/thisiswe/logout}">LOGOUT</a>
 						</li>
-						<!-- 						<li class="container-p-li" sec:authorize="isAuthenticated()">
-							<form th:action="@{/thisiswe/logout}" method="post">
-								<input type="submit" value="로그아웃" />
-							</form>
-						</li> -->
 
 						<li class="container-p-li" sec:authorize="isAuthenticated()">
 							<a th:href="@{/thisiswe/mypage/main}">MY PAGE</a>

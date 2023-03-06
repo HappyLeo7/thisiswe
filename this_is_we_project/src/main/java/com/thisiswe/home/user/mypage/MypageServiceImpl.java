@@ -57,27 +57,6 @@ public class MypageServiceImpl implements MypageService {
 		return new MyPageResultDTO<>(result, func);
 	}
 
-//	@Override
-//	public MyPageResultDTO<ClubDTO, ClubEntity> getClubList(PageRequestDTO pageRequestDTO, String userId) {
-//		
-//
-//        UserEntity userEntity = userRepository.findByUserId(userId)
-//                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-//
-//        // 로그인한 사용자의 아이디로 ClubMemberEntity를 조회합니다.
-//        Page<ClubMemberEntity> result = clubMemberRepository.findAllByUserId(userEntity, pageRequestDTO.getPageable(Sort.by("clubNum").descending()));
-//        
-//        // 조회된 ClubMemberEntity에서 가입한 모임의 번호(ClubEntity의 clubNum)를 추출합니다.
-//        List<Long> clubNumList = result.stream().map(ClubMemberEntity::getClubNum).collect(Collectors.toList());
-//        
-//        // 추출된 가입한 모임의 번호를 사용하여 ClubEntity를 조회합니다.
-//        Page<ClubEntity> result2 = clubRepository.findAllByClubNumIn(clubNumList, pageRequestDTO.getPageable(Sort.by("clubNum").descending()));
-//
-//        // 조회된 ClubEntity를 화면에 표시합니다.
-//        Function<ClubEntity, ClubDTO> func = clubEntity -> entityClubToDTO(clubEntity, userEntity);
-//        return new MyPageResultDTO<>(result2, func);
-//	}
-
 //	 게시글 페이지 목록(list)
 	@Override
 	public MyPageResultDTO<BoardDTO, Board> getList(PageRequestDTO pageRequestDTO, String userId) {
@@ -126,24 +105,6 @@ public class MypageServiceImpl implements MypageService {
 
 			userRepository.save(userEntity);
 		}
-//	    if (result.isPresent()) {
-//	        UserEntity userEntity = result.get();
-//	        userEntity.changeNickName(userNickname);
-//
-//	        String encodedPassword = passwordEncoder.encode(userPassword);
-//	        userEntity.changePassword(encodedPassword);
-//
-//	        // 이미지 업로드
-//	        String uploadedImageUrl = null;
-//	        if (userImageFile != null) {
-//	            uploadedImageUrl = uploadImage(userImageFile);
-//	        } else {
-//	            uploadedImageUrl = userEntity.getUserImageUrl();
-//	        }
-//	        userEntity.changeImage(uploadedImageUrl);
-//
-//	        userRepository.save(userEntity);
-//	    }
 	}
 
 	private String uploadImage(MultipartFile imageFile) {

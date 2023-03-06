@@ -26,29 +26,29 @@
 	<div id="modify">
 		<span class="userinfo-title">회원정보 수정</span>
 
-
+		<div class="back-container">
 			<button id="cancel-button" type="button" class="btn btn-warning modifyBtn">돌아가기</button>
+		</div>
 
-
-
+		<div class="id-container">
 			<span class="signup-classification modify-sub">아이디 : </span>
 			<span class="modify-sub-input" th:text="${userId}"></span>
+		</div>
 
-
-		
+		<div class="change-image-container">
 			<span class="modify-image-top">이미지 변경하기</span>
 			<input type="checkbox" id="image-check" class="signup-classification info-modify image-modify">
-
+<br>
 			<div id="image-modify-container" style="display: none;">
 				<img id="previewImage" class="imageModifyBox" src="#" alt="미리보기 이미지"><br>
 				<input type="file" id="userImageFile" class="imageModifyBox" name="userImageFile" accept="image/*"><br>
 				<button id="modify-button" type="button" class="btn btn-warning ImagemodifyBtn imageModifyBox">수정하기
 				</button>
 			</div>
-
+		</div>
 		<br>
 
-
+		<div class="change-pwd-container">
 			<span class="modify-pwd-top">비밀번호 변경하기</span>
 			<input type="checkbox" id="pwd-check" class="signup-classification singup-sub pwd-modify">
 			<br>
@@ -64,11 +64,11 @@
 				<button id="modify-pwd-button" type="button" class="btn btn-warning pwdmodifyBtn pwdModifyBox">수정하기
 				</button>
 			</div>
-
+		</div>
 
 		<br>
 
-
+		<div class="change-nickname-container">
 			<span class="modify-nickname-top">닉네임 변경하기</span>
 			<input type="checkbox" id="nickname-check" class="signup-classification singup-sub nickname-modify"
 				onclick="toggleNicknameModify()">
@@ -84,6 +84,7 @@
 				</button>
 			</div>
 			<br>
+		</div>
 
 	</div>
 
