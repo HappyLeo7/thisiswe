@@ -44,7 +44,7 @@
 				<div class="club-table">
 					<div class="club-table-li clubRead" th:each="clubDTO : ${result}">
 							<input type="hidden" class="clubNum" th:value="${clubDTO.clubNum}">
-						<img th:src="|/display?fileName=${clubDTO.clubLogoUrl}|">
+						<img th:src="${clubDTO.clubLogoUrl}">
 						<div class="club-table-liRe">
 							<a th:href="@{/club/read}"></a>
 						</div>

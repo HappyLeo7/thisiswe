@@ -8,6 +8,8 @@ import java.util.function.Function;
 
 import javax.transaction.Transactional;
 
+import com.thisiswe.home.s3.FileRequestDto;
+import com.thisiswe.home.s3.S3Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,7 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class ClubServiceImpl implements ClubService {
 
+	private final S3Service s3Service;
 	private final ClubRepository clubRepository;
 	private final ChatService chatService;
 	private final CalendarRepository calendarRepository;
@@ -44,17 +47,24 @@ public class ClubServiceImpl implements ClubService {
 
 		log.info("///// 모임 로고 이미지 등록처리 /////");
 
-		String path = "C:\\upload";
+//		String path = "C:\\upload";
+//
+//		UUID uuid = UUID.randomUUID();
+//		String logoName = uuid + "_" + multipartFile.getOriginalFilename();
 
-		UUID uuid = UUID.randomUUID();
-		String logoName = uuid + "_" + multipartFile.getOriginalFilename();
-		clubDTO.setClubLogo(multipartFile.getOriginalFilename());
-		clubDTO.setClubLogoUuid(logoName);
-		clubDTO.setClubLogoUrl(logoName);
+//		clubDTO.setClubLogo(multipartFile.getOriginalFilename());
+//		clubDTO.setClubLogoUuid(logoName);
+//		clubDTO.setClubLogoUrl(logoName);
+//
+//		File saveFile = new File(path, logoName);
 
-		File saveFile = new File(path, logoName);
-		multipartFile.transferTo(saveFile);
-
+//		multipartFile.transferTo(saveFile);
+		FileRequestDto fileRequestDto = s3Service.upload(multipartFile);
+		String imageUrl = fileRequestDto.getImageUrl();
+		clubDTO.setClubLogo(imageUrl);
+		clubDTO.setClubLogoUuid(imageUrl);
+		clubDTO.setClubLogoUrl(imageUrl);
+//
 		log.info(".....  clubDTO : " + clubDTO + " .....");
 		ClubEntity clubEntity = dtoToEntity(clubDTO);
 		clubRepository.save(clubEntity);

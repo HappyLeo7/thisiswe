@@ -22,43 +22,44 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class UploadController {
 
-	@Value("${com.thisiswe.upload.path}")
-	private String uploadPath;
-	
-	@GetMapping("/display")
-	public ResponseEntity<byte[]> getFile(String fileName, String size){
-		
-		log.info("이미지 파일이름"+fileName);
-		log.info("이미지 크기"+size);
-		
-		ResponseEntity<byte[]> result = null;
-		
-		try {
-			String srcFileName = URLDecoder.decode(fileName, "UTF-8");
-			
-			log.info("fileName(srcFileName) : " + srcFileName);
-			
-			File file = new File(uploadPath + File.separator + srcFileName);
-			
-			if(size !=null && size.equals("1")) {
-				file = new File(file.getParent(), file.getName().substring(2));
-			}
-			
-			log.info(file);
-			
-			HttpHeaders header = new HttpHeaders();
-			
-			header.add("Content-Type", Files.probeContentType(file.toPath()));
-			
-			result = new ResponseEntity<>(
-					FileCopyUtils.copyToByteArray(file), 
-					header, 
-					HttpStatus.OK);
-			
-		} catch (Exception e) {
-			log.error(e.getMessage());
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return result;
-	}
+    //	@Value("${com.thisiswe.upload.path}")
+    private String uploadPath;
+
+    @GetMapping("/display")
+    public ResponseEntity<byte[]> getFile(String fileName, String size) {
+
+        log.info("이미지 파일이름" + fileName);
+        log.info("이미지 크기" + size);
+
+        ResponseEntity<byte[]> result = null;
+
+        try {
+            String srcFileName = URLDecoder.decode(fileName, "UTF-8");
+
+            log.info("fileName(srcFileName) : " + srcFileName);
+
+            File file = new File( srcFileName);
+//			File file = new File(uploadPath + File.separator + srcFileName);
+
+            if (size != null && size.equals("1")) {
+                file = new File(file.getParent(), file.getName().substring(2));
+            }
+
+            log.info(file);
+
+            HttpHeaders header = new HttpHeaders();
+
+            header.add("Content-Type", Files.probeContentType(file.toPath()));
+
+            result = new ResponseEntity<>(
+                    FileCopyUtils.copyToByteArray(file),
+                    header,
+                    HttpStatus.OK);
+
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return result;
+    }
 }

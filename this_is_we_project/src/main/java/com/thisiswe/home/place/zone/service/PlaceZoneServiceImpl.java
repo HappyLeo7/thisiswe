@@ -1,6 +1,7 @@
 package com.thisiswe.home.place.zone.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,8 @@ public class PlaceZoneServiceImpl implements PlaceZoneService {
 
 	@Override
 	public List<PlaceZoneDTO> getPlaceZone(Long placeNum) {
-		log.info( "요청한 get place zone 정보 :"+placeZoneRepository.findByPlaceNum(PlaceEntity.builder().placeNum(placeNum).build()).stream().map(i-> entityToDTO(i)).toList());
-		return placeZoneRepository.findByPlaceNum(PlaceEntity.builder().placeNum(placeNum).build()).stream().map(i-> entityToDTO(i)).toList();
+		log.info( "요청한 get place zone 정보 :"+placeZoneRepository.findByPlaceNum(PlaceEntity.builder().placeNum(placeNum).build()).stream().map(i-> entityToDTO(i)).collect(Collectors.toList()));
+		return placeZoneRepository.findByPlaceNum(PlaceEntity.builder().placeNum(placeNum).build()).stream().map(i-> entityToDTO(i)).collect(Collectors.toList());
 	}
 	
 	//장소 넘버를 통해서 룸정보 1개 가져오기
